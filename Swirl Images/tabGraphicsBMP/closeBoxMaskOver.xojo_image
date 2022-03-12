@@ -1,0 +1,40 @@
+#tag MultiImage
+Image closeBoxMaskOver
+	#tag ImageRepresentation
+		SaveInfo = APHRcwECAQAAAAIYAAAAAAIYAAIAAAhIYXJ0bWFubgAAAAAAAAAAAAAAAAAAAAAAAADWAyOeSCsAAACWorIUY2xvc2VCb3hNYXNrT3Zlci5ibXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJaitsxoXqQAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAADnRhYkdyYXBoaWNzQk1QABAACAAA1gNb3gAAABEACAAAzGiW5AAAAAEAGACWorIAlqJGAJaLSgAcOfYABsTKAAKYcwACAHdIYXJ0bWFubjpVc2VyczoAc2hhb3NlYW46AERldmVsb3BlcjoAc3NXaXJlZC1Yb2pvOgByZXN0cmVwby5DdXN0b21UYWJQYW5lbENsYXNzZXM6AHRhYkdyYXBoaWNzQk1QOgBjbG9zZUJveE1hc2tPdmVyLmJtcAAADgAqABQAYwBsAG8AcwBlAEIAbwB4AE0AYQBzAGsATwB2AGUAcgAuAGIAbQBwAA8AEgAIAEgAYQByAHQAbQBhAG4AbgASAGhVc2Vycy9zaGFvc2Vhbi9EZXZlbG9wZXIvc3NXaXJlZC1Yb2pvL3Jlc3RyZXBvLkN1c3RvbVRhYlBhbmVsQ2xhc3Nlcy90YWJHcmFwaGljc0JNUC9jbG9zZUJveE1hc2tPdmVyLmJtcAATAAEvAAAVAAIAD///AAAAAAAAAAA=
+		FullPath = /Users/shaosean/Developer/ssWired-Xojo/restrepo.CustomTabPanelClasses/tabGraphicsBMP/closeBoxMaskOver.bmp
+		PartialPath = restrepo.CustomTabPanelClasses\tabGraphicsBMP\closeBoxMaskOver.bmp
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = 10.00
+			Orientation = Any
+			Platform = 15
+			PPI = 72
+			VSize = 10.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = 10.00
+			Orientation = Any
+			Platform = 15
+			PPI = 144
+			VSize = 10.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = 10.00
+			Orientation = Any
+			Platform = 15
+			PPI = 216
+			VSize = 10.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+End Image
+#tag EndMultiImage

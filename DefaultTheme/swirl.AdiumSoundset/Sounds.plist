@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AdiumSetVersion</key>
+	<integer>1</integer>
+	<key>Info</key>
+	<string>
+Default sound set for ssWired.
+Credit to Hotline Communications for the audio files.
+Note: This will not work in Adium as we use different keys.
+	</string>
+	<key>Sounds</key>
+	<dict>
+		<key>ChatReceived</key>
+	   	<string>ChatReceived.wav</string>
+	   	<key>MessageReceived</key>
+		<string>MessageReceived.wav</string>
+		<key>NewsPosted</key>
+		<string>NewsPosted.wav</string>
+		<key>PrivateChatInvitationReceived</key>
+		<string>PrivateChatInvitationReceived.wav</string>
+		<key>ServerConnected</key>
+		<string>ServerConnected.wav</string>
+		<key>ServerDisconnected</key>
+		<string>ServerDisconnected.wav</string>
+		<key>TransferFinished</key>
+		<string>TransferFinished.wav</string>
+		<key>UserJoined</key>
+		<string>UserJoined.wav</string>
+		<key>UserLeft</key>
+		<string>UserLeft.wav</string>
+		<key>Error</key>
+		<string>Error.wav</string>
+	</dict>
+</dict>
+</plist>

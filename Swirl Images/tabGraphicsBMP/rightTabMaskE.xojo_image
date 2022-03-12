@@ -1,0 +1,40 @@
+#tag MultiImage
+Image rightTabMaskE
+	#tag ImageRepresentation
+		SaveInfo = APHRcwECAQAAAAIMAAAAAAIMAAIAAAhIYXJ0bWFubgAAAAAAAAAAAAAAAAAAAAAAAADWAyOeSCsAAACWorIRcmlnaHRUYWJNYXNrRS5ibXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJaixMxoXqQAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAADnRhYkdyYXBoaWNzQk1QABAACAAA1gNb3gAAABEACAAAzGiW5AAAAAEAGACWorIAlqJGAJaLSgAcOfYABsTKAAKYcwACAHRIYXJ0bWFubjpVc2VyczoAc2hhb3NlYW46AERldmVsb3BlcjoAc3NXaXJlZC1Yb2pvOgByZXN0cmVwby5DdXN0b21UYWJQYW5lbENsYXNzZXM6AHRhYkdyYXBoaWNzQk1QOgByaWdodFRhYk1hc2tFLmJtcAAOACQAEQByAGkAZwBoAHQAVABhAGIATQBhAHMAawBFAC4AYgBtAHAADwASAAgASABhAHIAdABtAGEAbgBuABIAZVVzZXJzL3NoYW9zZWFuL0RldmVsb3Blci9zc1dpcmVkLVhvam8vcmVzdHJlcG8uQ3VzdG9tVGFiUGFuZWxDbGFzc2VzL3RhYkdyYXBoaWNzQk1QL3JpZ2h0VGFiTWFza0UuYm1wAAATAAEvAAAVAAIAD///AAAAAAAAAAA=
+		FullPath = /Users/shaosean/Developer/ssWired-Xojo/restrepo.CustomTabPanelClasses/tabGraphicsBMP/rightTabMaskE.bmp
+		PartialPath = restrepo.CustomTabPanelClasses\tabGraphicsBMP\rightTabMaskE.bmp
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = 20.00
+			Orientation = Any
+			Platform = 15
+			PPI = 72
+			VSize = 17.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = 20.00
+			Orientation = Any
+			Platform = 15
+			PPI = 144
+			VSize = 17.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = 20.00
+			Orientation = Any
+			Platform = 15
+			PPI = 216
+			VSize = 17.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+End Image
+#tag EndMultiImage

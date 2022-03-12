@@ -1,0 +1,40 @@
+#tag MultiImage
+Image tabTopMostSeparatorW
+	#tag ImageRepresentation
+		SaveInfo = APHRcwECAQAAAAIoAAAAAAIoAAIAAAhIYXJ0bWFubgAAAAAAAAAAAAAAAAAAAAAAAADWAyOeSCsAAACWorIYdGFiVG9wTW9zdFNlcGFyYXRvclcuYm1wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJai1MxoXqQAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAADnRhYkdyYXBoaWNzQk1QABAACAAA1gNb3gAAABEACAAAzGiW5AAAAAEAGACWorIAlqJGAJaLSgAcOfYABsTKAAKYcwACAHtIYXJ0bWFubjpVc2VyczoAc2hhb3NlYW46AERldmVsb3BlcjoAc3NXaXJlZC1Yb2pvOgByZXN0cmVwby5DdXN0b21UYWJQYW5lbENsYXNzZXM6AHRhYkdyYXBoaWNzQk1QOgB0YWJUb3BNb3N0U2VwYXJhdG9yVy5ibXAAAA4AMgAYAHQAYQBiAFQAbwBwAE0AbwBzAHQAUwBlAHAAYQByAGEAdABvAHIAVwAuAGIAbQBwAA8AEgAIAEgAYQByAHQAbQBhAG4AbgASAGxVc2Vycy9zaGFvc2Vhbi9EZXZlbG9wZXIvc3NXaXJlZC1Yb2pvL3Jlc3RyZXBvLkN1c3RvbVRhYlBhbmVsQ2xhc3Nlcy90YWJHcmFwaGljc0JNUC90YWJUb3BNb3N0U2VwYXJhdG9yVy5ibXAAEwABLwAAFQACAA///wAAAAAAAAAA
+		FullPath = /Users/shaosean/Developer/ssWired-Xojo/restrepo.CustomTabPanelClasses/tabGraphicsBMP/tabTopMostSeparatorW.bmp
+		PartialPath = restrepo.CustomTabPanelClasses\tabGraphicsBMP\tabTopMostSeparatorW.bmp
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = 7.00
+			Orientation = Any
+			Platform = 15
+			PPI = 72
+			VSize = 2.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = 7.00
+			Orientation = Any
+			Platform = 15
+			PPI = 144
+			VSize = 2.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = 7.00
+			Orientation = Any
+			Platform = 15
+			PPI = 216
+			VSize = 2.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+End Image
+#tag EndMultiImage

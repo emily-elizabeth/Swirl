@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AllowTextColors</key>
+	<false/>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleGetInfoString</key>
+	<string>ssWired Default Style</string>
+	<key>CFBundleIdentifier</key>
+	<string>tk.shaosean.ssWired.style</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>1.1</string>
+	<key>CFBundleName</key>
+	<string>ssWired</string>
+	<key>CFBundlePackageType</key>
+	<string>AdIM</string>
+	<key>DefaultFontFamily</key>
+	<string>Courier</string>
+	<key>DefaultFontSize</key>
+	<integer>11</integer>
+	<key>DefaultVariant</key>
+	<string>default</string>
+	<key>MessageViewVersion</key>
+	<integer>3</integer>
+	<key>ShowsUserIcons</key>
+	<false/>
+</dict>
+</plist>

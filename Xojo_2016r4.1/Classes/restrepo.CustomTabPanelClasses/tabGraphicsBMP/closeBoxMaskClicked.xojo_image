@@ -1,0 +1,40 @@
+#tag MultiImage
+Image closeBoxMaskClicked
+	#tag ImageRepresentation
+		SaveInfo = APHRcwECAQAAAAIGAAAAAAIGAAIAAAxNYWNpbnRvc2ggSEQAAAAAAAAAAAAAAAAAAADWFltbSCsAAAFHM4YXY2xvc2VCb3hNYXNrQ2xpY2tlZC5ibXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUczi9eAqTAAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAADnRhYkdyYXBoaWNzQk1QABAACAAA1haTmwAAABEACAAA14DhcAAAAAEAGAFHM4YBRzNtAUcy+AAJZesACWXqAAYbEQACAGlNYWNpbnRvc2ggSEQ6VXNlcnM6AHNoYW9zZWFuOgBEb2N1bWVudHM6AFN3aXJsLXNyYzoAU3dpcmwgSW1hZ2VzOgB0YWJHcmFwaGljc0JNUDoAY2xvc2VCb3hNYXNrQ2xpY2tlZC5ibXAAAA4AMAAXAGMAbABvAHMAZQBCAG8AeABNAGEAcwBrAEMAbABpAGMAawBlAGQALgBiAG0AcAAPABoADABNAGEAYwBpAG4AdABvAHMAaAAgAEgARAASAFZVc2Vycy9zaGFvc2Vhbi9Eb2N1bWVudHMvU3dpcmwtc3JjL1N3aXJsIEltYWdlcy90YWJHcmFwaGljc0JNUC9jbG9zZUJveE1hc2tDbGlja2VkLmJtcAATAAEvAAAVAAIAD///AAAAAAAAAAA=
+		FullPath = /Users/shaosean/Documents/Swirl-src/Swirl Images/tabGraphicsBMP/closeBoxMaskClicked.bmp
+		PartialPath = ..\..\..\Documents\Swirl-src\Swirl Images\tabGraphicsBMP\closeBoxMaskClicked.bmp
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = 10.00
+			Orientation = Any
+			Platform = 15
+			PPI = 72
+			VSize = 10.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = 10.00
+			Orientation = Any
+			Platform = 15
+			PPI = 144
+			VSize = 10.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = 10.00
+			Orientation = Any
+			Platform = 15
+			PPI = 216
+			VSize = 10.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+End Image
+#tag EndMultiImage

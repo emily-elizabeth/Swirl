@@ -1,0 +1,29 @@
+body {
+	font: 12px "Courier", monospace;
+	margin: 2px;
+	line-height: 1.4em;
+	color: #00FF00;
+	background-color: #000000;
+}
+
+.time {
+	display: none;
+}
+
+#Chat {
+	padding-bottom: 2px;
+}
+
+.message.account .sender {
+	color: #0080BF;
+	text-decoration:none !important;
+}
+
+.message.admin .sender {
+	color: #F00;
+	text-decoration:none !important;
+}
+
+.status {
+	color: #F00;
+}

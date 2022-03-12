@@ -1,0 +1,40 @@
+#tag MultiImage
+Image tabSeparatorE
+	#tag ImageRepresentation
+		SaveInfo = APHRcwECAQAAAAHuAAAAAAHuAAIAAAxNYWNpbnRvc2ggSEQAAAAAAAAAAAAAAAAAAADWFltbSCsAAAFHM4YRdGFiU2VwYXJhdG9yRS5ibXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUczvdeAqTAAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAADnRhYkdyYXBoaWNzQk1QABAACAAA1haTmwAAABEACAAA14DhcAAAAAEAGAFHM4YBRzNtAUcy+AAJZesACWXqAAYbEQACAGNNYWNpbnRvc2ggSEQ6VXNlcnM6AHNoYW9zZWFuOgBEb2N1bWVudHM6AFN3aXJsLXNyYzoAU3dpcmwgSW1hZ2VzOgB0YWJHcmFwaGljc0JNUDoAdGFiU2VwYXJhdG9yRS5ibXAAAA4AJAARAHQAYQBiAFMAZQBwAGEAcgBhAHQAbwByAEUALgBiAG0AcAAPABoADABNAGEAYwBpAG4AdABvAHMAaAAgAEgARAASAFBVc2Vycy9zaGFvc2Vhbi9Eb2N1bWVudHMvU3dpcmwtc3JjL1N3aXJsIEltYWdlcy90YWJHcmFwaGljc0JNUC90YWJTZXBhcmF0b3JFLmJtcAATAAEvAAAVAAIAD///AAAAAAAAAAA=
+		FullPath = /Users/shaosean/Documents/Swirl-src/Swirl Images/tabGraphicsBMP/tabSeparatorE.bmp
+		PartialPath = ..\..\..\Documents\Swirl-src\Swirl Images\tabGraphicsBMP\tabSeparatorE.bmp
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = 7.00
+			Orientation = Any
+			Platform = 15
+			PPI = 72
+			VSize = 2.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = 7.00
+			Orientation = Any
+			Platform = 15
+			PPI = 144
+			VSize = 2.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = 7.00
+			Orientation = Any
+			Platform = 15
+			PPI = 216
+			VSize = 2.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+End Image
+#tag EndMultiImage

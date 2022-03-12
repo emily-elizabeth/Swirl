@@ -1,0 +1,40 @@
+#tag MultiImage
+Image rightTabMask
+	#tag ImageRepresentation
+		SaveInfo = APHRcwECAQAAAAHqAAAAAAHqAAIAAAxNYWNpbnRvc2ggSEQAAAAAAAAAAAAAAAAAAADWFltbSCsAAAFHM4YQcmlnaHRUYWJNYXNrLmJtcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUczp9eAqTAAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAADnRhYkdyYXBoaWNzQk1QABAACAAA1haTmwAAABEACAAA14DhcAAAAAEAGAFHM4YBRzNtAUcy+AAJZesACWXqAAYbEQACAGJNYWNpbnRvc2ggSEQ6VXNlcnM6AHNoYW9zZWFuOgBEb2N1bWVudHM6AFN3aXJsLXNyYzoAU3dpcmwgSW1hZ2VzOgB0YWJHcmFwaGljc0JNUDoAcmlnaHRUYWJNYXNrLmJtcAAOACIAEAByAGkAZwBoAHQAVABhAGIATQBhAHMAawAuAGIAbQBwAA8AGgAMAE0AYQBjAGkAbgB0AG8AcwBoACAASABEABIAT1VzZXJzL3NoYW9zZWFuL0RvY3VtZW50cy9Td2lybC1zcmMvU3dpcmwgSW1hZ2VzL3RhYkdyYXBoaWNzQk1QL3JpZ2h0VGFiTWFzay5ibXAAABMAAS8AABUAAgAP//8AAAAAAAAAAA==
+		FullPath = /Users/shaosean/Documents/Swirl-src/Swirl Images/tabGraphicsBMP/rightTabMask.bmp
+		PartialPath = ..\..\..\Documents\Swirl-src\Swirl Images\tabGraphicsBMP\rightTabMask.bmp
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = 17.00
+			Orientation = Any
+			Platform = 15
+			PPI = 72
+			VSize = 20.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = 17.00
+			Orientation = Any
+			Platform = 15
+			PPI = 144
+			VSize = 20.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = 17.00
+			Orientation = Any
+			Platform = 15
+			PPI = 216
+			VSize = 20.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+End Image
+#tag EndMultiImage

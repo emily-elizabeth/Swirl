@@ -1,0 +1,50 @@
+body {
+	color: #222;
+	font-family: verdana;
+	margin: 4px 0px 0px 0px;
+
+}
+
+
+a:link {
+	text-decoration: none; 
+	color: #436976; 
+	font-weight: bold; 
+}
+
+a:visited	 { 
+	text-decoration: none;  
+	color: #537986; 
+}
+
+a:hover { 
+	text-decoration: underline; 
+}
+
+a:active { 
+	text-decoration: none; 
+}
+
+
+div.item {
+	border: 1px solid #8cacbb;
+	min-width: 14em;
+	margin: 0px 2% 4px 2%;
+	padding: 0px;
+}
+
+h2.item-title {
+	background-color: #dee7ec;
+	font-size: 10px;
+	font-weight: normal;
+	line-height: 1.1;
+	margin: 0px;
+	padding: 5px 5px 8px 8px;
+}
+
+div.item-desc {
+	min-height: 6em;
+	font-size: 10px;
+	margin: 0px;
+	padding: 8px 10px;
+}

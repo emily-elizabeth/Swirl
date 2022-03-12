@@ -1,0 +1,40 @@
+#tag MultiImage
+Image spiralgalaxy512
+	#tag ImageRepresentation
+		SaveInfo = APHRcwECAQAAAAHkAAAAAAHkAAIAAAxNYWNpbnRvc2ggSEQAAAAAAAAAAAAAAAAAAADWFltbSCsAAAFHM30Vc3BpcmFsLWdhbGF4eS01MTIucG5nAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUczhN4+mwwAAAAAAAAAAP////8AAAkgAAAAAAAAAAAAAAAAAAAABXN3aXJsAAAQAAgAANYWk5sAAAARAAgAAN4+4VwAAAABABgBRzN9AUczbQFHMvgACWXrAAll6gAGGxEAAgBeTWFjaW50b3NoIEhEOlVzZXJzOgBzaGFvc2VhbjoARG9jdW1lbnRzOgBTd2lybC1zcmM6AFN3aXJsIEltYWdlczoAc3dpcmw6AHNwaXJhbC1nYWxheHktNTEyLnBuZwAOACwAFQBzAHAAaQByAGEAbAAtAGcAYQBsAGEAeAB5AC0ANQAxADIALgBwAG4AZwAPABoADABNAGEAYwBpAG4AdABvAHMAaAAgAEgARAASAEtVc2Vycy9zaGFvc2Vhbi9Eb2N1bWVudHMvU3dpcmwtc3JjL1N3aXJsIEltYWdlcy9zd2lybC9zcGlyYWwtZ2FsYXh5LTUxMi5wbmcAABMAAS8AABUAAgAP//8AAAAAAAAAAA==
+		FullPath = /Users/shaosean/Documents/Swirl-src/Swirl Images/swirl/spiral-galaxy-512.png
+		PartialPath = ..\..\..\Documents\Swirl-src\Swirl Images\swirl\spiral-galaxy-512.png
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = -1.00
+			Orientation = Any
+			Platform = 15
+			PPI = 72
+			VSize = -1.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = -1.00
+			Orientation = Any
+			Platform = 15
+			PPI = 144
+			VSize = -1.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+	#tag ImageRepresentation
+		#tag ImageSpecification
+			Comment = 
+			Device = 31
+			HSize = -1.00
+			Orientation = Any
+			Platform = 15
+			PPI = 216
+			VSize = -1.00
+		#tag EndImageSpecification
+	#tag EndImageRepresentation
+End Image
+#tag EndMultiImage
