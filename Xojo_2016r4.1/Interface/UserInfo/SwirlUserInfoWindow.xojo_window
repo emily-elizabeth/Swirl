@@ -817,12 +817,12 @@ End
 		  DIM results As SwirlUserInfoWindow
 		  
 		  for i as Integer = 0 to (WindowCount - 1)
-		      if (Window(i) IsA SwirlUserInfoWindow) then
-		          if (SwirlUserInfoWindow(Window(i)).Compare(connection, user)) then
-		              results = SwirlUserInfoWindow(Window(i))
-		              exit for i
-		          end if
+		    if (Window(i) IsA SwirlUserInfoWindow) then
+		      if (SwirlUserInfoWindow(Window(i)).Compare(connection, user)) then
+		        results = SwirlUserInfoWindow(Window(i))
+		        exit for i
 		      end if
+		    end if
 		  next
 		  
 		  if (results = Nil) then

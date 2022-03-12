@@ -475,7 +475,7 @@ End
 		  // draw the user icon
 		  g.Transparency = if(self.mUser.IsIdle OR NOT self.mConnection.IsConnected, 50.0, 0.0)  // is the user is idle, then set the transparency
 		  if (self.mUser.Icon <> Nil) then
-		      g.DrawPicture self.mUser.Icon, 4, 4, 32, 32, 0, 0, self.mUser.Icon.Width, self.mUser.Icon.Height
+		    g.DrawPicture self.mUser.Icon, 4, 4, 32, 32, 0, 0, self.mUser.Icon.Width, self.mUser.Icon.Height
 		  end if
 		  
 		  // user nick

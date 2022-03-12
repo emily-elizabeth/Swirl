@@ -408,7 +408,7 @@ End
 		#tag Getter
 			Get
 			  if (self.mCurrentPath.Empty) then
-			      self.mCurrentPath = "/"
+			    self.mCurrentPath = "/"
 			  end if
 			  
 			  Return mCurrentPath

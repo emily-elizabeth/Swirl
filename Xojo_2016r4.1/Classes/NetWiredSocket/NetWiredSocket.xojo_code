@@ -959,11 +959,11 @@ Inherits SSLSocket
 		  
 		  
 		  DIM match As RegExMatch = aRegEx.Search(Trim(value))
-		      
+		  
 		  if (match <> Nil) then
 		    // set the GMT offset to the offset in the ISO date
 		    if (match.SubExpressionCount > 21) then
-		        aDate.GMTOffset = Val(match.SubExpressionString(21))
+		      aDate.GMTOffset = Val(match.SubExpressionString(21))
 		    end if
 		    
 		    aDate.Year = Val(match.SubExpressionString(1))

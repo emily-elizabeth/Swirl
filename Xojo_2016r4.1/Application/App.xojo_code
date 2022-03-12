@@ -173,19 +173,19 @@ Inherits Application
 		  DIM newFolder As Xojo.IO.FolderItem
 		  
 		  if (source.IsFolder) then
-		      newFolder = destination.Child(source.Name)
-		      newFolder.CreateAsFolder
-		      
-		      for each f As Xojo.IO.FolderItem in source.Children
-		          if (f.IsFolder) then
-		              CopySourceFolderToDestinationFolder f, newFolder
-		          else
-		              f.CopyTo newFolder
-		          end if
-		      next
-		      
+		    newFolder = destination.Child(source.Name)
+		    newFolder.CreateAsFolder
+		    
+		    for each f As Xojo.IO.FolderItem in source.Children
+		      if (f.IsFolder) then
+		        CopySourceFolderToDestinationFolder f, newFolder
+		      else
+		        f.CopyTo newFolder
+		      end if
+		    next
+		    
 		  else
-		      source.CopyTo destination
+		    source.CopyTo destination
 		  end if
 		  
 		End Sub

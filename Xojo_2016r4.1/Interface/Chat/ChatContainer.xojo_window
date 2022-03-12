@@ -482,20 +482,20 @@ End
 		  
 		  select case asc(Key)
 		  case 3, 10, 13
-		      if (me.Text = "/clear") then
-		          self.ChatLog.Clear
-		          me.Text = ""
-		          returnValue = TRUE
-		      ElseIf (me.Text.Left(4) = "/me ") then
-		          DIM chat As Text = me.Text.Replace("/me ", "").ToText
-		          self.mConnection.SendChat self.mChatID, chat, True
-		          me.Text = ""
-		          returnValue = TRUE
-		      else
-		          self.mConnection.SendChat self.mChatID, me.Text.ToText, if(Keyboard.OptionKey, TRUE, FALSE)
-		          me.Text = ""
-		          returnValue = TRUE
-		      end if
+		    if (me.Text = "/clear") then
+		      self.ChatLog.Clear
+		      me.Text = ""
+		      returnValue = TRUE
+		    ElseIf (me.Text.Left(4) = "/me ") then
+		      DIM chat As Text = me.Text.Replace("/me ", "").ToText
+		      self.mConnection.SendChat self.mChatID, chat, True
+		      me.Text = ""
+		      returnValue = TRUE
+		    else
+		      self.mConnection.SendChat self.mChatID, me.Text.ToText, if(Keyboard.OptionKey, TRUE, FALSE)
+		      me.Text = ""
+		      returnValue = TRUE
+		    end if
 		  end select
 		  
 		  Return returnValue
