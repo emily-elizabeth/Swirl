@@ -30,7 +30,7 @@ Inherits HTMLViewer
 
 	#tag Method, Flags = &h0
 		Sub AppendChat(time As Xojo.Core.Date, userID As Integer, nick As Text, icon As Picture, chat As Text, isChatIncoming As Boolean)
-		  if (chat.Length > 4) AND ((chat.Left(4) <> "<img") OR (chat.Left(6) <> "<video")) then
+		  if (chat.Length > 4) AND (chat.Left(4) <> "<img") then
 		    DIM theRegex As RegEx = new RegEx
 		    theRegex.Options.DotMatchAll = true
 		    theRegex.Options.Greedy = True
