@@ -44,7 +44,6 @@ Begin Window ChatWindow
       Scope           =   2
       TabIndex        =   5
       TabPanelIndex   =   0
-      TabStop         =   True
       Top             =   0
       Value           =   0
       Visible         =   True
@@ -97,7 +96,6 @@ Begin Window ChatWindow
          Scope           =   2
          TabIndex        =   0
          TabPanelIndex   =   1
-         TabStop         =   True
          Top             =   0
          Value           =   0
          Visible         =   True
@@ -113,7 +111,6 @@ Begin Window ChatWindow
             HasBackColor    =   False
             Height          =   472
             HelpTag         =   ""
-            Index           =   -2147483648
             InitialParent   =   "ChatPanel"
             Left            =   0
             LockBottom      =   True
@@ -210,7 +207,6 @@ Begin Window ChatWindow
          Scope           =   2
          TabIndex        =   1
          TabPanelIndex   =   3
-         TabStop         =   True
          Top             =   0
          Value           =   0
          Visible         =   True
@@ -234,7 +230,6 @@ Begin Window ChatWindow
          Scope           =   2
          TabIndex        =   0
          TabPanelIndex   =   2
-         TabStop         =   True
          Top             =   0
          Value           =   0
          Visible         =   True
