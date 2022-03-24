@@ -52,7 +52,7 @@ Begin ContainerControl SwirlNewsContainer
       BorderWidth     =   0
       BottomRightColor=   &c00000000
       Enabled         =   True
-      FillColor       =   &cFFFF00FF
+      FillColor       =   &cFFFFFF00
       Height          =   502
       HelpTag         =   ""
       Index           =   -2147483648
