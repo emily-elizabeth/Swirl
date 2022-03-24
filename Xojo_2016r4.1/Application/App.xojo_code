@@ -159,6 +159,12 @@ Inherits Application
 
 	#tag Method, Flags = &h21
 		Private Function ConstructTrayItemMenu(aTrayItem As Variant, base As MenuItem, cause As Integer, x As Integer, y As Integer) As Boolean
+		  #Pragma Unused aTrayItem
+		  #Pragma Unused base
+		  #Pragma Unused cause
+		  #Pragma Unused x
+		  #Pragma Unused y
+		  
 		  ' #Pragma Unused aTrayItem
 		  ' 
 		  ' 
@@ -449,6 +455,7 @@ Inherits Application
 	#tag Method, Flags = &h21
 		Private Sub WiredConnectionNewsPosted(connection As WiredConnection, nick As Text, time As Xojo.Core.Date, message As Text)
 		  #Pragma Unused connection
+		  #Pragma Unused message
 		  
 		  DIM eventMessage As Text = Strings.kNewsPostedByOn
 		  eventMessage = eventMessage.Replace("%nick%", nick)
