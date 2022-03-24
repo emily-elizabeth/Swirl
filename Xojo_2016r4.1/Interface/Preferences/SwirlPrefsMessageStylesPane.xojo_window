@@ -56,7 +56,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       Visible         =   True
       Width           =   368
    End
-   Begin AdiumMessageViewer MessageStylePreview
+   Begin UIChatViewer MessageStylePreview
       AutoDeactivate  =   True
       Enabled         =   True
       Height          =   316
@@ -241,23 +241,23 @@ End
 		  self.Styles.DeleteAllRows
 		  
 		  if (Paths.MessageStyles <>Nil) AND (Paths.MessageStyles.Exists) then
-		      DIM children() As Text
-		      for each file As Xojo.IO.FolderItem in Paths.MessageStyles.Children()
-		          children.Append file.DisplayName
-		      next file
-		      children.Sort
-		      
-		      for each ch As Text in children
-		          DIM path As Xojo.IO.FolderItem = Paths.MessageStyles.Child(ch)
-		          if (path <> Nil) AND (path.Exists) AND (path.IsVisible) AND (path.Name <> ".DS_Store") AND (path.Name.IndexOf(".AdiumMessageStyle") > -1) then
-		              if (path.Child("Contents").Child("Resources").Child("Variants").Exists) then
-		                  self.Styles.AddFolder path.DisplayName.Replace(".AdiumMessageStyle", "")
-		              else
-		                  self.Styles.AddRow path.DisplayName.Replace(".AdiumMessageStyle", "")
-		              end if
-		              self.Styles.RowTag(self.Styles.LastIndex) = path
-		          end if
-		      next ch
+		    DIM children() As Text
+		    for each file As Xojo.IO.FolderItem in Paths.MessageStyles.Children()
+		      children.Append file.DisplayName
+		    next file
+		    children.Sort
+		    
+		    for each ch As Text in children
+		      DIM path As Xojo.IO.FolderItem = Paths.MessageStyles.Child(ch)
+		      if (path <> Nil) AND (path.Exists) AND (path.IsVisible) AND (path.Name <> ".DS_Store") AND (path.Name.IndexOf(".AdiumMessageStyle") > -1) then
+		        if (path.Child("Contents").Child("Resources").Child("Variants").Exists) then
+		          self.Styles.AddFolder path.DisplayName.Replace(".AdiumMessageStyle", "")
+		        else
+		          self.Styles.AddRow path.DisplayName.Replace(".AdiumMessageStyle", "")
+		        end if
+		        self.Styles.RowTag(self.Styles.LastIndex) = path
+		      end if
+		    next ch
 		  end if
 		End Sub
 	#tag EndMethod
@@ -323,15 +323,15 @@ End
 		  DIM variantPath As Xojo.IO.FolderItem = path.Child("Contents").Child("Resources").Child("Variants")
 		  
 		  if (variantPath <> Nil) AND (variantPath.Exists) AND (variantPath.IsFolder) then
-		      DIM currentrow As Integer = row
-		      for each variantStyle As Xojo.IO.FolderItem in variantPath.Children()
-		          if (variantStyle.Name <> ".DS_Store") AND (NOT variantStyle.IsFolder) AND (variantStyle.Name.Right(4) = ".css") then
-		              currentrow = currentrow + 1
-		              me.AddRow variantStyle.DisplayName.Replace(".css", "").ReplaceAll("&", "&&").ReplaceAll("_", " ")
-		              me.RowTag(currentrow) = variantStyle  // store the path to the variant
-		              me.CellTag(currentrow, 0) = row  // store the row of the parent style
-		          end if
-		      next
+		    DIM currentrow As Integer = row
+		    for each variantStyle As Xojo.IO.FolderItem in variantPath.Children()
+		      if (variantStyle.Name <> ".DS_Store") AND (NOT variantStyle.IsFolder) AND (variantStyle.Name.Right(4) = ".css") then
+		        currentrow = currentrow + 1
+		        me.AddRow variantStyle.DisplayName.Replace(".css", "").ReplaceAll("&", "&&").ReplaceAll("_", " ")
+		        me.RowTag(currentrow) = variantStyle  // store the path to the variant
+		        me.CellTag(currentrow, 0) = row  // store the row of the parent style
+		      end if
+		    next
 		  end if
 		End Sub
 	#tag EndEvent

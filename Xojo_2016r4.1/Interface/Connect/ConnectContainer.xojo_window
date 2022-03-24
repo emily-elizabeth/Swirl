@@ -460,6 +460,8 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub ExpandRow(row As Integer)
+		  #Pragma Unused row
+		  
 		  'if (me.Cell(row, 0) = ssWired.kBookmarks) then
 		  'if (ssWired.Bookmarks <> Nil) AND (ssWired.Bookmarks.Exists) then
 		  'for each path As xojo.IO.FolderItem in ssWired.Bookmarks.Children

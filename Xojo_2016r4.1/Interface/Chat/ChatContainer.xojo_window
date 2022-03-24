@@ -122,7 +122,7 @@ Begin ContainerControl ChatContainer
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin AdiumMessageViewer ChatLog
+   Begin UIChatViewer ChatLog
       AutoDeactivate  =   True
       Enabled         =   True
       Height          =   391
@@ -289,7 +289,7 @@ End
 		Private Sub WiredConnectionChatReceived(connection As WiredConnection, chatID As Integer, user As WiredUser, message As Text, isAction As Boolean)
 		  if (connection = self.mConnection) AND (chatID = self.mChatID) then
 		    if (isAction) then
-		      self.ChatLog.AppendNotification Xojo.Core.Date.Now, AdiumMessageViewer.Notification, user.Nick + " " + message
+		      self.ChatLog.AppendNotification Xojo.Core.Date.Now, UIChatViewer.Notification, user.Nick + " " + message
 		    else
 		      self.ChatLog.AppendChat Xojo.Core.Date.Now, user.UserID, user.Nick, user.Icon, message, (user.UserID <> connection.MyUserID)
 		    end if
@@ -308,7 +308,7 @@ End
 		    message = message.Replace("%nick%", nick)
 		    message = message + " - " + topic
 		    
-		    self.ChatLog.AppendNotification Xojo.Core.Date.Now, AdiumMessageViewer.Notification, message
+		    self.ChatLog.AppendNotification Xojo.Core.Date.Now, UIChatViewer.Notification, message
 		  end if
 		End Sub
 	#tag EndMethod
@@ -322,7 +322,7 @@ End
 		    if (Prefs.ServerDisconnectedPostInChat) then
 		      DIM message As Text = Strings.kDisconnectedFromServerName
 		      message = message.Replace("%servername%", connection.ServerName)
-		      self.ChatLog.AppendNotification Xojo.Core.Date.Now, AdiumMessageViewer.Notification, message
+		      self.ChatLog.AppendNotification Xojo.Core.Date.Now, UIChatViewer.Notification, message
 		    end if
 		  end if
 		End Sub
@@ -347,12 +347,14 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub WiredConnectionNewsPosted(connection As WiredConnection, nick As Text, time As Xojo.Core.Date, message As Text)
+		  #Pragma Unused message
+		  
 		  if (connection = self.mConnection) AND (self.mChatID = 1) AND (Prefs.NewsPostedPostInChat) then
 		    DIM eventMessage As Text = Strings.kNewsPostedByOn
 		    eventMessage = eventMessage.Replace("%nick%", nick)
 		    eventMessage = eventMessage.Replace("%date%", time.ToText)
 		    
-		    self.ChatLog.AppendNotification Xojo.Core.Date.Now, AdiumMessageViewer.Notification, eventMessage
+		    self.ChatLog.AppendNotification Xojo.Core.Date.Now, UIChatViewer.Notification, eventMessage
 		  end if
 		End Sub
 	#tag EndMethod
@@ -375,14 +377,14 @@ End
 		      DIM message As Text = Strings.kIsNowKnownAs
 		      message = message.Replace("%oldnick%", oldUser.Nick)
 		      message = message.Replace("%newnick%", newUser.Nick)
-		      self.ChatLog.AppendNotification Xojo.Core.Date.Now, AdiumMessageViewer.NickChanged, message
+		      self.ChatLog.AppendNotification Xojo.Core.Date.Now, UIChatViewer.NickChanged, message
 		    end if
 		    
 		    if (Prefs.UserStatusChangedPostInChat) AND (oldUser.Status <> newUser.Status) then
 		      DIM message As Text = Strings.kUserStatusChangedTo
 		      message = message.Replace("%nick%", newUser.Nick)
 		      message = message.Replace("%status%", newUser.Status)
-		      self.ChatLog.AppendNotification Xojo.Core.Date.Now, AdiumMessageViewer.Notification, message
+		      self.ChatLog.AppendNotification Xojo.Core.Date.Now, UIChatViewer.Notification, message
 		    end if
 		    
 		    self.UpdateUser newUser
@@ -407,7 +409,7 @@ End
 		      DIM message As Text = Strings.kUserHasJoined
 		      message = message.Replace("%nick%", user.Nick)
 		      
-		      self.ChatLog.AppendNotification Xojo.Core.Date.Now, AdiumMessageViewer.ContactJoined, message
+		      self.ChatLog.AppendNotification Xojo.Core.Date.Now, UIChatViewer.ContactJoined, message
 		    end if
 		  end if
 		End Sub
@@ -427,7 +429,7 @@ End
 		      message = message.Replace("%killer%", killer.Nick)
 		      message = message.Replace("%message%", kickMessage)
 		      
-		      self.ChatLog.AppendNotification Xojo.Core.Date.Now, AdiumMessageViewer.ContactKicked, message
+		      self.ChatLog.AppendNotification Xojo.Core.Date.Now, UIChatViewer.ContactKicked, message
 		    end if
 		  end if
 		End Sub
@@ -441,7 +443,7 @@ End
 		    if (Prefs.UserLeftPostInChat) then
 		      DIM message As Text = Strings.kUserHasLeft
 		      message = message.Replace("%nick%", user.Nick)
-		      self.ChatLog.AppendNotification Xojo.Core.Date.Now, AdiumMessageViewer.ContactLeft, message
+		      self.ChatLog.AppendNotification Xojo.Core.Date.Now, UIChatViewer.ContactLeft, message
 		    end if
 		  end if
 		End Sub
@@ -527,7 +529,8 @@ End
 	#tag EndEvent
 	#tag Event
 		Function CellTextPaint(g As Graphics, row As Integer, column As Integer, x as Integer, y as Integer) As Boolean
-		  ' #pragma DisableBackgroundTasks
+		  #Pragma Unused x
+		  #Pragma Unused y
 		  
 		  if (column = 0) then
 		    DIM user As WiredUser = me.RowTag(row)
@@ -637,10 +640,10 @@ End
 	#tag EndEvent
 	#tag Event
 		Function DragRow(drag As DragItem, row As Integer) As Boolean
+		  #Pragma Unused row
+		  
 		  // the reason this is done in a loop is to all the future expansion of selecting multiple users
-		  
 		  DIM rowCount As Integer = me.ListCount -1
-		  
 		  for i as Integer = 0 to rowCount
 		    if (me.Selected(i)) then
 		      // this is where we would add the picture of the selected row

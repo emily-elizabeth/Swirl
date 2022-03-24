@@ -443,6 +443,14 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub ServerInfoReceived(connection As WiredConnection, appVersion As Text, protocolVersion As Text, serverName As Text, serverDescription As Text, startTime As Xojo.Core.Date, filesCount As UInt64, filesSize As UInt64)
+		  #Pragma Unused appVersion
+		  #Pragma Unused protocolVersion
+		  #Pragma Unused serverDescription
+		  #Pragma Unused startTime
+		  #Pragma Unused filesCount
+		  #Pragma Unused filesSize
+		  
+		  
 		  DIM index As Integer = self.mConnections.IndexOf(connection)
 		  
 		  if (index <> -1) then

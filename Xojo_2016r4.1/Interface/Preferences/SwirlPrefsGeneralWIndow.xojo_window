@@ -61,6 +61,8 @@ End
 #tag WindowCode
 	#tag Event
 		Function CancelClose(appQuitting as Boolean) As Boolean
+		  #Pragma Unused appQuitting
+		  
 		  Prefs.SavePreferences
 		  Return FALSE
 		End Function

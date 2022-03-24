@@ -73,7 +73,7 @@ Begin Window SwirlMessagesWin
       Visible         =   True
       Width           =   400
    End
-   Begin AdiumMessageViewer Viewer
+   Begin UIChatViewer Viewer
       AutoDeactivate  =   True
       Enabled         =   True
       Height          =   338
@@ -320,6 +320,8 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub WiredConnectionMessageReceived(connection As WiredConnection, user As WiredUser, message As Text, isBroadcast As Boolean)
+		  #Pragma Unused isBroadcast
+		  
 		  if (connection = self.mConnection) AND (user = self.mUser) then
 		    self.Viewer.AppendChat Xojo.Core.Date.Now, self.mUser.UserID, self.mUser.Nick, self.mUser.Icon, message, TRUE
 		  end if
@@ -335,7 +337,7 @@ End
 		      DIM message As Text = Strings.kIsNowKnownAs
 		      message = message.Replace("%oldnick%", oldUser.Nick)
 		      message = message.Replace("%newnick%", newUser.Nick)
-		      self.Viewer.AppendNotification Xojo.Core.Date.Now, AdiumMessageViewer.NickChanged, message
+		      self.Viewer.AppendNotification Xojo.Core.Date.Now, UIChatViewer.NickChanged, message
 		      self.UserNick.Text = newUser.Nick
 		    end if
 		    
@@ -343,7 +345,7 @@ End
 		      DIM message As Text = Strings.kUserStatusChangedTo
 		      message = message.Replace("%nick%", newUser.Nick)
 		      message = message.Replace("%status%", newUser.Status)
-		      self.Viewer.AppendNotification Xojo.Core.Date.Now, AdiumMessageViewer.Notification, message
+		      self.Viewer.AppendNotification Xojo.Core.Date.Now, UIChatViewer.Notification, message
 		      self.UserStatus.Text = newUser.Status
 		    end if
 		    
@@ -364,7 +366,7 @@ End
 	#tag Method, Flags = &h21
 		Private Sub WiredConnectionUserJoined(connection As WiredConnection, chatID As Integer, user As WiredUser)
 		  // this allows us to associate past chats with a user
-		  if (connection = self.mConnection) AND (user.Login <> "guest") AND (user.Login = self.mUser.Login) then
+		  if (connection = self.mConnection) AND (user.Login <> "guest") AND (user.Login = self.mUser.Login) AND (chatID = 1) then
 		    self.mConnection = connection
 		    self.mUser = user
 		    self.UserIcon.Invalidate
@@ -388,7 +390,7 @@ End
 		      message = message.Replace("%killer%", killer.Nick)
 		      message = message.Replace("%message%", kickMessage)
 		      
-		      self.Viewer.AppendNotification Xojo.Core.Date.Now, AdiumMessageViewer.ContactKicked, message
+		      self.Viewer.AppendNotification Xojo.Core.Date.Now, UIChatViewer.ContactKicked, message
 		    end if
 		  end if
 		End Sub
@@ -404,7 +406,7 @@ End
 		      DIM message As Text = Strings.kUserHasLeft
 		      message = message.Replace("%nick%", user.Nick)
 		      
-		      self.Viewer.AppendNotification Xojo.Core.Date.Now, AdiumMessageViewer.ContactLeft, message
+		      self.Viewer.AppendNotification Xojo.Core.Date.Now, UIChatViewer.ContactLeft, message
 		    end if
 		  end if
 		End Sub

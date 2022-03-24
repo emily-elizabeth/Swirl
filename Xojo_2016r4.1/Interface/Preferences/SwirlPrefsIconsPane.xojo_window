@@ -269,6 +269,9 @@ End
 	#tag EndEvent
 	#tag Event
 		Function CellTextPaint(g As Graphics, row As Integer, column As Integer, x as Integer, y as Integer) As Boolean
+		  #Pragma Unused x
+		  #Pragma Unused y
+		  
 		  if (row < me.ListCount) then
 		    if (me.CellTag(row, column) <> Nil) then
 		      DIM tag As Pair = me.CellTag(row, column)
