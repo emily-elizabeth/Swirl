@@ -972,13 +972,8 @@ Inherits SSLSocket
 		    aDate.Hour = Val(match.SubExpressionString(4))
 		    aDate.Minute = Val(match.SubExpressionString(5))
 		    aDate.Second = Val(match.SubExpressionString(6))
-		    // gmt offset needs to be worked out
-		    DIM gmtOffset As Integer = (Val(match.SubExpressionString(8)) * 3600) + (Val(match.SubExpressionString(9)) * 60)
-		    if (match.SubExpressionString(7) = "-") then
-		      gmtOffset = 0 - gmtOffset
-		    end if
 		    
-		    DIM results As NEW Xojo.Core.Date(aDate.Year, aDate.Day, aDate.Hour, aDate.Minute, aDate.Second, 0, New Xojo.Core.TimeZone(gmtOffset))
+		    DIM results As Xojo.Core.Date = Xojo.Core.Date.FromText(aDate.SQLDateTime.ToText)
 		    Return results
 		  end if
 		End Function
