@@ -756,8 +756,16 @@ Inherits HTMLViewer
 			    me.LoadHtmlTemplate
 			    me.LoadHtmlComponents
 			    
-			    me.GrantAccessToFolder me.mMessageStylePath
-			    me.LoadPage me.mTemplate, GetTemporaryFolderItem()
+			    #if TargetWindows
+			      DIM f As FolderItem = SpecialFolder.Temporary.Child("mypage.html")
+			      DIM t As TextOutputStream = TextOutputStream.Create(f)
+			      t.Write me.mTemplate
+			      t.Close
+			      me.LoadURL f.URLPath
+			    #else
+			      me.GrantAccessToFolder me.mMessageStylePath
+			      me.LoadPage me.mTemplate, GetTemporaryFolderItem()
+			    #endif
 			  end if
 			End Set
 		#tag EndSetter
