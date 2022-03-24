@@ -6,6 +6,7 @@ Begin ContainerControl SwirlNewsContainer
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    Compatibility   =   ""
+   DoubleBuffer    =   False
    Enabled         =   True
    EraseBackground =   True
    HasBackColor    =   False
@@ -65,9 +66,9 @@ Begin ContainerControl SwirlNewsContainer
       Scope           =   2
       TabIndex        =   4
       TabPanelIndex   =   0
-      TabStop         =   True
       Top             =   0
       TopLeftColor    =   &c00000000
+      Transparent     =   True
       Visible         =   False
       Width           =   656
       Begin TextArea NewPost
@@ -75,7 +76,7 @@ Begin ContainerControl SwirlNewsContainer
          Alignment       =   0
          AutoDeactivate  =   True
          AutomaticallyCheckSpelling=   True
-         BackColor       =   &cFFFF00FF
+         BackColor       =   &cFFFFFF00
          Bold            =   False
          Border          =   True
          DataField       =   ""
@@ -113,6 +114,7 @@ Begin ContainerControl SwirlNewsContainer
          TextSize        =   0.0
          TextUnit        =   0
          Top             =   20
+         Transparent     =   True
          Underline       =   False
          UseFocusRing    =   True
          Visible         =   True
@@ -145,6 +147,7 @@ Begin ContainerControl SwirlNewsContainer
          TextSize        =   0.0
          TextUnit        =   0
          Top             =   462
+         Transparent     =   False
          Underline       =   False
          Visible         =   True
          Width           =   110
@@ -176,6 +179,7 @@ Begin ContainerControl SwirlNewsContainer
          TextSize        =   0.0
          TextUnit        =   0
          Top             =   462
+         Transparent     =   False
          Underline       =   False
          Visible         =   True
          Width           =   110
@@ -208,6 +212,7 @@ Begin ContainerControl SwirlNewsContainer
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   16
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   150
@@ -239,6 +244,7 @@ Begin ContainerControl SwirlNewsContainer
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   16
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   150
@@ -270,6 +276,7 @@ Begin ContainerControl SwirlNewsContainer
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   16
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   150
@@ -441,6 +448,14 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="DoubleBuffer"
+		Visible=true
+		Group="Windows Behavior"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType="Boolean"
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="AcceptFocus"
 		Visible=true
