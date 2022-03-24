@@ -25,7 +25,7 @@ Begin ContainerControl SwirlNewsContainer
    UseFocusRing    =   False
    Visible         =   True
    Width           =   656
-   Begin ViennaNewsViewer Viewer
+   Begin UINewsViewer Viewer
       AutoDeactivate  =   True
       Enabled         =   True
       Height          =   450
