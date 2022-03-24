@@ -110,17 +110,8 @@ Inherits HTMLViewer
 		    me.mLastUserID = -1
 		  end select
 		  
-		  
-		  // only scroll the chat if macOS Monterey
-		  #if TargetCocoa
-		    if (me.SystemVersion = "10.0.0") OR (me.SystemVersion.Left(2) = "12") then
-		      Xojo.Core.Timer.CancelCall WeakAddressOf ScrollChat
-		      Xojo.Core.Timer.CallLater 100, WeakAddressOf ScrollChat
-		    end if
-		  #elseif TargetLinux
-		    Xojo.Core.Timer.CancelCall WeakAddressOf ScrollChat
-		    Xojo.Core.Timer.CallLater 100, WeakAddressOf ScrollChat
-		  #endif
+		  Xojo.Core.Timer.CancelCall WeakAddressOf ScrollChat
+		  Xojo.Core.Timer.CallLater 100, WeakAddressOf ScrollChat
 		End Sub
 	#tag EndMethod
 
@@ -549,23 +540,6 @@ Inherits HTMLViewer
 		Private Sub ScrollChat()
 		  me.ExecuteJavaScript "window.scrollTo(0, document.body.scrollHeight + 20);"
 		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function SystemVersion() As Text
-		  Dim noerror As Boolean
-		  Dim result As Integer
-		  Dim sver As Text
-		  Dim sversion As Text
-		  
-		  noerror=System.Gestalt("sysv",result)
-		  If noerror Then
-		    sver=Hex(result).ToText
-		    sversion= sver.Left(2) + "." + sver.Mid(3,1) + "." + sver.Right(1)
-		  End If
-		  
-		  Return sversion
-		End Function
 	#tag EndMethod
 
 
