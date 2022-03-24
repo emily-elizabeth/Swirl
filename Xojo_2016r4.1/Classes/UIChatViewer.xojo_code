@@ -10,7 +10,7 @@ Inherits HTMLViewer
 	#tag EndEvent
 
 	#tag Event
-		Sub DocumentComplete(url as String)
+		Sub DocumentComplete(URL as String)
 		  #Pragma Unused URL
 		  
 		  
@@ -112,15 +112,15 @@ Inherits HTMLViewer
 		  
 		  
 		  // only scroll the chat if macOS Monterey
-		  '#if TargetCocoa
-		  'if (me.SystemVersion = "10.0.0") OR (me.SystemVersion.Left(2) = "12") then
-		  'Xojo.Core.Timer.CancelCall WeakAddressOf ScrollChat
-		  'Xojo.Core.Timer.CallLater 100, WeakAddressOf ScrollChat
-		  'end if
-		  '#elseif TargetLinux
-		  Xojo.Core.Timer.CancelCall WeakAddressOf ScrollChat
-		  Xojo.Core.Timer.CallLater 100, WeakAddressOf ScrollChat
-		  '#endif
+		  #if TargetCocoa
+		    if (me.SystemVersion = "10.0.0") OR (me.SystemVersion.Left(2) = "12") then
+		      Xojo.Core.Timer.CancelCall WeakAddressOf ScrollChat
+		      Xojo.Core.Timer.CallLater 100, WeakAddressOf ScrollChat
+		    end if
+		  #elseif TargetLinux
+		    Xojo.Core.Timer.CancelCall WeakAddressOf ScrollChat
+		    Xojo.Core.Timer.CallLater 100, WeakAddressOf ScrollChat
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -551,6 +551,23 @@ Inherits HTMLViewer
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h21
+		Private Function SystemVersion() As Text
+		  Dim noerror As Boolean
+		  Dim result As Integer
+		  Dim sver As Text
+		  Dim sversion As Text
+		  
+		  noerror=System.Gestalt("sysv",result)
+		  If noerror Then
+		    sver=Hex(result).ToText
+		    sversion= sver.Left(2) + "." + sver.Mid(3,1) + "." + sver.Right(1)
+		  End If
+		  
+		  Return sversion
+		End Function
+	#tag EndMethod
+
 
 	#tag Hook, Flags = &h0
 		Event MessageStyleChanged()
@@ -745,6 +762,7 @@ Inherits HTMLViewer
 			      t.Write me.mTemplate
 			      t.Close
 			      me.LoadURL f.URLPath
+			      
 			    #else
 			      me.GrantAccessToFolder me.mMessageStylePath
 			      me.LoadPage me.mTemplate, GetTemporaryFolderItem()
@@ -886,28 +904,11 @@ Inherits HTMLViewer
 
 	#tag ViewBehavior
 		#tag ViewProperty
-			Name="TabStop"
-			Visible=true
-			Group="Position"
-			InitialValue="True"
-			Type="Boolean"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="AllowAutoDeactivate"
+			Name="AutoDeactivate"
 			Visible=true
 			Group="Appearance"
 			InitialValue="True"
 			Type="Boolean"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Tooltip"
-			Visible=true
-			Group="Appearance"
-			InitialValue=""
-			Type="String"
-			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Enabled"
@@ -915,7 +916,6 @@ Inherits HTMLViewer
 			Group="Appearance"
 			InitialValue="True"
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Height"
@@ -923,63 +923,57 @@ Inherits HTMLViewer
 			Group="Position"
 			InitialValue="200"
 			Type="Integer"
-			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HelpTag"
+			Visible=true
+			Group="Appearance"
+			Type="String"
+			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
 			Visible=true
 			Group="ID"
-			InitialValue=""
 			Type="Integer"
-			EditorType=""
+			EditorType="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
 			Visible=true
 			Group="Position"
-			InitialValue=""
 			Type="Integer"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockBottom"
 			Visible=true
 			Group="Position"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockLeft"
 			Visible=true
 			Group="Position"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockRight"
 			Visible=true
 			Group="Position"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockTop"
 			Visible=true
 			Group="Position"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
-			InitialValue=""
 			Type="String"
-			EditorType=""
+			EditorType="String"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Renderer"
@@ -997,9 +991,8 @@ Inherits HTMLViewer
 			Name="Super"
 			Visible=true
 			Group="ID"
-			InitialValue=""
 			Type="String"
-			EditorType=""
+			EditorType="String"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TabIndex"
@@ -1007,23 +1000,18 @@ Inherits HTMLViewer
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TabPanelIndex"
-			Visible=false
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
 			Visible=true
 			Group="Position"
-			InitialValue=""
 			Type="Integer"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Visible"
@@ -1031,7 +1019,6 @@ Inherits HTMLViewer
 			Group="Appearance"
 			InitialValue="True"
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Width"
@@ -1039,7 +1026,6 @@ Inherits HTMLViewer
 			Group="Position"
 			InitialValue="200"
 			Type="Integer"
-			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
