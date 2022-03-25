@@ -6,6 +6,7 @@ Begin ContainerControl ConnectContainer
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    Compatibility   =   ""
+   DoubleBuffer    =   False
    Enabled         =   True
    EraseBackground =   True
    HasBackColor    =   False
@@ -62,6 +63,7 @@ Begin ContainerControl ConnectContainer
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   141
+      Transparent     =   True
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -94,6 +96,7 @@ Begin ContainerControl ConnectContainer
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   244
+      Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   172
@@ -134,6 +137,7 @@ Begin ContainerControl ConnectContainer
       ScrollbarHorizontal=   False
       ScrollBarVertical=   True
       SelectionType   =   0
+      ShowDropIndicator=   False
       TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
@@ -141,6 +145,7 @@ Begin ContainerControl ConnectContainer
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   0
+      Transparent     =   True
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
@@ -175,6 +180,7 @@ Begin ContainerControl ConnectContainer
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   243
+      Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   114
@@ -216,6 +222,7 @@ Begin ContainerControl ConnectContainer
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   175
+      Transparent     =   True
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -243,6 +250,7 @@ Begin ContainerControl ConnectContainer
       Selectable      =   False
       TabIndex        =   5
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   ""
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -292,6 +300,7 @@ Begin ContainerControl ConnectContainer
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   209
+      Transparent     =   True
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -315,6 +324,7 @@ Begin ContainerControl ConnectContainer
       TabPanelIndex   =   0
       TabStop         =   False
       Top             =   515
+      Transparent     =   True
       Visible         =   False
       Width           =   16
    End
@@ -491,6 +501,14 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="DoubleBuffer"
+		Visible=true
+		Group="Windows Behavior"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType="Boolean"
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="AcceptFocus"
 		Visible=true

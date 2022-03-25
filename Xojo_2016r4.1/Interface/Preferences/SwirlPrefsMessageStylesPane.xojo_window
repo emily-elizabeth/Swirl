@@ -6,6 +6,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    Compatibility   =   ""
+   DoubleBuffer    =   False
    Enabled         =   True
    EraseBackground =   True
    HasBackColor    =   False
@@ -39,11 +40,11 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       InitialParent   =   ""
       Italic          =   False
       Left            =   262
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
+      LockRight       =   True
+      LockTop         =   False
       Scope           =   2
       TabIndex        =   10
       TabPanelIndex   =   0
@@ -52,6 +53,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   328
+      Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   368
@@ -63,7 +65,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       HelpTag         =   ""
       Index           =   -2147483648
       Left            =   250
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   True
@@ -103,7 +105,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       InitialValue    =   ""
       Italic          =   False
       Left            =   0
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   False
@@ -113,6 +115,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       ScrollbarHorizontal=   False
       ScrollBarVertical=   True
       SelectionType   =   0
+      ShowDropIndicator=   False
       TabIndex        =   23
       TabPanelIndex   =   0
       TabStop         =   True
@@ -120,6 +123,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   0
+      Transparent     =   True
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
@@ -141,11 +145,11 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       InitialParent   =   ""
       Italic          =   False
       Left            =   20
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   False
-      LockTop         =   True
+      LockTop         =   False
       Scope           =   2
       TabIndex        =   24
       TabPanelIndex   =   0
@@ -153,9 +157,10 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       TextFont        =   "SmallSystem"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   328
+      Top             =   384
+      Transparent     =   True
       Underline       =   False
-      Visible         =   True
+      Visible         =   False
       Width           =   27
    End
    Begin PushButton MessageStyleRemove
@@ -172,11 +177,11 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       InitialParent   =   ""
       Italic          =   False
       Left            =   59
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   False
-      LockTop         =   True
+      LockTop         =   False
       Scope           =   2
       TabIndex        =   25
       TabPanelIndex   =   0
@@ -184,9 +189,10 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       TextFont        =   "SmallSystem"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   328
+      Top             =   384
+      Transparent     =   True
       Underline       =   False
-      Visible         =   True
+      Visible         =   False
       Width           =   27
    End
    Begin PushButton MessageStylesRefresh
@@ -203,11 +209,11 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       InitialParent   =   ""
       Italic          =   False
       Left            =   98
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   False
-      LockTop         =   True
+      LockTop         =   False
       Scope           =   2
       TabIndex        =   26
       TabPanelIndex   =   0
@@ -216,9 +222,32 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   328
+      Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   91
+   End
+   BeginSegmented SegmentedControl SegmentedControl1
+      Enabled         =   True
+      Height          =   20
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   20
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   False
+      MacControlStyle =   0
+      Scope           =   0
+      Segments        =   "+\n\nFalse\r-\n\nFalse"
+      SelectionType   =   2
+      TabIndex        =   27
+      TabPanelIndex   =   0
+      Top             =   328
+      Transparent     =   False
+      Visible         =   True
+      Width           =   49
    End
 End
 #tag EndWindow
@@ -370,7 +399,33 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events SegmentedControl1
+	#tag Event
+		Sub Action(itemIndex as integer)
+		  select case itemIndex
+		  case 0 // add
+		    DIM style As FolderItem = SelectFolder()
+		    if (style <> Nil) then  // a folder was selected
+		      DIM newFile As NEW xojo.IO.FolderItem(style.NativePath.ToText)
+		      self.AddMessageStyle newFile
+		    end if
+		  case 1 // remove
+		    if (self.Styles.ListIndex > -1) then
+		      self.RemoveMessageStyle self.Styles.ListIndex
+		    end if
+		  end select
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="DoubleBuffer"
+		Visible=true
+		Group="Windows Behavior"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType="Boolean"
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="AcceptFocus"
 		Visible=true
