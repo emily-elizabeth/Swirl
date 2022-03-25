@@ -130,7 +130,17 @@ Inherits HTMLViewer
 		Sub Clear()
 		  REDIM me.mChatItems(-1)
 		  me.mLastUserID = -1
-		  me.LoadPage me.mTemplate, GetTemporaryFolderItem()
+		  
+		  #if TargetWindows
+		    DIM f As FolderItem = SpecialFolder.Temporary.Child("mypage.html")
+		    DIM t As TextOutputStream = TextOutputStream.Create(f)
+		    t.Write me.mTemplate
+		    t.Close
+		    me.LoadURL f.URLPath
+		  #else
+		    me.GrantAccessToFolder me.mMessageStylePath
+		    me.LoadPage me.mTemplate, GetTemporaryFolderItem()
+		  #endif
 		End Sub
 	#tag EndMethod
 
@@ -736,7 +746,6 @@ Inherits HTMLViewer
 			      t.Write me.mTemplate
 			      t.Close
 			      me.LoadURL f.URLPath
-			      
 			    #else
 			      me.GrantAccessToFolder me.mMessageStylePath
 			      me.LoadPage me.mTemplate, GetTemporaryFolderItem()
