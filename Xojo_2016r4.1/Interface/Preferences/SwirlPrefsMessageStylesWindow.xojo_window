@@ -40,10 +40,10 @@ Begin Window SwirlPrefsMessageStylesWindow
       HelpTag         =   ""
       InitialParent   =   ""
       Left            =   0
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
+      LockRight       =   True
       LockTop         =   True
       Scope           =   2
       TabIndex        =   0
