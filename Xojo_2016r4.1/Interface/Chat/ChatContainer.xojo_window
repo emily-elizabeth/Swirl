@@ -6,6 +6,7 @@ Begin ContainerControl ChatContainer
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    Compatibility   =   ""
+   DoubleBuffer    =   False
    Enabled         =   True
    EraseBackground =   True
    HasBackColor    =   False
@@ -67,6 +68,7 @@ Begin ContainerControl ChatContainer
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   392
+      Transparent     =   True
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
@@ -108,6 +110,7 @@ Begin ContainerControl ChatContainer
       ScrollbarHorizontal=   False
       ScrollBarVertical=   True
       SelectionType   =   0
+      ShowDropIndicator=   False
       TabIndex        =   3
       TabPanelIndex   =   0
       TabStop         =   True
@@ -115,6 +118,7 @@ Begin ContainerControl ChatContainer
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   0
+      Transparent     =   True
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
@@ -698,7 +702,18 @@ End
 	#tag EndEvent
 	#tag Event
 		Function CancelLoad(URL as String) As Boolean
-		  if (URL.Left(4) ="http") then
+		  if (URL.Left(4) = "file") then
+		    DIM u As String = URL.Replace(me.MessageStylePathParent.URLPath + "Resources/", "")
+		    if (u = "") then
+		      Return FALSE
+		    elseif (u.Left(4) = "file") then
+		      Return FALSE
+		    else
+		      ShowURL "http://" + u
+		      Return TRUE
+		    end if
+		    
+		  elseif (URL.Left(4) ="http") then
 		    ShowURL URL
 		    Return TRUE
 		  else
@@ -708,6 +723,14 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="DoubleBuffer"
+		Visible=true
+		Group="Windows Behavior"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType="Boolean"
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="AcceptFocus"
 		Visible=true

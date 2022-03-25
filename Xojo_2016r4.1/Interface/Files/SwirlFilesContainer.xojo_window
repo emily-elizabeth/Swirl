@@ -6,6 +6,7 @@ Begin ContainerControl SwirlFilesContainer
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    Compatibility   =   ""
+   DoubleBuffer    =   False
    Enabled         =   True
    EraseBackground =   True
    HasBackColor    =   False
@@ -61,6 +62,7 @@ Begin ContainerControl SwirlFilesContainer
       ScrollbarHorizontal=   False
       ScrollBarVertical=   True
       SelectionType   =   0
+      ShowDropIndicator=   False
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
@@ -68,6 +70,7 @@ Begin ContainerControl SwirlFilesContainer
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   52
+      Transparent     =   True
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
@@ -102,6 +105,7 @@ Begin ContainerControl SwirlFilesContainer
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   4
+      Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   38
@@ -133,6 +137,7 @@ Begin ContainerControl SwirlFilesContainer
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   4
+      Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   38
@@ -164,6 +169,7 @@ Begin ContainerControl SwirlFilesContainer
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   4
+      Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   38
@@ -195,6 +201,7 @@ Begin ContainerControl SwirlFilesContainer
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   4
+      Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   38
@@ -226,6 +233,7 @@ Begin ContainerControl SwirlFilesContainer
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   4
+      Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   38
@@ -257,6 +265,7 @@ Begin ContainerControl SwirlFilesContainer
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   4
+      Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   38
@@ -288,6 +297,7 @@ Begin ContainerControl SwirlFilesContainer
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   4
+      Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   38
@@ -504,6 +514,14 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="DoubleBuffer"
+		Visible=true
+		Group="Windows Behavior"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType="Boolean"
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="AcceptFocus"
 		Visible=true

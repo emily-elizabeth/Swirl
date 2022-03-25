@@ -1504,179 +1504,113 @@ Implements NetWiredSocketInterface
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="CanAlterFiles"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanBanUsers"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanBroadcast"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanChangeTopic"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanClearNews"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanCreateAccounts"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanCreateFolders"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanDeleteAccounts"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanDeleteFiles"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanDownload"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanEditAccounts"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanElevatePrivileges"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanGetUserInfo"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanKickUsers"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CannotBeKicked"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanPostNews"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanUpload"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanUploadAnywhere"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanViewDropboxes"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DownloadLimit"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="UInt64"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DownloadSpeed"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="UInt64"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Handle"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Integer"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -1684,15 +1618,11 @@ Implements NetWiredSocketInterface
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="IsConnected"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Boolean"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -1700,77 +1630,55 @@ Implements NetWiredSocketInterface
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="MyUserID"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Integer"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
-			InitialValue=""
 			Type="String"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ServerAddress"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ServerAppVersion"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ServerDescription"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ServerFilesCount"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="UInt64"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ServerFilesSize"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="UInt64"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ServerName"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ServerProtocolVersion"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
@@ -1778,9 +1686,7 @@ Implements NetWiredSocketInterface
 			Name="Super"
 			Visible=true
 			Group="ID"
-			InitialValue=""
 			Type="String"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -1788,23 +1694,16 @@ Implements NetWiredSocketInterface
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="UploadLimit"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="UInt64"
-			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="UploadSpeed"
-			Visible=false
 			Group="Behavior"
-			InitialValue=""
 			Type="UInt64"
-			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

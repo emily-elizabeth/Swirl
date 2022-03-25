@@ -69,8 +69,11 @@ Begin Window SwirlUserInfoWindow
       Scope           =   2
       Segments        =   "#Strings.kInfo\n\nFalse\r#Strings.kDownloads\n\nFalse\r#Strings.kUploads\n\nFalse"
       SelectionType   =   0
+      TabIndex        =   1
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   78
+      Transparent     =   True
       Visible         =   True
       Width           =   260
    End
@@ -94,6 +97,7 @@ Begin Window SwirlUserInfoWindow
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   99
+      Transparent     =   True
       Value           =   1
       Visible         =   True
       Width           =   300
@@ -693,6 +697,7 @@ Begin Window SwirlUserInfoWindow
          ScrollbarHorizontal=   False
          ScrollBarVertical=   True
          SelectionType   =   0
+         ShowDropIndicator=   False
          TabIndex        =   0
          TabPanelIndex   =   2
          TabStop         =   True
@@ -700,6 +705,7 @@ Begin Window SwirlUserInfoWindow
          TextSize        =   0.0
          TextUnit        =   0
          Top             =   119
+         Transparent     =   True
          Underline       =   False
          UseFocusRing    =   False
          Visible         =   True
@@ -743,6 +749,7 @@ Begin Window SwirlUserInfoWindow
          ScrollbarHorizontal=   False
          ScrollBarVertical=   True
          SelectionType   =   0
+         ShowDropIndicator=   False
          TabIndex        =   0
          TabPanelIndex   =   3
          TabStop         =   True
@@ -750,6 +757,7 @@ Begin Window SwirlUserInfoWindow
          TextSize        =   0.0
          TextUnit        =   0
          Top             =   119
+         Transparent     =   True
          Underline       =   False
          UseFocusRing    =   False
          Visible         =   True

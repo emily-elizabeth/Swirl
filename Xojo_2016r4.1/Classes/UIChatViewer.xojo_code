@@ -747,6 +747,15 @@ Inherits HTMLViewer
 		MessageStylePath As Xojo.IO.FolderItem
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return me.mMessageStylePath
+			End Get
+		#tag EndGetter
+		MessageStylePathParent As Xojo.IO.FolderItem
+	#tag EndComputedProperty
+
 	#tag Property, Flags = &h21
 		Private mFooter As Text
 	#tag EndProperty

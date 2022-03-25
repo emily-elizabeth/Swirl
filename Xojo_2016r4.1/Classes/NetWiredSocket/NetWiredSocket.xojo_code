@@ -1624,21 +1624,48 @@ Inherits SSLSocket
 
 	#tag ViewBehavior
 		#tag ViewProperty
-			Name="CertificateFile"
+			Name="Address"
+			Visible=true
 			Group="Behavior"
-			Type="FolderItem"
-			EditorType="File"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Port"
+			Visible=true
+			Group="Behavior"
+			InitialValue="0"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SSLConnected"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SSLConnecting"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="BytesAvailable"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="BytesLeftToSend"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="LastErrorCode"
+			Group="Behavior"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CertificatePassword"
 			Group="Behavior"
 			Type="String"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="CertificateRejectionFile"
-			Group="Behavior"
-			Type="FolderItem"
-			EditorType="File"
+			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ConnectionType"
