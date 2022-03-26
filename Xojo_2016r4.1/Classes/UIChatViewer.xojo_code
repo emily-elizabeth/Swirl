@@ -35,7 +35,7 @@ Inherits HTMLViewer
 		    theRegex.Options.DotMatchAll = true
 		    theRegex.Options.Greedy = True
 		    theRegex.SearchPattern = "\b(https?://|www\.)([^<>\s]+)"
-		    theRegex.ReplacementPattern = "<a href=""\1\2"">\1\2</a>"
+		    theRegex.ReplacementPattern = "<a href=""link://\1\2"">\1\2</a>"
 		    theRegex.Options.ReplaceAllMatches = True
 		    chat = theRegex.Replace(chat).ToText
 		  end if
