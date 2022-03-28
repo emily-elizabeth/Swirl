@@ -45,6 +45,7 @@ Begin Window ChatWindow
       TabIndex        =   5
       TabPanelIndex   =   0
       Top             =   0
+      Transparent     =   False
       Value           =   0
       Visible         =   True
       Width           =   780
@@ -97,6 +98,7 @@ Begin Window ChatWindow
          TabIndex        =   0
          TabPanelIndex   =   1
          Top             =   0
+         Transparent     =   False
          Value           =   0
          Visible         =   True
          Width           =   780
@@ -106,6 +108,7 @@ Begin Window ChatWindow
             AutoDeactivate  =   True
             BackColor       =   &cFFFF00FF
             Backdrop        =   0
+            DoubleBuffer    =   False
             Enabled         =   True
             EraseBackground =   True
             HasBackColor    =   False
@@ -208,6 +211,7 @@ Begin Window ChatWindow
          TabIndex        =   1
          TabPanelIndex   =   3
          Top             =   0
+         Transparent     =   False
          Value           =   0
          Visible         =   True
          Width           =   780
@@ -231,6 +235,7 @@ Begin Window ChatWindow
          TabIndex        =   0
          TabPanelIndex   =   2
          Top             =   0
+         Transparent     =   False
          Value           =   0
          Visible         =   True
          Width           =   780
@@ -724,14 +729,16 @@ End
 #tag Events ChatToolbar1
 	#tag Event
 		Sub Action(item As ToolItem)
-		  select case item.Caption
-		  case Strings.kChat
-		    self.PagePanel1.Value = 0
-		  case Strings.kNews
-		    self.PagePanel1.Value = 1
-		  case Strings.kFiles
-		    self.PagePanel1.Value = 2
-		  end select
+		  if (self.ChatTabs.Value > 0) then
+		    select case item.Caption
+		    case Strings.kChat
+		      self.PagePanel1.Value = 0
+		    case Strings.kNews
+		      self.PagePanel1.Value = 1
+		    case Strings.kFiles
+		      self.PagePanel1.Value = 2
+		    end select
+		  end if
 		End Sub
 	#tag EndEvent
 #tag EndEvents
