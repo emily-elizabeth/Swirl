@@ -485,6 +485,11 @@ End
 		  'end if
 		End Sub
 	#tag EndEvent
+	#tag Event
+		Sub DoubleClick()
+		  Self.Connect
+		End Sub
+	#tag EndEvent
 #tag EndEvents
 #tag Events ConnectButton
 	#tag Event
