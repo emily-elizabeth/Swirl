@@ -389,12 +389,29 @@ End
 	#tag EndEvent
 	#tag Event
 		Function CancelLoad(URL as String) As Boolean
-		  if (URL.Left(4) ="http") then
-		    ShowURL URL
-		    Return TRUE
-		  else
-		    Return FALSE
+		  if (URL.Left(4) = "link") then
+		    DIM u As String = URL.Replace("link://", "")
+		    if (u = "") then
+		      Return FALSE
+		    elseif (u.Left(4) = "http") then
+		      u = u.Replace("//", "://")
+		      ShowURL u
+		      Return TRUE
+		    else
+		      ShowURL "http://" + u
+		      Return TRUE
+		    end if
 		  end if
+		  
+		  Return FALSE
+		  
+		  
+		  'if (URL.Left(4) ="http") then
+		  'ShowURL URL
+		  'Return TRUE
+		  'else
+		  'Return FALSE
+		  'end if
 		End Function
 	#tag EndEvent
 #tag EndEvents
