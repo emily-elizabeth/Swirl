@@ -105,6 +105,9 @@ Protected Module Events
 	#tag Constant, Name = kWiredMessageStyleChanged, Type = String, Dynamic = False, Default = \"WiredMessageStyleChanged", Scope = Protected
 	#tag EndConstant
 
+	#tag Constant, Name = kWiredMessageStyleFontSizeChanged, Type = String, Dynamic = False, Default = \"WiredMessageStyleFontSizeChanged", Scope = Protected
+	#tag EndConstant
+
 	#tag Constant, Name = kWiredNewConnection, Type = String, Dynamic = False, Default = \"WiredNewConnection", Scope = Protected
 	#tag EndConstant
 

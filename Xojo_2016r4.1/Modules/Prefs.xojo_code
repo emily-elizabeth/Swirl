@@ -439,6 +439,22 @@ Protected Module Prefs
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
+			  Return mDefaults.Lookup("MessageStyleFontSize", 0)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mDefaults.Set("MessageStyleFontSize") = value
+			  
+			  ObjObserver.Notify Nil, Events.kWiredMessageStyleFontSizeChanged
+			End Set
+		#tag EndSetter
+		Protected MessageStyleFontSize As Integer
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h1
+		#tag Getter
+			Get
 			  DIM styleName As Text = mDefaults.Lookup("MessageStyle", Paths.DefaultMessageStyleName)
 			  DIM styleURLPath As Text = Paths.MessageStyles.Path + styleName
 			  

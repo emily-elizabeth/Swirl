@@ -10,7 +10,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
    Enabled         =   True
    EraseBackground =   True
    HasBackColor    =   False
-   Height          =   368
+   Height          =   520
    HelpTag         =   ""
    InitialParent   =   ""
    Left            =   0
@@ -39,10 +39,10 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   262
+      Left            =   395
       LockBottom      =   True
       LockedInPosition=   False
-      LockLeft        =   True
+      LockLeft        =   False
       LockRight       =   True
       LockTop         =   False
       Scope           =   2
@@ -52,19 +52,20 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       TextFont        =   "SmallSystem"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   328
+      Top             =   406
       Transparent     =   True
       Underline       =   False
       Visible         =   True
-      Width           =   368
+      Width           =   235
    End
    Begin UIChatViewer MessageStylePreview
       AutoDeactivate  =   True
+      DefaultFontSize =   0
       Enabled         =   True
-      Height          =   316
+      Height          =   245
       HelpTag         =   ""
       Index           =   -2147483648
-      Left            =   250
+      Left            =   0
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -77,13 +78,13 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       TabStop         =   True
       Top             =   0
       Visible         =   True
-      Width           =   400
+      Width           =   650
    End
    Begin Listbox Styles
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
       Bold            =   False
-      Border          =   False
+      Border          =   True
       ColumnCount     =   1
       ColumnsResizable=   False
       ColumnWidths    =   ""
@@ -97,19 +98,19 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       GridLinesVertical=   0
       HasHeading      =   False
       HeadingIndex    =   -1
-      Height          =   316
+      Height          =   143
       HelpTag         =   ""
       Hierarchical    =   True
       Index           =   -2147483648
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   0
+      Left            =   231
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
+      LockRight       =   True
+      LockTop         =   False
       RequiresSelection=   False
       Scope           =   2
       ScrollbarHorizontal=   False
@@ -122,12 +123,12 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   0
+      Top             =   257
       Transparent     =   True
       Underline       =   False
-      UseFocusRing    =   False
+      UseFocusRing    =   True
       Visible         =   True
-      Width           =   250
+      Width           =   399
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
@@ -144,7 +145,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   20
+      Left            =   3
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -157,7 +158,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       TextFont        =   "SmallSystem"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   384
+      Top             =   556
       Transparent     =   True
       Underline       =   False
       Visible         =   False
@@ -176,7 +177,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   59
+      Left            =   42
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -189,7 +190,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       TextFont        =   "SmallSystem"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   384
+      Top             =   556
       Transparent     =   True
       Underline       =   False
       Visible         =   False
@@ -208,7 +209,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   98
+      Left            =   292
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -221,7 +222,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       TextFont        =   "SmallSystem"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   328
+      Top             =   406
       Transparent     =   True
       Underline       =   False
       Visible         =   True
@@ -232,7 +233,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       Height          =   20
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   20
+      Left            =   231
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -244,10 +245,194 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       SelectionType   =   2
       TabIndex        =   27
       TabPanelIndex   =   0
-      Top             =   328
+      Top             =   406
       Transparent     =   False
       Visible         =   True
       Width           =   49
+   End
+   Begin TextField ThemeFontSize
+      AcceptTabs      =   False
+      Alignment       =   0
+      AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   False
+      BackColor       =   &cFFFFFF00
+      Bold            =   False
+      Border          =   True
+      CueText         =   ""
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Format          =   ""
+      Height          =   22
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   231
+      LimitText       =   0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   False
+      Mask            =   ""
+      Password        =   False
+      ReadOnly        =   False
+      Scope           =   2
+      TabIndex        =   28
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   452
+      Transparent     =   False
+      Underline       =   False
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   49
+   End
+   Begin Label Label1
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   False
+      Multiline       =   False
+      Scope           =   2
+      Selectable      =   False
+      TabIndex        =   29
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "#Strings.kMessageStyle"
+      TextAlign       =   2
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   257
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   199
+   End
+   Begin Label Label2
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   False
+      Multiline       =   False
+      Scope           =   2
+      Selectable      =   False
+      TabIndex        =   30
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "#Strings.kFontSize"
+      TextAlign       =   2
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   452
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   199
+   End
+   Begin Label DefaultFontSize
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   292
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   2
+      Selectable      =   False
+      TabIndex        =   31
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextAlign       =   0
+      TextColor       =   &c3F3F3F00
+      TextFont        =   "SmallSystem"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   453
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   338
+   End
+   Begin Label DefaultFontSize1
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   231
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   2
+      Selectable      =   False
+      TabIndex        =   32
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "#Strings.kNotAllThemesSupportCustomFontSize"
+      TextAlign       =   0
+      TextColor       =   &c3F3F3F00
+      TextFont        =   "SmallSystem"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   480
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   399
    End
 End
 #tag EndWindow
@@ -309,6 +494,16 @@ End
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h21
+		Private Sub SetPreviewFontSize(size As Integer)
+		  if (size = 0) then
+		    self.MessageStylePreview.ExecuteJavaScript "document.body.style.fontSize='" + self.MessageStylePreview.DefaultFontSize.ToText + "px';"
+		  else
+		    self.MessageStylePreview.ExecuteJavaScript "document.body.style.fontSize='" + size.ToText + "px';"
+		  end if
+		End Sub
+	#tag EndMethod
+
 
 #tag EndWindowCode
 
@@ -335,6 +530,12 @@ End
 		  me.AppendChat Xojo.Core.Date.Now, 2, "Emily", icon, "... thus negating all existence!", TRUE
 		  me.AppendChat Xojo.Core.Date.Now, 1, Prefs.UserNick, Prefs.UserIcon, "Exactly! It's a risk one takes whenever one walks in to a bar, especially if one is a chicken.", FALSE
 		  me.AppendNotification Xojo.Core.Date.Now, "away", "Emily went away"
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub MessageStyleChanged()
+		  self.DefaultFontSize.Text = Strings.kDefaultFontSize.Replace("%size%", me.DefaultFontSize.ToText)
+		  self.SetPreviewFontSize Prefs.MessageStyleFontSize
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -369,6 +570,11 @@ End
 		  if (me.ListIndex > -1) then
 		    self.MessageStylePreview.MessageStylePath = me.RowTag(me.ListIndex)
 		  end if
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub DoubleClick()
+		  Prefs.MessageStylePath = self.MessageStylePreview.MessageStylePath
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -414,6 +620,31 @@ End
 		      self.RemoveMessageStyle self.Styles.ListIndex
 		    end if
 		  end select
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ThemeFontSize
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  DIM returnValue As Boolean = FALSE
+		  
+		  select case asc(Key)
+		  case 3, 10, 13
+		    self.SetPreviewFontSize Val(me.Text)
+		    Prefs.MessageStyleFontSize = Val(me.Text)
+		  end select
+		  
+		  Return returnValue
+		End Function
+	#tag EndEvent
+	#tag Event
+		Sub TextChange()
+		  self.SetPreviewFontSize Val(me.Text)
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  me.Text = Prefs.MessageStyleFontSize.ToText
 		End Sub
 	#tag EndEvent
 #tag EndEvents

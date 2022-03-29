@@ -7,14 +7,14 @@ Begin Window SwirlPrefsMessageStylesWindow
    Composite       =   False
    Frame           =   0
    FullScreen      =   False
-   FullScreenButton=   False
+   FullScreenButton=   True
    HasBackColor    =   False
-   Height          =   368
+   Height          =   520
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
    MaxHeight       =   32000
-   MaximizeButton  =   False
+   MaximizeButton  =   True
    MaxWidth        =   32000
    MenuBar         =   0
    MenuBarVisible  =   True
@@ -36,7 +36,7 @@ Begin Window SwirlPrefsMessageStylesWindow
       Enabled         =   True
       EraseBackground =   True
       HasBackColor    =   False
-      Height          =   368
+      Height          =   520
       HelpTag         =   ""
       InitialParent   =   ""
       Left            =   0

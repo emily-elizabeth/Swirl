@@ -264,6 +264,10 @@ Protected Module Strings
 		#Tag Instance, Platform = Any, Language = en, Definition  = \"Default"
 	#tag EndConstant
 
+	#tag Constant, Name = kDefaultFontSize, Type = Text, Dynamic = True, Default = \"Default font size: %size%", Scope = Protected
+		#Tag Instance, Platform = Any, Language = en, Definition  = \"Default font size: %size%"
+	#tag EndConstant
+
 	#tag Constant, Name = kDelete, Type = Text, Dynamic = True, Default = \"Delete", Scope = Protected
 	#tag EndConstant
 
@@ -443,6 +447,10 @@ Protected Module Strings
 
 	#tag Constant, Name = kFlags, Type = Text, Dynamic = True, Default = \"Flags", Scope = Protected
 		#Tag Instance, Platform = Any, Language = en, Definition  = \"Flags"
+	#tag EndConstant
+
+	#tag Constant, Name = kFontSize, Type = Text, Dynamic = True, Default = \"Font Size", Scope = Protected
+		#Tag Instance, Platform = Any, Language = en, Definition  = \"Font Size"
 	#tag EndConstant
 
 	#tag Constant, Name = kFood, Type = Text, Dynamic = True, Default = \"Food", Scope = Protected
@@ -658,6 +666,10 @@ Protected Module Strings
 
 	#tag Constant, Name = kNone, Type = Text, Dynamic = True, Default = \"None", Scope = Protected
 		#Tag Instance, Platform = Any, Language = en, Definition  = \"None"
+	#tag EndConstant
+
+	#tag Constant, Name = kNotAllThemesSupportCustomFontSize, Type = Text, Dynamic = True, Default = \"Not all themes support custom font sizes", Scope = Protected
+		#Tag Instance, Platform = Any, Language = en, Definition  = \"Not all themes support custom font sizes"
 	#tag EndConstant
 
 	#tag Constant, Name = kNumberOfPosts, Type = Text, Dynamic = True, Default = \"%numberOfEntries% Posts", Scope = Protected

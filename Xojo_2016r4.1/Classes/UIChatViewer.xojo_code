@@ -595,6 +595,20 @@ Inherits HTMLViewer
 	#tag EndNote
 
 
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return me.mDefaultFontSize
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  #Pragma Unused value
+			End Set
+		#tag EndSetter
+		DefaultFontSize As Integer
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get

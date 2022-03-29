@@ -128,6 +128,7 @@ Begin ContainerControl ChatContainer
    End
    Begin UIChatViewer ChatLog
       AutoDeactivate  =   True
+      DefaultFontSize =   0
       Enabled         =   True
       Height          =   391
       HelpTag         =   ""
@@ -206,6 +207,7 @@ End
 		  ObjObserver.Listen self, Events.kWiredConnectionUserLeft
 		  ObjObserver.Listen self, Events.kWiredConnectionUserListEntry
 		  ObjObserver.Listen self, Events.kWiredMessageStyleChanged
+		  ObjObserver.Listen self, Events.kWiredMessageStyleFontSizeChanged
 		End Sub
 	#tag EndEvent
 
@@ -274,6 +276,19 @@ End
 		      exit for i
 		    end if
 		  next
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub SetChatLogFontSize(size As Integer)
+		  
+		  if (size = 0) then
+		    self.ChatLog.ExecuteJavaScript "document.body.style.fontSize='" + self.ChatLog.DefaultFontSize.ToText + "px';"
+		    self.ChatInput.TextSize = self.ChatLog.DefaultFontSize
+		  else
+		    self.ChatLog.ExecuteJavaScript "document.body.style.fontSize='" + size.ToText + "px';"
+		    self.ChatInput.TextSize = size
+		  end if
 		End Sub
 	#tag EndMethod
 
@@ -466,6 +481,14 @@ End
 		  #Pragma Unused sender
 		  
 		  self.ChatLog.MessageStylePath = Prefs.MessageStylePath
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub WiredMessageStyleFontSizeChanged(sender As Object)
+		  #Pragma Unused sender
+		  
+		  self.SetChatLogFontSize Prefs.MessageStyleFontSize
 		End Sub
 	#tag EndMethod
 
@@ -738,6 +761,11 @@ End
 		  'Return FALSE
 		  'end if
 		End Function
+	#tag EndEvent
+	#tag Event
+		Sub MessageStyleChanged()
+		  self.SetChatLogFontSize Prefs.MessageStyleFontSize
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior

@@ -68,6 +68,7 @@ Begin Window SwirlMessagesWin
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   387
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
@@ -75,6 +76,7 @@ Begin Window SwirlMessagesWin
    End
    Begin UIChatViewer Viewer
       AutoDeactivate  =   True
+      DefaultFontSize =   0
       Enabled         =   True
       Height          =   338
       HelpTag         =   ""
@@ -310,6 +312,19 @@ End
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h21
+		Private Sub SetChatLogFontSize(size As Integer)
+		  
+		  if (size = 0) then
+		    self.Viewer.ExecuteJavaScript "document.body.style.fontSize='" + self.Viewer.DefaultFontSize.ToText + "px';"
+		    self.ChatInput.TextSize = self.Viewer.DefaultFontSize
+		  else
+		    self.Viewer.ExecuteJavaScript "document.body.style.fontSize='" + size.ToText + "px';"
+		    self.ChatInput.TextSize = size
+		  end if
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub Show(message As Text)
 		  self.Viewer.AppendChat Xojo.Core.Date.Now, self.mUser.UserID, self.mUser.Nick, self.mUser.Icon, message, TRUE
@@ -421,6 +436,14 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Sub WiredMessageStyleFontSizeChanged(sender As Object)
+		  #Pragma Unused sender
+		  
+		  self.SetChatLogFontSize Prefs.MessageStyleFontSize
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Sub WiredWindowClosing(connection As WiredConnection)
 		  if (connection = self.mConnection) then
 		    self.mWindowClosing = TRUE
@@ -467,6 +490,30 @@ End
 		Sub Open()
 		  me.MessageStylePath = Prefs.MessageStylePath
 		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub MessageStyleChanged()
+		  self.SetChatLogFontSize Prefs.MessageStyleFontSize
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Function CancelLoad(URL as String) As Boolean
+		  if (URL.Left(4) = "link") then
+		    DIM u As String = URL.Replace("link://", "")
+		    if (u = "") then
+		      Return FALSE
+		    elseif (u.Left(4) = "http") then
+		      u = u.Replace("//", "://")
+		      ShowURL u
+		      Return TRUE
+		    else
+		      ShowURL "http://" + u
+		      Return TRUE
+		    end if
+		  end if
+		  
+		  Return FALSE
+		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag Events UserIcon
