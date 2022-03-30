@@ -376,11 +376,11 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       InitialParent   =   ""
       Italic          =   False
       Left            =   292
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   False
-      LockTop         =   True
+      LockTop         =   False
       Multiline       =   False
       Scope           =   2
       Selectable      =   False
@@ -399,7 +399,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       Visible         =   True
       Width           =   338
    End
-   Begin Label DefaultFontSize1
+   Begin Label NotAllThemesSupportCustomFontSizes
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -411,11 +411,11 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       InitialParent   =   ""
       Italic          =   False
       Left            =   231
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   False
-      LockTop         =   True
+      LockTop         =   False
       Multiline       =   False
       Scope           =   2
       Selectable      =   False
