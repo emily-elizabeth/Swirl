@@ -122,7 +122,7 @@ Begin Window SwirlMessagesWin
       Transparent     =   True
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   385
+      Width           =   384
    End
    Begin Label UserStatus
       AutoDeactivate  =   True
