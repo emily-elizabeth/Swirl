@@ -84,9 +84,12 @@ Inherits Application
 	#tag Event
 		Function UnhandledException(error As RuntimeException) As Boolean
 		  If error <> Nil Then
-		    Var type As String = Introspection.GetType(error).Name
-		    MessageBox(type + EndOfLine + EndOfLine + String.FromArray(error.Stack, EndOfLine))
+		    DIM type As String = Introspection.GetType(error).Name
+		    MsgBox type
+		    'MessageBox(type + EndOfLine + EndOfLine + String.FromArray(error.Stack, EndOfLine))
 		  End If
+		  
+		  Return FALSE
 		End Function
 	#tag EndEvent
 
