@@ -2,6 +2,24 @@
 Protected Class UIChatViewer
 Inherits HTMLViewer
 	#tag Event
+		Function CancelLoad(URL as String) As Boolean
+		  if (URL.Left(4) = "link") then
+		    DIM u As String = URL.Replace("link://", "")
+		    if (u = "") then
+		      Return FALSE
+		    elseif (u.Left(4) = "http") then
+		      u = u.Replace("//", "://")
+		      Return CancelLoad(u)
+		    else
+		      Return CancelLoad("http://" + u)
+		    end if
+		  end if
+		  
+		  Return CancelLoad(URL)
+		End Function
+	#tag EndEvent
+
+	#tag Event
 		Sub Close()
 		  #if TargetCocoa OR TargetLinux
 		    Xojo.Core.Timer.CancelCall WeakAddressOf ScrollChat
@@ -554,6 +572,10 @@ Inherits HTMLViewer
 
 
 	#tag Hook, Flags = &h0
+		Event CancelLoad(URL As String) As Boolean
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
 		Event MessageStyleChanged()
 	#tag EndHook
 
@@ -1031,6 +1053,11 @@ Inherits HTMLViewer
 			Visible=true
 			Group="Position"
 			InitialValue="200"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="DefaultFontSize"
+			Group="Behavior"
 			Type="Integer"
 		#tag EndViewProperty
 	#tag EndViewBehavior
