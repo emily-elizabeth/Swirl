@@ -6,6 +6,7 @@ Begin ContainerControl SwirlPrefsNewsPane
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    Compatibility   =   ""
+   DoubleBuffer    =   False
    Enabled         =   True
    EraseBackground =   True
    HasBackColor    =   False
@@ -73,6 +74,7 @@ Begin ContainerControl SwirlPrefsNewsPane
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   352
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   368
@@ -113,6 +115,7 @@ Begin ContainerControl SwirlPrefsNewsPane
       ScrollbarHorizontal=   False
       ScrollBarVertical=   True
       SelectionType   =   0
+      ShowDropIndicator=   False
       TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
@@ -120,6 +123,7 @@ Begin ContainerControl SwirlPrefsNewsPane
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   0
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
@@ -154,6 +158,7 @@ Begin ContainerControl SwirlPrefsNewsPane
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   352
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   27
@@ -185,6 +190,7 @@ Begin ContainerControl SwirlPrefsNewsPane
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   352
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   27
@@ -216,6 +222,7 @@ Begin ContainerControl SwirlPrefsNewsPane
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   352
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   91
@@ -333,6 +340,14 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="DoubleBuffer"
+		Visible=true
+		Group="Windows Behavior"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType="Boolean"
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="AcceptFocus"
 		Visible=true
