@@ -9,4 +9,5 @@ Debug*/Debug*\ Libs
 *.rbuistate
 *.xojo_uistate
 *.obsolete
+*.DS_Store
 Xojo_2016r4.1/.DS_Store
