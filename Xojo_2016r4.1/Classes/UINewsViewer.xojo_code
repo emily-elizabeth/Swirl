@@ -2,6 +2,24 @@
 Protected Class UINewsViewer
 Inherits HTMLViewer
 	#tag Event
+		Function CancelLoad(URL as String) As Boolean
+		  if (URL.Left(4) = "link") then
+		    DIM u As String = URL.Replace("link://", "")
+		    if (u = "") then
+		      Return FALSE
+		    elseif (u.Left(4) = "http") then
+		      u = u.Replace("//", "://")
+		      Return CancelLoad(u)
+		    else
+		      Return CancelLoad("http://" + u)
+		    end if
+		  end if
+		  
+		  Return CancelLoad(URL)
+		End Function
+	#tag EndEvent
+
+	#tag Event
 		Sub DocumentComplete(URL as String)
 		  me.Reload
 		  
@@ -153,6 +171,10 @@ Inherits HTMLViewer
 		End Sub
 	#tag EndMethod
 
+
+	#tag Hook, Flags = &h0
+		Event CancelLoad(URL As String) As Boolean
+	#tag EndHook
 
 	#tag Hook, Flags = &h0
 		Event DocumentComplete(URL As String)
