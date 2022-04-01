@@ -245,6 +245,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       SelectionType   =   2
       TabIndex        =   27
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   406
       Transparent     =   False
       Visible         =   True
