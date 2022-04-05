@@ -1,7 +1,7 @@
 #tag Interface
 Protected Interface NetWiredDataSocketInterface
 	#tag Method, Flags = &h0
-		Sub Connected(path As Text, offset As UInt64)
+		Sub Connected(path As String, offset As UInt64)
 		  
 		End Sub
 	#tag EndMethod
@@ -20,6 +20,7 @@ Protected Interface NetWiredDataSocketInterface
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -27,18 +28,23 @@ Protected Interface NetWiredDataSocketInterface
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -46,6 +52,7 @@ Protected Interface NetWiredDataSocketInterface
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Interface

@@ -10,7 +10,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub AccountInfoReceived(login As Text, password As Text, group As Text, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
+		Private Sub AccountInfoReceived(login As String, password As String, group As String, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  ObjObserver.Notify self, Events.kWiredConnectionAccountInfoReceived, login, password, group, _
@@ -29,7 +29,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub AccountListEntry(login As Text)
+		Private Sub AccountListEntry(login As String)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  ObjObserver.Notify self, Events.kWiredConnectionAccountListEntry, login
@@ -45,13 +45,13 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub BanUserWithMessage(user As WiredUser, message As Text = "")
+		Sub BanUserWithMessage(user As WiredUser, message As String = "")
 		  me.mControlSocket.KickUser user.UserID, TRUE, message
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ChatReceived(chatID As Integer, userID As Integer, message As Text, isAction As Boolean)
+		Private Sub ChatReceived(chatID As Integer, userID As Integer, message As String, isAction As Boolean)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  if (me.mUsersDict.HasKey(userID)) then
@@ -61,7 +61,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ChatTopicReceived(chatID As Integer, nick As Text, login As Text, IP As Text, time As Xojo.Core.Date, topic As Text)
+		Private Sub ChatTopicReceived(chatID As Integer, nick As String, login As String, IP As String, time As DateTime, topic As String)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  
@@ -81,7 +81,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Connect(address As Text, port As Integer = 2000, login As Text, hashedPassword As Text)
+		Sub Connect(address As String, port As Integer = 2000, login As String, hashedPassword As String)
 		  try
 		    me.mLogin = login
 		    me.mPassword = hashedPassword
@@ -99,7 +99,7 @@ Implements NetWiredSocketInterface
 		  REDIM me.mPrivateChatRequests(-1)
 		  me.mUsersDict.RemoveAll
 		  
-		  me.SendClient "Swirl/" + App.LongVersion.ToText + Str(App.NonReleaseVersion).ToText +  "(🌀)"
+		  me.SendClient "Swirl/" '+ App.LongVersion + Str(App.NonReleaseVersion) +  "(🌀)"
 		  me.SendNick Prefs.UserNick
 		  me.SendStatus Prefs.UserStatus
 		  me.SendIcon Prefs.UserIcon
@@ -113,7 +113,7 @@ Implements NetWiredSocketInterface
 		Sub Constructor()
 		  // create the control socket
 		  me.mControlSocket = NEW NetWiredSocket(me)
-		  me.mUsersDict = NEW Xojo.Core.Dictionary
+		  me.mUsersDict = NEW Dictionary
 		  
 		  ObjObserver.Listen me, Events.kMyUserIconChanged
 		  ObjObserver.Listen me, Events.kMyUserNickChanged
@@ -124,7 +124,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub CreateAccount(login As Text, hashedPassword As Text, group As Text, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
+		Sub CreateAccount(login As String, hashedPassword As String, group As String, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
 		  me.mControlSocket.CreateAccount login, hashedPassword, group, getUserInfo, broadcast, postNews, _
 		  clearNews, download, upload, uploadAnywhere, createFolders, alterFiles, deleteFiles, viewDropboxes, _
 		  createAccounts, editAccounts, deleteAccounts, elevatePrivileges, kickUsers, banUsers, cannotBeKicked, _
@@ -133,7 +133,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub CreateGroup(login As Text, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
+		Sub CreateGroup(login As String, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
 		  me.mControlSocket.CreateGroup login, getUserInfo, broadcast, postNews, _
 		  clearNews, download, upload, uploadAnywhere, createFolders, alterFiles, deleteFiles, viewDropboxes, _
 		  createAccounts, editAccounts, deleteAccounts, elevatePrivileges, kickUsers, banUsers, cannotBeKicked, _
@@ -161,12 +161,12 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DownloadConnected(path As Text, offset As UInt64)
-		  'DIM results() As Text = path.Split("/")
-		  'DIM fileName As Text = results(results.Ubound)
+		Private Sub DownloadConnected(path As String, offset As UInt64)
+		  'DIM results() As String = path.Split("/")
+		  'DIM fileName As String = results(results.Ubound)
 		  '
 		  'if (me.mTransfersDict = Nil) then
-		  'me.mTransfersDict = NEW xojo.Core.Dictionary
+		  'me.mTransfersDict = NEW Dictionary
 		  'end if
 		  ''DIM f As NEW FolderItem(Prefs.DownloadFolder.Child(fileName).Path)
 		  'me.mTransfersDict.Value(path) = Xojo.IO.BinaryStream.Create(Prefs.DownloadFolder.Child(fileName))
@@ -174,7 +174,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DownloadDataAvailable(path As Text, data As String)
+		Private Sub DownloadDataAvailable(path As String, data As String)
 		  '// Part of the NetWiredSocketInterface interface.
 		  '
 		  'DIM bs As Xojo.IO.BinaryStream = me.mTransfersDict.Value(path)
@@ -209,7 +209,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ErrorAccountExists(message As Text)
+		Private Sub ErrorAccountExists(message As String)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  ObjObserver.Notify self, Events.kWiredConnectionAccountExists, message
@@ -217,7 +217,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ErrorAccountNotFound(message As Text)
+		Private Sub ErrorAccountNotFound(message As String)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  
@@ -225,7 +225,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ErrorBanned(message As Text)
+		Private Sub ErrorBanned(message As String)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  
@@ -233,7 +233,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ErrorCannotBeDisconnected(message As Text)
+		Private Sub ErrorCannotBeDisconnected(message As String)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  
@@ -241,7 +241,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ErrorChecksumMismatch(message As Text)
+		Private Sub ErrorChecksumMismatch(message As String)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  
@@ -249,7 +249,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ErrorClientNotFound(message As Text)
+		Private Sub ErrorClientNotFound(message As String)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  
@@ -257,7 +257,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ErrorCommandFailed(message As Text)
+		Private Sub ErrorCommandFailed(message As String)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  
@@ -265,7 +265,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ErrorCommandNotImplemented(message As Text)
+		Private Sub ErrorCommandNotImplemented(message As String)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  
@@ -273,7 +273,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ErrorCommandNotRecognized(message As Text)
+		Private Sub ErrorCommandNotRecognized(message As String)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  
@@ -281,7 +281,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ErrorFileExists(message As Text)
+		Private Sub ErrorFileExists(message As String)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  
@@ -289,7 +289,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ErrorFileNotFound(message As Text)
+		Private Sub ErrorFileNotFound(message As String)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  
@@ -297,7 +297,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ErrorLoginFailed(message As Text)
+		Private Sub ErrorLoginFailed(message As String)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  me.mControlSocket.Disconnect
@@ -307,7 +307,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ErrorPermissionDenied(message As Text)
+		Private Sub ErrorPermissionDenied(message As String)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  
@@ -315,7 +315,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ErrorQueueLimitExceeded(message As Text)
+		Private Sub ErrorQueueLimitExceeded(message As String)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  
@@ -323,7 +323,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ErrorSyntaxError(message As Text)
+		Private Sub ErrorSyntaxError(message As String)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  
@@ -331,7 +331,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub FileListEnd(path As Text, free As UInt64)
+		Private Sub FileListEnd(path As String, free As UInt64)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  ObjObserver.Notify self, Events.kWiredConnectionFileListEnd, path, free
@@ -339,7 +339,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub FileListEntry(path As Text, type As Integer, size As UInt64, created As Xojo.Core.Date, modified As Xojo.Core.Date)
+		Private Sub FileListEntry(path As String, type As Integer, size As UInt64, created As DateTime, modified As DateTime)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  ObjObserver.Notify self, Events.kWiredConnectionFileListEntry, path, type, size, created, modified
@@ -347,13 +347,13 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Get(path As Text, offset As UInt64 = 0)
+		Sub Get(path As String, offset As UInt64 = 0)
 		  me.mControlSocket.Get path, offset
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub GroupInfoReceived(name As Text, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
+		Private Sub GroupInfoReceived(name As String, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  
@@ -369,7 +369,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub GroupListEntry(name As Text)
+		Private Sub GroupListEntry(name As String)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  ObjObserver.Notify self, Events.kWiredConnectionGroupListEntry, name
@@ -389,7 +389,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub KickUserWithMessage(user As WiredUser, message As Text = "")
+		Sub KickUserWithMessage(user As WiredUser, message As String = "")
 		  me.mControlSocket.KickUser user.UserID, FALSE, message
 		End Sub
 	#tag EndMethod
@@ -414,7 +414,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub MessageReceived(userID As Integer, message As Text, isBroadcast As Boolean)
+		Private Sub MessageReceived(userID As Integer, message As String, isBroadcast As Boolean)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  if (me.mUsersDict.HasKey(userID)) then
@@ -432,7 +432,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub MyUserNickChanged(sender As Object, nick As Text)
+		Private Sub MyUserNickChanged(sender As Object, nick As String)
 		  #Pragma Unused sender
 		  
 		  me.SendNick nick
@@ -440,7 +440,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub MyUserStatusChanged(sender As Object, status As Text)
+		Private Sub MyUserStatusChanged(sender As Object, status As String)
 		  #Pragma Unused sender
 		  
 		  me.SendStatus status
@@ -456,7 +456,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub NewsListEntry(nick As Text, time As Xojo.Core.Date, message As Text)
+		Private Sub NewsListEntry(nick As String, time As DateTime, message As String)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  ObjObserver.Notify self, Events.kWiredConnectionNewsListEntry, nick, time, message
@@ -464,7 +464,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub NewsPosted(nick As Text, time As Xojo.Core.Date, message As Text)
+		Private Sub NewsPosted(nick As String, time As DateTime, message As String)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  ObjObserver.Notify self, Events.kWiredConnectionNewsPosted, nick, time, message
@@ -486,7 +486,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub PostNews(newsPost As Text)
+		Sub PostNews(newsPost As String)
 		  if (newsPost <> "") then
 		    me.mControlSocket.PostNews newsPost
 		  end if
@@ -569,7 +569,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub RequestAccountInfo(login As Text)
+		Sub RequestAccountInfo(login As String)
 		  me.mControlSocket.RequestAccountInfo login
 		End Sub
 	#tag EndMethod
@@ -581,7 +581,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub RequestDirectoryListing(path As Text = "/")
+		Sub RequestDirectoryListing(path As String = "/")
 		  if (path <> "") then
 		    me.mControlSocket.RequestDirectoryListing path
 		  end if
@@ -589,7 +589,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub RequestGroupInfo(groupName As Text)
+		Sub RequestGroupInfo(groupName As String)
 		  me.mControlSocket.RequestGroupInfo groupName
 		End Sub
 	#tag EndMethod
@@ -639,7 +639,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub SearchListEntry(path As Text, type As Integer, size As UInt64, created As Xojo.Core.Date, modified As Xojo.Core.Date)
+		Private Sub SearchListEntry(path As String, type As Integer, size As UInt64, created As DateTime, modified As DateTime)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  
@@ -647,13 +647,13 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SendChat(chatID As Integer, message As Text, isAction As Boolean = FALSE)
+		Sub SendChat(chatID As Integer, message As String, isAction As Boolean = FALSE)
 		  me.mControlSocket.SendChat chatID, message, isAction
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SendClient(info As Text)
+		Sub SendClient(info As String)
 		  me.mControlSocket.SendClient info
 		End Sub
 	#tag EndMethod
@@ -665,26 +665,26 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SendLogin(login As Text = "guest")
+		Sub SendLogin(login As String = "guest")
 		  me.mLogin = login
 		  me.mControlSocket.SendLogin login
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SendMessage(userID As Integer, message As Text, isBroadcast As Boolean)
+		Sub SendMessage(userID As Integer, message As String, isBroadcast As Boolean)
 		  me.mControlSocket.SendMessage userID, message, isBroadcast
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SendNick(nick As Text)
+		Sub SendNick(nick As String)
 		  me.mControlSocket.SendNick nick
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SendPass(password As Text)
+		Sub SendPass(password As String)
 		  me.mPassword = password
 		  me.mControlSocket.SendPass password
 		End Sub
@@ -697,7 +697,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SendStatus(status As Text)
+		Sub SendStatus(status As String)
 		  me.mControlSocket.SendStatus status
 		End Sub
 	#tag EndMethod
@@ -711,7 +711,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ServerInfoReceived(appVersion As Text, protocolVersion As Text, serverName As Text, serverDescription As Text, startTime As Xojo.Core.Date, filesCount As UInt64, filesSize As UInt64)
+		Private Sub ServerInfoReceived(appVersion As String, protocolVersion As String, serverName As String, serverDescription As String, startTime As DateTime, filesCount As UInt64, filesSize As UInt64)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  me.mServerAppVersion = appVersion
@@ -727,7 +727,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub TransferQueued(path As Text, position As Integer)
+		Private Sub TransferQueued(path As String, position As Integer)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  
@@ -735,7 +735,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub TransferReady(path As Text, offset As UInt64, hash As Text)
+		Private Sub TransferReady(path As String, offset As UInt64, hash As String)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  'ObjObserver.Notify self, 
@@ -745,7 +745,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub UpdateAccount(login As Text, hashedPassword As Text, group As Text, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
+		Sub UpdateAccount(login As String, hashedPassword As String, group As String, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
 		  me.mControlSocket.UpdateAccount login, hashedPassword, group, getUserInfo, broadcast, postNews, _
 		  clearNews, download, upload, uploadAnywhere, createFolders, alterFiles, deleteFiles, viewDropboxes, _
 		  createAccounts, editAccounts, deleteAccounts, elevatePrivileges, kickUsers, banUsers, cannotBeKicked, _
@@ -754,7 +754,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub UpdateGroup(login As Text, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
+		Sub UpdateGroup(login As String, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
 		  me.mControlSocket.UpdateGroup login, getUserInfo, broadcast, postNews, _
 		  clearNews, download, upload, uploadAnywhere, createFolders, alterFiles, deleteFiles, viewDropboxes, _
 		  createAccounts, editAccounts, deleteAccounts, elevatePrivileges, kickUsers, banUsers, cannotBeKicked, _
@@ -763,7 +763,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub UserChanged(userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As Text, status As Text)
+		Private Sub UserChanged(userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As String, status As String)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  if (self.mUsersDict.HasKey(userID)) then
@@ -791,7 +791,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub UserInfoReceived(userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As Text, login As Text, IP As Text, host As Text, clientVersion As Text, cipherName As Text, cipherBits As Integer, loginTime As Xojo.Core.Date, idleTime As Xojo.Core.Date, downloads As Text, uploads As Text, status As Text, icon As Picture)
+		Private Sub UserInfoReceived(userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As String, login As String, IP As String, host As String, clientVersion As String, cipherName As String, cipherBits As Integer, loginTime As DateTime, idleTime As DateTime, downloads As String, uploads As String, status As String, icon As Picture)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  if (me.mUsersDict.HasKey(userID)) then
@@ -803,7 +803,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub UserJoined(chatID As Integer, userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As Text, login As Text, IP As Text, host As Text, status As Text, icon As Picture)
+		Private Sub UserJoined(chatID As Integer, userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As String, login As String, IP As String, host As String, status As String, icon As Picture)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  DIM user As WiredUser
@@ -817,7 +817,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub UserKicked(victimID As Integer, killerID As Integer, message As Text, isBan As Boolean)
+		Private Sub UserKicked(victimID As Integer, killerID As Integer, message As String, isBan As Boolean)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  if (me.mUsersDict.HasKey(victimID)) AND (me.mUsersDict.HasKey(killerID)) then
@@ -855,7 +855,7 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub UserListEntry(chatID As Integer, userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As Text, login As Text, IP As Text, host As Text, status As Text, icon As Picture)
+		Private Sub UserListEntry(chatID As Integer, userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As String, login As String, IP As String, host As String, status As String, icon As Picture)
 		  // Part of the NetWiredSocketInterface interface.
 		  
 		  DIM user As WiredUser
@@ -1274,7 +1274,7 @@ Implements NetWiredSocketInterface
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mLogin As Text
+		Private mLogin As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -1282,7 +1282,7 @@ Implements NetWiredSocketInterface
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mPassword As Text
+		Private mPassword As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -1306,7 +1306,7 @@ Implements NetWiredSocketInterface
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mServerName As Text
+		Private mServerName As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -1314,11 +1314,11 @@ Implements NetWiredSocketInterface
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mServerStartTime As Xojo.Core.Date
+		Private mServerStartTime As DateTime
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mTransfersDict As xojo.Core.Dictionary
+		Private mTransfersDict As Dictionary
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -1330,7 +1330,7 @@ Implements NetWiredSocketInterface
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mUsersDict As Xojo.Core.Dictionary
+		Private mUsersDict As Dictionary
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -1441,7 +1441,7 @@ Implements NetWiredSocketInterface
 			  #Pragma Unused value
 			End Set
 		#tag EndSetter
-		ServerName As Text
+		ServerName As String
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -1469,7 +1469,7 @@ Implements NetWiredSocketInterface
 			  #Pragma Unused value
 			End Set
 		#tag EndSetter
-		ServerStartTime As Xojo.Core.Date
+		ServerStartTime As DateTime
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -1504,113 +1504,179 @@ Implements NetWiredSocketInterface
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="CanAlterFiles"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanBanUsers"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanBroadcast"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanChangeTopic"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanClearNews"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanCreateAccounts"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanCreateFolders"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanDeleteAccounts"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanDeleteFiles"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanDownload"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanEditAccounts"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanElevatePrivileges"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanGetUserInfo"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanKickUsers"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CannotBeKicked"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanPostNews"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanUpload"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanUploadAnywhere"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanViewDropboxes"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DownloadLimit"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="UInt64"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DownloadSpeed"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="UInt64"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Handle"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -1618,11 +1684,15 @@ Implements NetWiredSocketInterface
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="IsConnected"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -1630,55 +1700,77 @@ Implements NetWiredSocketInterface
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="MyUserID"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ServerAddress"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ServerAppVersion"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ServerDescription"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ServerFilesCount"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="UInt64"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ServerFilesSize"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="UInt64"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ServerName"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ServerProtocolVersion"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
@@ -1686,7 +1778,9 @@ Implements NetWiredSocketInterface
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -1694,16 +1788,23 @@ Implements NetWiredSocketInterface
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="UploadLimit"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="UInt64"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="UploadSpeed"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="UInt64"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

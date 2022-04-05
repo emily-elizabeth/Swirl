@@ -1,6 +1,6 @@
 #tag Class
 Protected Class UIChatViewer
-Inherits HTMLViewer
+Inherits DesktopHTMLViewer
 	#tag Event
 		Function CancelLoad(URL as String) As Boolean
 		  if (URL.Left(4) = "link") then
@@ -20,15 +20,15 @@ Inherits HTMLViewer
 	#tag EndEvent
 
 	#tag Event
-		Sub Close()
+		Sub Closing()
 		  #if TargetCocoa OR TargetLinux
-		    Xojo.Core.Timer.CancelCall WeakAddressOf ScrollChat
+		    Timer.CancelCallLater WeakAddressOf ScrollChat
 		  #endif
 		End Sub
 	#tag EndEvent
 
 	#tag Event
-		Sub DocumentComplete(URL as String)
+		Sub DocumentComplete(url as String)
 		  #Pragma Unused URL
 		  
 		  
@@ -47,7 +47,7 @@ Inherits HTMLViewer
 
 
 	#tag Method, Flags = &h0
-		Sub AppendChat(time As Xojo.Core.Date, userID As Integer, nick As Text, icon As Picture, chat As Text, isChatIncoming As Boolean)
+		Sub AppendChat(time As DateTime, userID As Integer, nick As String, icon As Picture, chat As String, isChatIncoming As Boolean)
 		  if (chat.Length > 4) AND (chat.Left(4) <> "<img") then
 		    DIM theRegex As RegEx = new RegEx
 		    theRegex.Options.DotMatchAll = true
@@ -55,10 +55,10 @@ Inherits HTMLViewer
 		    theRegex.SearchPattern = "\b(https?://|www\.)([^<>\s]+)"
 		    theRegex.ReplacementPattern = "<a href=""link://\1\2"">\1\2</a>"
 		    theRegex.Options.ReplaceAllMatches = True
-		    chat = theRegex.Replace(chat).ToText
+		    chat = theRegex.Replace(chat)
 		  end if
 		  
-		  DIM data As NEW Xojo.Core.Dictionary
+		  DIM data As NEW Dictionary
 		  data.Value("type") = "chat"
 		  data.Value("time") = time
 		  data.Value("userID") = userID
@@ -73,14 +73,14 @@ Inherits HTMLViewer
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub AppendDictionary(data As Xojo.Core.Dictionary)
+		Private Sub AppendDictionary(data As Dictionary)
 		  if (me.mChatItems.IndexOf(data) = -1) then
 		    me.mChatItems.Append data
 		  end if
 		  
 		  select case data.Value("type")
 		  case "chat"
-		    DIM envelope As Text = me.ContentEnvelope(data.Value("isChatConsecutive"), data.Value("isChatIncoming"))
+		    DIM envelope As String = me.ContentEnvelope(data.Value("isChatConsecutive"), data.Value("isChatIncoming"))
 		    
 		    envelope = ReplaceNick(envelope, data.Value("nick"))
 		    envelope = ReplaceIcon(envelope, data.Value("icon"))
@@ -91,12 +91,12 @@ Inherits HTMLViewer
 		    envelope = envelope.ReplaceAll("%status%", "")
 		    
 		    if (me.mMessageStyleVariantPath <> Nil) then
-		      DIM variantName As Text = me.mMessageStyleVariantPath.Name
+		      DIM variantName As String = me.mMessageStyleVariantPath.Name
 		      variantName = variantName.ReplaceAll(" ", "_")
 		      envelope = envelope.ReplaceAll("%variant%", variantName)
 		    end if
 		    
-		    DIM messageClasses As Text = "message " + if(data.Value("isChatIncoming"), "incoming", "outgoing")
+		    DIM messageClasses As String = "message " + if(data.Value("isChatIncoming"), "incoming", "outgoing")
 		    if (data.Value("isChatConsecutive")) AND (NOT me.mDisableCombineConsecutive) then
 		      messageClasses = messageClasses + " consecutive"
 		      envelope = envelope.Replace("%messageClasses%", messageClasses)
@@ -109,7 +109,7 @@ Inherits HTMLViewer
 		    me.mLastUserID = data.Value("userID")
 		    
 		  else
-		    DIM envelope As Text = me.mStatus
+		    DIM envelope As String = me.mStatus
 		    
 		    envelope = ReplaceTime(envelope, data.Value("time"))
 		    envelope = envelope.ReplaceAll("%message%", data.Value("message"))
@@ -119,7 +119,7 @@ Inherits HTMLViewer
 		    envelope = envelope.ReplaceAll("%event%", data.Value("type"))
 		    
 		    if (me.mMessageStyleVariantPath <> Nil) then
-		      DIM variantName As Text = me.mMessageStyleVariantPath.Name
+		      DIM variantName As String = me.mMessageStyleVariantPath.Name
 		      variantName = variantName.ReplaceAll(" ", "_")
 		      envelope = envelope.ReplaceAll("%variant%", variantName)
 		    end if
@@ -128,14 +128,14 @@ Inherits HTMLViewer
 		    me.mLastUserID = -1
 		  end select
 		  
-		  Xojo.Core.Timer.CancelCall WeakAddressOf ScrollChat
-		  Xojo.Core.Timer.CallLater 100, WeakAddressOf ScrollChat
+		  Timer.CancelCallLater WeakAddressOf ScrollChat
+		  Timer.CallLater 100, WeakAddressOf ScrollChat
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub AppendNotification(time As Xojo.Core.Date, type As Text, message As Text)
-		  DIM data As NEW Xojo.Core.Dictionary
+		Sub AppendNotification(time As DateTime, type As String, message As String)
+		  DIM data As NEW Dictionary
 		  data.Value("type") = type
 		  data.Value("time") = time
 		  data.Value("message") = me.Escape(message)
@@ -151,7 +151,7 @@ Inherits HTMLViewer
 		  
 		  #if TargetWindows
 		    DIM f As FolderItem = SpecialFolder.Temporary.Child("mypage.html")
-		    DIM t As TextOutputStream = TextOutputStream.Create(f)
+		    DIM t As StringOutputStream = TextOutputStream.Create(f)
 		    t.Write me.mTemplate
 		    t.Close
 		    me.LoadURL f.URLPath
@@ -165,7 +165,7 @@ Inherits HTMLViewer
 	#tag Method, Flags = &h1000
 		Sub Constructor()
 		  me.Renderer = 1  // WebKit
-		  me.mProperties = NEW Xojo.Core.Dictionary
+		  me.mProperties = NEW Dictionary
 		  
 		  // Calling the overridden superclass constructor.
 		  Super.Constructor
@@ -174,7 +174,7 @@ Inherits HTMLViewer
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function ContentEnvelope(isChatConsecutive As Boolean, isChatIncoming As Boolean) As Text
+		Private Function ContentEnvelope(isChatConsecutive As Boolean, isChatIncoming As Boolean) As String
 		  DIM value As Integer = 0
 		  
 		  // incoming and consecutive
@@ -188,7 +188,7 @@ Inherits HTMLViewer
 		  end if
 		  
 		  // what envelope to return
-		  DIM returnValue As Text
+		  DIM returnValue As String
 		  select case value
 		  case 0  // incoming
 		    returnValue = me.mIncomingContent
@@ -243,19 +243,19 @@ Inherits HTMLViewer
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function Escape(value As Text) As Text
+		Private Function Escape(value As String) As String
 		  value = value.ReplaceAll("\", "\\")   // slashes
 		  value = value.ReplaceAll("""", "\""")  // quotes
 		  value = value.ReplaceAll("'", "\'")     // apostrophes
-		  value = value.ReplaceAll(Chr(9).ToText, "") // TAB
-		  value = ReplaceLineEndings(value, "").ToText
+		  value = value.ReplaceAll(Chr(9), "") // TAB
+		  value = ReplaceLineEndings(value, "")
 		  
 		  Return value
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub GrantAccessToFolder(inFolder as Xojo.IO.FolderItem)
+		Private Sub GrantAccessToFolder(inFolder as FolderItem)
 		  #if (TargetMacOS) AND (XojoVersion >= 2020.01) then
 		    // copied from https://forum.xojo.com/t/new-problem-with-htmlviewer-loadpage-since-version-2020-r1/56514/7
 		    // --- Originally created in July 2020. <--- Leave this info here so it's easier to track which version of the code.
@@ -265,10 +265,10 @@ Inherits HTMLViewer
 		    
 		    Declare Function NSClassFromString Lib "Foundation" (inClassName As CFStringRef) As Integer
 		    Declare Function NSURLfileURLWithPathIsDirectory Lib "Foundation" Selector "fileURLWithPath:isDirectory:" (NSURLClass As Integer, path As CFStringRef, directory As Boolean) As Integer
-		    Declare Function WKWebViewloadFileURL Lib "WebKit" Selector "loadFileURL:allowingReadAccessToURL:" (HTMLViewer As Integer, URL As Integer, readAccessURL As Integer) As Integer
+		    Declare Function WKWebViewloadFileURL Lib "WebKit" Selector "loadFileURL:allowingReadAccessToURL:" (HTMLViewer As Ptr, URL As Integer, readAccessURL As Integer) As Integer
 		    
 		    // --- Create a NSURL object from a Xojo Folderitem.
-		    DIM folderURL As Integer = NSURLfileURLWithPathIsDirectory(NSClassFromString("NSURL"), inFolder.Path, inFolder.IsFolder)
+		    DIM folderURL As Integer = NSURLfileURLWithPathIsDirectory(NSClassFromString("NSURL"), inFolder.NativePath, inFolder.IsFolder)
 		    
 		    // --- This bit is not technically correct. The first parameter after the instance should actually be the page that you're trying to load.
 		    //     But as we're not loading a page per say... For the purpose of just setting access rights, we ignore the return
@@ -372,7 +372,7 @@ Inherits HTMLViewer
 		  me.mTemplate = me.mTemplate.Replace("%@", me.mResourcesFolder.URLPath)
 		  
 		  // set the css
-		  DIM templateCountFields() As Text = me.mTemplate.Split("%@")
+		  DIM templateCountFields() As String = me.mTemplate.Split("%@")
 		  
 		  if (templateCountFields.Ubound() = 4) then
 		    me.mTemplate = me.mTemplate.Replace("%@", if(me.mResourcesFolder.Child("main.css").Exists, "@import url(""main.css"");", ""))
@@ -386,8 +386,8 @@ Inherits HTMLViewer
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function MessageStylePathFromVariant(path As Xojo.IO.FolderItem) As Xojo.IO.FolderItem
-		  DIM value As Xojo.IO.FolderItem = path
+		Private Function MessageStylePathFromVariant(path As FolderItem) As FolderItem
+		  DIM value As FolderItem = path
 		  
 		  do until (value.Name = "Contents")
 		    value = value.Parent
@@ -398,11 +398,11 @@ Inherits HTMLViewer
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function OpenAsText(path As Xojo.IO.FolderItem) As Text
-		  DIM value As Text
+		Private Function OpenAsText(path As FolderItem) As String
+		  DIM value As String
 		  
 		  if (path <> Nil) AND (path.Exists) AND (NOT path.IsFolder) then
-		    DIM stream As Xojo.IO.TextInputStream = Xojo.IO.TextInputStream.Open(path, Xojo.Core.TextEncoding.UTF8)
+		    DIM stream As TextInputStream = TextInputStream.Open(path)
 		    value = stream.ReadAll()
 		    stream.Close()
 		  end if
@@ -419,10 +419,10 @@ Inherits HTMLViewer
 		  DIM childNode As XmlNode = documentNode.FirstChild
 		  
 		  while childNode <> Nil
-		    DIM key As Text
+		    DIM key As String
 		    
 		    if (childNode.Name = "key") then
-		      key = childNode.FirstChild.Value.ToText.Replace(" ", "")
+		      key = childNode.FirstChild.Value.Replace(" ", "")
 		      childNode = childNode.NextSibling
 		    end if
 		    
@@ -434,14 +434,14 @@ Inherits HTMLViewer
 		          me.mProperties.Value(key) = (childNode.Name = "true")
 		        end if
 		      elseif (childNode.Name = "integer") then
-		        me.mProperties.Value(key) = Integer.FromText(childNode.FirstChild.Value.ToText)
+		        me.mProperties.Value(key) = Integer.FromString(childNode.FirstChild.Value)
 		      elseif (childNode.Name = "real") then
-		        me.mProperties.Value(key) = Integer.FromText(childNode.FirstChild.Value.ToText.Left(1))
+		        me.mProperties.Value(key) = Integer.FromString(childNode.FirstChild.Value.Left(1))
 		      else
 		        if (key = "DefaultFontSize") OR (key = "MessageViewVersion") then
-		          me.mProperties.Value(key) = Integer.FromText(childNode.FirstChild.Value.ToText)
+		          me.mProperties.Value(key) = Integer.FromString(childNode.FirstChild.Value)
 		        else
-		          me.mProperties.Value(key) = childNode.FirstChild.Value.ToText
+		          me.mProperties.Value(key) = childNode.FirstChild.Value
 		        end if
 		      end if
 		    end if
@@ -464,7 +464,7 @@ Inherits HTMLViewer
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function ReplaceIcon(envelope As Text, icon As Picture) As Text
+		Private Function ReplaceIcon(envelope As String, icon As Picture) As String
 		  // convert the icon to string
 		  DIM iconAsString As String
 		  if (icon <> Nil) then
@@ -473,16 +473,16 @@ Inherits HTMLViewer
 		  end if
 		  
 		  // add the icon to the envelope
-		  envelope = envelope.ReplaceAll("%userIconPath%", iconAsString.ToText)
-		  envelope = envelope.ReplaceAll("%senderStatusIcon%", iconAsString.ToText)
+		  envelope = envelope.ReplaceAll("%userIconPath%", iconAsString)
+		  envelope = envelope.ReplaceAll("%senderStatusIcon%", iconAsString)
 		  
 		  Return envelope
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function ReplaceNick(envelope As Text, nick As Text) As Text
-		  DIM value As Text = envelope
+		Private Function ReplaceNick(envelope As String, nick As String) As String
+		  DIM value As String = envelope
 		  
 		  value = value.ReplaceAll("%senderScreenName%", nick)
 		  value = value.ReplaceAll("%sender%", nick)
@@ -493,10 +493,10 @@ Inherits HTMLViewer
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function ReplaceTime(envelope As Text, time As Xojo.Core.Date) As Text
+		Private Function ReplaceTime(envelope As String, time As DateTime) As String
 		  if (time <> Nil) then
-		    envelope = envelope.ReplaceAll("%time%", time.ToText(Xojo.Core.Locale.Current, Xojo.Core.Date.FormatStyles.None, Xojo.Core.Date.FormatStyles.Medium))
-		    envelope = envelope.ReplaceAll("%shortTime%", time.ToText(Xojo.Core.Locale.Current, Xojo.Core.Date.FormatStyles.None, Xojo.Core.Date.FormatStyles.Short))
+		    envelope = envelope.ReplaceAll("%time%", time.ToString(DateTime.FormatStyles.None, DateTime.FormatStyles.Medium))
+		    envelope = envelope.ReplaceAll("%shortTime%", time.ToString(DateTime.FormatStyles.None, DateTime.FormatStyles.Short))
 		    
 		    DIM aRegExOptions As NEW RegExOptions
 		    aRegExOptions.Greedy = FALSE
@@ -520,12 +520,12 @@ Inherits HTMLViewer
 		          DIM NSDateClass As Ptr = NSClassFromString("NSDate")
 		          DIM aNSDate As Ptr = DateWithTimeIntervalSince1970(NSDateClass, time.SecondsFrom1970)
 		          
-		          DIM dateFormatterString As Text = match.SubExpressionString(1).ReplaceAll("%", "").ToText
+		          DIM dateFormatterString As String = match.SubExpressionString(1).ReplaceAll("%", "")
 		          DIM NSDateFormatterClass As Ptr = Init(Alloc(NSClassFromString("NSDateFormatter")))
 		          SetDateFormat NSDateFormatterClass, dateFormatterString
 		          
-		          DIM findText As Text = match.SubExpressionString(0).ToText
-		          DIM replacementText As Text = StringFromDate(NSDateFormatterClass, aNSDate)
+		          DIM findText As String = match.SubExpressionString(0)
+		          DIM replacementText As String = StringFromDate(NSDateFormatterClass, aNSDate)
 		          envelope = envelope.ReplaceAll(findText, replacementText)
 		        #endif
 		        
@@ -560,7 +560,7 @@ Inherits HTMLViewer
 		  me.mTemplate = ""
 		  me.mTopic = ""
 		  
-		  me.mProperties = NEW Xojo.Core.Dictionary
+		  me.mProperties = NEW Dictionary
 		End Sub
 	#tag EndMethod
 
@@ -579,14 +579,6 @@ Inherits HTMLViewer
 		Event MessageStyleChanged()
 	#tag EndHook
 
-
-	#tag Note, Name = 2.0.0
-		
-		2018-01-26
-		• removed the check for the .AdiumMessageStyle file extension
-		• moved out of the FreeLibs module/namespace (this allows it to be used as external code)
-		
-	#tag EndNote
 
 	#tag Note, Name = UNLICENSE
 		
@@ -642,7 +634,7 @@ Inherits HTMLViewer
 			  #Pragma Unused value
 			End Set
 		#tag EndSetter
-		Private mCFBundleIdentifier As Text
+		Private mCFBundleIdentifier As String
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h21
@@ -656,15 +648,15 @@ Inherits HTMLViewer
 			  #Pragma Unused value
 			End Set
 		#tag EndSetter
-		Private mCFBundleName As Text
+		Private mCFBundleName As String
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private mChatItems() As Xojo.Core.Dictionary
+		Private mChatItems() As Dictionary
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mContentsFolder As Xojo.IO.FolderItem
+		Private mContentsFolder As FolderItem
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h21
@@ -678,7 +670,7 @@ Inherits HTMLViewer
 			  #Pragma Unused value
 			End Set
 		#tag EndSetter
-		Private mDefaultFontFamily As Text
+		Private mDefaultFontFamily As String
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h21
@@ -706,7 +698,7 @@ Inherits HTMLViewer
 			  #Pragma Unused value
 			End Set
 		#tag EndSetter
-		Private mDefaultVariant As Text
+		Private mDefaultVariant As String
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h21
@@ -748,7 +740,7 @@ Inherits HTMLViewer
 			  #Pragma Unused value
 			End Set
 		#tag EndSetter
-		Private mDisplayNameForNoVariant As Text
+		Private mDisplayNameForNoVariant As String
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -778,7 +770,7 @@ Inherits HTMLViewer
 			    
 			    #if TargetWindows
 			      DIM f As FolderItem = SpecialFolder.Temporary.Child("mypage.html")
-			      DIM t As TextOutputStream = TextOutputStream.Create(f)
+			      DIM t As StringOutputStream = TextOutputStream.Create(f)
 			      t.Write me.mTemplate
 			      t.Close
 			      me.LoadURL f.URLPath
@@ -789,7 +781,7 @@ Inherits HTMLViewer
 			  end if
 			End Set
 		#tag EndSetter
-		MessageStylePath As Xojo.IO.FolderItem
+		MessageStylePath As FolderItem
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -798,27 +790,27 @@ Inherits HTMLViewer
 			  Return me.mMessageStylePath
 			End Get
 		#tag EndGetter
-		MessageStylePathParent As Xojo.IO.FolderItem
+		MessageStylePathParent As FolderItem
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private mFooter As Text
+		Private mFooter As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mHeader As Text
+		Private mHeader As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mIncomingContent As Text
+		Private mIncomingContent As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mIncomingFolder As Xojo.IO.FolderItem
+		Private mIncomingFolder As FolderItem
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mIncomingNextContent As Text
+		Private mIncomingNextContent As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -829,14 +821,14 @@ Inherits HTMLViewer
 		#tag Note
 			populated in the Constructor
 		#tag EndNote
-		Private mMessageStylePath As Xojo.IO.FolderItem
+		Private mMessageStylePath As FolderItem
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
 		#tag Note
 			populated in the Constructor
 		#tag EndNote
-		Private mMessageStyleVariantPath As Xojo.IO.FolderItem
+		Private mMessageStyleVariantPath As FolderItem
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h21
@@ -854,27 +846,27 @@ Inherits HTMLViewer
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private mOutgoingContent As Text
+		Private mOutgoingContent As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mOutgoingFolder As Xojo.IO.FolderItem
+		Private mOutgoingFolder As FolderItem
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mOutgoingNextContent As Text
+		Private mOutgoingNextContent As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mPath As Xojo.IO.FolderItem
+		Private mPath As FolderItem
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mProperties As Xojo.Core.Dictionary
+		Private mProperties As Dictionary
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mResourcesFolder As Xojo.IO.FolderItem
+		Private mResourcesFolder As FolderItem
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h21
@@ -892,19 +884,19 @@ Inherits HTMLViewer
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private mStatus As Text
+		Private mStatus As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mTemplate As Text
+		Private mTemplate As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mTopic As Text
+		Private mTopic As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mVariantsFolder As Xojo.IO.FolderItem
+		Private mVariantsFolder As FolderItem
 	#tag EndProperty
 
 
@@ -932,11 +924,36 @@ Inherits HTMLViewer
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="InitialParent"
+			Visible=false
+			Group="Position"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="AutoDeactivate"
 			Visible=true
 			Group="Appearance"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TabStop"
+			Visible=true
+			Group="Position"
+			InitialValue="True"
+			Type="Boolean"
+			EditorType="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Tooltip"
+			Visible=true
+			Group="Appearance"
+			InitialValue=""
+			Type="String"
+			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Enabled"
@@ -944,6 +961,7 @@ Inherits HTMLViewer
 			Group="Appearance"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Height"
@@ -951,18 +969,13 @@ Inherits HTMLViewer
 			Group="Position"
 			InitialValue="200"
 			Type="Integer"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="HelpTag"
-			Visible=true
-			Group="Appearance"
-			Type="String"
-			EditorType="MultiLineEditor"
+			EditorType="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="Integer"
 			EditorType="Integer"
 		#tag EndViewProperty
@@ -970,36 +983,47 @@ Inherits HTMLViewer
 			Name="Left"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Integer"
+			EditorType="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockBottom"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Boolean"
+			EditorType="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockLeft"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Boolean"
+			EditorType="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockRight"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Boolean"
+			EditorType="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockTop"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Boolean"
+			EditorType="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
 			EditorType="String"
 		#tag EndViewProperty
@@ -1019,6 +1043,7 @@ Inherits HTMLViewer
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
 			EditorType="String"
 		#tag EndViewProperty
@@ -1028,18 +1053,23 @@ Inherits HTMLViewer
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TabPanelIndex"
+			Visible=false
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Integer"
+			EditorType="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Visible"
@@ -1047,6 +1077,7 @@ Inherits HTMLViewer
 			Group="Appearance"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Width"
@@ -1054,11 +1085,15 @@ Inherits HTMLViewer
 			Group="Position"
 			InitialValue="200"
 			Type="Integer"
+			EditorType="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DefaultFontSize"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

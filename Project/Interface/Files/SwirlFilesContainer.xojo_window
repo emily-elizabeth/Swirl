@@ -1,17 +1,16 @@
-#tag Window
-Begin ContainerControl SwirlFilesContainer
-   AcceptFocus     =   False
-   AcceptTabs      =   True
-   AutoDeactivate  =   True
-   BackColor       =   &cFFFFFF00
+#tag DesktopWindow
+Begin DesktopContainer SwirlFilesContainer
+   AllowAutoDeactivate=   True
+   AllowFocus      =   False
+   AllowFocusRing  =   False
+   AllowTabs       =   True
    Backdrop        =   0
-   Compatibility   =   ""
-   DoubleBuffer    =   False
+   BackgroundColor =   &cFFFFFF00
+   Composited      =   False
    Enabled         =   True
-   EraseBackground =   True
-   HasBackColor    =   False
+   HasBackgroundColor=   False
    Height          =   446
-   HelpTag         =   ""
+   Index           =   -2147483648
    InitialParent   =   ""
    Left            =   0
    LockBottom      =   True
@@ -21,12 +20,12 @@ Begin ContainerControl SwirlFilesContainer
    TabIndex        =   0
    TabPanelIndex   =   0
    TabStop         =   True
+   Tooltip         =   ""
    Top             =   0
    Transparent     =   True
-   UseFocusRing    =   False
    Visible         =   True
    Width           =   538
-   Begin Listbox FileList
+   Begin DesktopListBox FileList
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
       Bold            =   False
@@ -34,14 +33,11 @@ Begin ContainerControl SwirlFilesContainer
       ColumnCount     =   1
       ColumnsResizable=   False
       ColumnWidths    =   ""
-      DataField       =   ""
-      DataSource      =   ""
       DefaultRowHeight=   40
       Enabled         =   True
       EnableDrag      =   False
       EnableDragReorder=   False
-      GridLinesHorizontal=   0
-      GridLinesVertical=   0
+      GridLineStyle   =   0
       HasHeading      =   False
       HeadingIndex    =   -1
       Height          =   394
@@ -78,10 +74,10 @@ Begin ContainerControl SwirlFilesContainer
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin PushButton GoBack
+   Begin DesktopButton GoBack
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "0"
+      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "<"
       Default         =   False
@@ -110,10 +106,10 @@ Begin ContainerControl SwirlFilesContainer
       Visible         =   True
       Width           =   38
    End
-   Begin PushButton Download
+   Begin DesktopButton Download
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "0"
+      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "V"
       Default         =   False
@@ -142,10 +138,10 @@ Begin ContainerControl SwirlFilesContainer
       Visible         =   True
       Width           =   38
    End
-   Begin PushButton Upload
+   Begin DesktopButton Upload
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "0"
+      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "^"
       Default         =   False
@@ -174,10 +170,10 @@ Begin ContainerControl SwirlFilesContainer
       Visible         =   True
       Width           =   38
    End
-   Begin PushButton Info
+   Begin DesktopButton Info
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "0"
+      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "I"
       Default         =   False
@@ -206,10 +202,10 @@ Begin ContainerControl SwirlFilesContainer
       Visible         =   True
       Width           =   38
    End
-   Begin PushButton Preview
+   Begin DesktopButton Preview
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "0"
+      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "P"
       Default         =   False
@@ -238,10 +234,10 @@ Begin ContainerControl SwirlFilesContainer
       Visible         =   True
       Width           =   38
    End
-   Begin PushButton NewFolder
+   Begin DesktopButton NewFolder
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "0"
+      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "NF"
       Default         =   False
@@ -270,10 +266,10 @@ Begin ContainerControl SwirlFilesContainer
       Visible         =   True
       Width           =   38
    End
-   Begin PushButton Refresh
+   Begin DesktopButton Refresh
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "0"
+      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "R"
       Default         =   False
@@ -302,11 +298,9 @@ Begin ContainerControl SwirlFilesContainer
       Visible         =   True
       Width           =   38
    End
-   Begin Label PathL
+   Begin DesktopLabel PathL
       AutoDeactivate  =   True
       Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Height          =   20
       HelpTag         =   ""
@@ -338,18 +332,18 @@ Begin ContainerControl SwirlFilesContainer
       Width           =   498
    End
 End
-#tag EndWindow
+#tag EndDesktopWindow
 
 #tag WindowCode
 	#tag Event
-		Sub Close()
+		Sub Closing()
 		  ObjObserver.Unlisten self, Events.kWiredConnectionFileListEnd
 		  ObjObserver.Unlisten self, Events.kWiredConnectionFileListEntry
 		End Sub
 	#tag EndEvent
 
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  ObjObserver.Listen self, Events.kWiredConnectionFileListEnd
 		  ObjObserver.Listen self, Events.kWiredConnectionFileListEntry
 		  
@@ -378,22 +372,22 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub LoadFromPath(path As Text)
+		Private Sub LoadFromPath(path As String)
 		  'self.ListBox1.Enabled = FALSE
-		  self.FileList.DeleteAllRows
+		  self.FileList.RemoveAllRows
 		  self.mConnection.RequestDirectoryListing path
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub WiredConnectionFileListEnd(connection As WiredConnection, path As Text, free As UInt64)
+		Private Sub WiredConnectionFileListEnd(connection As WiredConnection, path As String, free As UInt64)
 		  if (connection = self.mConnection) then
 		    self.PathL.Text = path
 		    self.mCurrentPath = path
 		    
 		    for i As Integer = 0 to self.mFiles.Ubound
 		      self.FileList.AddRow ""
-		      self.FileList.RowTag(self.FileList.LastIndex) = self.mFiles(i)
+		      self.FileList.RowTagAt(self.FileList.LastAddedRowIndex) = self.mFiles(i)
 		    next
 		    
 		    REDIM mFiles(-1)
@@ -402,7 +396,7 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub WiredConnectionFileListEntry(connection As WiredConnection, path As Text, type As Integer, size As UInt64, created As Xojo.Core.Date, modified As Xojo.Core.Date)
+		Private Sub WiredConnectionFileListEntry(connection As WiredConnection, path As String, type As Integer, size As UInt64, created As DateTime, modified As DateTime)
 		  #Pragma Unused created
 		  #Pragma Unused modified
 		  
@@ -417,14 +411,14 @@ End
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  if (self.mCurrentPath.Empty) then
+			  if (self.mCurrentPath.IsEmpty) then
 			    self.mCurrentPath = "/"
 			  end if
 			  
 			  Return mCurrentPath
 			End Get
 		#tag EndGetter
-		CurrentPath As Text
+		CurrentPath As String
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
@@ -432,7 +426,7 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mCurrentPath As Text = "/"
+		Private mCurrentPath As String = "/"
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -444,12 +438,12 @@ End
 
 #tag Events FileList
 	#tag Event
-		Function CellTextPaint(g As Graphics, row As Integer, column As Integer, x as Integer, y as Integer) As Boolean
+		Function PaintCellText(g as Graphics, row as Integer, column as Integer, x as Integer, y as Integer) As Boolean
 		  #Pragma Unused x
 		  #Pragma Unused y
 		  
 		  if (column = 0) then
-		    DIM file As SwirlFileClass = me.RowTag(row)
+		    DIM file As SwirlFileClass = me.RowTagAt(row)
 		    
 		    // draw the file icon
 		    'DIM fileIcon As Picture = self.PictureFromPath(path)
@@ -458,15 +452,15 @@ End
 		    'end if
 		    
 		    // file name
-		    g.ForeColor = if(me.Selected(row), Colours.White, Colours.Black)
+		    g.ForeColor = if(me.SelectedRowIndex = row, Colours.White, Colours.Black)
 		    g.TextFont = "System"
 		    g.TextSize = 13
 		    g.DrawString file.Name, 44, g.TextHeight
 		    
 		    // file size / folder item count
-		    g.ForeColor = if(me.Selected(row), Colours.Black, DisabledTextColor)
+		    g.ForeColor = if(me.SelectedRowIndex = row, Colours.Black, DisabledTextColor)
 		    g.TextSize = 11
-		    g.DrawString if(file.Type = 0, FormatByteCount(file.Size), file.Size.ToText + " items"), 44, 32, 0, TRUE
+		    g.DrawString if(file.Type = 0, FormatByteCount(file.Size), file.Size.ToString + " items"), 44, 32, 0, TRUE
 		    
 		    Return TRUE
 		  else
@@ -475,15 +469,15 @@ End
 		End Function
 	#tag EndEvent
 	#tag Event
-		Sub DoubleClick()
-		  if (me.ListIndex > -1) then
-		    DIM file As SwirlFileClass = me.RowTag(me.ListIndex)
+		Sub DoublePressed()
+		  if (me.SelectedRowIndex > -1) then
+		    DIM file As SwirlFileClass = me.RowTagAt(me.SelectedRowIndex)
 		    select case file.Type
 		    case 0  // file
 		      self.DownloadFile file
 		      
 		    else  // folder, uploads, dropbox
-		      me.DeleteAllRows
+		      me.RemoveAllRows
 		      self.LoadFromPath file.Path
 		    end select
 		  end if
@@ -492,7 +486,7 @@ End
 #tag EndEvents
 #tag Events GoBack
 	#tag Event
-		Sub Action()
+		Sub Pressed()
 		  if (self.mCurrentPath <> "/") then
 		    DIM currentPath As String = self.mCurrentPath
 		    
@@ -500,7 +494,7 @@ End
 		    path.Remove path.Ubound
 		    
 		    DIM p As String = if(path.Ubound = 0, "/", Join(path, "/"))
-		    self.LoadFromPath p.ToText
+		    self.LoadFromPath p
 		  end if
 		  
 		End Sub
@@ -508,61 +502,99 @@ End
 #tag EndEvents
 #tag Events Refresh
 	#tag Event
-		Sub Action()
+		Sub Pressed()
 		  self.LoadFromPath self.CurrentPath
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
-		Name="DoubleBuffer"
+		Name="Composited"
 		Visible=true
 		Group="Windows Behavior"
 		InitialValue="False"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="AcceptFocus"
+		Name="Index"
 		Visible=true
-		Group="Behavior"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
+		Group="ID"
+		InitialValue="-2147483648"
+		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="AcceptTabs"
-		Visible=true
-		Group="Behavior"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="AutoDeactivate"
+		Name="AllowAutoDeactivate"
 		Visible=true
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="BackColor"
+		Name="Tooltip"
+		Visible=true
+		Group="Appearance"
+		InitialValue=""
+		Type="String"
+		EditorType="MultiLineEditor"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowFocusRing"
+		Visible=true
+		Group="Appearance"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="BackgroundColor"
 		Visible=true
 		Group="Background"
 		InitialValue="&hFFFFFF"
-		Type="Color"
+		Type="ColorGroup"
+		EditorType="ColorGroup"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="HasBackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowFocus"
+		Visible=true
+		Group="Behavior"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowTabs"
+		Visible=true
+		Group="Behavior"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Backdrop"
 		Visible=true
 		Group="Background"
+		InitialValue=""
 		Type="Picture"
-		EditorType="Picture"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="CurrentPath"
+		Visible=false
 		Group="Behavior"
-		Type="Text"
+		InitialValue=""
+		Type="String"
+		EditorType="MultiLineEditor"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Enabled"
@@ -570,22 +602,7 @@ End
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="EraseBackground"
-		Visible=true
-		Group="Behavior"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HasBackColor"
-		Visible=true
-		Group="Background"
-		InitialValue="False"
-		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Height"
@@ -593,61 +610,71 @@ End
 		Group="Size"
 		InitialValue="300"
 		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HelpTag"
-		Visible=true
-		Group="Appearance"
-		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="InitialParent"
+		Visible=false
 		Group="Position"
+		InitialValue=""
 		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Left"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockBottom"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockLeft"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockRight"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockTop"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Name"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
-		EditorType="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
-		EditorType="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabIndex"
@@ -655,12 +682,15 @@ End
 		Group="Position"
 		InitialValue="0"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabPanelIndex"
+		Visible=false
 		Group="Position"
 		InitialValue="0"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabStop"
@@ -668,13 +698,15 @@ End
 		Group="Position"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Top"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Transparent"
@@ -682,15 +714,7 @@ End
 		Group="Behavior"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="UseFocusRing"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Visible"
@@ -698,7 +722,7 @@ End
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Width"
@@ -706,5 +730,6 @@ End
 		Group="Size"
 		InitialValue="300"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior

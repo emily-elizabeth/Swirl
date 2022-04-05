@@ -31,7 +31,7 @@ Inherits SSLSocket
 		      end if
 		      
 		      // here's where we replace the byte markers and convert to the new Text data type
-		      DIM replyParams() As Text
+		      DIM replyParams() As String
 		      for i as Integer = 0 to replyParamsAsString.Ubound
 		        if (replyParamsAsString(i).LeftB(1) = ChrB(128)) then  // html chat
 		          replyParamsAsString(i) = replyParamsAsString(i).ReplaceB(ChrB(128), Chr(128))
@@ -42,7 +42,7 @@ Inherits SSLSocket
 		        if (replyParamsAsString(i).LeftB(1) = ChrB(130)) then
 		          replyParamsAsString(i) = replyParamsAsString(i).ReplaceB(ChrB(130), Chr(130))
 		        end if
-		        replyParams.Append replyParamsAsString(i).ToText
+		        replyParams.Append replyParamsAsString(i)
 		      next
 		      
 		      /// handle the command
@@ -242,7 +242,7 @@ Inherits SSLSocket
 	#tag EndEvent
 
 	#tag Event
-		Sub Error()
+		Sub Error(err As RuntimeException)
 		  if (me.LastErrorCode <> 0) then
 		    if (me.mDelegate.Value = Nil) then
 		      RaiseEvent Error
@@ -255,7 +255,7 @@ Inherits SSLSocket
 
 
 	#tag Method, Flags = &h21
-		Private Function BooleanFromString(value As Text) As Boolean
+		Private Function BooleanFromString(value As String) As Boolean
 		  // converts a string to a boolean
 		  // if the strings "true" or "1" are passed, TRUE is returned FALSE otherwise
 		  
@@ -264,19 +264,19 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ChangeChatTopic(chatID As Integer, topic As Text)
-		  me.Write "TOPIC " + chatID.ToText + me.FS + topic
+		Sub ChangeChatTopic(chatID As Integer, topic As String)
+		  me.Write "TOPIC " + chatID.ToString + me.FS + topic
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ChangeComment(path As Text, comment As Text)
+		Sub ChangeComment(path As String, comment As String)
 		  me.Write "COMMENT " + path + me.FS + comment
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ChangeFolderType(path As Text, type As Integer)
+		Sub ChangeFolderType(path As String, type As Integer)
 		  me.Write "TYPE " + path + me.FS + Str(type)
 		End Sub
 	#tag EndMethod
@@ -288,13 +288,13 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ChangeNick(nick As Text)
+		Sub ChangeNick(nick As String)
 		  me.Write "NICK " + nick
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ChangeStatus(status As Text)
+		Sub ChangeStatus(status As String)
 		  me.Write "STATUS " + status
 		End Sub
 	#tag EndMethod
@@ -329,7 +329,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub CreateAccount(login As Text, hashedPassword As Text, group As Text, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
+		Sub CreateAccount(login As String, hashedPassword As String, group As String, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
 		  me.Write "CREATEUSER " + login + me.FS + hashedPassword + me.FS + group + me.FS + _
 		  StringFromBoolean(getUserInfo) + me.FS + _
 		  StringFromBoolean(broadcast) + me.FS + _
@@ -349,22 +349,22 @@ Inherits SSLSocket
 		  StringFromBoolean(kickUsers) + me.FS + _
 		  StringFromBoolean(banUsers) + me.FS + _
 		  StringFromBoolean(cannotBeKicked) + me.FS + _
-		  downloadSpeed.ToText + me.FS + _
-		  uploadSpeed.ToText + me.FS + _
-		  downloadLimit.ToText + me.FS + _
-		  uploadLimit.ToText + me.FS + _
+		  downloadSpeed.ToString + me.FS + _
+		  uploadSpeed.ToString + me.FS + _
+		  downloadLimit.ToString + me.FS + _
+		  uploadLimit.ToString + me.FS + _
 		  StringFromBoolean(changeTopic)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub CreateFolder(path As Text)
+		Sub CreateFolder(path As String)
 		  me.Write "FOLDER " + path
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub CreateGroup(name As Text, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
+		Sub CreateGroup(name As String, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
 		  me.Write "CREATEGROUP " + name + me.FS + _
 		  StringFromBoolean(getUserInfo) + me.FS + _
 		  StringFromBoolean(broadcast) + me.FS + _
@@ -384,10 +384,10 @@ Inherits SSLSocket
 		  StringFromBoolean(kickUsers) + me.FS + _
 		  StringFromBoolean(banUsers) + me.FS + _
 		  StringFromBoolean(cannotBeKicked) + me.FS + _
-		  downloadSpeed.ToText + me.FS + _
-		  uploadSpeed.ToText + me.FS + _
-		  downloadLimit.ToText + me.FS + _
-		  uploadLimit.ToText + me.FS + _
+		  downloadSpeed.ToString + me.FS + _
+		  uploadSpeed.ToString + me.FS + _
+		  downloadLimit.ToString + me.FS + _
+		  uploadLimit.ToString + me.FS + _
 		  StringFromBoolean(changeTopic)
 		End Sub
 	#tag EndMethod
@@ -399,7 +399,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableAccountInfoReceived(login As Text, password As Text, group As Text, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
+		Private Sub DataAvailableAccountInfoReceived(login As String, password As String, group As String, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent AccountInfoReceived login, password, group, getUserInfo, broadcast, postNews, clearNews, _
 		    download, upload, uploadAnywhere, createFolders, alterFiles, deleteFiles, viewDropboxes, createAccounts, _
@@ -425,7 +425,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableAccountListEntry(login As Text)
+		Private Sub DataAvailableAccountListEntry(login As String)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent AccountListEntry login
 		  else
@@ -435,7 +435,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableChatReceived(chatID As Integer, userID As Integer, message As Text, isAction As Boolean)
+		Private Sub DataAvailableChatReceived(chatID As Integer, userID As Integer, message As String, isAction As Boolean)
 		  'if (self.mUsersDict.HasKey(userID)) then
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent ChatReceived chatID, userID, message, isAction
@@ -447,7 +447,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableChatTopicReceived(chatID As Integer, nick As Text, login As Text, IP As Text, time As Xojo.Core.Date, topic As Text)
+		Private Sub DataAvailableChatTopicReceived(chatID As Integer, nick As String, login As String, IP As String, time As DateTime, topic As String)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent ChatTopicReceived chatID, nick, login, IP, time, topic
 		  else
@@ -457,7 +457,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableErrorAccountExists(message As Text)
+		Private Sub DataAvailableErrorAccountExists(message As String)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent ErrorAccountExists message
 		  else
@@ -467,7 +467,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableErrorAccountNotFound(message As Text)
+		Private Sub DataAvailableErrorAccountNotFound(message As String)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent ErrorAccountNotFound message
 		  else
@@ -477,7 +477,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableErrorBanned(message As Text)
+		Private Sub DataAvailableErrorBanned(message As String)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent ErrorBanned message
 		  else
@@ -487,7 +487,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableErrorCannotBeDisconnected(message As Text)
+		Private Sub DataAvailableErrorCannotBeDisconnected(message As String)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent ErrorCannotBeDisconnected message
 		  else
@@ -497,7 +497,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableErrorChecksumMismatch(message As Text)
+		Private Sub DataAvailableErrorChecksumMismatch(message As String)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent ErrorChecksumMismatch message
 		  else
@@ -507,7 +507,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableErrorClientNotFound(message As Text)
+		Private Sub DataAvailableErrorClientNotFound(message As String)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent ErrorClientNotFound message
 		  else
@@ -517,7 +517,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableErrorCommandFailed(message As Text)
+		Private Sub DataAvailableErrorCommandFailed(message As String)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent ErrorCommandFailed message
 		  else
@@ -527,7 +527,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableErrorCommandNotImplemented(message As Text)
+		Private Sub DataAvailableErrorCommandNotImplemented(message As String)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent ErrorCommandNotImplemented message
 		  else
@@ -537,7 +537,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableErrorCommandNotRecognized(message As Text)
+		Private Sub DataAvailableErrorCommandNotRecognized(message As String)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent ErrorCommandNotRecognized message
 		  else
@@ -547,7 +547,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableErrorFileExists(message As Text)
+		Private Sub DataAvailableErrorFileExists(message As String)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent ErrorFileExists message
 		  else
@@ -557,7 +557,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableErrorFileNotFound(message As Text)
+		Private Sub DataAvailableErrorFileNotFound(message As String)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent ErrorFileNotFound message
 		  else
@@ -567,7 +567,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableErrorLoginFailed(message As Text)
+		Private Sub DataAvailableErrorLoginFailed(message As String)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent ErrorLoginFailed message
 		  else
@@ -577,7 +577,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableErrorPermissionDenied(message As Text)
+		Private Sub DataAvailableErrorPermissionDenied(message As String)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent ErrorPermissionDenied message
 		  else
@@ -587,7 +587,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableErrorQueueLimitExceeded(message As Text)
+		Private Sub DataAvailableErrorQueueLimitExceeded(message As String)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent ErrorQueueLimitExceeded message
 		  else
@@ -597,7 +597,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableErrorSyntaxError(message As Text)
+		Private Sub DataAvailableErrorSyntaxError(message As String)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent ErrorSyntaxError message
 		  else
@@ -607,7 +607,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableFileListEnd(path As Text, free As UInt64)
+		Private Sub DataAvailableFileListEnd(path As String, free As UInt64)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent FileListEnd path, free
 		  else
@@ -617,7 +617,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableFileListEntry(path As Text, type As Integer, size As UInt64, created As Xojo.Core.Date, modified As Xojo.Core.Date)
+		Private Sub DataAvailableFileListEntry(path As String, type As Integer, size As UInt64, created As DateTime, modified As DateTime)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent FileListEntry path, type, size, created, modified
 		  else
@@ -627,7 +627,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableGroupInfoReceived(name As Text, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
+		Private Sub DataAvailableGroupInfoReceived(name As String, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent GroupInfoReceived name, getUserInfo, broadcast, postNews, clearNews, download, upload, _
 		    uploadAnywhere, createFolders, alterFiles, deleteFiles, viewDropboxes, createAccounts, editAccounts, _
@@ -653,7 +653,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableGroupListEntry(name As Text)
+		Private Sub DataAvailableGroupListEntry(name As String)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent GroupListEntry name
 		  else
@@ -673,7 +673,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableMessageReceived(userID As Integer, message As Text, isBroadcast As Boolean)
+		Private Sub DataAvailableMessageReceived(userID As Integer, message As String, isBroadcast As Boolean)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent MessageReceived userID, message, isBroadcast
 		  else
@@ -693,7 +693,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableNewsListEntry(nick As Text, time As Xojo.Core.Date, message As Text)
+		Private Sub DataAvailableNewsListEntry(nick As String, time As DateTime, message As String)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent NewsListEntry nick, time, message
 		  else
@@ -703,7 +703,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableNewsPosted(nick As Text, time As Xojo.Core.Date, message As Text)
+		Private Sub DataAvailableNewsPosted(nick As String, time As DateTime, message As String)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent NewsPosted nick, time, message
 		  else
@@ -787,7 +787,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableSearchListEntry(path As Text, type As Integer, size As UInt64, created As Xojo.Core.Date, modified As Xojo.Core.Date)
+		Private Sub DataAvailableSearchListEntry(path As String, type As Integer, size As UInt64, created As DateTime, modified As DateTime)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent SearchListEntry path, type, size, created, modified
 		  else
@@ -807,7 +807,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableServerInfo(appVersion As Text, protocolVersion As Text, serverName As Text, serverDescription As Text, startTime As Xojo.Core.Date, filesCount As UInt64, filesSize As UInt64)
+		Private Sub DataAvailableServerInfo(appVersion As String, protocolVersion As String, serverName As String, serverDescription As String, startTime As DateTime, filesCount As UInt64, filesSize As UInt64)
 		  if (NOT me.mHelloIsReceived) then
 		    me.mHelloIsReceived = TRUE
 		    if (me.mDelegate.Value = Nil) then
@@ -826,7 +826,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableTransferQueued(path As Text, position As Integer)
+		Private Sub DataAvailableTransferQueued(path As String, position As Integer)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent TransferQueued path, position
 		  else
@@ -836,7 +836,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableTransferReady(path As Text, offset As UInt64, hash As Text)
+		Private Sub DataAvailableTransferReady(path As String, offset As UInt64, hash As String)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent TransferReady path, offset, hash
 		  else
@@ -846,7 +846,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableUserChanged(userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As Text, status As Text)
+		Private Sub DataAvailableUserChanged(userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As String, status As String)
 		  'if (self.mUsersDict.HasKey(userID)) then
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent UserChanged userID, isIdle, isAdmin, nick, status
@@ -870,7 +870,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableUserInfoReceived(userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As Text, login As Text, IP As Text, host As Text, clientVersion As Text, cipherName As Text, cipherBits As Integer, loginTime As Xojo.Core.Date, idleTime As Xojo.Core.Date, downloads As Text, uploads As Text, status As Text, icon As Picture)
+		Private Sub DataAvailableUserInfoReceived(userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As String, login As String, IP As String, host As String, clientVersion As String, cipherName As String, cipherBits As Integer, loginTime As DateTime, idleTime As DateTime, downloads As String, uploads As String, status As String, icon As Picture)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent UserInfoReceived userID, isIdle, isAdmin, nick, login, IP, host, clientVersion, _
 		    cipherName, cipherBits, loginTime, idleTime, downloads, uploads, status, icon
@@ -882,7 +882,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableUserJoined(chatID As Integer, userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As Text, login As Text, IP As Text, host As Text, status As Text, icon As Picture)
+		Private Sub DataAvailableUserJoined(chatID As Integer, userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As String, login As String, IP As String, host As String, status As String, icon As Picture)
 		  'if (NOT self.mUsersDict.HasKey(userID)) then
 		  'self.mUsersDict.Value(userID) = NEW WiredUser(userID, isIdle, isAdmin, nick, login, IP, host, status, icon)
 		  'end if
@@ -896,7 +896,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableUserKicked(victimID As Integer, killerID As Integer, message As Text, isBan As Boolean)
+		Private Sub DataAvailableUserKicked(victimID As Integer, killerID As Integer, message As String, isBan As Boolean)
 		  'if (self.mUsersDict.HasKey(victimID)) AND (self.mUsersDict.HasKey(killerID)) then
 		  'DIM victim As WiredUser = self.mUsersDict.Value(victimID)
 		  'DIM killer As WiredUser = self.mUsersDict.Value(killerID)
@@ -940,7 +940,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub DataAvailableUserListEntry(chatID As Integer, userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As Text, login As Text, IP As Text, host As Text, status As Text, icon As Picture)
+		Private Sub DataAvailableUserListEntry(chatID As Integer, userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As String, login As String, IP As String, host As String, status As String, icon As Picture)
 		  if (me.mDelegate.Value = Nil) then
 		    RaiseEvent UserListEntry chatID, userID, isIdle, isAdmin, nick, login, IP, host, status, icon
 		  else
@@ -950,7 +950,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function DateFromString(value As Text) As Xojo.Core.Date
+		Private Function DateFromString(value As String) As DateTime
 		  DIM aDate As NEW Date
 		  
 		  const searchPattern = "^(\d{4})\-(\d\d)\-(\d\d)T(\d\d):(\d\d):(\d\d)([-|+])(\d\d):(\d\d)"
@@ -973,7 +973,7 @@ Inherits SSLSocket
 		    aDate.Minute = Val(match.SubExpressionString(5))
 		    aDate.Second = Val(match.SubExpressionString(6))
 		    
-		    DIM results As Xojo.Core.Date = Xojo.Core.Date.FromText(aDate.SQLDateTime.ToText)
+		    DIM results As DateTime = DateTime.FromString(aDate.SQLDateTime)
 		    Return results
 		  end if
 		End Function
@@ -981,24 +981,24 @@ Inherits SSLSocket
 
 	#tag Method, Flags = &h0
 		Sub DeclinePrivateChatInvitation(chatID As Integer)
-		  me.Write "DECLINE " + chatID.ToText
+		  me.Write "DECLINE " + chatID.ToString
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub DeleteAccount(login As Text)
+		Sub DeleteAccount(login As String)
 		  me.Write "DELETEUSER " + login
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub DeleteFile(path As Text)
+		Sub DeleteFile(path As String)
 		  me.Write "DELETE " + path
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub DeleteGroup(name As Text)
+		Sub DeleteGroup(name As String)
 		  me.Write "DELETEGROUP " + name
 		End Sub
 	#tag EndMethod
@@ -1012,14 +1012,14 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Get(path As Text, offset As UInt64 = 0)
-		  me.Write "GET " + path + me.FS + offset.ToText
+		Sub Get(path As String, offset As UInt64 = 0)
+		  me.Write "GET " + path + me.FS + offset.ToString
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Shared Function HashPassword(password As Text) As Text
-		  DIM returnValue As Text = ""
+		Shared Function HashPassword(password As String) As String
+		  DIM returnValue As String = ""
 		  
 		  if (Trim(password) <> "") then
 		    'DIM newMB As xojo.Core.MemoryBlock = Xojo.Core.TextEncoding.UTF8.ConvertTextToData(password)
@@ -1029,14 +1029,14 @@ Inherits SSLSocket
 		    'newMB = Xojo.Crypto.SHA1(newMB)
 		    '
 		    'returnValue = Xojo.Core.TextEncoding.UTF8.ConvertDataToText(newMB)
-		    'returnValue = EncodeHex(returnValue).ToText
+		    'returnValue = EncodeHex(returnValue)
 		    'returnValue = returnValue.Lowercase
 		    
 		    DIM pwd As String = password
 		    pwd = Crypto.SHA1(pwd)
 		    pwd = EncodeHex(pwd)
 		    pwd = Lowercase(pwd)
-		    returnValue = pwd.ToText
+		    returnValue = pwd
 		  end if
 		  
 		  Return returnValue
@@ -1045,40 +1045,40 @@ Inherits SSLSocket
 
 	#tag Method, Flags = &h0
 		Sub InviteUserToPrivateChat(userID As Integer, chatID As Integer)
-		  me.Write "INVITE " + userID.ToText + me.FS + chatID.ToText
+		  me.Write "INVITE " + userID.ToString + me.FS + chatID.ToString
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub JoinPrivateChat(chatID As Integer)
-		  me.Write "JOIN " + chatID.ToText
+		  me.Write "JOIN " + chatID.ToString
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub KickUser(userID As Integer, isBan As Boolean, message As Text = "")
-		  me.Write if(isBan, "BAN ", "KICK ") + userID.ToText + me.FS + message
+		Sub KickUser(userID As Integer, isBan As Boolean, message As String = "")
+		  me.Write if(isBan, "BAN ", "KICK ") + userID.ToString + me.FS + message
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub LeavePrivateChat(chatID As Integer)
-		  me.Write "LEAVE " + chatID.ToText
+		  me.Write "LEAVE " + chatID.ToString
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Move(fromPath As Text, toPath As Text)
+		Sub Move(fromPath As String, toPath As String)
 		  me.Write "MOVE " + fromPath + me.FS + toPath
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function PictureFromString(value As Text) As Picture
+		Private Function PictureFromString(value As String) As Picture
 		  DIM results As Picture
 		  
 		  if (value <> "") then
-		    DIM temp() As Text = value.Split(",")
+		    DIM temp() As String = value.Split(",")
 		    value = temp(temp.Ubound)
 		    results = Picture.FromData(DecodeBase64(value))
 		  end if
@@ -1088,19 +1088,19 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub PostNews(message As Text)
+		Sub PostNews(message As String)
 		  me.Write "POST " + message
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Put(path As Text, size As UInt64, checksum As Text)
-		  me.Write "PUT " + path + me.FS + size.ToText + me.FS + checksum
+		Sub Put(path As String, size As UInt64, checksum As String)
+		  me.Write "PUT " + path + me.FS + size.ToString + me.FS + checksum
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub RequestAccountInfo(login As Text)
+		Sub RequestAccountInfo(login As String)
 		  me.Write "READUSER " + login
 		End Sub
 	#tag EndMethod
@@ -1112,19 +1112,19 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub RequestDirectoryListing(path As Text = "/")
+		Sub RequestDirectoryListing(path As String = "/")
 		  me.Write "LIST " + path
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub RequestFileInfo(path As Text)
+		Sub RequestFileInfo(path As String)
 		  me.Write "STAT " + path
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub RequestGroupInfo(name As Text)
+		Sub RequestGroupInfo(name As String)
 		  me.Write "READGROUP " + name
 		End Sub
 	#tag EndMethod
@@ -1155,30 +1155,30 @@ Inherits SSLSocket
 
 	#tag Method, Flags = &h0
 		Sub RequestUserInfo(userID As Integer)
-		  me.Write "INFO " + userID.ToText
+		  me.Write "INFO " + userID.ToString
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub RequestUserList(chatID As Integer)
-		  me.Write "WHO " + chatID.ToText
+		  me.Write "WHO " + chatID.ToString
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Search(query As Text)
+		Sub Search(query As String)
 		  me.Write "SEARCH " + query
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SendChat(chatID As Integer, message As Text, isAction As Boolean)
-		  me.Write if(isAction, "ME ", "SAY ") + chatID.ToText + me.FS + message
+		Sub SendChat(chatID As Integer, message As String, isAction As Boolean)
+		  me.Write if(isAction, "ME ", "SAY ") + chatID.ToString + me.FS + message
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SendClient(info As Text)
+		Sub SendClient(info As String)
 		  me.Write "CLIENT " + info
 		End Sub
 	#tag EndMethod
@@ -1196,25 +1196,25 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SendLogin(login As Text = "guest")
+		Sub SendLogin(login As String = "guest")
 		  me.Write "USER " + login
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SendMessage(userID As Integer, message As Text, isBroadcast As Boolean)
-		  me.Write if(isBroadcast, "BROADCAST " + message, "MSG " + userID.ToText + me.FS + message)
+		Sub SendMessage(userID As Integer, message As String, isBroadcast As Boolean)
+		  me.Write if(isBroadcast, "BROADCAST " + message, "MSG " + userID.ToString + me.FS + message)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SendNick(nick As Text)
+		Sub SendNick(nick As String)
 		  me.Write "NICK " + nick
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SendPass(hashedPassword As Text)
+		Sub SendPass(hashedPassword As String)
 		  me.Write "PASS " + hashedPassword
 		End Sub
 	#tag EndMethod
@@ -1226,24 +1226,24 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SendStatus(status As Text)
+		Sub SendStatus(status As String)
 		  me.Write "STATUS " + status
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function StringFromBoolean(value As Boolean) As Text
+		Private Function StringFromBoolean(value As Boolean) As String
 		  Return if(value, "1", "0")
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function StringFromPicture(image As Picture) As Text
-		  DIM value As Text = ""
+		Private Function StringFromPicture(image As Picture) As String
+		  DIM value As String = ""
 		  
 		  if (image <> Nil) then
 		    DIM aMemoryBlock As MemoryBlock = image.GetData(Picture.FormatPNG)
-		    value = EncodeBase64(aMemoryBlock, 0).ToText
+		    value = EncodeBase64(aMemoryBlock, 0)
 		  end if
 		  
 		  Return value
@@ -1251,7 +1251,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Transfer(path As Text, offset As UInt64, hash As Text)
+		Sub Transfer(path As String, offset As UInt64, hash As String)
 		  '// this is probably a memory leak
 		  'DIM socket As NEW NetWiredDataSocket(NetWiredSocketInterface(me.mDelegate.Value), _
 		  'me.Address, me.DataPort, path, offset, hash)
@@ -1265,7 +1265,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub UpdateAccount(login As Text, hashedPassword As Text, group As Text, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
+		Sub UpdateAccount(login As String, hashedPassword As String, group As String, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
 		  me.Write "EDITUSER " + login + me.FS + hashedPassword + me.FS + group + me.FS + _
 		  StringFromBoolean(getUserInfo) + me.FS + _
 		  StringFromBoolean(broadcast) + me.FS + _
@@ -1294,7 +1294,7 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub UpdateGroup(name As Text, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
+		Sub UpdateGroup(name As String, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
 		  me.Write "EDITGROUP " + name + me.FS + _
 		  StringFromBoolean(getUserInfo) + me.FS + _
 		  StringFromBoolean(broadcast) + me.FS + _
@@ -1314,16 +1314,16 @@ Inherits SSLSocket
 		  StringFromBoolean(kickUsers) + me.FS + _
 		  StringFromBoolean(banUsers) + me.FS + _
 		  StringFromBoolean(cannotBeKicked) + me.FS + _
-		  downloadSpeed.ToText + me.FS + _
-		  uploadSpeed.ToText + me.FS + _
-		  downloadLimit.ToText + me.FS + _
-		  uploadLimit.ToText + me.FS + _
+		  downloadSpeed.ToString + me.FS + _
+		  uploadSpeed.ToString + me.FS + _
+		  downloadLimit.ToString + me.FS + _
+		  uploadLimit.ToString + me.FS + _
 		  StringFromBoolean(changeTopic)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub Write(data As Text)
+		Private Sub Write(data As String)
 		  if (me.IsConnected) AND (data <> "") then
 		    Super.Write ConvertEncoding(data + me.EOT, Encodings.UTF8)
 		    Super.Flush
@@ -1333,11 +1333,11 @@ Inherits SSLSocket
 
 
 	#tag Hook, Flags = &h0
-		Event AccountExists(data() As Text)
+		Event AccountExists(data() As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event AccountInfoReceived(login As Text, password As Text, group As Text, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
+		Event AccountInfoReceived(login As String, password As String, group As String, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
@@ -1345,19 +1345,19 @@ Inherits SSLSocket
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event AccountListEntry(login As Text)
+		Event AccountListEntry(login As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event AccountNotFound(data() As Text)
+		Event AccountNotFound(data() As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event ChatReceived(chatID As Integer, userID As Integer, message As Text, isAction As Boolean)
+		Event ChatReceived(chatID As Integer, userID As Integer, message As String, isAction As Boolean)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event ChatTopicReceived(chatID As Integer, nick As Text, login As Text, IP As Text, time As Xojo.Core.Date, topic As Text)
+		Event ChatTopicReceived(chatID As Integer, nick As String, login As String, IP As String, time As DateTime, topic As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
@@ -1369,75 +1369,75 @@ Inherits SSLSocket
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event ErrorAccountExists(message As Text)
+		Event ErrorAccountExists(message As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event ErrorAccountNotFound(message As Text)
+		Event ErrorAccountNotFound(message As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event ErrorBanned(message As Text)
+		Event ErrorBanned(message As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event ErrorCannotBeDisconnected(message As Text)
+		Event ErrorCannotBeDisconnected(message As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event ErrorChecksumMismatch(message As Text)
+		Event ErrorChecksumMismatch(message As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event ErrorClientNotFound(message As Text)
+		Event ErrorClientNotFound(message As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event ErrorCommandFailed(message As Text)
+		Event ErrorCommandFailed(message As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event ErrorCommandNotImplemented(message As Text)
+		Event ErrorCommandNotImplemented(message As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event ErrorCommandNotRecognized(message As Text)
+		Event ErrorCommandNotRecognized(message As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event ErrorFileExists(message As Text)
+		Event ErrorFileExists(message As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event ErrorFileNotFound(message As Text)
+		Event ErrorFileNotFound(message As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event ErrorLoginFailed(message As Text)
+		Event ErrorLoginFailed(message As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event ErrorPermissionDenied(message As Text)
+		Event ErrorPermissionDenied(message As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event ErrorQueueLimitExceeded(message As Text)
+		Event ErrorQueueLimitExceeded(message As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event ErrorSyntaxError(message As Text)
+		Event ErrorSyntaxError(message As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event FileListEnd(path As Text, free As UInt64)
+		Event FileListEnd(path As String, free As UInt64)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event FileListEntry(path As Text, type As Integer, size As UInt64, created As Xojo.Core.Date, modified As Xojo.Core.Date)
+		Event FileListEntry(path As String, type As Integer, size As UInt64, created As DateTime, modified As DateTime)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event GroupInfoReceived(name As Text, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
+		Event GroupInfoReceived(name As String, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
@@ -1445,7 +1445,7 @@ Inherits SSLSocket
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event GroupListEntry(name As Text)
+		Event GroupListEntry(name As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
@@ -1453,7 +1453,7 @@ Inherits SSLSocket
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event MessageReceived(userID As Integer, message As Text, isBroadcast As Boolean)
+		Event MessageReceived(userID As Integer, message As String, isBroadcast As Boolean)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
@@ -1461,11 +1461,11 @@ Inherits SSLSocket
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event NewsListEntry(nick As Text, time As Xojo.Core.Date, message As Text)
+		Event NewsListEntry(nick As String, time As DateTime, message As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event NewsPosted(nick As Text, time As Xojo.Core.Date, message As Text)
+		Event NewsPosted(nick As String, time As DateTime, message As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
@@ -1493,7 +1493,7 @@ Inherits SSLSocket
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event SearchListEntry(path As Text, type As Integer, size As UInt64, created As Xojo.Core.Date, modified As Xojo.Core.Date)
+		Event SearchListEntry(path As String, type As Integer, size As UInt64, created As DateTime, modified As DateTime)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
@@ -1501,19 +1501,19 @@ Inherits SSLSocket
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event ServerInfoReceived(appVersion As Text, protocolVersion As Text, serverName As Text, serverDescription As Text, startTime As Xojo.Core.Date, filesCount As UInt64, filesSize As UInt64)
+		Event ServerInfoReceived(appVersion As String, protocolVersion As String, serverName As String, serverDescription As String, startTime As DateTime, filesCount As UInt64, filesSize As UInt64)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event TransferQueued(path As Text, position As Integer)
+		Event TransferQueued(path As String, position As Integer)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event TransferReady(path As Text, offset As UInt64, hash As Text)
+		Event TransferReady(path As String, offset As UInt64, hash As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event UserChanged(userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As Text, status As Text)
+		Event UserChanged(userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As String, status As String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
@@ -1521,15 +1521,15 @@ Inherits SSLSocket
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event UserInfoReceived(userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As Text, login As Text, IP As Text, host As Text, clientVersion As Text, cipherName As Text, cipherBits As Integer, loginTime As Xojo.Core.Date, idleTime As Xojo.Core.Date, downloads As Text, uploads As Text, status As Text, icon As Picture)
+		Event UserInfoReceived(userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As String, login As String, IP As String, host As String, clientVersion As String, cipherName As String, cipherBits As Integer, loginTime As DateTime, idleTime As DateTime, downloads As String, uploads As String, status As String, icon As Picture)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event UserJoined(chatID As Integer, userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As Text, login As Text, IP As Text, host As Text, status As Text, icon As Picture)
+		Event UserJoined(chatID As Integer, userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As String, login As String, IP As String, host As String, status As String, icon As Picture)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event UserKicked(victimID As Integer, killerID As Integer, message As Text, isBan As Boolean)
+		Event UserKicked(victimID As Integer, killerID As Integer, message As String, isBan As Boolean)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
@@ -1541,7 +1541,7 @@ Inherits SSLSocket
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event UserListEntry(chatID As Integer, userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As Text, login As Text, IP As Text, host As Text, status As Text, icon As Picture)
+		Event UserListEntry(chatID As Integer, userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As String, login As String, IP As String, host As String, status As String, icon As Picture)
 	#tag EndHook
 
 
@@ -1624,10 +1624,34 @@ Inherits SSLSocket
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="SSLConnectionType"
+			Visible=true
+			Group="Behavior"
+			InitialValue="3"
+			Type="SSLConnectionTypes"
+			EditorType="Enum"
+			#tag EnumValues
+				"1 - SSLv23"
+				"3 - TLSv1"
+				"4 - TLSv11"
+				"5 - TLSv12"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SSLEnabled"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Address"
 			Visible=true
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Port"
@@ -1635,75 +1659,87 @@ Inherits SSLSocket
 			Group="Behavior"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="SSLConnected"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="SSLConnecting"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="BytesAvailable"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="BytesLeftToSend"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LastErrorCode"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CertificatePassword"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="ConnectionType"
-			Visible=true
-			Group="Behavior"
-			InitialValue="3"
-			Type="Integer"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="DataPort"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="Integer"
-			EditorType="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
-			EditorType="String"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Secure"
-			Visible=true
-			Group="Behavior"
-			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
+			Visible=false
 			Group="ID"
+			InitialValue=""
 			Type="String"
-			EditorType="String"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

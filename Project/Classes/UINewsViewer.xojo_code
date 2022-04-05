@@ -1,6 +1,6 @@
 #tag Class
 Protected Class UINewsViewer
-Inherits HTMLViewer
+Inherits DesktopHTMLViewer
 	#tag Event
 		Function CancelLoad(URL as String) As Boolean
 		  if (URL.Left(4) = "link") then
@@ -20,7 +20,7 @@ Inherits HTMLViewer
 	#tag EndEvent
 
 	#tag Event
-		Sub DocumentComplete(URL as String)
+		Sub DocumentComplete(url as String)
 		  me.Reload
 		  
 		  RaiseEvent DocumentComplete URL
@@ -29,20 +29,20 @@ Inherits HTMLViewer
 
 
 	#tag Method, Flags = &h21
-		Private Sub AddArticleToDictionary(append As Boolean, nick As Text, time As Xojo.Core.Date, message As Text)
+		Private Sub AddArticleToDictionary(append As Boolean, nick As String, time As DateTime, message As String)
 		  DIM theRegex As RegEx = new RegEx
 		  theRegex.Options.DotMatchAll = true
 		  theRegex.Options.Greedy = True
 		  theRegex.SearchPattern = "\b(https?://|www\.)([^<>\s]+)"
 		  theRegex.ReplacementPattern = "<a href=""link://\1\2"">\1\2</a>"
 		  theRegex.Options.ReplaceAllMatches = True
-		  message = theRegex.Replace(message).ToText
+		  message = theRegex.Replace(message)
 		  
-		  DIM article As NEW Xojo.Core.Dictionary
-		  message = ReplaceLineEndings(message, "</br>").ToText
+		  DIM article As NEW Dictionary
+		  message = ReplaceLineEndings(message, "</br>")
 		  article.Value("articleBody") = me.Escape(message)
 		  article.Value("articleAuthor") = me.Escape(nick)
-		  article.Value("articleDate") = if(time = Nil, "", me.Escape(time.ToText))
+		  article.Value("articleDate") = if(time = Nil, "", me.Escape(time.ToString))
 		  
 		  if (me.mArticles.IndexOf(article) = -1) then
 		    if (append) then
@@ -57,8 +57,8 @@ Inherits HTMLViewer
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub AddArticleToViewer(append As Boolean, data As Xojo.Core.Dictionary)
-		  DIM div As Text = me.mTemplate
+		Private Sub AddArticleToViewer(append As Boolean, data As Dictionary)
+		  DIM div As String = me.mTemplate
 		  div = div.Replace("$ArticleBody$", data.Value("articleBody"))
 		  div = div.Replace("$ArticleAuthor$", data.Value("articleAuthor"))
 		  div = div.Replace("$ArticleDate$", data.Value("articleDate"))
@@ -72,7 +72,7 @@ Inherits HTMLViewer
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub AppendArticle(nick As Text, time As Xojo.Core.Date, message As Text)
+		Sub AppendArticle(nick As String, time As DateTime, message As String)
 		  me.AddArticleToDictionary TRUE, nick, time, message
 		End Sub
 	#tag EndMethod
@@ -106,19 +106,19 @@ Inherits HTMLViewer
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function Escape(value As Text) As Text
+		Private Function Escape(value As String) As String
 		  value = value.ReplaceAll("\", "\\")   // slashes
 		  value = value.ReplaceAll("""", "\""")  // quotes
 		  value = value.ReplaceAll("'", "\'")     // apostrophes
-		  value = value.ReplaceAll(Chr(9).ToText, " ") // TAB
-		  value = ReplaceLineEndings(value, "").ToText
+		  value = value.ReplaceAll(Chr(9), " ") // TAB
+		  value = ReplaceLineEndings(value, "")
 		  
 		  Return value
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub GrantAccessToFolder(inFolder as Xojo.IO.FolderItem)
+		Private Sub GrantAccessToFolder(inFolder as FolderItem)
 		  #if (TargetMacOS) AND (XojoVersion >= 2020.01) then
 		    // copied from https://forum.xojo.com/t/new-problem-with-htmlviewer-loadpage-since-version-2020-r1/56514/7
 		    // --- Originally created in July 2020. <--- Leave this info here so it's easier to track which version of the code.
@@ -128,10 +128,10 @@ Inherits HTMLViewer
 		    
 		    Declare Function NSClassFromString Lib "Foundation" (inClassName As CFStringRef) As Integer
 		    Declare Function NSURLfileURLWithPathIsDirectory Lib "Foundation" Selector "fileURLWithPath:isDirectory:" (NSURLClass As Integer, path As CFStringRef, directory As Boolean) As Integer
-		    Declare Function WKWebViewloadFileURL Lib "WebKit" Selector "loadFileURL:allowingReadAccessToURL:" (HTMLViewer As Integer, URL As Integer, readAccessURL As Integer) As Integer
+		    Declare Function WKWebViewloadFileURL Lib "WebKit" Selector "loadFileURL:allowingReadAccessToURL:" (HTMLViewer As Ptr, URL As Integer, readAccessURL As Integer) As Integer
 		    
 		    // --- Create a NSURL object from a Xojo Folderitem.
-		    DIM folderURL As Integer = NSURLfileURLWithPathIsDirectory(NSClassFromString("NSURL"), inFolder.Path, inFolder.IsFolder)
+		    DIM folderURL As Integer = NSURLfileURLWithPathIsDirectory(NSClassFromString("NSURL"), inFolder.NativePath, inFolder.IsFolder)
 		    
 		    // --- This bit is not technically correct. The first parameter after the instance should actually be the page that you're trying to load.
 		    //     But as we're not loading a page per say... For the purpose of just setting access rights, we ignore the return
@@ -142,11 +142,11 @@ Inherits HTMLViewer
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function OpenAsText(path As Xojo.IO.FolderItem) As Text
-		  DIM value As Text
+		Private Function OpenAsText(path As FolderItem) As String
+		  DIM value As String
 		  
 		  if (path <> Nil) AND (path.Exists) AND (NOT path.IsFolder) then
-		    DIM stream As Xojo.IO.TextInputStream = Xojo.IO.TextInputStream.Open(path, Xojo.Core.TextEncoding.UTF8)
+		    DIM stream As TextInputStream = TextInputStream.Open(path)
 		    value = stream.ReadAll()
 		    stream.Close()
 		  end if
@@ -156,7 +156,7 @@ Inherits HTMLViewer
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub PrependArticle(nick As Text, time As Xojo.Core.Date, message As Text)
+		Sub PrependArticle(nick As String, time As DateTime, message As String)
 		  me.AddArticleToDictionary FALSE, nick, time, message
 		End Sub
 	#tag EndMethod
@@ -182,19 +182,19 @@ Inherits HTMLViewer
 
 
 	#tag Property, Flags = &h21
-		Private mArticles() As Xojo.Core.Dictionary
+		Private mArticles() As Dictionary
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mSource As Text
+		Private mSource As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mStyle As Xojo.IO.FolderItem
+		Private mStyle As FolderItem
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mTemplate As Text
+		Private mTemplate As String
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -224,7 +224,7 @@ Inherits HTMLViewer
 			    
 			    #if TargetWindows
 			      DIM f As FolderItem = SpecialFolder.Temporary.Child("mynews.html")
-			      DIM t As TextOutputStream = TextOutputStream.Create(f)
+			      DIM t As StringOutputStream = TextOutputStream.Create(f)
 			      t.Write me.mSource
 			      t.Close
 			      me.LoadURL f.URLPath
@@ -238,7 +238,7 @@ Inherits HTMLViewer
 			  end try
 			End Set
 		#tag EndSetter
-		Style As Xojo.IO.FolderItem
+		Style As FolderItem
 	#tag EndComputedProperty
 
 
@@ -248,11 +248,36 @@ Inherits HTMLViewer
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="InitialParent"
+			Visible=false
+			Group="Position"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="AutoDeactivate"
 			Visible=true
 			Group="Appearance"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TabStop"
+			Visible=true
+			Group="Position"
+			InitialValue="True"
+			Type="Boolean"
+			EditorType="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Tooltip"
+			Visible=true
+			Group="Appearance"
+			InitialValue=""
+			Type="String"
+			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Enabled"
@@ -260,6 +285,7 @@ Inherits HTMLViewer
 			Group="Appearance"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Height"
@@ -267,13 +293,7 @@ Inherits HTMLViewer
 			Group="Position"
 			InitialValue="200"
 			Type="Integer"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="HelpTag"
-			Visible=true
-			Group="Appearance"
-			Type="String"
-			EditorType="MultiLineEditor"
+			EditorType="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -289,35 +309,45 @@ Inherits HTMLViewer
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockBottom"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Boolean"
+			EditorType="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockLeft"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Boolean"
+			EditorType="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockRight"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Boolean"
+			EditorType="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockTop"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Boolean"
+			EditorType="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
 			EditorType="String"
 		#tag EndViewProperty
@@ -337,6 +367,7 @@ Inherits HTMLViewer
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
 			EditorType="String"
 		#tag EndViewProperty
@@ -346,12 +377,15 @@ Inherits HTMLViewer
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TabPanelIndex"
+			Visible=false
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -359,6 +393,7 @@ Inherits HTMLViewer
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Visible"
@@ -366,6 +401,7 @@ Inherits HTMLViewer
 			Group="Appearance"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Width"
@@ -373,6 +409,7 @@ Inherits HTMLViewer
 			Group="Position"
 			InitialValue="200"
 			Type="Integer"
+			EditorType="Integer"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

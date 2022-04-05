@@ -1,24 +1,24 @@
 #tag Class
 Protected Class UserDefaults
 	#tag Method, Flags = &h0
-		Sub Constructor(path As Xojo.IO.FolderItem)
+		Sub Constructor(path As FolderItem)
 		  mPath = path
 		  
 		  try
 		    #Pragma BreakOnExceptions FALSE
-		    DIM input As Xojo.IO.TextInputStream = Xojo.IO.TextInputStream.Open(path, Xojo.Core.TextEncoding.UTF8)
+		    DIM input As TextInputStream = TextInputStream.Open(path)
 		    #Pragma BreakOnExceptions Default
-		    mUserDefaults = Xojo.Data.ParseJSON(input.ReadAll)
+		    mUserDefaults = ParseJSON(input.ReadAll)
 		    input.Close
 		    
 		  catch e As Xojo.IO.IOException
-		    mUserDefaults = NEW Xojo.Core.Dictionary
+		    mUserDefaults = NEW Dictionary
 		  end try
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Lookup(key As Text, defaultValue As Auto) As Auto
+		Function Lookup(key As String, defaultValue As Auto) As Auto
 		  try
 		    Return mUserDefaults.Lookup(key, defaultValue)
 		  end try
@@ -28,9 +28,9 @@ Protected Class UserDefaults
 	#tag Method, Flags = &h0
 		Sub Save()
 		  try
-		    DIM json As Text = Xojo.Data.GenerateJSON(mUserDefaults)
+		    DIM json As String = GenerateJSON(mUserDefaults)
 		    
-		    DIM output As Xojo.IO.TextOutputStream = Xojo.IO.TextOutputStream.Create(mPath, Xojo.Core.TextEncoding.UTF8)
+		    DIM output As TextOutputStream = TextOutputStream.Create(mPath)
 		    output.Write json
 		    output.Close
 		  end try
@@ -38,7 +38,7 @@ Protected Class UserDefaults
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Set(key As Text, Assigns value As Auto)
+		Sub Set(key As String, Assigns value As Auto)
 		  try
 		    mUserDefaults.Value(key) = value
 		  end try
@@ -83,11 +83,11 @@ Protected Class UserDefaults
 
 
 	#tag Property, Flags = &h21
-		Private mPath As Xojo.IO.FolderItem
+		Private mPath As FolderItem
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mUserDefaults As Xojo.Core.Dictionary
+		Private mUserDefaults As Dictionary
 	#tag EndProperty
 
 
@@ -98,6 +98,7 @@ Protected Class UserDefaults
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -105,18 +106,23 @@ Protected Class UserDefaults
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -124,6 +130,7 @@ Protected Class UserDefaults
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

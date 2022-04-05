@@ -1,32 +1,30 @@
-#tag Window
-Begin Window SwirlMessagesWin
-   BackColor       =   &cFFFFFF00
+#tag DesktopWindow
+Begin DesktopWindow SwirlMessagesWin
    Backdrop        =   0
-   CloseButton     =   True
-   Compatibility   =   ""
+   BackgroundColor =   &cFFFFFF00
    Composite       =   True
-   Frame           =   0
+   DefaultLocation =   0
    FullScreen      =   False
-   FullScreenButton=   False
-   HasBackColor    =   False
+   HasBackgroundColor=   False
+   HasCloseButton  =   True
+   HasFullScreenButton=   False
+   HasMaximizeButton=   True
+   HasMinimizeButton=   True
    Height          =   467
    ImplicitInstance=   False
-   LiveResize      =   True
    MacProcID       =   0
-   MaxHeight       =   32000
-   MaximizeButton  =   True
-   MaxWidth        =   32000
+   MaximumHeight   =   32000
+   MaximumWidth    =   32000
    MenuBar         =   0
    MenuBarVisible  =   True
-   MinHeight       =   467
-   MinimizeButton  =   True
-   MinWidth        =   400
-   Placement       =   0
+   MinimumHeight   =   467
+   MinimumWidth    =   400
    Resizeable      =   True
    Title           =   ""
+   Type            =   0
    Visible         =   False
    Width           =   400
-   Begin TextArea ChatInput
+   Begin DesktopTextArea ChatInput
       AcceptTabs      =   False
       Alignment       =   0
       AutoDeactivate  =   True
@@ -34,8 +32,6 @@ Begin Window SwirlMessagesWin
       BackColor       =   &cFFFFFF00
       Bold            =   False
       Border          =   False
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Format          =   ""
       Height          =   80
@@ -70,6 +66,7 @@ Begin Window SwirlMessagesWin
       Top             =   387
       Transparent     =   False
       Underline       =   False
+      UnicodeMode     =   0
       UseFocusRing    =   False
       Visible         =   True
       Width           =   400
@@ -81,6 +78,7 @@ Begin Window SwirlMessagesWin
       Height          =   338
       HelpTag         =   ""
       Index           =   -2147483648
+      InitialParent   =   ""
       Left            =   0
       LockBottom      =   True
       LockedInPosition=   False
@@ -96,14 +94,12 @@ Begin Window SwirlMessagesWin
       Visible         =   True
       Width           =   400
    End
-   Begin Canvas UserIcon
+   Begin DesktopCanvas UserIcon
       AcceptFocus     =   False
       AcceptTabs      =   False
       AutoDeactivate  =   True
       Backdrop        =   0
-      DoubleBuffer    =   False
       Enabled         =   True
-      EraseBackground =   True
       Height          =   46
       HelpTag         =   ""
       Index           =   -2147483648
@@ -124,11 +120,9 @@ Begin Window SwirlMessagesWin
       Visible         =   True
       Width           =   384
    End
-   Begin Label UserStatus
+   Begin DesktopLabel UserStatus
       AutoDeactivate  =   True
       Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Height          =   20
       HelpTag         =   ""
@@ -159,11 +153,9 @@ Begin Window SwirlMessagesWin
       Visible         =   True
       Width           =   355
    End
-   Begin Label UserNick
+   Begin DesktopLabel UserNick
       AutoDeactivate  =   True
       Bold            =   True
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Height          =   21
       HelpTag         =   ""
@@ -195,17 +187,17 @@ Begin Window SwirlMessagesWin
       Width           =   355
    End
 End
-#tag EndWindow
+#tag EndDesktopWindow
 
 #tag WindowCode
 	#tag Event
-		Sub Activate()
+		Sub Activated()
 		  self.ChatInput.SetFocus
 		End Sub
 	#tag EndEvent
 
 	#tag Event
-		Function CancelClose(appQuitting as Boolean) As Boolean
+		Function CancelClosing(appQuitting As Boolean) As Boolean
 		  if (appQuitting) OR (self.mWindowClosing) then
 		    Return FALSE
 		  else
@@ -216,7 +208,7 @@ End
 	#tag EndEvent
 
 	#tag Event
-		Sub Close()
+		Sub Closing()
 		  ObjObserver.Unlisten self, Events.kWiredMessageStyleChanged
 		  ObjObserver.Unlisten self, Events.kWiredConnectionMessageReceived
 		  ObjObserver.Unlisten self, Events.kWiredConnectionUserChanged
@@ -228,7 +220,7 @@ End
 	#tag EndEvent
 
 	#tag Event
-		Function KeyDown(Key As String) As Boolean
+		Function KeyDown(key As String) As Boolean
 		  self.ChatInput.SetFocus
 		  self.ChatInput.Text = self.ChatInput.Text + Key
 		  
@@ -237,7 +229,7 @@ End
 	#tag EndEvent
 
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  self.Title = self.mUser.Nick + " @ " + self.mConnection.ServerName
 		  
 		  ObjObserver.Listen self, Events.kWiredConnectionMessageReceived
@@ -316,29 +308,29 @@ End
 		Private Sub SetChatLogFontSize(size As Integer)
 		  
 		  if (size = 0) then
-		    self.Viewer.ExecuteJavaScript "document.body.style.fontSize='" + self.Viewer.DefaultFontSize.ToText + "px';"
-		    self.ChatInput.TextSize = self.Viewer.DefaultFontSize
+		    self.Viewer.ExecuteJavaScript "document.body.style.fontSize='" + self.Viewer.DefaultFontSize.ToString + "px';"
+		    self.ChatInput.FontSize = self.Viewer.DefaultFontSize
 		  else
-		    self.Viewer.ExecuteJavaScript "document.body.style.fontSize='" + size.ToText + "px';"
-		    self.ChatInput.TextSize = size
+		    self.Viewer.ExecuteJavaScript "document.body.style.fontSize='" + size.ToString + "px';"
+		    self.ChatInput.FontSize = size
 		  end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Show(message As Text)
-		  self.Viewer.AppendChat Xojo.Core.Date.Now, self.mUser.UserID, self.mUser.Nick, self.mUser.Icon, message, TRUE
+		Sub Show(message As String)
+		  self.Viewer.AppendChat DateTime.Now, self.mUser.UserID, self.mUser.Nick, self.mUser.Icon, message, TRUE
 		  self.Title = self.mUser.Nick + " @ " + self.mConnection.ServerName
 		  Super.Show
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub WiredConnectionMessageReceived(connection As WiredConnection, user As WiredUser, message As Text, isBroadcast As Boolean)
+		Private Sub WiredConnectionMessageReceived(connection As WiredConnection, user As WiredUser, message As String, isBroadcast As Boolean)
 		  #Pragma Unused isBroadcast
 		  
 		  if (connection = self.mConnection) AND (user = self.mUser) then
-		    self.Viewer.AppendChat Xojo.Core.Date.Now, self.mUser.UserID, self.mUser.Nick, self.mUser.Icon, message, TRUE
+		    self.Viewer.AppendChat DateTime.Now, self.mUser.UserID, self.mUser.Nick, self.mUser.Icon, message, TRUE
 		  end if
 		End Sub
 	#tag EndMethod
@@ -349,22 +341,22 @@ End
 		    self.mUser = newUser
 		    
 		    if (Prefs.UserNickChangedPostInChat) AND (oldUser.Nick <> newUser.Nick) then
-		      DIM message As Text = Strings.kIsNowKnownAs
+		      DIM message As String = Strings.kIsNowKnownAs
 		      message = message.Replace("%oldnick%", oldUser.Nick)
 		      message = message.Replace("%newnick%", newUser.Nick)
-		      self.Viewer.AppendNotification Xojo.Core.Date.Now, UIChatViewer.NickChanged, message
+		      self.Viewer.AppendNotification DateTime.Now, UIChatViewer.NickChanged, message
 		      self.UserNick.Text = newUser.Nick
 		    end if
 		    
 		    if (Prefs.UserStatusChangedPostInChat) AND (oldUser.Status <> newUser.Status) then
-		      DIM message As Text = Strings.kUserStatusChangedTo
+		      DIM message As String = Strings.kUserStatusChangedTo
 		      message = message.Replace("%nick%", newUser.Nick)
 		      message = message.Replace("%status%", newUser.Status)
-		      self.Viewer.AppendNotification Xojo.Core.Date.Now, UIChatViewer.Notification, message
+		      self.Viewer.AppendNotification DateTime.Now, UIChatViewer.Notification, message
 		      self.UserStatus.Text = newUser.Status
 		    end if
 		    
-		    self.UserIcon.Invalidate
+		    self.UserIcon.Refresh
 		  end if
 		End Sub
 	#tag EndMethod
@@ -373,7 +365,7 @@ End
 		Private Sub WiredConnectionUserIconChanged(connection As WiredConnection, user As WiredUser)
 		  if (connection = self.mConnection) AND (user.UserID = self.mUser.UserID) then
 		    self.mUser = user
-		    self.UserIcon.Invalidate
+		    self.UserIcon.Refresh
 		  end if
 		End Sub
 	#tag EndMethod
@@ -384,28 +376,28 @@ End
 		  if (connection = self.mConnection) AND (user.Login <> "guest") AND (user.Login = self.mUser.Login) AND (chatID = 1) then
 		    self.mConnection = connection
 		    self.mUser = user
-		    self.UserIcon.Invalidate
+		    self.UserIcon.Refresh
 		    self.ChatInput.Enabled = TRUE
 		  end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub WiredConnectionUserKicked(connection As WiredConnection, victim As WiredUser, killer As WiredUser, kickMessage As Text, isBan As Boolean)
+		Private Sub WiredConnectionUserKicked(connection As WiredConnection, victim As WiredUser, killer As WiredUser, kickMessage As String, isBan As Boolean)
 		  if (connection = self.mConnection) AND (victim.UserID = self.mUser.UserID) then
 		    self.ChatInput.Enabled = FALSE
-		    self.UserIcon.Invalidate
+		    self.UserIcon.Refresh
 		    
 		    if (Prefs.UserLeftPostInChat) then
-		      DIM message As Text = if(kickMessage.Empty, Strings.kUserWasKickedBy, Strings.kUserWasKickedByWithMessage)
+		      DIM message As String = if(kickMessage.IsEmpty, Strings.kUserWasKickedBy, Strings.kUserWasKickedByWithMessage)
 		      if (isBan) then
-		        message = if(kickMessage.Empty, Strings.kUserWasBannedBy, Strings.kUserWasBannedByWithMessage)
+		        message = if(kickMessage.IsEmpty, Strings.kUserWasBannedBy, Strings.kUserWasBannedByWithMessage)
 		      end if
 		      message = message.Replace("%victim%", victim.Nick)
 		      message = message.Replace("%killer%", killer.Nick)
 		      message = message.Replace("%message%", kickMessage)
 		      
-		      self.Viewer.AppendNotification Xojo.Core.Date.Now, UIChatViewer.ContactKicked, message
+		      self.Viewer.AppendNotification DateTime.Now, UIChatViewer.ContactKicked, message
 		    end if
 		  end if
 		End Sub
@@ -415,13 +407,13 @@ End
 		Private Sub WiredConnectionUserLeft(connection As WiredConnection, chatID As Integer, user As WiredUser)
 		  if (connection = self.mConnection) AND (chatID = 1) AND (user.UserID = self.mUser.UserID) then
 		    self.ChatInput.Enabled = FALSE
-		    self.UserIcon.Invalidate
+		    self.UserIcon.Refresh
 		    
 		    if (Prefs.UserLeftPostInChat) then
-		      DIM message As Text = Strings.kUserHasLeft
+		      DIM message As String = Strings.kUserHasLeft
 		      message = message.Replace("%nick%", user.Nick)
 		      
-		      self.Viewer.AppendNotification Xojo.Core.Date.Now, UIChatViewer.ContactLeft, message
+		      self.Viewer.AppendNotification DateTime.Now, UIChatViewer.ContactLeft, message
 		    end if
 		  end if
 		End Sub
@@ -470,13 +462,13 @@ End
 
 #tag Events ChatInput
 	#tag Event
-		Function KeyDown(Key As String) As Boolean
+		Function KeyDown(key As String) As Boolean
 		  DIM results As Boolean = FALSE
 		  
 		  select case Asc(key)
 		  case 3, 10, 13
-		    self.Viewer.AppendChat Xojo.Core.Date.Now, self.mConnection.MyUserID, Prefs.UserNick, Prefs.UserIcon, me.Text.ToText, FALSE
-		    self.mConnection.SendMessage self.mUser.UserID, me.Text.ToText, FALSE
+		    self.Viewer.AppendChat DateTime.Now, self.mConnection.MyUserID, Prefs.UserNick, Prefs.UserIcon, me.Text, FALSE
+		    self.mConnection.SendMessage self.mUser.UserID, me.Text, FALSE
 		    me.Text = ""
 		    results = TRUE
 		  end select
@@ -486,11 +478,6 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag Events Viewer
-	#tag Event
-		Sub Open()
-		  me.MessageStylePath = Prefs.MessageStylePath
-		End Sub
-	#tag EndEvent
 	#tag Event
 		Sub MessageStyleChanged()
 		  self.SetChatLogFontSize Prefs.MessageStyleFontSize
@@ -506,10 +493,15 @@ End
 		  end if
 		End Function
 	#tag EndEvent
+	#tag Event
+		Sub Opening()
+		  me.MessageStylePath = Prefs.MessageStylePath
+		End Sub
+	#tag EndEvent
 #tag EndEvents
 #tag Events UserIcon
 	#tag Event
-		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		Sub Paint(g As Graphics, areas() As Rect)
 		  #Pragma Unused areas
 		  
 		  // draw the user icon
@@ -523,7 +515,7 @@ End
 		  g.ForeColor = self.mUser.Colour
 		  g.TextFont = "System"
 		  g.TextSize = 13
-		  g.DrawString self.mUser.Nick, 44, if(self.mUser.Status.Empty, g.TextHeight + 10, g.TextHeight)
+		  g.DrawString self.mUser.Nick, 44, if(self.mUser.Status.IsEmpty, g.TextHeight + 10, g.TextHeight)
 		  
 		  // user status
 		  g.ForeColor = DisabledTextColor
@@ -534,40 +526,43 @@ End
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
-		Name="BackColor"
+		Name="MinimumWidth"
 		Visible=true
-		Group="Appearance"
-		InitialValue="&hFFFFFF"
-		Type="Color"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Backdrop"
-		Visible=true
-		Group="Appearance"
-		Type="Picture"
-		EditorType="Picture"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="CloseButton"
-		Visible=true
-		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Composite"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Frame"
-		Visible=true
-		Group="Appearance"
-		InitialValue="0"
+		Group="Size"
+		InitialValue="64"
 		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MinimumHeight"
+		Visible=true
+		Group="Size"
+		InitialValue="64"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MaximumWidth"
+		Visible=true
+		Group="Size"
+		InitialValue="32000"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MaximumHeight"
+		Visible=true
+		Group="Size"
+		InitialValue="32000"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Type"
+		Visible=true
+		Group="Frame"
+		InitialValue="0"
+		Type="Types"
 		EditorType="Enum"
 		#tag EnumValues
 			"0 - Document"
@@ -584,137 +579,43 @@ End
 		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="FullScreen"
+		Name="HasCloseButton"
 		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="FullScreenButton"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HasBackColor"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Height"
-		Visible=true
-		Group="Position"
-		InitialValue="400"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="ImplicitInstance"
-		Visible=true
-		Group="Appearance"
+		Group="Frame"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="Interfaces"
+		Name="HasMaximizeButton"
 		Visible=true
-		Group="ID"
-		Type="String"
-		EditorType="String"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="LiveResize"
-		Visible=true
-		Group="Appearance"
+		Group="Frame"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="MacProcID"
+		Name="HasMinimizeButton"
 		Visible=true
-		Group="Appearance"
+		Group="Frame"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="HasFullScreenButton"
+		Visible=true
+		Group="Frame"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="DefaultLocation"
+		Visible=true
+		Group="Behavior"
 		InitialValue="0"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MaxHeight"
-		Visible=true
-		Group="Position"
-		InitialValue="32000"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MaximizeButton"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MaxWidth"
-		Visible=true
-		Group="Position"
-		InitialValue="32000"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MenuBar"
-		Visible=true
-		Group="Appearance"
-		Type="MenuBar"
-		EditorType="MenuBar"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MenuBarVisible"
-		Visible=true
-		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MinHeight"
-		Visible=true
-		Group="Position"
-		InitialValue="64"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MinimizeButton"
-		Visible=true
-		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MinWidth"
-		Visible=true
-		Group="Position"
-		InitialValue="64"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Name"
-		Visible=true
-		Group="ID"
-		Type="String"
-		EditorType="String"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Placement"
-		Visible=true
-		Group="Position"
-		InitialValue="0"
-		Type="Integer"
+		Type="Locations"
 		EditorType="Enum"
 		#tag EnumValues
 			"0 - Default"
@@ -725,19 +626,116 @@ End
 		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
+		Name="HasBackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="BackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="&hFFFFFF"
+		Type="Color"
+		EditorType="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Backdrop"
+		Visible=true
+		Group="Appearance"
+		InitialValue=""
+		Type="Picture"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Composite"
+		Visible=true
+		Group="Appearance"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="FullScreen"
+		Visible=true
+		Group="Appearance"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Height"
+		Visible=true
+		Group="Position"
+		InitialValue="400"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ImplicitInstance"
+		Visible=true
+		Group="Appearance"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Interfaces"
+		Visible=true
+		Group="ID"
+		InitialValue=""
+		Type="String"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MacProcID"
+		Visible=true
+		Group="Appearance"
+		InitialValue="0"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MenuBar"
+		Visible=true
+		Group="Appearance"
+		InitialValue=""
+		Type="MenuBar"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MenuBarVisible"
+		Visible=true
+		Group="Appearance"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Name"
+		Visible=true
+		Group="ID"
+		InitialValue=""
+		Type="String"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
 		Name="Resizeable"
 		Visible=true
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
-		EditorType="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Title"
@@ -745,6 +743,7 @@ End
 		Group="Appearance"
 		InitialValue="Untitled"
 		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Visible"
@@ -752,7 +751,7 @@ End
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Width"
@@ -760,5 +759,6 @@ End
 		Group="Position"
 		InitialValue="600"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior

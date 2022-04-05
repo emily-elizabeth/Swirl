@@ -15,7 +15,7 @@ Protected Module ObjObserver
 		  //     when the notification a method with the notification name will be called
 		  
 		  
-		  DIM observersDict As Xojo.Core.Dictionary = mNotificationObserversDict.Lookup(notification, NEW Xojo.Core.Dictionary)
+		  DIM observersDict As Dictionary = mNotificationObserversDict.Lookup(notification, NEW Dictionary)
 		  
 		  DIM observerWeakRef As WeakRef = NEW WeakRef(observer)
 		  if (observersDict.HasKey(observerWeakRef) = FALSE) then     // only add the observer once
@@ -38,8 +38,8 @@ Protected Module ObjObserver
 		  //     Information about the the notification. This value can be Nil.
 		  
 		  
-		  DIM observersDict As Xojo.Core.Dictionary = mNotificationObserversDict.Lookup(notification, NEW Xojo.Core.Dictionary)
-		  DIM observersDictClone As Xojo.Core.Dictionary = observersDict.Clone
+		  DIM observersDict As Dictionary = mNotificationObserversDict.Lookup(notification, NEW Dictionary)
+		  DIM observersDictClone As Dictionary = observersDict.Clone
 		  
 		  DIM params() As Variant
 		  params.Append sender
@@ -50,7 +50,7 @@ Protected Module ObjObserver
 		  end if
 		  
 		  if (observersDictClone.Count > 0) then
-		    for each entry As Xojo.Core.DictionaryEntry in observersDictClone
+		    for each entry As DictionaryEntry in observersDictClone
 		      DIM observerWeakRef As WeakRef = entry.Key
 		      if (observerWeakRef.Value = Nil) then
 		        observersDict.Remove observerWeakRef
@@ -78,8 +78,8 @@ Protected Module ObjObserver
 		  //     Notification names can be any string.
 		  
 		  
-		  DIM observersDict As Xojo.Core.Dictionary = mNotificationObserversDict.Lookup(notification, NEW Xojo.Core.Dictionary)
-		  DIM observersDictClone As Xojo.Core.Dictionary = observersDict.Clone
+		  DIM observersDict As Dictionary = mNotificationObserversDict.Lookup(notification, NEW Dictionary)
+		  DIM observersDictClone As Dictionary = observersDict.Clone
 		  
 		  'DIM observerWeakRef As WeakRef = NEW WeakRef(observer)
 		  'if (observersDictClone.HasKey(observerWeakRef)) then
@@ -89,7 +89,7 @@ Protected Module ObjObserver
 		  
 		  
 		  if (observersDictClone.Count > 0) then
-		    for each entry As Xojo.Core.DictionaryEntry in observersDictClone
+		    for each entry As DictionaryEntry in observersDictClone
 		      DIM observerWeakRef As WeakRef = entry.Key
 		      if (observerWeakRef.Value = Nil) OR (observerWeakRef.Value = observer) then
 		        observersDict.Remove observerWeakRef
@@ -103,7 +103,7 @@ Protected Module ObjObserver
 	#tag ComputedProperty, Flags = &h21
 		#tag Getter
 			Get
-			  Static mNotificationDict As NEW Xojo.Core.Dictionary
+			  Static mNotificationDict As NEW Dictionary
 			  Return mNotificationDict
 			End Get
 		#tag EndGetter
@@ -112,7 +112,7 @@ Protected Module ObjObserver
 			  #Pragma Unused value
 			End Set
 		#tag EndSetter
-		Private mNotificationObserversDict As Xojo.Core.Dictionary
+		Private mNotificationObserversDict As Dictionary
 	#tag EndComputedProperty
 
 
@@ -123,6 +123,7 @@ Protected Module ObjObserver
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -130,18 +131,23 @@ Protected Module ObjObserver
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -149,6 +155,7 @@ Protected Module ObjObserver
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Module

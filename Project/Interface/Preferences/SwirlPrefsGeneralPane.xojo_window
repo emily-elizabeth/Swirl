@@ -1,16 +1,16 @@
-#tag Window
-Begin ContainerControl SwirlPrefsGeneralPane
-   AcceptFocus     =   False
-   AcceptTabs      =   True
-   AutoDeactivate  =   True
-   BackColor       =   &cFFFFFF00
+#tag DesktopWindow
+Begin DesktopContainer SwirlPrefsGeneralPane
+   AllowAutoDeactivate=   True
+   AllowFocus      =   False
+   AllowFocusRing  =   False
+   AllowTabs       =   True
    Backdrop        =   0
-   Compatibility   =   ""
+   BackgroundColor =   &cFFFFFF00
+   Composited      =   False
    Enabled         =   True
-   EraseBackground =   True
-   HasBackColor    =   False
+   HasBackgroundColor=   False
    Height          =   254
-   HelpTag         =   ""
+   Index           =   -2147483648
    InitialParent   =   ""
    Left            =   0
    LockBottom      =   False
@@ -20,12 +20,12 @@ Begin ContainerControl SwirlPrefsGeneralPane
    TabIndex        =   0
    TabPanelIndex   =   0
    TabStop         =   True
+   Tooltip         =   ""
    Top             =   0
    Transparent     =   True
-   UseFocusRing    =   False
    Visible         =   True
    Width           =   546
-   Begin CheckBox AutoReconnect
+   Begin DesktopCheckBox AutoReconnect
       AutoDeactivate  =   True
       Bold            =   False
       Caption         =   "#Strings.kAutoReconnect"
@@ -52,12 +52,13 @@ Begin ContainerControl SwirlPrefsGeneralPane
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   361
+      Transparent     =   False
       Underline       =   False
       Value           =   False
       Visible         =   False
       Width           =   364
    End
-   Begin TextField UserStatus
+   Begin DesktopTextField UserStatus
       AcceptTabs      =   False
       Alignment       =   0
       AutoDeactivate  =   True
@@ -94,12 +95,13 @@ Begin ContainerControl SwirlPrefsGeneralPane
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   52
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
       Width           =   364
    End
-   Begin Label UserStatusLabel
+   Begin DesktopLabel UserStatusLabel
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -123,7 +125,7 @@ Begin ContainerControl SwirlPrefsGeneralPane
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "#Strings.kStatus"
-      TextAlign       =   2
+      TextAlign       =   3
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
@@ -134,7 +136,7 @@ Begin ContainerControl SwirlPrefsGeneralPane
       Visible         =   True
       Width           =   130
    End
-   Begin TextField UserNick
+   Begin DesktopTextField UserNick
       AcceptTabs      =   False
       Alignment       =   0
       AutoDeactivate  =   True
@@ -171,12 +173,13 @@ Begin ContainerControl SwirlPrefsGeneralPane
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   20
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
       Width           =   364
    End
-   Begin Label UserNickLabel
+   Begin DesktopLabel UserNickLabel
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -200,7 +203,7 @@ Begin ContainerControl SwirlPrefsGeneralPane
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "#Strings.kNick"
-      TextAlign       =   2
+      TextAlign       =   3
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
@@ -211,7 +214,7 @@ Begin ContainerControl SwirlPrefsGeneralPane
       Visible         =   True
       Width           =   130
    End
-   Begin CheckBox CheckingSpellingAsYouType
+   Begin DesktopCheckBox CheckingSpellingAsYouType
       AutoDeactivate  =   True
       Bold            =   False
       Caption         =   "#Strings.kCheckSpellingAsYouType"
@@ -238,12 +241,13 @@ Begin ContainerControl SwirlPrefsGeneralPane
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   393
+      Transparent     =   False
       Underline       =   False
       Value           =   False
       Visible         =   False
       Width           =   364
    End
-   Begin CheckBox ConfirmAppQuit
+   Begin DesktopCheckBox ConfirmAppQuit
       AutoDeactivate  =   True
       Bold            =   False
       Caption         =   "#Strings.kConfirmApplicationQuit"
@@ -270,12 +274,13 @@ Begin ContainerControl SwirlPrefsGeneralPane
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   118
+      Transparent     =   False
       Underline       =   False
       Value           =   False
       Visible         =   True
       Width           =   364
    End
-   Begin CheckBox ConfirmDisconnect
+   Begin DesktopCheckBox ConfirmDisconnect
       AutoDeactivate  =   True
       Bold            =   False
       Caption         =   "#Strings.kConfirmDisconnect"
@@ -302,12 +307,13 @@ Begin ContainerControl SwirlPrefsGeneralPane
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   150
+      Transparent     =   False
       Underline       =   False
       Value           =   False
       Visible         =   True
       Width           =   364
    End
-   Begin CheckBox RequestNewsOnLogin
+   Begin DesktopCheckBox RequestNewsOnLogin
       AutoDeactivate  =   True
       Bold            =   False
       Caption         =   "#Strings.kRequestNewsOnLogin"
@@ -334,12 +340,13 @@ Begin ContainerControl SwirlPrefsGeneralPane
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   182
+      Transparent     =   False
       Underline       =   False
       Value           =   False
       Visible         =   True
       Width           =   364
    End
-   Begin CheckBox TabCompletesNick
+   Begin DesktopCheckBox TabCompletesNick
       AutoDeactivate  =   True
       Bold            =   False
       Caption         =   "#Strings.kTabCompletesNick"
@@ -366,12 +373,13 @@ Begin ContainerControl SwirlPrefsGeneralPane
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   425
+      Transparent     =   False
       Underline       =   False
       Value           =   True
       Visible         =   False
       Width           =   364
    End
-   Begin CheckBox ChatAutoDeclinePrivateChat
+   Begin DesktopCheckBox ChatAutoDeclinePrivateChat
       AutoDeactivate  =   True
       Bold            =   False
       Caption         =   "#Strings.kAutoDeclinePrivateChatRequests"
@@ -398,12 +406,13 @@ Begin ContainerControl SwirlPrefsGeneralPane
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   214
+      Transparent     =   False
       Underline       =   False
       Value           =   False
       Visible         =   True
       Width           =   364
    End
-   Begin Label UserDownloadFolderL
+   Begin DesktopLabel UserDownloadFolderL
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -427,7 +436,7 @@ Begin ContainerControl SwirlPrefsGeneralPane
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "Download Folder"
-      TextAlign       =   2
+      TextAlign       =   3
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
@@ -438,7 +447,7 @@ Begin ContainerControl SwirlPrefsGeneralPane
       Visible         =   True
       Width           =   130
    End
-   Begin TextField UserDownloadFolder
+   Begin DesktopTextField UserDownloadFolder
       AcceptTabs      =   False
       Alignment       =   0
       AutoDeactivate  =   True
@@ -475,15 +484,16 @@ Begin ContainerControl SwirlPrefsGeneralPane
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   85
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
       Width           =   293
    End
-   Begin PushButton PushButton1
+   Begin DesktopButton PushButton1
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "0"
+      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "#Strings.kSelect"
       Default         =   False
@@ -507,22 +517,23 @@ Begin ContainerControl SwirlPrefsGeneralPane
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   86
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   59
    End
 End
-#tag EndWindow
+#tag EndDesktopWindow
 
 #tag WindowCode
 	#tag Method, Flags = &h21
-		Private Sub UpdateUserNick(nick As Text)
+		Private Sub UpdateUserNick(nick As String)
 		  Prefs.UserNick = nick
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub UpdateUserStatus(status As Text)
+		Private Sub UpdateUserStatus(status As String)
 		  Prefs.UserStatus = status
 		End Sub
 	#tag EndMethod
@@ -532,30 +543,30 @@ End
 
 #tag Events AutoReconnect
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  'me.Value = Prefs.AutoReconnect
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub Action()
+		Sub ValueChanged()
 		  'Prefs.AutoReconnect = me.Value
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events UserStatus
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  me.AcceptTextDrop
 		  me.Text = Prefs.UserStatus
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub Close()
-		  self.UpdateUserStatus me.Text.ToText
+		Sub Closing()
+		  self.UpdateUserStatus me.Text
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub DropObject(obj As DragItem, action As Integer)
+		Sub DropObject(obj As DragItem, action As DragItem.Types)
 		  #pragma Unused action
 		  
 		  if (obj.TextAvailable) then
@@ -564,12 +575,12 @@ End
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Function KeyDown(Key As String) As Boolean
+		Function KeyDown(key As String) As Boolean
 		  DIM returnValue As Boolean = FALSE
 		  
 		  select case asc(Key)
 		  case 3, 10, 13
-		    self.UpdateUserStatus me.Text.ToText
+		    self.UpdateUserStatus me.Text
 		    returnValue = TRUE
 		  end select
 		  
@@ -577,25 +588,25 @@ End
 		End Function
 	#tag EndEvent
 	#tag Event
-		Sub LostFocus()
-		  self.UpdateUserStatus me.Text.ToText
+		Sub FocusLost()
+		  self.UpdateUserStatus me.Text
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events UserNick
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  me.AcceptTextDrop
 		  me.Text = Prefs.UserNick
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub Close()
-		  self.UpdateUserNick me.Text.ToText
+		Sub Closing()
+		  self.UpdateUserNick me.Text
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub DropObject(obj As DragItem, action As Integer)
+		Sub DropObject(obj As DragItem, action As DragItem.Types)
 		  #pragma Unused action
 		  
 		  if (obj.TextAvailable) then
@@ -605,12 +616,12 @@ End
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Function KeyDown(Key As String) As Boolean
+		Function KeyDown(key As String) As Boolean
 		  DIM returnValue As Boolean = FALSE
 		  
 		  select case asc(Key)
 		  case 3, 10, 13
-		    self.UpdateUserNick me.Text.ToText
+		    self.UpdateUserNick me.Text
 		    returnValue = TRUE
 		  end select
 		  
@@ -618,138 +629,181 @@ End
 		End Function
 	#tag EndEvent
 	#tag Event
-		Sub LostFocus()
-		  self.UpdateUserNick me.Text.ToText
+		Sub FocusLost()
+		  self.UpdateUserNick me.Text
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events CheckingSpellingAsYouType
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  'me.Value = Prefs.CheckSpelling
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub Action()
+		Sub ValueChanged()
 		  'Prefs.CheckSpelling = me.Value
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events ConfirmAppQuit
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  me.Value = Prefs.ConfirmApplicationQuit
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub Action()
+		Sub ValueChanged()
 		  Prefs.ConfirmApplicationQuit = me.Value
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events ConfirmDisconnect
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  me.Value = Prefs.ConfirmDisconnect
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub Action()
+		Sub ValueChanged()
 		  Prefs.ConfirmDisconnect = me.Value
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events RequestNewsOnLogin
 	#tag Event
-		Sub Action()
+		Sub ValueChanged()
 		  Prefs.RequestNewsOnLogin = me.Value
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  me.Value = Prefs.RequestNewsOnLogin
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events TabCompletesNick
 	#tag Event
-		Sub Action()
+		Sub ValueChanged()
 		  'Prefs.TabCompletesNick = me.Value
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  'me.Value = Prefs.TabCompletesNick
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events ChatAutoDeclinePrivateChat
 	#tag Event
-		Sub Action()
+		Sub ValueChanged()
 		  Prefs.AutoDeclinePrivateChatRequests = me.Value
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  me.Value = Prefs.AutoDeclinePrivateChatRequests
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events UserDownloadFolder
 	#tag Event
-		Sub Open()
-		  me.Text = Prefs.DownloadFolder.Path
+		Sub Opening()
+		  me.Text = Prefs.DownloadFolder.NativePath
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events PushButton1
 	#tag Event
-		Sub Action()
+		Sub Pressed()
 		  DIM f As FolderItem = SelectFolder
 		  if (f <> Nil) AND (f.Exists) then
 		    self.UserDownloadFolder.Text = f.NativePath
-		    Prefs.DownloadFolder = NEW xojo.IO.FolderItem(f.NativePath.ToText)
+		    Prefs.DownloadFolder = NEW FolderItem(f.NativePath)
 		  end if
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
-		Name="AcceptFocus"
+		Name="Index"
+		Visible=true
+		Group="ID"
+		InitialValue="-2147483648"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowAutoDeactivate"
+		Visible=true
+		Group="Appearance"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Tooltip"
+		Visible=true
+		Group="Appearance"
+		InitialValue=""
+		Type="String"
+		EditorType="MultiLineEditor"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowFocusRing"
+		Visible=true
+		Group="Appearance"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="BackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="&hFFFFFF"
+		Type="Color"
+		EditorType="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="HasBackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowFocus"
 		Visible=true
 		Group="Behavior"
 		InitialValue="False"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="AcceptTabs"
+		Name="AllowTabs"
 		Visible=true
 		Group="Behavior"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="AutoDeactivate"
+		Name="DoubleBuffer"
 		Visible=true
-		Group="Appearance"
-		InitialValue="True"
+		Group="Windows Behavior"
+		InitialValue="False"
 		Type="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="BackColor"
-		Visible=true
-		Group="Appearance"
-		InitialValue="&hFFFFFF"
-		Type="Color"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Backdrop"
 		Visible=true
 		Group="Appearance"
+		InitialValue=""
 		Type="Picture"
-		EditorType="Picture"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Enabled"
@@ -757,7 +811,7 @@ End
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="EraseBackground"
@@ -765,14 +819,7 @@ End
 		Group="Behavior"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HasBackColor"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Height"
@@ -780,61 +827,71 @@ End
 		Group="Position"
 		InitialValue="300"
 		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HelpTag"
-		Visible=true
-		Group="Appearance"
-		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="InitialParent"
+		Visible=false
 		Group="Position"
+		InitialValue=""
 		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Left"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockBottom"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockLeft"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockRight"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockTop"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Name"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
-		EditorType="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
-		EditorType="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabIndex"
@@ -842,12 +899,15 @@ End
 		Group="Position"
 		InitialValue="0"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabPanelIndex"
+		Visible=false
 		Group="Position"
 		InitialValue="0"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabStop"
@@ -855,13 +915,15 @@ End
 		Group="Position"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Top"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Transparent"
@@ -869,15 +931,7 @@ End
 		Group="Behavior"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="UseFocusRing"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Visible"
@@ -885,7 +939,7 @@ End
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Width"
@@ -893,5 +947,6 @@ End
 		Group="Position"
 		InitialValue="300"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior

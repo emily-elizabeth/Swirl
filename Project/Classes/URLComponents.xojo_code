@@ -1,7 +1,7 @@
 #tag Class
 Protected Class URLComponents
 	#tag Method, Flags = &h0
-		Sub Constructor(URL As Text)
+		Sub Constructor(URL As String)
 		  // A XFURL object represents a URL that can potentially contain the location
 		  // of a resource on a remote server, the path of a local file on disk, or even an arbitrary piece of encoded data.
 		  //
@@ -10,7 +10,7 @@ Protected Class URLComponents
 		  // such as changing the file’s last modification date. Finally, you can pass URL objects
 		  // to other APIs to retrieve the contents of those URLs.
 		  
-		  if (NOT URL.Empty) then
+		  if (NOT URL.IsEmpty) then
 		    CONST searchPattern = "^((?P<schema>[^:\/?#]+):)?(\/?\/?(?P<authority>[^\/?#]*))?(?P<path>[^?#]*)(\?(?P<query>[^#]*))?(#(?P<fragment>.*))?$"
 		    
 		    DIM aRegEx As NEW RegEx
@@ -21,19 +21,19 @@ Protected Class URLComponents
 		    
 		    DIM count As Integer = match.SubExpressionCount
 		    if (count > 0) then
-		      me.mScheme = match.SubExpressionString(2).ToText  ' scheme
-		      me.mResourceSpecifier = match.SubExpressionString(3).ToText
-		      me.ParseAuthority match.SubExpressionString(4).ToText  ' authority
-		      me.mPath = match.SubExpressionString(5).ToText  ' path
+		      me.mScheme = match.SubExpressionString(2)  ' scheme
+		      me.mResourceSpecifier = match.SubExpressionString(3)
+		      me.ParseAuthority match.SubExpressionString(4)  ' authority
+		      me.mPath = match.SubExpressionString(5)  ' path
 		      
 		      if (count > 6) then
-		        me.mResourceSpecifier = me.mResourceSpecifier + match.SubExpressionString(6).ToText
-		        me.mQuery = match.SubExpressionString(7).ToText  ' query
+		        me.mResourceSpecifier = me.mResourceSpecifier + match.SubExpressionString(6)
+		        me.mQuery = match.SubExpressionString(7)  ' query
 		      end if
 		      
 		      if (count = 10) then
-		        me.mResourceSpecifier = me.mResourceSpecifier + match.SubExpressionString(8).ToText
-		        me.mFragment = match.SubExpressionString(9).ToText  ' fragment
+		        me.mResourceSpecifier = me.mResourceSpecifier + match.SubExpressionString(8)
+		        me.mFragment = match.SubExpressionString(9)  ' fragment
 		      end if
 		      
 		      me.mAbsoluteString = URL
@@ -43,14 +43,8 @@ Protected Class URLComponents
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Operator_Convert() As Text
-		  Return me.AbsoluteString
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function Operator_Convert() As Xojo.Core.Dictionary
-		  DIM results As NEW Xojo.Core.Dictionary
+		Function Operator_Convert() As Dictionary
+		  DIM results As NEW Dictionary
 		  results.Value("AbsoluteString") = me.mAbsoluteString
 		  results.Value("Fragment") = me.mFragment
 		  results.Value("Host") = me.mHost
@@ -66,8 +60,14 @@ Protected Class URLComponents
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function Operator_Convert() As String
+		  Return me.AbsoluteString
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
-		Private Sub ParseAuthority(authority As Text)
+		Private Sub ParseAuthority(authority As String)
 		  try
 		    CONST searchPattern = "(?:(?P<userinfo>(?:[A-Za-z0-9\-._~!$&\'()*+,;=:]|%[0-9A-Fa-f]{2})*)@)?(?P<host>(?:[A-Za-z0-9\-._~!$&\'()*+,;=]|%[0-9A-Fa-f]{2})+)(?::(?P<port>[0-9]*))?"
 		    // create the RegEx object and add our expression as the search pattern
@@ -79,12 +79,12 @@ Protected Class URLComponents
 		    
 		    DIM count As Integer = match.SubExpressionCount
 		    if (count > 0) then
-		      DIM credentials() As Text = match.SubExpressionString(1).ToText.Split(":")
+		      DIM credentials() As String = match.SubExpressionString(1).Split(":")
 		      REDIM credentials(1)  // make sure there are two elements (user, password) Note: can be empty
 		      me.mUser = credentials(0)  // The user portion of the URL
 		      me.mPassword = credentials(1)  // The password of the URL
 		      
-		      me.mHost = match.SubExpressionString(2).ToText  // The host of the URL
+		      me.mHost = match.SubExpressionString(2)  // The host of the URL
 		    end if
 		    
 		    if (count = 4) then  // custom port
@@ -137,7 +137,7 @@ Protected Class URLComponents
 			  Return me.mAbsoluteString
 			End Get
 		#tag EndGetter
-		AbsoluteString As Text
+		AbsoluteString As String
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -149,7 +149,7 @@ Protected Class URLComponents
 			  Return me.mFragment
 			End Get
 		#tag EndGetter
-		Fragment As Text
+		Fragment As String
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -165,27 +165,27 @@ Protected Class URLComponents
 			  Return me.mHost
 			End Get
 		#tag EndGetter
-		Host As Text
+		Host As String
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private mAbsoluteString As Text
+		Private mAbsoluteString As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mFragment As Text
+		Private mFragment As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mHost As Text
+		Private mHost As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mPassword As Text
+		Private mPassword As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mPath As Text
+		Private mPath As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -193,19 +193,19 @@ Protected Class URLComponents
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mQuery As Text
+		Private mQuery As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mResourceSpecifier As Text
+		Private mResourceSpecifier As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mScheme As Text
+		Private mScheme As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mUser As Text
+		Private mUser As String
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -218,7 +218,7 @@ Protected Class URLComponents
 			  Return me.mPassword
 			End Get
 		#tag EndGetter
-		Password As Text
+		Password As String
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -229,7 +229,7 @@ Protected Class URLComponents
 			  Return me.mPath
 			End Get
 		#tag EndGetter
-		Path As Text
+		Path As String
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -255,7 +255,7 @@ Protected Class URLComponents
 			  Return me.mQuery
 			End Get
 		#tag EndGetter
-		Query As Text
+		Query As String
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -269,7 +269,7 @@ Protected Class URLComponents
 			  Return me.mResourceSpecifier
 			End Get
 		#tag EndGetter
-		ResourceSpecifier As Text
+		ResourceSpecifier As String
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -281,7 +281,7 @@ Protected Class URLComponents
 			  Return me.mScheme
 			End Get
 		#tag EndGetter
-		Scheme As Text
+		Scheme As String
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -293,26 +293,32 @@ Protected Class URLComponents
 			  Return me.mUser
 			End Get
 		#tag EndGetter
-		User As Text
+		User As String
 	#tag EndComputedProperty
 
 
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="AbsoluteString"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Fragment"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Host"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
@@ -322,6 +328,7 @@ Protected Class URLComponents
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -329,45 +336,61 @@ Protected Class URLComponents
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Password"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Path"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Port"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Query"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ResourceSpecifier"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Scheme"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
@@ -375,7 +398,9 @@ Protected Class URLComponents
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -383,10 +408,13 @@ Protected Class URLComponents
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="User"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty

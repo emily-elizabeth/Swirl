@@ -1,17 +1,16 @@
-#tag Window
-Begin ContainerControl ChatContainer
-   AcceptFocus     =   False
-   AcceptTabs      =   True
-   AutoDeactivate  =   True
-   BackColor       =   &cFFFFFF00
+#tag DesktopWindow
+Begin DesktopContainer ChatContainer
+   AllowAutoDeactivate=   True
+   AllowFocus      =   False
+   AllowFocusRing  =   False
+   AllowTabs       =   True
    Backdrop        =   0
-   Compatibility   =   ""
-   DoubleBuffer    =   False
+   BackgroundColor =   &cFFFFFF00
+   Composited      =   False
    Enabled         =   True
-   EraseBackground =   True
-   HasBackColor    =   False
+   HasBackgroundColor=   False
    Height          =   472
-   HelpTag         =   ""
+   Index           =   -2147483648
    InitialParent   =   ""
    Left            =   0
    LockBottom      =   True
@@ -21,9 +20,9 @@ Begin ContainerControl ChatContainer
    TabIndex        =   0
    TabPanelIndex   =   0
    TabStop         =   True
+   Tooltip         =   ""
    Top             =   0
    Transparent     =   False
-   UseFocusRing    =   False
    Visible         =   True
    Width           =   780
    Begin CustomChatInput ChatInput
@@ -34,8 +33,6 @@ Begin ContainerControl ChatContainer
       BackColor       =   &cFFFFFF00
       Bold            =   False
       Border          =   False
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Format          =   ""
       Height          =   80
@@ -70,11 +67,12 @@ Begin ContainerControl ChatContainer
       Top             =   392
       Transparent     =   True
       Underline       =   False
+      UnicodeMode     =   0
       UseFocusRing    =   False
       Visible         =   True
       Width           =   578
    End
-   Begin Listbox UserList
+   Begin DesktopListBox UserList
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
       Bold            =   False
@@ -82,14 +80,11 @@ Begin ContainerControl ChatContainer
       ColumnCount     =   1
       ColumnsResizable=   False
       ColumnWidths    =   ""
-      DataField       =   ""
-      DataSource      =   ""
       DefaultRowHeight=   46
       Enabled         =   True
       EnableDrag      =   True
       EnableDragReorder=   False
-      GridLinesHorizontal=   0
-      GridLinesVertical=   0
+      GridLineStyle   =   0
       HasHeading      =   False
       HeadingIndex    =   -1
       Height          =   472
@@ -133,6 +128,7 @@ Begin ContainerControl ChatContainer
       Height          =   391
       HelpTag         =   ""
       Index           =   -2147483648
+      InitialParent   =   ""
       Left            =   202
       LockBottom      =   True
       LockedInPosition=   False
@@ -149,11 +145,11 @@ Begin ContainerControl ChatContainer
       Width           =   578
    End
 End
-#tag EndWindow
+#tag EndDesktopWindow
 
 #tag WindowCode
 	#tag Event
-		Sub Close()
+		Sub Closing()
 		  ObjObserver.Unlisten self, Events.kWiredConnectionChatReceived
 		  ObjObserver.Unlisten self, Events.kWiredConnectionChatTopicReceived
 		  ObjObserver.Unlisten self, Events.kWiredConnectionDisconnected
@@ -177,8 +173,8 @@ End
 	#tag EndEvent
 
 	#tag Event
-		Sub EnableMenuItems()
-		  if (self.mChatID = 1) AND (self.TabPanelIndex -1 = PagePanel(self.Parent).Value) then
+		Sub MenuBarSelected()
+		  if (self.mChatID = 1) AND (self.PanelIndex - 1 = DesktopPagePanel(self.Parent).SelectedPanelIndex) then
 		    ConnectionReconnect.Enabled = NOT self.mConnection.IsConnected
 		    ConnectionDisconnect.Enabled = self.mConnection.IsConnected
 		  end if
@@ -186,7 +182,7 @@ End
 	#tag EndEvent
 
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  self.WiredConnectionLoginSuccessful self.mConnection
 		  
 		  if (self.mChatID = 1) then
@@ -240,8 +236,8 @@ End
 	#tag Method, Flags = &h21
 		Private Sub AddUser(user As WiredUser)
 		  self.UserList.AddRow ""
-		  self.UserList.CellTag(self.UserList.LastIndex, 1) = user.UserID
-		  self.UserList.RowTag(self.UserList.LastIndex) = user
+		  self.UserList.CellTagAt(self.UserList.LastAddedRowIndex, 1) = user.UserID
+		  self.UserList.RowTagAt(self.UserList.LastAddedRowIndex) = user
 		End Sub
 	#tag EndMethod
 
@@ -270,9 +266,9 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub RemoveUser(user As WiredUser)
-		  for i as Integer = (self.UserList.ListCount - 1) DownTo 0
-		    if (self.UserList.CellTag(i, 1) = user.UserID) then
-		      self.UserList.RemoveRow i
+		  for i as Integer = (self.UserList.RowCount - 1) DownTo 0
+		    if (self.UserList.CellTagAt(i, 1) = user.UserID) then
+		      self.UserList.RemoveRowAt i
 		      exit for i
 		    end if
 		  next
@@ -283,21 +279,21 @@ End
 		Private Sub SetChatLogFontSize(size As Integer)
 		  
 		  if (size = 0) then
-		    self.ChatLog.ExecuteJavaScript "document.body.style.fontSize='" + self.ChatLog.DefaultFontSize.ToText + "px';"
-		    self.ChatInput.TextSize = self.ChatLog.DefaultFontSize
+		    self.ChatLog.ExecuteJavaScript "document.body.style.fontSize='" + self.ChatLog.DefaultFontSize.ToString + "px';"
+		    self.ChatInput.FontSize = self.ChatLog.DefaultFontSize
 		  else
-		    self.ChatLog.ExecuteJavaScript "document.body.style.fontSize='" + size.ToText + "px';"
-		    self.ChatInput.TextSize = size
+		    self.ChatLog.ExecuteJavaScript "document.body.style.fontSize='" + size.ToString + "px';"
+		    self.ChatInput.FontSize = size
 		  end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub UpdateUser(user As WiredUser)
-		  for i As Integer = (self.UserList.ListCount - 1) DownTo 0
-		    if (self.UserList.CellTag(i, 1) = user.UserID) then
-		      self.UserList.RowTag(i) = user
-		      self.UserList.InvalidateCell i, 0
+		  for i As Integer = (self.UserList.RowCount - 1) DownTo 0
+		    if (self.UserList.CellTagAt(i, 1) = user.UserID) then
+		      self.UserList.RowTagAt(i) = user
+		      self.UserList.RefreshCell i, 0
 		      exit for i
 		    end if
 		  next
@@ -305,29 +301,29 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub WiredConnectionChatReceived(connection As WiredConnection, chatID As Integer, user As WiredUser, message As Text, isAction As Boolean)
+		Private Sub WiredConnectionChatReceived(connection As WiredConnection, chatID As Integer, user As WiredUser, message As String, isAction As Boolean)
 		  if (connection = self.mConnection) AND (chatID = self.mChatID) then
 		    if (isAction) then
-		      self.ChatLog.AppendNotification Xojo.Core.Date.Now, UIChatViewer.Notification, user.Nick + " " + message
+		      self.ChatLog.AppendNotification DateTime.Now, UIChatViewer.Notification, user.Nick + " " + message
 		    else
-		      self.ChatLog.AppendChat Xojo.Core.Date.Now, user.UserID, user.Nick, user.Icon, message, (user.UserID <> connection.MyUserID)
+		      self.ChatLog.AppendChat DateTime.Now, user.UserID, user.Nick, user.Icon, message, (user.UserID <> connection.MyUserID)
 		    end if
 		  end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub WiredConnectionChatTopicReceived(connection As WiredConnection, chatID As Integer, nick As Text, login As Text, IP As Text, time As Xojo.Core.Date, topic As Text)
+		Private Sub WiredConnectionChatTopicReceived(connection As WiredConnection, chatID As Integer, nick As String, login As String, IP As String, time As DateTime, topic As String)
 		  #Pragma Unused login
 		  #Pragma Unused IP
 		  #Pragma Unused time
 		  
 		  if (connection = self.mConnection) AND (chatID = self.mChatID) AND (Prefs.ChatTopicChangedPostInChat) then
-		    DIM message As Text = Strings.kUserSetTopic
+		    DIM message As String = Strings.kUserSetTopic
 		    message = message.Replace("%nick%", nick)
 		    message = message + " - " + topic
 		    
-		    self.ChatLog.AppendNotification Xojo.Core.Date.Now, UIChatViewer.Notification, message
+		    self.ChatLog.AppendNotification DateTime.Now, UIChatViewer.Notification, message
 		  end if
 		End Sub
 	#tag EndMethod
@@ -339,9 +335,9 @@ End
 		    self.ChatInput.Enabled = False
 		    
 		    if (Prefs.ServerDisconnectedPostInChat) then
-		      DIM message As Text = Strings.kDisconnectedFromServerName
+		      DIM message As String = Strings.kDisconnectedFromServerName
 		      message = message.Replace("%servername%", connection.ServerName)
-		      self.ChatLog.AppendNotification Xojo.Core.Date.Now, UIChatViewer.Notification, message
+		      self.ChatLog.AppendNotification DateTime.Now, UIChatViewer.Notification, message
 		    end if
 		  end if
 		End Sub
@@ -350,30 +346,30 @@ End
 	#tag Method, Flags = &h21
 		Private Sub WiredConnectionLoginSuccessful(connection As WiredConnection)
 		  if (connection = self.mConnection) then
-		    self.UserList.DeleteAllRows
+		    self.UserList.RemoveAllRows
 		    connection.RequestUserList self.mChatID
 		    self.ChatInput.Enabled = TRUE
 		    
-		    DIM message As Text = Strings.kConnectedToServerName
+		    DIM message As String = Strings.kConnectedToServerName
 		    message = message.Replace("%servername%", self.mConnection.ServerName)
 		    
 		    if (Prefs.ServerConnectedPostInChat) then
-		      self.ChatLog.AppendNotification Xojo.Core.Date.Now, "notification", message
+		      self.ChatLog.AppendNotification DateTime.Now, "notification", message
 		    end if
 		  end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub WiredConnectionNewsPosted(connection As WiredConnection, nick As Text, time As Xojo.Core.Date, message As Text)
+		Private Sub WiredConnectionNewsPosted(connection As WiredConnection, nick As String, time As DateTime, message As String)
 		  #Pragma Unused message
 		  
 		  if (connection = self.mConnection) AND (self.mChatID = 1) AND (Prefs.NewsPostedPostInChat) then
-		    DIM eventMessage As Text = Strings.kNewsPostedByOn
+		    DIM eventMessage As String = Strings.kNewsPostedByOn
 		    eventMessage = eventMessage.Replace("%nick%", nick)
-		    eventMessage = eventMessage.Replace("%date%", time.ToText)
+		    eventMessage = eventMessage.Replace("%date%", time.ToString)
 		    
-		    self.ChatLog.AppendNotification Xojo.Core.Date.Now, UIChatViewer.Notification, eventMessage
+		    self.ChatLog.AppendNotification DateTime.Now, UIChatViewer.Notification, eventMessage
 		  end if
 		End Sub
 	#tag EndMethod
@@ -381,10 +377,10 @@ End
 	#tag Method, Flags = &h21
 		Private Sub WiredConnectionPrivateChatDeclined(connection As WiredConnection, chatID As Integer, user As WiredUser)
 		  if (connection = self.mConnection) AND (chatID = self.mChatID) then
-		    DIM message As Text = Strings.kUserHasDeclinedInvitation
+		    DIM message As String = Strings.kUserHasDeclinedInvitation
 		    message = message.Replace("%nick%", user.Nick)
 		    
-		    self.ChatLog.AppendNotification Xojo.Core.Date.Now, "notification", message
+		    self.ChatLog.AppendNotification DateTime.Now, "notification", message
 		  end if
 		End Sub
 	#tag EndMethod
@@ -393,17 +389,17 @@ End
 		Private Sub WiredConnectionUserChanged(connection As WiredConnection, oldUser As WiredUser, newUser As WiredUser)
 		  if (connection = self.mConnection) then
 		    if (Prefs.UserNickChangedPostInChat) AND (oldUser.Nick <> newUser.Nick) then
-		      DIM message As Text = Strings.kIsNowKnownAs
+		      DIM message As String = Strings.kIsNowKnownAs
 		      message = message.Replace("%oldnick%", oldUser.Nick)
 		      message = message.Replace("%newnick%", newUser.Nick)
-		      self.ChatLog.AppendNotification Xojo.Core.Date.Now, UIChatViewer.NickChanged, message
+		      self.ChatLog.AppendNotification DateTime.Now, UIChatViewer.NickChanged, message
 		    end if
 		    
 		    if (Prefs.UserStatusChangedPostInChat) AND (oldUser.Status <> newUser.Status) then
-		      DIM message As Text = Strings.kUserStatusChangedTo
+		      DIM message As String = Strings.kUserStatusChangedTo
 		      message = message.Replace("%nick%", newUser.Nick)
 		      message = message.Replace("%status%", newUser.Status)
-		      self.ChatLog.AppendNotification Xojo.Core.Date.Now, UIChatViewer.Notification, message
+		      self.ChatLog.AppendNotification DateTime.Now, UIChatViewer.Notification, message
 		    end if
 		    
 		    self.UpdateUser newUser
@@ -425,30 +421,30 @@ End
 		    self.AddUser user
 		    
 		    if (Prefs.UserJoinedPostInChat) then
-		      DIM message As Text = Strings.kUserHasJoined
+		      DIM message As String = Strings.kUserHasJoined
 		      message = message.Replace("%nick%", user.Nick)
 		      
-		      self.ChatLog.AppendNotification Xojo.Core.Date.Now, UIChatViewer.ContactJoined, message
+		      self.ChatLog.AppendNotification DateTime.Now, UIChatViewer.ContactJoined, message
 		    end if
 		  end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub WiredConnectionUserKicked(connection As WiredConnection, victim As WiredUser, killer As WiredUser, kickMessage As Text, isBan As Boolean)
+		Private Sub WiredConnectionUserKicked(connection As WiredConnection, victim As WiredUser, killer As WiredUser, kickMessage As String, isBan As Boolean)
 		  if (connection = self.mConnection) then
 		    self.RemoveUser victim
 		    
 		    if (Prefs.UserLeftPostInChat) then
-		      DIM message As Text = if(kickMessage.Empty, Strings.kUserWasKickedBy, Strings.kUserWasKickedByWithMessage)
+		      DIM message As String = if(kickMessage.IsEmpty, Strings.kUserWasKickedBy, Strings.kUserWasKickedByWithMessage)
 		      if (isBan) then
-		        message = if(kickMessage.Empty, Strings.kUserWasBannedBy, Strings.kUserWasBannedByWithMessage)
+		        message = if(kickMessage.IsEmpty, Strings.kUserWasBannedBy, Strings.kUserWasBannedByWithMessage)
 		      end if
 		      message = message.Replace("%victim%", victim.Nick)
 		      message = message.Replace("%killer%", killer.Nick)
 		      message = message.Replace("%message%", kickMessage)
 		      
-		      self.ChatLog.AppendNotification Xojo.Core.Date.Now, UIChatViewer.ContactKicked, message
+		      self.ChatLog.AppendNotification DateTime.Now, UIChatViewer.ContactKicked, message
 		    end if
 		  end if
 		End Sub
@@ -460,9 +456,9 @@ End
 		    self.RemoveUser user
 		    
 		    if (Prefs.UserLeftPostInChat) then
-		      DIM message As Text = Strings.kUserHasLeft
+		      DIM message As String = Strings.kUserHasLeft
 		      message = message.Replace("%nick%", user.Nick)
-		      self.ChatLog.AppendNotification Xojo.Core.Date.Now, UIChatViewer.ContactLeft, message
+		      self.ChatLog.AppendNotification DateTime.Now, UIChatViewer.ContactLeft, message
 		    end if
 		  end if
 		End Sub
@@ -506,7 +502,7 @@ End
 
 #tag Events ChatInput
 	#tag Event
-		Function KeyDown(Key As String) As Boolean
+		Function KeyDown(key As String) As Boolean
 		  DIM returnValue As Boolean = FALSE
 		  
 		  select case asc(Key)
@@ -516,12 +512,12 @@ End
 		      me.Text = ""
 		      returnValue = TRUE
 		    ElseIf (me.Text.Left(4) = "/me ") then
-		      DIM chat As Text = me.Text.Replace("/me ", "").ToText
+		      DIM chat As String = me.Text.Replace("/me ", "")
 		      self.mConnection.SendChat self.mChatID, chat, True
 		      me.Text = ""
 		      returnValue = TRUE
 		    else
-		      self.mConnection.SendChat self.mChatID, me.Text.ToText, if(Keyboard.OptionKey, TRUE, FALSE)
+		      self.mConnection.SendChat self.mChatID, me.Text, if(Keyboard.OptionKey, TRUE, FALSE)
 		      me.Text = ""
 		      returnValue = TRUE
 		    end if
@@ -535,19 +531,19 @@ End
 		  DIM aMemoryBlock As MemoryBlock = image.GetData(Picture.FormatPNG)
 		  DIM encodedPicture As String = aMemoryBlock
 		  encodedPicture = EncodeBase64(encodedPicture, 0)  // the zero means no line breaks in the base64 encoded data
-		  self.mConnection.SendChat self.mChatID, "<img src='data:image/png;base64," + encodedPicture.ToText + "' class=""swirlImage""/>"
+		  self.mConnection.SendChat self.mChatID, "<img src='data:image/png;base64," + encodedPicture + "' class=""swirlImage""/>"
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub PictureLinkPasted(link As Text)
+		Sub PictureLinkPasted(link As String)
 		  self.mConnection.SendChat self.mChatID, "<img src=""" + link + """ class=""swirlImage""/>"
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events UserList
 	#tag Event
-		Sub Open()
-		  me.ColumnAlignmentOffset(0) = 44
+		Sub Opening()
+		  me.ColumnAlignmentOffsetAt(0) = 44
 		  
 		  if (self.mChatID <> 1) then
 		    me.AcceptRawDataDrop "swirl.UserID"
@@ -555,12 +551,12 @@ End
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Function CellTextPaint(g As Graphics, row As Integer, column As Integer, x as Integer, y as Integer) As Boolean
+		Function PaintCellText(g as Graphics, row as Integer, column as Integer, x as Integer, y as Integer) As Boolean
 		  #Pragma Unused x
 		  #Pragma Unused y
 		  
 		  if (column = 0) then
-		    DIM user As WiredUser = me.RowTag(row)
+		    DIM user As WiredUser = me.RowTagAt(row)
 		    
 		    // draw the user icon
 		    g.Transparency = if(user.IsIdle OR NOT self.mConnection.IsConnected, 50.0, 0.0)  // is the user is idle, then set the transparency
@@ -569,7 +565,7 @@ End
 		    end if
 		    
 		    // user nick
-		    if (me.Selected(row)) then
+		    if (me.SelectedRowIndex = row) then
 		      g.Transparency = 0.0
 		      g.ForeColor = Colours.White
 		    else
@@ -578,10 +574,10 @@ End
 		    end if
 		    g.TextFont = "System"
 		    g.TextSize = 13
-		    g.DrawString user.Nick, 44, if(user.Status.Empty, g.TextHeight + 10, g.TextHeight)
+		    g.DrawString user.Nick, 44, if(user.Status.IsEmpty, g.TextHeight + 10, g.TextHeight)
 		    
 		    // user status
-		    g.ForeColor = if(me.Selected(row), Colours.Black, DisabledTextColor)
+		    g.ForeColor = if(me.SelectedRowIndex = row, Colours.Black, DisabledTextColor)
 		    g.TextSize = 11
 		    g.DrawString user.Status, 44, 32, 0, TRUE
 		    
@@ -590,13 +586,13 @@ End
 		End Function
 	#tag EndEvent
 	#tag Event
-		Function ContextualMenuAction(hitItem as MenuItem) As Boolean
-		  if (hitItem <> Nil) then
-		    DIM user As WiredUser = hitItem.Tag
+		Function ContextualMenuItemSelected(selectedItem As DesktopMenuItem) As Boolean
+		  if (selectedItem <> Nil) then
+		    DIM user As WiredUser = selectedItem.Tag
 		    
-		    select case hitItem.Text
+		    select case selectedItem.Text
 		    case Strings.kStartPrivateChat
-		      if (me.ListIndex <> -1) then
+		      if (me.SelectedRowIndex <> -1) then
 		        DIM win As SwirlMessagesWin = SwirlMessagesWin.MessageWindowExists(self.mConnection, user)
 		        if (win = Nil) then
 		          win = NEW SwirlMessagesWin(self.mConnection, user)
@@ -620,29 +616,29 @@ End
 		End Function
 	#tag EndEvent
 	#tag Event
-		Function ConstructContextualMenu(base as MenuItem, x as Integer, y as Integer) As Boolean
+		Function ConstructContextualMenu(base As DesktopMenuItem, x As Integer, y As Integer) As Boolean
 		  if (x <> -1) AND (y <> -1) then
 		    DIM row As Integer = me.RowFromXY(x, y)
 		    'DIM userID As Integer = me.CellTag(row, 1)
-		    DIM user As WiredUser = me.RowTag(row)
+		    DIM user As WiredUser = me.RowTagAt(row)
 		    
 		    if (row <> -1) then
-		      base.Append NEW MenuItem(Strings.kStartPrivateChat, user)
-		      base.Append NEW MenuItem(Strings.kStartGroupChat, user)
+		      base.AddMenu NEW MenuItem(Strings.kStartPrivateChat, user)
+		      base.AddMenu NEW MenuItem(Strings.kStartGroupChat, user)
 		      
 		      if (self.mConnection.CanGetUserInfo) then
-		        base.Append NEW MenuItem(MenuItem.TextSeparator)
-		        base.Append NEW MenuItem(Strings.kGetInfo, user)
+		        base.AddMenu NEW MenuItem(MenuItem.TextSeparator)
+		        base.AddMenu NEW MenuItem(Strings.kGetInfo, user)
 		      end if
 		      
 		      if (self.mConnection.CanKickUsers) OR (self.mConnection.CanBanUsers) then
-		        base.Append NEW MenuItem(MenuItem.TextSeparator)
+		        base.AddMenu NEW MenuItem(MenuItem.TextSeparator)
 		        
 		        if (self.mConnection.CanKickUsers) then
-		          base.Append NEW MenuItem(Strings.kKick, user)
+		          base.AddMenu NEW MenuItem(Strings.kKick, user)
 		        end if
 		        if (self.mConnection.CanBanUsers) then
-		          base.Append NEW MenuItem(Strings.kBan, user)
+		          base.AddMenu NEW MenuItem(Strings.kBan, user)
 		        end if
 		      end if
 		    end if
@@ -652,7 +648,7 @@ End
 		End Function
 	#tag EndEvent
 	#tag Event
-		Sub DropObject(obj As DragItem, action As Integer)
+		Sub DropObject(obj As DragItem, action As DragItem.Types)
 		  #pragma Unused action
 		  
 		  if (obj <> Nil) then
@@ -670,12 +666,12 @@ End
 		  #Pragma Unused row
 		  
 		  // the reason this is done in a loop is to all the future expansion of selecting multiple users
-		  DIM rowCount As Integer = me.ListCount -1
+		  DIM rowCount As Integer = me.RowCount -1
 		  for i as Integer = 0 to rowCount
-		    if (me.Selected(i)) then
+		    if (me.SelectedRowIndex = i) then
 		      // this is where we would add the picture of the selected row
 		      drag.PrivateRawData("swirl.Handle") = Str(self.mConnection.Handle)
-		      drag.RawData("swirl.UserID") = Str(me.CellTag(i, 1))
+		      drag.RawData("swirl.UserID") = Str(me.CellTagAt(i, 1))
 		    end if
 		  next
 		  
@@ -683,12 +679,12 @@ End
 		End Function
 	#tag EndEvent
 	#tag Event
-		Sub DoubleClick()
-		  if (me.ListIndex <> -1) then
-		    DIM win As SwirlMessagesWin = SwirlMessagesWin.MessageWindowExists(self.mConnection, me.RowTag(me.ListIndex))
+		Sub DoublePressed()
+		  if (me.SelectedRowIndex <> -1) then
+		    DIM win As SwirlMessagesWin = SwirlMessagesWin.MessageWindowExists(self.mConnection, me.RowTagAt(me.SelectedRowIndex))
 		    
 		    if (win = Nil) then
-		      win = NEW SwirlMessagesWin(self.mConnection, me.RowTag(me.ListIndex))
+		      win = NEW SwirlMessagesWin(self.mConnection, me.RowTagAt(me.SelectedRowIndex))
 		    end if
 		    
 		    win.Show
@@ -696,16 +692,16 @@ End
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Function KeyDown(Key As String) As Boolean
+		Function KeyDown(key As String) As Boolean
 		  DIM returnValue As Boolean = FALSE
 		  
 		  select case asc(Key)
 		  case 3, 10, 13
-		    if (me.ListIndex <> -1) then
-		      DIM win As SwirlMessagesWin = SwirlMessagesWin.MessageWindowExists(self.mConnection, me.RowTag(me.ListIndex))
+		    if (me.SelectedRowIndex <> -1) then
+		      DIM win As SwirlMessagesWin = SwirlMessagesWin.MessageWindowExists(self.mConnection, me.RowTagAt(me.SelectedRowIndex))
 		      
 		      if (win = Nil) then
-		        win = NEW SwirlMessagesWin(self.mConnection, me.RowTag(me.ListIndex))
+		        win = NEW SwirlMessagesWin(self.mConnection, me.RowTagAt(me.SelectedRowIndex))
 		      end if
 		      
 		      win.Show
@@ -718,11 +714,6 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag Events ChatLog
-	#tag Event
-		Sub Open()
-		  me.MessageStylePath = Prefs.MessageStylePath
-		End Sub
-	#tag EndEvent
 	#tag Event
 		Function CancelLoad(URL As String) As Boolean
 		  if (URL.Left(4) = "http") then
@@ -738,52 +729,92 @@ End
 		  self.SetChatLogFontSize Prefs.MessageStyleFontSize
 		End Sub
 	#tag EndEvent
+	#tag Event
+		Sub Opening()
+		  me.MessageStylePath = Prefs.MessageStylePath
+		End Sub
+	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
-		Name="DoubleBuffer"
+		Name="Composited"
 		Visible=true
 		Group="Windows Behavior"
 		InitialValue="False"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="AcceptFocus"
+		Name="Index"
 		Visible=true
-		Group="Behavior"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
+		Group="ID"
+		InitialValue="-2147483648"
+		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="AcceptTabs"
-		Visible=true
-		Group="Behavior"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="AutoDeactivate"
+		Name="AllowAutoDeactivate"
 		Visible=true
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="BackColor"
+		Name="Tooltip"
+		Visible=true
+		Group="Appearance"
+		InitialValue=""
+		Type="String"
+		EditorType="MultiLineEditor"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowFocusRing"
+		Visible=true
+		Group="Appearance"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="BackgroundColor"
 		Visible=true
 		Group="Background"
 		InitialValue="&hFFFFFF"
-		Type="Color"
+		Type="ColorGroup"
+		EditorType="ColorGroup"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="HasBackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowFocus"
+		Visible=true
+		Group="Behavior"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowTabs"
+		Visible=true
+		Group="Behavior"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Backdrop"
 		Visible=true
 		Group="Background"
+		InitialValue=""
 		Type="Picture"
-		EditorType="Picture"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Enabled"
@@ -791,22 +822,7 @@ End
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="EraseBackground"
-		Visible=true
-		Group="Behavior"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HasBackColor"
-		Visible=true
-		Group="Background"
-		InitialValue="False"
-		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Height"
@@ -814,61 +830,71 @@ End
 		Group="Size"
 		InitialValue="300"
 		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HelpTag"
-		Visible=true
-		Group="Appearance"
-		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="InitialParent"
+		Visible=false
 		Group="Position"
+		InitialValue=""
 		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Left"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockBottom"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockLeft"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockRight"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockTop"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Name"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
-		EditorType="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
-		EditorType="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabIndex"
@@ -876,12 +902,15 @@ End
 		Group="Position"
 		InitialValue="0"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabPanelIndex"
+		Visible=false
 		Group="Position"
 		InitialValue="0"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabStop"
@@ -889,13 +918,15 @@ End
 		Group="Position"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Top"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Transparent"
@@ -903,15 +934,7 @@ End
 		Group="Behavior"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="UseFocusRing"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Visible"
@@ -919,7 +942,7 @@ End
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Width"
@@ -927,5 +950,6 @@ End
 		Group="Size"
 		InitialValue="300"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior

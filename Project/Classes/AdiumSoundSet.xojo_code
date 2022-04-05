@@ -1,7 +1,7 @@
 #tag Class
 Protected Class AdiumSoundSet
 	#tag Method, Flags = &h0
-		Sub Constructor(path As Xojo.IO.FolderItem)
+		Sub Constructor(path As FolderItem)
 		  if (path <> Nil) AND (path.Exists) AND (path.IsFolder) AND ((path.Child("Sounds.plist").Exists) OR (path.Child(path.DisplayName + ".txt").Exists)) then
 		    me.mDisplayName = path.DisplayName  //.Replace(".AdiumSoundSet", "")  // removed 2.0.0
 		    me.mPath = path
@@ -16,23 +16,23 @@ Protected Class AdiumSoundSet
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ConstructorPlist(path As Xojo.IO.FolderItem)
-		  DIM file As NEW FolderItem(path.Path, FolderItem.PathTypeNative)
+		Private Sub ConstructorPlist(path As FolderItem)
+		  DIM file As NEW FolderItem(path.NativePath, FolderItem.PathTypeNative)
 		  DIM doc As NEW XmlDocument(file)
 		  DIM node As XmlNode = doc.FirstChild.FirstChild
 		  
 		  DIM childNode As XmlNode = node.FirstChild
 		  while childNode <> Nil
-		    DIM key As Text = childNode.FirstChild.Value.ToText
+		    DIM key As String = childNode.FirstChild.Value
 		    childNode = childNode.NextSibling
 		    
 		    select case key
 		    case "Info"
-		      me.mInfo = childNode.FirstChild.Value.ToText
+		      me.mInfo = childNode.FirstChild.Value
 		    case "Sounds"
 		      childNode = childNode.FirstChild
 		    else
-		      me.LoadSoundFromKeyAndFileName key, childNode.FirstChild.Value.ToText
+		      me.LoadSoundFromKeyAndFileName key, childNode.FirstChild.Value
 		    end select
 		    
 		    if (key <> "Sounds") then
@@ -43,10 +43,10 @@ Protected Class AdiumSoundSet
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ConstructorTextFile(inPath As Xojo.IO.FolderItem)
+		Private Sub ConstructorTextFile(inPath As FolderItem)
 		  if (inPath <> Nil) AND (inPath.Exists) AND (NOT inPath.IsFolder) then
-		    DIM stream As Xojo.IO.TextInputStream = Xojo.IO.TextInputStream.Open(inPath, Xojo.Core.TextEncoding.UTF8)
-		    DIM data As Text = stream.ReadAll
+		    DIM stream As TextInputStream = TextInputStream.Open(inPath)
+		    DIM data As String = stream.ReadAll
 		    stream.Close
 		    
 		    DIM aRegEx As NEW RegEx
@@ -54,8 +54,8 @@ Protected Class AdiumSoundSet
 		    
 		    DIM match As RegExMatch = aRegEx.Search(data)
 		    while (match <> Nil)
-		      DIM key As Text = match.SubExpressionString(1).ToText
-		      DIM filename As Text = match.SubExpressionString(2).ToText
+		      DIM key As String = match.SubExpressionString(1)
+		      DIM filename As String = match.SubExpressionString(2)
 		      
 		      me.LoadSoundFromKeyAndFileName key, filename
 		      
@@ -66,7 +66,7 @@ Protected Class AdiumSoundSet
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub LoadSoundFromKeyAndFileName(key As Text, soundFileName As Text)
+		Private Sub LoadSoundFromKeyAndFileName(key As String, soundFileName As String)
 		  if (me.mPath.Child(soundFileName).Exists) then
 		    DIM aSound As Sound = me.OpenAsSound(me.mPath.Child(soundFileName))
 		    
@@ -103,11 +103,11 @@ Protected Class AdiumSoundSet
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function OpenAsSound(inPath As Xojo.IO.FolderItem) As Sound
+		Private Function OpenAsSound(inPath As FolderItem) As Sound
 		  DIM results As Sound
 		  
 		  if (inPath <> Nil) AND (inPath.Exists) then
-		    DIM file As NEW FolderItem(inPath.Path, FolderItem.PathTypeNative)
+		    DIM file As NEW FolderItem(inPath.NativePath, FolderItem.PathTypeNative)
 		    results = file.OpenAsSound
 		  end if
 		  
@@ -178,7 +178,7 @@ Protected Class AdiumSoundSet
 			  #Pragma Unused value
 			End Set
 		#tag EndSetter
-		DisplayName As Text
+		DisplayName As String
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -206,7 +206,7 @@ Protected Class AdiumSoundSet
 			  #Pragma Unused value
 			End Set
 		#tag EndSetter
-		Info As Text
+		Info As String
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
@@ -214,7 +214,7 @@ Protected Class AdiumSoundSet
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mDisplayName As Text
+		Private mDisplayName As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -236,7 +236,7 @@ Protected Class AdiumSoundSet
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private mInfo As Text
+		Private mInfo As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -244,7 +244,7 @@ Protected Class AdiumSoundSet
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mPath As Xojo.IO.FolderItem
+		Private mPath As FolderItem
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -312,7 +312,7 @@ Protected Class AdiumSoundSet
 			  #Pragma Unused value
 			End Set
 		#tag EndSetter
-		Path As Xojo.IO.FolderItem
+		Path As FolderItem
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -445,19 +445,27 @@ Protected Class AdiumSoundSet
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="ChatReceived"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Sound"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DisplayName"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Error"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Sound"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -465,10 +473,13 @@ Protected Class AdiumSoundSet
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Info"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
@@ -478,43 +489,63 @@ Protected Class AdiumSoundSet
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="MessageReceived"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Sound"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="NewsPosted"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Sound"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="PrivateChatInvitationReceived"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Sound"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ServerConnected"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Sound"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ServerDisconnected"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Sound"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -522,36 +553,55 @@ Protected Class AdiumSoundSet
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TransferFinished"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Sound"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TransferStarted"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Sound"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="UserJoined"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Sound"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="UserLeft"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Sound"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="UserNickChanged"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Sound"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="UserStatusChanged"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Sound"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

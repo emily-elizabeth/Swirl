@@ -1,8 +1,8 @@
 #tag Class
 Protected Class App
-Inherits Application
+Inherits DesktopApplication
 	#tag Event
-		Function CancelClose() As Boolean
+		Function CancelClosing() As Boolean
 		  DIM returnValue As Boolean = FALSE
 		  
 		  if (Prefs.ConfirmApplicationQuit) then
@@ -26,7 +26,7 @@ Inherits Application
 	#tag EndEvent
 
 	#tag Event
-		Sub Close()
+		Sub Closing()
 		  #if not TargetCocoa
 		    if (me.mTrayItem <> Nil) then
 		      me.RemoveTrayItem me.mTrayItem
@@ -36,7 +36,7 @@ Inherits Application
 	#tag EndEvent
 
 	#tag Event
-		Sub EnableMenuItems()
+		Sub MenuBarSelected()
 		  '#if TargetCocoa
 		  'if (not Window(0) IsA ssWiredChatWindow) then
 		  'WindowCloseWindow.KeyboardShortcut = Strings.kCloseWindowShortcut
@@ -48,7 +48,7 @@ Inherits Application
 	#tag EndEvent
 
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  me.InitMenuBar
 		  
 		  // move the default bundles, if needed
@@ -170,7 +170,7 @@ Inherits Application
 
 
 	#tag Method, Flags = &h21
-		Private Function ConstructTrayItemMenu(aTrayItem As Variant, base As MenuItem, cause As Integer, x As Integer, y As Integer) As Boolean
+		Private Function ConstructTrayItemMenu(aTrayItem As Variant, base As DesktopMenuItem, cause As Integer, x As Integer, y As Integer) As Boolean
 		  #Pragma Unused aTrayItem
 		  #Pragma Unused base
 		  #Pragma Unused cause
@@ -187,14 +187,14 @@ Inherits Application
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub CopySourceFolderToDestinationFolder(source As Xojo.IO.FolderItem, destination As Xojo.IO.FolderItem)
-		  DIM newFolder As Xojo.IO.FolderItem
+		Sub CopySourceFolderToDestinationFolder(source As FolderItem, destination As FolderItem)
+		  DIM newFolder As FolderItem
 		  
 		  if (source.IsFolder) then
 		    newFolder = destination.Child(source.Name)
 		    newFolder.CreateAsFolder
 		    
-		    for each f As Xojo.IO.FolderItem in source.Children
+		    for each f As FolderItem in source.Children
 		      if (f.IsFolder) then
 		        CopySourceFolderToDestinationFolder f, newFolder
 		      else
@@ -213,32 +213,33 @@ Inherits Application
 		Sub EnsureDefaultTheme()
 		  // Emoticons
 		  if (NOT Paths.Emoticons.Child(Paths.DefaultEmoticonSetName).Exists) AND (Paths.DefaultEmoticonSet.Exists) then
-		    CopySourceFolderToDestinationFolder Paths.DefaultEmoticonSet, Paths.Emoticons
+		    Paths.DefaultEmoticonSet.CopyTo Paths.Emoticons
+		    'CopySourceFolderToDestinationFolder Paths.DefaultEmoticonSet, Paths.Emoticons
 		  end if
 		  
 		  // Message Style
 		  if (NOT Paths.MessageStyles.Child(Paths.DefaultMessageStyleName).Exists) AND (Paths.DefaultMessageStyle.Exists) then
-		    CopySourceFolderToDestinationFolder Paths.DefaultMessageStyle, Paths.MessageStyles
+		    Paths.DefaultMessageStyle.CopyTo Paths.MessageStyles
 		  end if
 		  
 		  // News Style
 		  if (NOT Paths.NewsStyles.Child(Paths.DefaultNewsStyleName).Exists) AND (Paths.DefaultNewsStyle.Exists) then
-		    CopySourceFolderToDestinationFolder Paths.DefaultNewsStyle, Paths.NewsStyles
+		    Paths.DefaultNewsStyle.CopyTo Paths.NewsStyles
 		  end if
 		  
 		  // Sound set
 		  if (NOT Paths.Sounds.Child(Paths.DefaultSoundSetName).Exists) AND (Paths.DefaultSoundSet.Exists) then
-		    CopySourceFolderToDestinationFolder Paths.DefaultSoundSet, Paths.Sounds
+		    Paths.DefaultSoundSet.CopyTo Paths.Sounds
 		  end if
 		  
 		  // Status Icons
 		  if (NOT Paths.StatusIcons.Child(Paths.DefaultStatusIconSetName).Exists) AND (Paths.DefaultStatusIconSet.Exists) then
-		    CopySourceFolderToDestinationFolder Paths.DefaultStatusIconSet, Paths.StatusIcons
+		    Paths.DefaultStatusIconSet.CopyTo Paths.StatusIcons
 		  end if
 		  
 		  // Icon
 		  if (NOT Paths.Icons.Child(Paths.DefaultIconName).Exists) AND (Paths.DefaultIcon.Exists) then
-		    CopySourceFolderToDestinationFolder Paths.DefaultIcon, Paths.Icons
+		    Paths.DefaultIcon.CopyTo Paths.Icons
 		  end if
 		End Sub
 	#tag EndMethod
@@ -282,11 +283,11 @@ Inherits Application
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function RemoveEntireFolder(theFolder As Xojo.IO.FolderItem, continueIfErrors As Boolean = False) As Integer
+		Function RemoveEntireFolder(theFolder As FolderItem, continueIfErrors As Boolean = False) As Integer
 		  // Returns an error code if it fails, or zero if the folder was removed successfully
 		  
 		  DIM returnCode, lastError As Integer
-		  DIM files(), folders() As Xojo.IO.FolderItem
+		  DIM files(), folders() As FolderItem
 		  
 		  If theFolder = Nil Or Not theFolder.Exists Then
 		    Return 0
@@ -294,7 +295,7 @@ Inherits Application
 		  
 		  // Collect the folder‘s contents first.
 		  // This is faster than collecting them in reverse order and removing them right away!
-		  For Each item As Xojo.IO.FolderItem In theFolder.Children
+		  For Each item As FolderItem In theFolder.Children
 		    If item.Exists Then
 		      If item.IsFolder Then
 		        folders.Append(item)
@@ -305,7 +306,7 @@ Inherits Application
 		  Next
 		  
 		  // Now remove the files
-		  For Each file As Xojo.IO.FolderItem In files
+		  For Each file As FolderItem In files
 		    Try
 		      file.Delete
 		    Catch error As IOException
@@ -323,7 +324,7 @@ Inherits Application
 		  REDIM files(-1) // free the memory used by the files array before we enter recursion
 		  
 		  // Now remove the folders
-		  For Each f As Xojo.IO.FolderItem In folders
+		  For Each f As FolderItem In folders
 		    lastError = RemoveEntireFolder(f, continueIfErrors)
 		    If lastError <> 0 Then
 		      If continueIfErrors Then
@@ -349,12 +350,12 @@ Inherits Application
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub WiredConnectionChatReceived(connection As WiredConnection, chatID As Integer, user As WiredUser, message As Text, isAction As Boolean)
+		Private Sub WiredConnectionChatReceived(connection As WiredConnection, chatID As Integer, user As WiredUser, message As String, isAction As Boolean)
 		  #Pragma Unused connection
 		  #Pragma Unused chatID
 		  #Pragma Unused isAction
 		  
-		  DIM msg As Text = Strings.kUserSaid
+		  DIM msg As String = Strings.kUserSaid
 		  msg = msg.Replace("%nick%", user.Nick)
 		  msg = msg.Replace("%message%", message)
 		  
@@ -378,7 +379,7 @@ Inherits Application
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub WiredConnectionChatTopicReceived(connection As WiredConnection, chatID As Integer, nick As Text, login As Text, IP As Text, time As Xojo.Core.Date, topic As Text)
+		Private Sub WiredConnectionChatTopicReceived(connection As WiredConnection, chatID As Integer, nick As String, login As String, IP As String, time As DateTime, topic As String)
 		  #Pragma Unused connection
 		  #Pragma Unused chatID
 		  #Pragma Unused login
@@ -386,7 +387,7 @@ Inherits Application
 		  #Pragma Unused time
 		  #Pragma Unused topic
 		  
-		  DIM message As Text = Strings.kUserSetTopic
+		  DIM message As String = Strings.kUserSetTopic
 		  message = message.Replace("%nick%", nick)
 		  
 		  if (Prefs.ChatTopicChangedBounceInDock) then
@@ -407,7 +408,7 @@ Inherits Application
 		Private Sub WiredConnectionLoginSuccessful(connection As WiredConnection)
 		  #Pragma Unused connection
 		  
-		  DIM message As Text = Strings.kConnectedToServerName
+		  DIM message As String = Strings.kConnectedToServerName
 		  message = message.Replace("%servername%", connection.ServerName)
 		  
 		  if (Prefs.ServerConnectedBounceInDock) then
@@ -430,7 +431,7 @@ Inherits Application
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub WiredConnectionMessageReceived(connection As WiredConnection, user As WiredUser, message As Text, isBroadcast As Boolean)
+		Private Sub WiredConnectionMessageReceived(connection As WiredConnection, user As WiredUser, message As String, isBroadcast As Boolean)
 		  #Pragma Unused isBroadcast
 		  
 		  DIM win As SwirlMessagesWin = SwirlMessagesWin.MessageWindowExists(connection, user)
@@ -441,7 +442,7 @@ Inherits Application
 		    win.Show
 		  end if
 		  
-		  DIM eventMessage As Text = Strings.kUserSaid
+		  DIM eventMessage As String = Strings.kUserSaid
 		  eventMessage = eventMessage.Replace("%nick%", user.Nick)
 		  eventMessage = eventMessage.Replace("%message%", message)
 		  
@@ -465,13 +466,13 @@ Inherits Application
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub WiredConnectionNewsPosted(connection As WiredConnection, nick As Text, time As Xojo.Core.Date, message As Text)
+		Private Sub WiredConnectionNewsPosted(connection As WiredConnection, nick As String, time As DateTime, message As String)
 		  #Pragma Unused connection
 		  #Pragma Unused message
 		  
-		  DIM eventMessage As Text = Strings.kNewsPostedByOn
+		  DIM eventMessage As String = Strings.kNewsPostedByOn
 		  eventMessage = eventMessage.Replace("%nick%", nick)
-		  eventMessage = eventMessage.Replace("%date%", if (time = Nil, "" ,time.ToText))
+		  eventMessage = eventMessage.Replace("%date%", if (time = Nil, "", time.ToString))
 		  
 		  if (Prefs.NewsPostedBounceInDock) then
 		    Notifications.RequestUserAttention Prefs.NewsPostedBounceInDockForever
@@ -529,7 +530,7 @@ Inherits Application
 		Private Sub WiredConnectionUserChanged(connection As WiredConnection, oldUser As WiredUser, newUser As WiredUser)
 		  #Pragma Unused connection
 		  
-		  DIM message As Text = Strings.kIsNowKnownAs
+		  DIM message As String = Strings.kIsNowKnownAs
 		  message = message.Replace("%oldnick%", oldUser.Nick)
 		  message = message.Replace("%newnick%", newUser.Nick)
 		  
@@ -579,7 +580,7 @@ Inherits Application
 		  #Pragma Unused connection
 		  #Pragma Unused chatID
 		  
-		  DIM message As Text = Strings.kUserHasJoined
+		  DIM message As String = Strings.kUserHasJoined
 		  message = message.Replace("%nick%", user.Nick)
 		  
 		  if (Prefs.UserJoinedBounceInDock) then
@@ -602,12 +603,12 @@ Inherits Application
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub WiredConnectionUserKicked(connection As WiredConnection, victim As WiredUser, killer As WiredUser, kickMessage As Text, isBan As Boolean)
+		Private Sub WiredConnectionUserKicked(connection As WiredConnection, victim As WiredUser, killer As WiredUser, kickMessage As String, isBan As Boolean)
 		  #Pragma Unused connection
 		  
-		  DIM message As Text = if(kickMessage.Empty, Strings.kUserWasKickedBy, Strings.kUserWasKickedByWithMessage)
+		  DIM message As String = if(kickMessage.IsEmpty, Strings.kUserWasKickedBy, Strings.kUserWasKickedByWithMessage)
 		  if (isBan) then
-		    message = if(kickMessage.Empty, Strings.kUserWasBannedBy, Strings.kUserWasBannedByWithMessage)
+		    message = if(kickMessage.IsEmpty, Strings.kUserWasBannedBy, Strings.kUserWasBannedByWithMessage)
 		  end if
 		  message = message.Replace("%victim%", victim.Nick)
 		  message = message.Replace("%killer%", killer.Nick)
@@ -637,7 +638,7 @@ Inherits Application
 		  #Pragma Unused connection
 		  #Pragma Unused chatID
 		  
-		  DIM message As Text = Strings.kUserHasLeft
+		  DIM message As String = Strings.kUserHasLeft
 		  message = message.Replace("%nick%", user.Nick)
 		  
 		  if (Prefs.UserLeftBounceInDock) then
@@ -690,8 +691,11 @@ Inherits Application
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="IsQuitting"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

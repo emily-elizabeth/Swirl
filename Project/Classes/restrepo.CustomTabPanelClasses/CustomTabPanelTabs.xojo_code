@@ -1,20 +1,20 @@
 #tag Class
 Protected Class CustomTabPanelTabs
-Inherits canvas
+Inherits DesktopCanvas
 	#tag Event
-		Sub GotFocus()
+		Sub FocusLost()
 		  '
 		End Sub
 	#tag EndEvent
 
 	#tag Event
-		Sub LostFocus()
+		Sub FocusReceived()
 		  '
 		End Sub
 	#tag EndEvent
 
 	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		Function MouseDown(x As Integer, y As Integer) As Boolean
 		  dim i as Integer
 		  
 		  if not me.enabled then Return False
@@ -43,7 +43,7 @@ Inherits canvas
 	#tag EndEvent
 
 	#tag Event
-		Sub MouseDrag(X As Integer, Y As Integer)
+		Sub MouseDrag(x As Integer, y As Integer)
 		  if currentActionTab=nil then Return
 		  
 		  //visual feedback
@@ -67,7 +67,7 @@ Inherits canvas
 	#tag EndEvent
 
 	#tag Event
-		Sub MouseMove(X As Integer, Y As Integer)
+		Sub MouseMove(x As Integer, y As Integer)
 		  //visual feedback
 		  dim tmp as CustomTab
 		  dim over as Boolean
@@ -85,7 +85,7 @@ Inherits canvas
 	#tag EndEvent
 
 	#tag Event
-		Sub MouseUp(X As Integer, Y As Integer)
+		Sub MouseUp(x As Integer, y As Integer)
 		  //there's no active tab, check the moreTabs button...
 		  if currentActionTab=nil then
 		    call scrollRightIcn.mouseUp(x,y)
@@ -112,7 +112,7 @@ Inherits canvas
 	#tag EndEvent
 
 	#tag Event
-		Function MouseWheel(X As Integer, Y As Integer, deltaX as Integer, deltaY as Integer) As Boolean
+		Function MouseWheel(x As Integer, y As Integer, deltaX As Integer, deltaY As Integer) As Boolean
 		  #pragma Unused X
 		  #pragma Unused Y
 		  #pragma Unused deltaX
@@ -121,31 +121,31 @@ Inherits canvas
 	#tag EndEvent
 
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  // most of the double buffering code, original from Aaron Ballman.
 		  // Check to see whether the user is on a system that
 		  // requires double buffering
-		  #if TargetWindows
-		    // On Windows, we always want to double buffer
-		    mDoubleBuffer = true
-		    '#elseif TargetMacOS
-		    '// We only want to double buffer on the Mac if
-		    '// we're running on OS 9.  OS X automatically
-		    '// double buffers for us
-		    'dim vers as Integer
-		    'if System.Gestalt( "sysv", vers ) then
-		    'mDoubleBuffer = vers < &h1000
-		    'end if
-		  #endif
+		  '#if TargetWindows
+		  '// On Windows, we always want to double buffer
+		  'mDoubleBuffer = true
+		  ''#elseif TargetMacOS
+		  ''// We only want to double buffer on the Mac if
+		  ''// we're running on OS 9.  OS X automatically
+		  ''// double buffers for us
+		  ''dim vers as Integer
+		  ''if System.Gestalt( "sysv", vers ) then
+		  ''mDoubleBuffer = vers < &h1000
+		  ''end if
+		  '#endif
 		  
-		  if mDoubleBuffer then
-		    // We don't want the background to be erased every time
-		    // since we're doing our own buffering.  This would cause
-		    // a lot of flickering.
-		    
-		    //this is useful just in rb>=2005
-		    me.EraseBackground = false
-		  end if
+		  'if mDoubleBuffer then
+		  '// We don't want the background to be erased every time
+		  '// since we're doing our own buffering.  This would cause
+		  '// a lot of flickering.
+		  '
+		  '//this is useful just in rb>=2005
+		  'me.EraseBackground = false
+		  'end if
 		  
 		  fitSize
 		  
@@ -156,12 +156,12 @@ Inherits canvas
 		  lastHeight=Height
 		  
 		  // Call the user's Open event
-		  Open
+		  RaiseEvent Opening
 		End Sub
 	#tag EndEvent
 
 	#tag Event
-		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		Sub Paint(g As Graphics, areas() As Rect)
 		  #pragma Unused g
 		  #pragma Unused areas
 		  
@@ -289,7 +289,7 @@ Inherits canvas
 		  self.Repaint
 		  
 		  if panel<>nil then
-		    panel.Append
+		    panel.AddPanel
 		    PanelPageAdded(panel,value)
 		  end if
 		  
@@ -322,7 +322,7 @@ Inherits canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub AttachPanel(panel as pagePanel)
+		Sub AttachPanel(panel as DesktopPagePanel)
 		  if Panel=nil then Return
 		  self.panel=panel
 		End Sub
@@ -428,7 +428,7 @@ Inherits canvas
 		    menu.Append(tmp)
 		  next
 		  
-		  dim container as Window
+		  dim container as DesktopWindow
 		  dim locx, locy as integer
 		  
 		  //find the window where this control is...
@@ -440,8 +440,8 @@ Inherits canvas
 		  while true
 		    locx=locx+Container.Left
 		    locy=locy+Container.top
-		    if container isa ContainerControl then
-		      Container=ContainerControl(Container).Window
+		    if container isa DesktopContainer then
+		      Container=DesktopContainer(Container).Window
 		    elseif Container isa Window then
 		      Exit
 		    end if
@@ -457,7 +457,7 @@ Inherits canvas
 	#tag Method, Flags = &h21
 		Private Sub doTabChange(tabIndex as integer)
 		  if Panel<>nil then
-		    panel.Value=tabIndex
+		    panel.SelectedPanelIndex=tabIndex
 		  end if
 		  
 		  tabChanged(tabIndex)
@@ -468,8 +468,8 @@ Inherits canvas
 		Private Sub doTabRemove(tabIndex as integer)
 		  //remove page from PagePanel, if any
 		  if panel<>nil then
-		    panel.Remove(tabIndex)
-		    panel.Value=me.value
+		    panel.RemovePanelAt(tabIndex)
+		    panel.SelectedPanelIndex=me.value
 		  end if
 		  sizeChanged
 		  tabRemoved(tabIndex)
@@ -805,11 +805,11 @@ Inherits canvas
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event Open()
+		Event Opening()
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event PanelPageAdded(panel as pagePanel, page as integer)
+		Event PanelPageAdded(panel as DesktopPagePanel, page as integer)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
@@ -946,7 +946,7 @@ Inherits canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private panel As pagePanel
+		Private panel As DesktopPagePanel
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -997,51 +997,52 @@ Inherits canvas
 
 	#tag ViewBehavior
 		#tag ViewProperty
-			Name="HelpTag"
+			Name="AllowAutoDeactivate"
 			Visible=true
 			Group="Appearance"
+			InitialValue="True"
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Tooltip"
+			Visible=true
+			Group="Appearance"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="AutoDeactivate"
+			Name="AllowFocusRing"
 			Visible=true
 			Group="Appearance"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="UseFocusRing"
-			Visible=true
-			Group="Appearance"
-			InitialValue="True"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="AcceptFocus"
+			Name="AllowFocus"
 			Visible=true
 			Group="Behavior"
+			InitialValue="False"
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="AcceptTabs"
+			Name="AllowTabs"
 			Visible=true
 			Group="Behavior"
+			InitialValue="False"
 			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="EraseBackground"
-			Group="Behavior"
-			InitialValue="True"
-			Type="Boolean"
-			EditorType="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Backdrop"
 			Visible=true
 			Group="Appearance"
+			InitialValue=""
 			Type="Picture"
-			EditorType="Picture"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DoubleBuffer"
@@ -1049,6 +1050,7 @@ Inherits canvas
 			Group="Behavior"
 			InitialValue="False"
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Enabled"
@@ -1056,6 +1058,7 @@ Inherits canvas
 			Group="Appearance"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Facing"
@@ -1077,61 +1080,79 @@ Inherits canvas
 			Group="Position"
 			InitialValue="100"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="Integer"
-			EditorType="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="InitialParent"
+			Visible=false
+			Group=""
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockBottom"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockLeft"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockRight"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockTop"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
-			EditorType="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
-			EditorType="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TabIndex"
@@ -1139,12 +1160,15 @@ Inherits canvas
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TabPanelIndex"
+			Visible=false
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TabStop"
@@ -1152,12 +1176,15 @@ Inherits canvas
 			Group="Position"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Transparent"
@@ -1165,13 +1192,15 @@ Inherits canvas
 			Group="Behavior"
 			InitialValue="True"
 			Type="Boolean"
-			EditorType="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="value"
+			Visible=false
 			Group="Behavior"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Visible"
@@ -1179,6 +1208,7 @@ Inherits canvas
 			Group="Appearance"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Width"
@@ -1186,6 +1216,7 @@ Inherits canvas
 			Group="Position"
 			InitialValue="100"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

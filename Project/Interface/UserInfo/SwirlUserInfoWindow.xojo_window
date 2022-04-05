@@ -1,39 +1,35 @@
-#tag Window
-Begin Window SwirlUserInfoWindow
-   BackColor       =   &cFFFFFF00
+#tag DesktopWindow
+Begin DesktopWindow SwirlUserInfoWindow
    Backdrop        =   0
-   CloseButton     =   True
-   Compatibility   =   ""
+   BackgroundColor =   &cFFFFFF00
    Composite       =   False
-   Frame           =   0
+   DefaultLocation =   0
    FullScreen      =   False
-   FullScreenButton=   False
-   HasBackColor    =   False
+   HasBackgroundColor=   False
+   HasCloseButton  =   True
+   HasFullScreenButton=   False
+   HasMaximizeButton=   True
+   HasMinimizeButton=   True
    Height          =   400
    ImplicitInstance=   True
-   LiveResize      =   True
    MacProcID       =   0
-   MaxHeight       =   32000
-   MaximizeButton  =   True
-   MaxWidth        =   32000
+   MaximumHeight   =   32000
+   MaximumWidth    =   32000
    MenuBar         =   0
    MenuBarVisible  =   True
-   MinHeight       =   400
-   MinimizeButton  =   True
-   MinWidth        =   300
-   Placement       =   0
+   MinimumHeight   =   400
+   MinimumWidth    =   300
    Resizeable      =   True
    Title           =   "#Strings.kUserInfoTitle"
+   Type            =   0
    Visible         =   True
    Width           =   300
-   Begin Canvas UserIcon
+   Begin DesktopCanvas UserIcon
       AcceptFocus     =   False
       AcceptTabs      =   False
       AutoDeactivate  =   True
       Backdrop        =   0
-      DoubleBuffer    =   False
       Enabled         =   True
-      EraseBackground =   True
       Height          =   46
       HelpTag         =   ""
       Index           =   -2147483648
@@ -77,7 +73,7 @@ Begin Window SwirlUserInfoWindow
       Visible         =   True
       Width           =   260
    End
-   Begin PagePanel PagePanel1
+   Begin DesktopPagePanel PagePanel1
       AutoDeactivate  =   True
       Enabled         =   True
       Height          =   325
@@ -98,14 +94,12 @@ Begin Window SwirlUserInfoWindow
       TabStop         =   True
       Top             =   99
       Transparent     =   True
-      Value           =   1
+      Value           =   0
       Visible         =   True
       Width           =   300
-      Begin Label LoginL
+      Begin DesktopLabel LoginL
          AutoDeactivate  =   True
          Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
@@ -125,7 +119,7 @@ Begin Window SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   "#Strings.kLogin"
-         TextAlign       =   2
+         TextAlign       =   3
          TextColor       =   &c00000000
          TextFont        =   "SmallSystem"
          TextSize        =   0.0
@@ -136,11 +130,9 @@ Begin Window SwirlUserInfoWindow
          Visible         =   True
          Width           =   61
       End
-      Begin Label IDL
+      Begin DesktopLabel IDL
          AutoDeactivate  =   True
          Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
@@ -160,7 +152,7 @@ Begin Window SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   "#Strings.kID"
-         TextAlign       =   2
+         TextAlign       =   3
          TextColor       =   &c00000000
          TextFont        =   "SmallSystem"
          TextSize        =   0.0
@@ -171,11 +163,9 @@ Begin Window SwirlUserInfoWindow
          Visible         =   True
          Width           =   61
       End
-      Begin Label AddressL
+      Begin DesktopLabel AddressL
          AutoDeactivate  =   True
          Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
@@ -195,7 +185,7 @@ Begin Window SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   "#Strings.kAddress"
-         TextAlign       =   2
+         TextAlign       =   3
          TextColor       =   &c00000000
          TextFont        =   "SmallSystem"
          TextSize        =   0.0
@@ -206,11 +196,9 @@ Begin Window SwirlUserInfoWindow
          Visible         =   True
          Width           =   61
       End
-      Begin Label HostL
+      Begin DesktopLabel HostL
          AutoDeactivate  =   True
          Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
@@ -230,7 +218,7 @@ Begin Window SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   "#Strings.kHost"
-         TextAlign       =   2
+         TextAlign       =   3
          TextColor       =   &c00000000
          TextFont        =   "SmallSystem"
          TextSize        =   0.0
@@ -241,11 +229,9 @@ Begin Window SwirlUserInfoWindow
          Visible         =   True
          Width           =   61
       End
-      Begin Label VersionL
+      Begin DesktopLabel VersionL
          AutoDeactivate  =   True
          Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
@@ -265,7 +251,7 @@ Begin Window SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   "#Strings.kVersion"
-         TextAlign       =   2
+         TextAlign       =   3
          TextColor       =   &c00000000
          TextFont        =   "SmallSystem"
          TextSize        =   0.0
@@ -276,11 +262,9 @@ Begin Window SwirlUserInfoWindow
          Visible         =   True
          Width           =   61
       End
-      Begin Label CIpherL
+      Begin DesktopLabel CIpherL
          AutoDeactivate  =   True
          Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
@@ -300,7 +284,7 @@ Begin Window SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   "#Strings.kCipher"
-         TextAlign       =   2
+         TextAlign       =   3
          TextColor       =   &c00000000
          TextFont        =   "SmallSystem"
          TextSize        =   0.0
@@ -311,11 +295,9 @@ Begin Window SwirlUserInfoWindow
          Visible         =   True
          Width           =   61
       End
-      Begin Label LoginTimeL
+      Begin DesktopLabel LoginTimeL
          AutoDeactivate  =   True
          Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
@@ -335,7 +317,7 @@ Begin Window SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   "#Strings.kLoginTIme"
-         TextAlign       =   2
+         TextAlign       =   3
          TextColor       =   &c00000000
          TextFont        =   "SmallSystem"
          TextSize        =   0.0
@@ -346,11 +328,9 @@ Begin Window SwirlUserInfoWindow
          Visible         =   True
          Width           =   61
       End
-      Begin Label IdleTimeL
+      Begin DesktopLabel IdleTimeL
          AutoDeactivate  =   True
          Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
@@ -370,7 +350,7 @@ Begin Window SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   "#Strings.kIdleTime"
-         TextAlign       =   2
+         TextAlign       =   3
          TextColor       =   &c00000000
          TextFont        =   "SmallSystem"
          TextSize        =   0.0
@@ -381,11 +361,9 @@ Begin Window SwirlUserInfoWindow
          Visible         =   True
          Width           =   61
       End
-      Begin Label UserLogin
+      Begin DesktopLabel UserLogin
          AutoDeactivate  =   True
          Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
@@ -416,11 +394,9 @@ Begin Window SwirlUserInfoWindow
          Visible         =   True
          Width           =   187
       End
-      Begin Label UserID
+      Begin DesktopLabel UserID
          AutoDeactivate  =   True
          Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
@@ -451,11 +427,9 @@ Begin Window SwirlUserInfoWindow
          Visible         =   True
          Width           =   187
       End
-      Begin Label UserAddress
+      Begin DesktopLabel UserAddress
          AutoDeactivate  =   True
          Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
@@ -486,11 +460,9 @@ Begin Window SwirlUserInfoWindow
          Visible         =   True
          Width           =   187
       End
-      Begin Label UserHost
+      Begin DesktopLabel UserHost
          AutoDeactivate  =   True
          Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
@@ -521,11 +493,9 @@ Begin Window SwirlUserInfoWindow
          Visible         =   True
          Width           =   187
       End
-      Begin Label UserVersion
+      Begin DesktopLabel UserVersion
          AutoDeactivate  =   True
          Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
@@ -556,11 +526,9 @@ Begin Window SwirlUserInfoWindow
          Visible         =   True
          Width           =   187
       End
-      Begin Label UserCipher
+      Begin DesktopLabel UserCipher
          AutoDeactivate  =   True
          Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
@@ -591,11 +559,9 @@ Begin Window SwirlUserInfoWindow
          Visible         =   True
          Width           =   187
       End
-      Begin Label UserLoginTime
+      Begin DesktopLabel UserLoginTime
          AutoDeactivate  =   True
          Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
@@ -626,11 +592,9 @@ Begin Window SwirlUserInfoWindow
          Visible         =   True
          Width           =   187
       End
-      Begin Label UserIdleTime
+      Begin DesktopLabel UserIdleTime
          AutoDeactivate  =   True
          Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
@@ -661,7 +625,7 @@ Begin Window SwirlUserInfoWindow
          Visible         =   True
          Width           =   187
       End
-      Begin Listbox DownloadsList
+      Begin DesktopListBox DownloadsList
          AutoDeactivate  =   True
          AutoHideScrollbars=   True
          Bold            =   False
@@ -669,14 +633,11 @@ Begin Window SwirlUserInfoWindow
          ColumnCount     =   1
          ColumnsResizable=   False
          ColumnWidths    =   ""
-         DataField       =   ""
-         DataSource      =   ""
          DefaultRowHeight=   48
          Enabled         =   True
          EnableDrag      =   False
          EnableDragReorder=   False
-         GridLinesHorizontal=   0
-         GridLinesVertical=   0
+         GridLineStyle   =   0
          HasHeading      =   False
          HeadingIndex    =   -1
          Height          =   281
@@ -713,7 +674,7 @@ Begin Window SwirlUserInfoWindow
          _ScrollOffset   =   0
          _ScrollWidth    =   -1
       End
-      Begin Listbox UploadsList
+      Begin DesktopListBox UploadsList
          AutoDeactivate  =   True
          AutoHideScrollbars=   True
          Bold            =   False
@@ -721,14 +682,11 @@ Begin Window SwirlUserInfoWindow
          ColumnCount     =   1
          ColumnsResizable=   False
          ColumnWidths    =   ""
-         DataField       =   ""
-         DataSource      =   ""
          DefaultRowHeight=   48
          Enabled         =   True
          EnableDrag      =   False
          EnableDragReorder=   False
-         GridLinesHorizontal=   0
-         GridLinesVertical=   0
+         GridLineStyle   =   0
          HasHeading      =   False
          HeadingIndex    =   -1
          Height          =   281
@@ -767,12 +725,12 @@ Begin Window SwirlUserInfoWindow
       End
    End
 End
-#tag EndWindow
+#tag EndDesktopWindow
 
 #tag WindowCode
 	#tag Event
-		Sub Close()
-		  Xojo.Core.Timer.CancelCall WeakAddressOf RequestUserInfo
+		Sub Closing()
+		  Timer.CancelCallLater WeakAddressOf RequestUserInfo
 		  
 		  ObjObserver.Unlisten self, Events.kWiredConnectionUserChanged
 		  ObjObserver.Unlisten self, Events.kWiredConnectionUserIconChanged
@@ -785,7 +743,7 @@ End
 	#tag EndEvent
 
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  self.Title = Strings.kUserInfoTitle
 		  self.Title = self.Title.Replace("%nick%", self.mUser.Nick)
 		  self.Title = self.Title.Replace("%servername%", self.mConnection.ServerName)
@@ -865,7 +823,7 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub WiredConnectionUserInfoReceived(connection As WiredConnection, user As WiredUser, isIdle As Boolean, isAdmin As Boolean, nick As Text, login As Text, IP As Text, host As Text, clientVersion As Text, cipherName As Text, cipherBits As Integer, loginTime As Xojo.Core.Date, idleTime As Xojo.Core.Date, downloads As Text, uploads As Text, status As Text, icon As Picture)
+		Private Sub WiredConnectionUserInfoReceived(connection As WiredConnection, user As WiredUser, isIdle As Boolean, isAdmin As Boolean, nick As String, login As String, IP As String, host As String, clientVersion As String, cipherName As String, cipherBits As Integer, loginTime As DateTime, idleTime As DateTime, downloads As String, uploads As String, status As String, icon As Picture)
 		  if (connection = self.mConnection) AND (user = self.mUser) then
 		    self.UserLogin.Text = login
 		    self.UserID.Text = Str(user.UserID)
@@ -873,28 +831,28 @@ End
 		    self.UserHost.Text = host
 		    self.UserVersion.Text = clientVersion
 		    self.UserCipher.Text = cipherName + "/" + Str(cipherBits)
-		    self.UserLoginTime.Text = loginTime.ToText()
-		    self.UserIdleTime.Text = idleTime.ToText()
+		    self.UserLoginTime.Text = loginTime.ToString()
+		    self.UserIdleTime.Text = idleTime.ToString()
 		    
-		    self.DownloadsList.DeleteAllRows
-		    if (NOT downloads.Empty) then
-		      DIM tList() As Text = downloads.Split(NetWiredSocket.GS)
+		    self.DownloadsList.RemoveAllRows
+		    if (NOT downloads.IsEmpty) then
+		      DIM tList() As String = downloads.Split(NetWiredSocket.GS)
 		      for i as Integer = 0 to tList.Ubound
 		        self.DownloadsList.AddRow ""
-		        self.DownloadsList.RowTag(self.DownloadsList.LastIndex) = tList(i)
+		        self.DownloadsList.RowTagAt(self.DownloadsList.LastAddedRowIndex) = tList(i)
 		      next
 		    end if
 		    
-		    self.UploadsList.DeleteAllRows
-		    if (NOT uploads.Empty) then
-		      DIM tList() As Text = uploads.Split(NetWiredSocket.GS)
+		    self.UploadsList.RemoveAllRows
+		    if (NOT uploads.IsEmpty) then
+		      DIM tList() As String = uploads.Split(NetWiredSocket.GS)
 		      for i as Integer = 0 to tList.Ubound
 		        self.UploadsList.AddRow ""
-		        self.UploadsList.RowTag(self.UploadsList.LastIndex) = tList(i)
+		        self.UploadsList.RowTagAt(self.UploadsList.LastAddedRowIndex) = tList(i)
 		      next
 		    end if
 		    
-		    Xojo.Core.Timer.CallLater 2000, WeakAddressOf RequestUserInfo
+		    Timer.CallLater 2000, WeakAddressOf RequestUserInfo
 		  end if
 		End Sub
 	#tag EndMethod
@@ -902,7 +860,7 @@ End
 	#tag Method, Flags = &h21
 		Private Sub WiredConnectionUserJoined(connection As WiredConnection, chatID As Integer, user As WiredUser)
 		  if (connection = self.mConnection) AND (user.Login = self.mUser.Login) then
-		    Xojo.Core.Timer.CallLater 2000, WeakAddressOf RequestUserInfo
+		    Timer.CallLater 2000, WeakAddressOf RequestUserInfo
 		    self.UserIcon.Refresh
 		  end if
 		End Sub
@@ -911,7 +869,7 @@ End
 	#tag Method, Flags = &h21
 		Private Sub WiredConnectionUserKicked(connection As WiredConnection, victim As WiredUser, killer As WiredUser, kickMessage As String, isBan As Boolean)
 		  if (connection = self.mConnection) AND (victim = self.mUser) then
-		    Xojo.Core.Timer.CancelCall WeakAddressOf RequestUserInfo
+		    Timer.CancelCallLater WeakAddressOf RequestUserInfo
 		    self.UserIcon.Refresh
 		  end if
 		End Sub
@@ -920,7 +878,7 @@ End
 	#tag Method, Flags = &h21
 		Private Sub WiredConnectionUserLeft(connection As WiredConnection, chatID As Integer, user As WiredUser)
 		  if (connection = self.mConnection) AND (user = self.mUser) AND (chatID = 1) then
-		    Xojo.Core.Timer.CancelCall WeakAddressOf RequestUserInfo
+		    Timer.CancelCallLater WeakAddressOf RequestUserInfo
 		    self.UserIcon.Refresh
 		  end if
 		End Sub
@@ -948,7 +906,7 @@ End
 
 #tag Events UserIcon
 	#tag Event
-		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		Sub Paint(g As Graphics, areas() As Rect)
 		  #Pragma Unused areas
 		  
 		  // draw the user icon
@@ -962,7 +920,7 @@ End
 		  g.ForeColor = self.mUser.Colour
 		  g.TextFont = "System"
 		  g.TextSize = 13
-		  g.DrawString self.mUser.Nick, 44, if(self.mUser.Status.Empty, g.TextHeight + 10, g.TextHeight)
+		  g.DrawString self.mUser.Nick, 44, if(self.mUser.Status.IsEmpty, g.TextHeight + 10, g.TextHeight)
 		  
 		  // user status
 		  g.ForeColor = DisabledTextColor
@@ -974,16 +932,16 @@ End
 #tag Events SegmentedControl1
 	#tag Event
 		Sub Action(itemIndex as integer)
-		  self.PagePanel1.Value = itemIndex
+		  self.PagePanel1.SelectedPanelIndex = itemIndex
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events DownloadsList
 	#tag Event
-		Function CellTextPaint(g As Graphics, row As Integer, column As Integer, x as Integer, y as Integer) As Boolean
+		Function PaintCellText(g as Graphics, row as Integer, column as Integer, x as Integer, y as Integer) As Boolean
 		  #Pragma DisableBackgroundTasks
 		  
-		  DIM info As String = me.RowTag(row)
+		  DIM info As String = me.RowTagAt(row)
 		  DIM infoA() As String = info.Split(NetWiredSocket.RS)
 		  
 		  // draw the progress bar
@@ -1015,10 +973,10 @@ End
 #tag EndEvents
 #tag Events UploadsList
 	#tag Event
-		Function CellTextPaint(g As Graphics, row As Integer, column As Integer, x as Integer, y as Integer) As Boolean
+		Function PaintCellText(g as Graphics, row as Integer, column as Integer, x as Integer, y as Integer) As Boolean
 		  #Pragma DisableBackgroundTasks
 		  
-		  DIM info As String = me.RowTag(row)
+		  DIM info As String = me.RowTagAt(row)
 		  DIM infoA() As String = info.Split(NetWiredSocket.RS)
 		  
 		  // draw the progress bar
@@ -1050,39 +1008,43 @@ End
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
-		Name="BackColor"
+		Name="MinimumWidth"
 		Visible=true
-		Group="Background"
-		InitialValue="&hFFFFFF"
-		Type="Color"
+		Group="Size"
+		InitialValue="64"
+		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="Backdrop"
+		Name="MinimumHeight"
 		Visible=true
-		Group="Background"
-		Type="Picture"
-		EditorType="Picture"
+		Group="Size"
+		InitialValue="64"
+		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="CloseButton"
+		Name="MaximumWidth"
 		Visible=true
-		Group="Frame"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
+		Group="Size"
+		InitialValue="32000"
+		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="Composite"
-		Group="OS X (Carbon)"
-		InitialValue="False"
-		Type="Boolean"
+		Name="MaximumHeight"
+		Visible=true
+		Group="Size"
+		InitialValue="32000"
+		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="Frame"
+		Name="Type"
 		Visible=true
 		Group="Frame"
 		InitialValue="0"
-		Type="Integer"
+		Type="Types"
 		EditorType="Enum"
 		#tag EnumValues
 			"0 - Document"
@@ -1099,134 +1061,43 @@ End
 		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="FullScreen"
-		Group="Behavior"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="FullScreenButton"
-		Visible=true
-		Group="Frame"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HasBackColor"
-		Visible=true
-		Group="Background"
-		InitialValue="False"
-		Type="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Height"
-		Visible=true
-		Group="Size"
-		InitialValue="400"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="ImplicitInstance"
-		Visible=true
-		Group="Behavior"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Interfaces"
-		Visible=true
-		Group="ID"
-		Type="String"
-		EditorType="String"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="LiveResize"
-		Visible=true
-		Group="Behavior"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MacProcID"
-		Group="OS X (Carbon)"
-		InitialValue="0"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MaxHeight"
-		Visible=true
-		Group="Size"
-		InitialValue="32000"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MaximizeButton"
+		Name="HasCloseButton"
 		Visible=true
 		Group="Frame"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="MaxWidth"
-		Visible=true
-		Group="Size"
-		InitialValue="32000"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MenuBar"
-		Visible=true
-		Group="Menus"
-		Type="MenuBar"
-		EditorType="MenuBar"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MenuBarVisible"
-		Group="Behavior"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MinHeight"
-		Visible=true
-		Group="Size"
-		InitialValue="64"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MinimizeButton"
+		Name="HasMaximizeButton"
 		Visible=true
 		Group="Frame"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="MinWidth"
+		Name="HasMinimizeButton"
 		Visible=true
-		Group="Size"
-		InitialValue="64"
-		Type="Integer"
+		Group="Frame"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="Name"
+		Name="HasFullScreenButton"
 		Visible=true
-		Group="ID"
-		Type="String"
-		EditorType="String"
+		Group="Frame"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="Placement"
+		Name="DefaultLocation"
 		Visible=true
 		Group="Behavior"
 		InitialValue="0"
-		Type="Integer"
+		Type="Locations"
 		EditorType="Enum"
 		#tag EnumValues
 			"0 - Default"
@@ -1237,19 +1108,116 @@ End
 		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
+		Name="HasBackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="BackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="&hFFFFFF"
+		Type="Color"
+		EditorType="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Backdrop"
+		Visible=true
+		Group="Background"
+		InitialValue=""
+		Type="Picture"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Composite"
+		Visible=false
+		Group="OS X (Carbon)"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="FullScreen"
+		Visible=false
+		Group="Behavior"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Height"
+		Visible=true
+		Group="Size"
+		InitialValue="400"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ImplicitInstance"
+		Visible=true
+		Group="Behavior"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Interfaces"
+		Visible=true
+		Group="ID"
+		InitialValue=""
+		Type="String"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MacProcID"
+		Visible=false
+		Group="OS X (Carbon)"
+		InitialValue="0"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MenuBar"
+		Visible=true
+		Group="Menus"
+		InitialValue=""
+		Type="MenuBar"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MenuBarVisible"
+		Visible=false
+		Group="Behavior"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Name"
+		Visible=true
+		Group="ID"
+		InitialValue=""
+		Type="String"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
 		Name="Resizeable"
 		Visible=true
 		Group="Frame"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
-		EditorType="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Title"
@@ -1257,6 +1225,7 @@ End
 		Group="Frame"
 		InitialValue="Untitled"
 		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Visible"
@@ -1264,7 +1233,7 @@ End
 		Group="Behavior"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Width"
@@ -1272,5 +1241,6 @@ End
 		Group="Size"
 		InitialValue="600"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior

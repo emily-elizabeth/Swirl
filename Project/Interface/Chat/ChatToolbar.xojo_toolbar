@@ -1,33 +1,33 @@
-#tag Toolbar
-Begin Toolbar ChatToolbar
-	Begin ToolButton Chat
+#tag DesktopToolbar
+Begin DesktopToolbar ChatToolbar
+	Begin DesktopToolbarButton Chat
 		Caption = "#Strings.kChat"
-		HelpTag = ""
-		Style = 0
+		Tooltip = ""
+		ButtonStyle = 0
 	End
-	Begin ToolButton News
+	Begin DesktopToolbarButton News
 		Caption = "#Strings.kNews"
-		HelpTag = ""
-		Style = 0
+		Tooltip = ""
+		ButtonStyle = 0
 		Icon = 866052418
 	End
-	Begin ToolButton ToolItem1
+	Begin DesktopToolbarButton ToolItem1
 		Caption = ""
-		HelpTag = ""
-		Style = 1
+		Tooltip = ""
+		ButtonStyle = 1
 	End
-	Begin ToolButton Files
+	Begin DesktopToolbarButton Files
 		Caption = "#Strings.kFiles"
-		HelpTag = ""
-		Style = 0
+		Tooltip = ""
+		ButtonStyle = 0
 		Icon = 2052853609
 	End
-	Begin ToolButton Transfers
+	Begin DesktopToolbarButton Transfers
 		Caption = "#Strings.kTransfers"
-		HelpTag = ""
-		Style = 0
 		Enabled = False
+		Tooltip = ""
+		ButtonStyle = 0
 		Icon = 487419469
 	End
 End
-#tag EndToolbar
+#tag EndDesktopToolbar

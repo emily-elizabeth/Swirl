@@ -29,14 +29,14 @@ Inherits SSLSocket
 	#tag EndEvent
 
 	#tag Event
-		Sub Error()
+		Sub Error(err As RuntimeException)
 		  
 		End Sub
 	#tag EndEvent
 
 
 	#tag Method, Flags = &h0
-		Sub Constructor(aDelegate As NetWiredDataSocketInterface, address As String, port As Integer, path As Text, offset As UInt64, hash As Text)
+		Sub Constructor(aDelegate As NetWiredDataSocketInterface, address As String, port As Integer, path As String, offset As UInt64, hash As String)
 		  me.Secure = TRUE
 		  me.ConnectionType = SSLSocket.TLSv1
 		  me.Address = address
@@ -59,7 +59,7 @@ Inherits SSLSocket
 
 
 	#tag Hook, Flags = &h0
-		Event Connected(path As Text, offset As UInt64)
+		Event Connected(path As String, offset As UInt64)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
@@ -76,7 +76,7 @@ Inherits SSLSocket
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mHash As Text
+		Private mHash As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -84,7 +84,7 @@ Inherits SSLSocket
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mPath As Text
+		Private mPath As String
 	#tag EndProperty
 
 
@@ -94,40 +94,104 @@ Inherits SSLSocket
 
 	#tag ViewBehavior
 		#tag ViewProperty
-			Name="CertificateFile"
+			Name="Address"
+			Visible=true
 			Group="Behavior"
-			Type="FolderItem"
-			EditorType="File"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Port"
+			Visible=true
+			Group="Behavior"
+			InitialValue="0"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SSLConnectionType"
+			Visible=true
+			Group="Behavior"
+			InitialValue="3"
+			Type="SSLConnectionTypes"
+			EditorType="Enum"
+			#tag EnumValues
+				"1 - SSLv23"
+				"3 - TLSv1"
+				"4 - TLSv11"
+				"5 - TLSv12"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SSLEnabled"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SSLConnected"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SSLConnecting"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="BytesAvailable"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="BytesLeftToSend"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="LastErrorCode"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CertificatePassword"
 			Visible=true
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="CertificateRejectionFile"
-			Group="Behavior"
-			Type="FolderItem"
-			EditorType="File"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="ConnectionType"
-			Visible=true
-			Group="Behavior"
-			InitialValue="3"
-			Type="Integer"
+			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="Integer"
-			EditorType="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="mBuffer"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
@@ -135,21 +199,17 @@ Inherits SSLSocket
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
-			EditorType="String"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Secure"
-			Visible=true
-			Group="Behavior"
-			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
-			EditorType="String"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

@@ -7,7 +7,7 @@ Protected Interface NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub AccountInfoReceived(login As Text, password As Text, group As Text, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
+		Sub AccountInfoReceived(login As String, password As String, group As String, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
 		  
 		End Sub
 	#tag EndMethod
@@ -19,7 +19,7 @@ Protected Interface NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub AccountListEntry(login As Text)
+		Sub AccountListEntry(login As String)
 		  
 		End Sub
 	#tag EndMethod
@@ -31,13 +31,13 @@ Protected Interface NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ChatReceived(chatID As Integer, userID As Integer, message As Text, isAction As Boolean)
+		Sub ChatReceived(chatID As Integer, userID As Integer, message As String, isAction As Boolean)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ChatTopicReceived(chatID As Integer, nick As Text, login As Text, IP As Text, time As Xojo.Core.Date, topic As Text)
+		Sub ChatTopicReceived(chatID As Integer, nick As String, login As String, IP As String, time As DateTime, topic As String)
 		  
 		End Sub
 	#tag EndMethod
@@ -55,109 +55,109 @@ Protected Interface NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ErrorAccountExists(message As Text)
+		Sub ErrorAccountExists(message As String)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ErrorAccountNotFound(message As Text)
+		Sub ErrorAccountNotFound(message As String)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ErrorBanned(message As Text)
+		Sub ErrorBanned(message As String)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ErrorCannotBeDisconnected(message As Text)
+		Sub ErrorCannotBeDisconnected(message As String)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ErrorChecksumMismatch(message As Text)
+		Sub ErrorChecksumMismatch(message As String)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ErrorClientNotFound(message As Text)
+		Sub ErrorClientNotFound(message As String)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ErrorCommandFailed(message As Text)
+		Sub ErrorCommandFailed(message As String)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ErrorCommandNotImplemented(message As Text)
+		Sub ErrorCommandNotImplemented(message As String)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ErrorCommandNotRecognized(message As Text)
+		Sub ErrorCommandNotRecognized(message As String)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ErrorFileExists(message As Text)
+		Sub ErrorFileExists(message As String)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ErrorFileNotFound(message As Text)
+		Sub ErrorFileNotFound(message As String)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ErrorLoginFailed(message As Text)
+		Sub ErrorLoginFailed(message As String)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ErrorPermissionDenied(message As Text)
+		Sub ErrorPermissionDenied(message As String)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ErrorQueueLimitExceeded(message As Text)
+		Sub ErrorQueueLimitExceeded(message As String)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ErrorSyntaxError(message As Text)
+		Sub ErrorSyntaxError(message As String)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub FileListEnd(path As Text, free As UInt64)
+		Sub FileListEnd(path As String, free As UInt64)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub FileListEntry(path As Text, type As Integer, size As UInt64, created As Xojo.Core.Date, modified As Xojo.Core.Date)
+		Sub FileListEntry(path As String, type As Integer, size As UInt64, created As DateTime, modified As DateTime)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub GroupInfoReceived(name As Text, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
+		Sub GroupInfoReceived(name As String, getUserInfo As Boolean, broadcast As Boolean, postNews As Boolean, clearNews As Boolean, download As Boolean, upload As Boolean, uploadAnywhere As Boolean, createFolders As Boolean, alterFiles As Boolean, deleteFiles As Boolean, viewDropboxes As Boolean, createAccounts As Boolean, editAccounts As Boolean, deleteAccounts As Boolean, elevatePrivileges As Boolean, kickUsers As Boolean, banUsers As Boolean, cannotBeKicked As Boolean, downloadSpeed As UInt64, uploadSpeed As UInt64, downloadLimit As UInt64, uploadLimit As UInt64, changeTopic As Boolean)
 		  
 		End Sub
 	#tag EndMethod
@@ -169,7 +169,7 @@ Protected Interface NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub GroupListEntry(name As Text)
+		Sub GroupListEntry(name As String)
 		  
 		End Sub
 	#tag EndMethod
@@ -181,7 +181,7 @@ Protected Interface NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub MessageReceived(userID As Integer, message As Text, isBroadcast As Boolean)
+		Sub MessageReceived(userID As Integer, message As String, isBroadcast As Boolean)
 		  
 		End Sub
 	#tag EndMethod
@@ -193,13 +193,13 @@ Protected Interface NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub NewsListEntry(nick As Text, time As Xojo.Core.Date, message As Text)
+		Sub NewsListEntry(nick As String, time As DateTime, message As String)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub NewsPosted(nick As Text, time As Xojo.Core.Date, message As Text)
+		Sub NewsPosted(nick As String, time As DateTime, message As String)
 		  
 		End Sub
 	#tag EndMethod
@@ -241,7 +241,7 @@ Protected Interface NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SearchListEntry(path As Text, type As Integer, size As UInt64, created As Xojo.Core.Date, modified As Xojo.Core.Date)
+		Sub SearchListEntry(path As String, type As Integer, size As UInt64, created As DateTime, modified As DateTime)
 		  
 		End Sub
 	#tag EndMethod
@@ -253,25 +253,25 @@ Protected Interface NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ServerInfoReceived(appVersion As Text, protocolVersion As Text, serverName As Text, serverDescription As Text, startTime As Xojo.Core.Date, filesCount As UInt64, filesSize As UInt64)
+		Sub ServerInfoReceived(appVersion As String, protocolVersion As String, serverName As String, serverDescription As String, startTime As DateTime, filesCount As UInt64, filesSize As UInt64)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub TransferQueued(path As Text, position As Integer)
+		Sub TransferQueued(path As String, position As Integer)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub TransferReady(path As Text, offset As UInt64, hash As Text)
+		Sub TransferReady(path As String, offset As UInt64, hash As String)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub UserChanged(userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As Text, status As Text)
+		Sub UserChanged(userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As String, status As String)
 		  
 		End Sub
 	#tag EndMethod
@@ -283,19 +283,19 @@ Protected Interface NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub UserInfoReceived(userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As Text, login As Text, IP As Text, host As Text, clientVersion As Text, cipherName As Text, cipherBits As Integer, loginTime As Xojo.Core.Date, idleTime As Xojo.Core.Date, downloads As Text, uploads As Text, status As Text, icon As Picture)
+		Sub UserInfoReceived(userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As String, login As String, IP As String, host As String, clientVersion As String, cipherName As String, cipherBits As Integer, loginTime As DateTime, idleTime As DateTime, downloads As String, uploads As String, status As String, icon As Picture)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub UserJoined(chatID As Integer, userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As Text, login As Text, IP As Text, host As Text, status As Text, icon As Picture)
+		Sub UserJoined(chatID As Integer, userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As String, login As String, IP As String, host As String, status As String, icon As Picture)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub UserKicked(victimID As Integer, killerID As Integer, message As Text, isBan As Boolean)
+		Sub UserKicked(victimID As Integer, killerID As Integer, message As String, isBan As Boolean)
 		  
 		End Sub
 	#tag EndMethod
@@ -313,7 +313,7 @@ Protected Interface NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub UserListEntry(chatID As Integer, userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As Text, login As Text, IP As Text, host As Text, status As Text, icon As Picture)
+		Sub UserListEntry(chatID As Integer, userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As String, login As String, IP As String, host As String, status As String, icon As Picture)
 		  
 		End Sub
 	#tag EndMethod
@@ -356,6 +356,7 @@ Protected Interface NetWiredSocketInterface
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -363,18 +364,23 @@ Protected Interface NetWiredSocketInterface
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -382,6 +388,7 @@ Protected Interface NetWiredSocketInterface
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Interface

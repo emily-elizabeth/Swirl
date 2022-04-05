@@ -1,7 +1,7 @@
 #tag Class
 Protected Class WiredUser
 	#tag Method, Flags = &h0
-		Sub Constructor(userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As Text, login As Text, IP As Text, host As Text, status As Text, icon As Picture)
+		Sub Constructor(userID As Integer, isIdle As Boolean, isAdmin As Boolean, nick As String, login As String, IP As String, host As String, status As String, icon As Picture)
 		  me.mUserID = userID
 		  me.mIsIdle = isIdle
 		  me.mIsAdmin = isAdmin
@@ -44,7 +44,7 @@ Protected Class WiredUser
 			  Return me.mHost
 			End Get
 		#tag EndGetter
-		Host As Text
+		Host As String
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -62,7 +62,7 @@ Protected Class WiredUser
 			  Return me.mIP
 			End Get
 		#tag EndGetter
-		IP As Text
+		IP As String
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -89,11 +89,11 @@ Protected Class WiredUser
 			  Return me.mLogin
 			End Get
 		#tag EndGetter
-		Login As Text
+		Login As String
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private mHost As Text
+		Private mHost As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -101,7 +101,7 @@ Protected Class WiredUser
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mIP As Text
+		Private mIP As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -113,15 +113,15 @@ Protected Class WiredUser
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mLogin As Text
+		Private mLogin As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mNick As Text
+		Private mNick As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mStatus As Text
+		Private mStatus As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -134,7 +134,7 @@ Protected Class WiredUser
 			  Return me.mNick
 			End Get
 		#tag EndGetter
-		Nick As Text
+		Nick As String
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -143,7 +143,7 @@ Protected Class WiredUser
 			  Return me.mStatus
 			End Get
 		#tag EndGetter
-		Status As Text
+		Status As String
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -159,20 +159,27 @@ Protected Class WiredUser
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="Colour"
+			Visible=false
 			Group="Behavior"
 			InitialValue="&c000000"
 			Type="Color"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Host"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Icon"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Picture"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -180,22 +187,31 @@ Protected Class WiredUser
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="IP"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="IsAdmin"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="IsIdle"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -203,10 +219,13 @@ Protected Class WiredUser
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Login"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
@@ -214,17 +233,23 @@ Protected Class WiredUser
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Nick"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Status"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
@@ -232,7 +257,9 @@ Protected Class WiredUser
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -240,11 +267,15 @@ Protected Class WiredUser
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="UserID"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

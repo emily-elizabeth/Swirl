@@ -1,434 +1,463 @@
 #tag Menu
 Begin Menu AppMenuBar
-   Begin MenuItem ConnectionMenu
+   Begin DesktopMenuItem ConnectionMenu
       SpecialMenu = 0
-      Text = "#Strings.kConnection"
       Index = -2147483648
+      Text = "#Strings.kConnection"
+      AutoEnabled = True
       AutoEnable = True
       Visible = True
-      Begin MenuItem ConnectionConnect
+      Begin DesktopMenuItem ConnectionConnect
          SpecialMenu = 0
-         Text = "#Strings.kConnect_"
          Index = -2147483648
+         Text = "#Strings.kConnect_"
          ShortcutKey = "K"
          Shortcut = "Cmd+K"
          MenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem ConnectionReconnect
+      Begin DesktopMenuItem ConnectionReconnect
          SpecialMenu = 0
-         Text = "#Strings.kReconnect"
          Index = -2147483648
+         Text = "#Strings.kReconnect"
          ShortcutKey = "K"
          Shortcut = "Cmd+Shift+K"
          MenuModifier = True
          AltMenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem ConnectionDisconnect
+      Begin DesktopMenuItem ConnectionDisconnect
          SpecialMenu = 0
-         Text = "#Strings.kDisconnect"
          Index = -2147483648
+         Text = "#Strings.kDisconnect"
          ShortcutKey = "D"
          Shortcut = "Cmd+D"
          MenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem ConnectionDisconnectAll
+      Begin DesktopMenuItem ConnectionDisconnectAll
          SpecialMenu = 0
-         Text = "#Strings.kDisconnectAll"
          Index = -2147483648
+         Text = "#Strings.kDisconnectAll"
          ShortcutKey = "D"
          Shortcut = "Cmd+Shift+D"
          MenuModifier = True
          AltMenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem UntitledSeparator1
+      Begin DesktopMenuItem UntitledSeparator1
          SpecialMenu = 0
+         Index = -2147483648
          Text = "-"
-         Index = -2147483648
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem ConnectionChat
+      Begin DesktopMenuItem ConnectionChat
          SpecialMenu = 0
-         Text = "#Strings.kChat"
          Index = -2147483648
+         Text = "#Strings.kChat"
          ShortcutKey = "T"
          Shortcut = "Cmd+T"
          MenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem ConnectionNews
+      Begin DesktopMenuItem ConnectionNews
          SpecialMenu = 0
-         Text = "#Strings.kNews"
          Index = -2147483648
+         Text = "#Strings.kNews"
          ShortcutKey = "N"
          Shortcut = "Cmd+N"
          MenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem ConnectionFiles
+      Begin DesktopMenuItem ConnectionFiles
          SpecialMenu = 0
-         Text = "#Strings.kFiles"
          Index = -2147483648
+         Text = "#Strings.kFiles"
          ShortcutKey = "F"
          Shortcut = "Cmd+F"
          MenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem ConnectionTransfers
+      Begin DesktopMenuItem ConnectionTransfers
          SpecialMenu = 0
-         Text = "#Strings.kTransfers"
          Index = -2147483648
+         Text = "#Strings.kTransfers"
          ShortcutKey = "S"
          Shortcut = "Cmd+S"
          MenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem ConnectionAccounts
+      Begin DesktopMenuItem ConnectionAccounts
          SpecialMenu = 0
-         Text = "#Strings.kAccounts"
          Index = -2147483648
+         Text = "#Strings.kAccounts"
          ShortcutKey = "U"
          Shortcut = "Cmd+U"
          MenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem UntitledSeparator4
+      Begin DesktopMenuItem UntitledSeparator4
          SpecialMenu = 0
+         Index = -2147483648
          Text = "-"
-         Index = -2147483648
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem ConnectionGetInfo
+      Begin DesktopMenuItem ConnectionGetInfo
          SpecialMenu = 0
-         Text = "#Strings.kGetInfo"
          Index = -2147483648
+         Text = "#Strings.kGetInfo"
          ShortcutKey = "i"
          Shortcut = "Cmd+i"
          MenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem ConnectionServerInfo
+      Begin DesktopMenuItem ConnectionServerInfo
          SpecialMenu = 0
-         Text = "#Strings.kServerInfo"
          Index = -2147483648
+         Text = "#Strings.kServerInfo"
          ShortcutKey = "I"
          Shortcut = "Cmd+Shift+I"
          MenuModifier = True
          AltMenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem ConnectionSetTopic
+      Begin DesktopMenuItem ConnectionSetTopic
          SpecialMenu = 0
-         Text = "#Strings.kSetTopic"
          Index = -2147483648
+         Text = "#Strings.kSetTopic"
          ShortcutKey = "T"
          Shortcut = "Cmd+Shift+T"
          MenuModifier = True
          AltMenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem ConnectionPostNews
+      Begin DesktopMenuItem ConnectionPostNews
          SpecialMenu = 0
-         Text = "#Strings.kPostNews"
          Index = -2147483648
+         Text = "#Strings.kPostNews"
          ShortcutKey = "P"
          Shortcut = "Cmd+P"
          MenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem UntitledSeparator2
+      Begin DesktopMenuItem UntitledSeparator2
          SpecialMenu = 0
+         Index = -2147483648
          Text = "-"
-         Index = -2147483648
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin QuitMenuItem ConnectionQuit
+      Begin DesktopQuitMenuItem ConnectionQuit
          SpecialMenu = 0
-         Text = "#Strings.kQuit"
          Index = -2147483648
+         Text = "#Strings.kQuit"
          ShortcutKey = "#Strings.kFileQuitShortcut"
          Shortcut = "Cmd+#Strings.kFileQuitShortcut"
          MenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
    End
-   Begin MenuItem EditMenu
+   Begin DesktopMenuItem EditMenu
       SpecialMenu = 0
-      Text = "#Strings.kEdit"
       Index = -2147483648
+      Text = "#Strings.kEdit"
+      AutoEnabled = True
       AutoEnable = True
       Visible = True
-      Begin MenuItem EditUndo
+      Begin DesktopMenuItem EditUndo
          SpecialMenu = 0
-         Text = "&Undo"
          Index = -2147483648
+         Text = "&Undo"
          ShortcutKey = "Z"
          Shortcut = "Cmd+Z"
          MenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem UntitledMenu1
+      Begin DesktopMenuItem UntitledMenu1
          SpecialMenu = 0
+         Index = -2147483648
          Text = "-"
-         Index = -2147483648
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem EditCut
+      Begin DesktopMenuItem EditCut
          SpecialMenu = 0
-         Text = "Cu&t"
          Index = -2147483648
+         Text = "Cu&t"
          ShortcutKey = "X"
          Shortcut = "Cmd+X"
          MenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem EditCopy
+      Begin DesktopMenuItem EditCopy
          SpecialMenu = 0
-         Text = "&Copy"
          Index = -2147483648
+         Text = "&Copy"
          ShortcutKey = "C"
          Shortcut = "Cmd+C"
          MenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem EditPaste
+      Begin DesktopMenuItem EditPaste
          SpecialMenu = 0
-         Text = "&Paste"
          Index = -2147483648
+         Text = "&Paste"
          ShortcutKey = "V"
          Shortcut = "Cmd+V"
          MenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem EditPasteImage
+      Begin DesktopMenuItem EditPasteImage
          SpecialMenu = 0
-         Text = "#Strings.kPasteImage"
          Index = -2147483648
+         Text = "#Strings.kPasteImage"
          ShortcutKey = "V"
          Shortcut = "Cmd+Shift+V"
          MenuModifier = True
          AltMenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem EditClear
+      Begin DesktopMenuItem EditClear
          SpecialMenu = 0
+         Index = -2147483648
          Text = "#Strings.kClear"
-         Index = -2147483648
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem EditClearChat
+      Begin DesktopMenuItem EditClearChat
          SpecialMenu = 0
-         Text = "#Strings.kClearChat"
          Index = -2147483648
+         Text = "#Strings.kClearChat"
          ShortcutKey = "DELETE"
          Shortcut = "Cmd+DELETE"
          MenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem EditClearAllChats
+      Begin DesktopMenuItem EditClearAllChats
          SpecialMenu = 0
-         Text = "#Strings.kClearAllChats"
          Index = -2147483648
+         Text = "#Strings.kClearAllChats"
          ShortcutKey = "DELETE"
          Shortcut = "Cmd+Shift+DELETE"
          MenuModifier = True
          AltMenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem UntitledMenu0
+      Begin DesktopMenuItem UntitledMenu0
          SpecialMenu = 0
+         Index = -2147483648
          Text = "-"
-         Index = -2147483648
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem EditSelectAll
+      Begin DesktopMenuItem EditSelectAll
          SpecialMenu = 0
-         Text = "Select &All"
          Index = -2147483648
+         Text = "Select &All"
          ShortcutKey = "A"
          Shortcut = "Cmd+A"
          MenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem UntitledSeparator
+      Begin DesktopMenuItem UntitledSeparator
          SpecialMenu = 0
+         Index = -2147483648
          Text = "-"
-         Index = -2147483648
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin PrefsMenuItem EditPreferences
+      Begin DesktopMenuItem EditPreferences
          SpecialMenu = 0
-         Text = "#Strings.kPreferences"
          Index = -2147483648
+         Text = "#Strings.kPreferences"
+         AutoEnabled = True
          AutoEnable = True
          SubMenu = True
          Visible = True
-         Begin MenuItem PrefsGeneral
+         Begin DesktopMenuItem PrefsGeneral
             SpecialMenu = 0
-            Text = "#Strings.kGeneral"
             Index = -2147483648
+            Text = "#Strings.kGeneral"
             ShortcutKey = ","
             Shortcut = "Cmd+,"
             MenuModifier = True
+            AutoEnabled = True
             AutoEnable = True
             Visible = True
          End
-         Begin MenuItem UntitledSeparator3
+         Begin DesktopMenuItem UntitledSeparator3
             SpecialMenu = 0
+            Index = -2147483648
             Text = "-"
-            Index = -2147483648
+            AutoEnabled = True
             AutoEnable = True
             Visible = True
          End
-         Begin MenuItem PrefsEvents
+         Begin DesktopMenuItem PrefsEvents
             SpecialMenu = 0
+            Index = -2147483648
             Text = "#Strings.kEvents"
-            Index = -2147483648
+            AutoEnabled = True
             AutoEnable = True
             Visible = True
          End
-         Begin MenuItem PrefsIcons
+         Begin DesktopMenuItem PrefsIcons
             SpecialMenu = 0
+            Index = -2147483648
             Text = "#Strings.kIcons"
-            Index = -2147483648
+            AutoEnabled = True
             AutoEnable = True
             Visible = True
          End
-         Begin MenuItem PrefsMessageStyles
+         Begin DesktopMenuItem PrefsMessageStyles
             SpecialMenu = 0
+            Index = -2147483648
             Text = "#Strings.kMessageStyles"
-            Index = -2147483648
+            AutoEnabled = True
             AutoEnable = True
             Visible = True
          End
-         Begin MenuItem PrefsNewsStyles
+         Begin DesktopMenuItem PrefsNewsStyles
             SpecialMenu = 0
+            Index = -2147483648
             Text = "#Strings.kNewsStyles"
-            Index = -2147483648
+            AutoEnabled = True
             AutoEnable = True
             Visible = True
          End
-         Begin MenuItem PrefsStatusIcons
+         Begin DesktopMenuItem PrefsStatusIcons
             SpecialMenu = 0
-            Text = "#Strings.kStatusIcons"
             Index = -2147483648
+            Text = "#Strings.kStatusIcons"
+            AutoEnabled = True
             AutoEnable = True
             Visible = True
          End
       End
    End
-   Begin MenuItem WindowMenu
+   Begin DesktopMenuItem WindowMenu
       SpecialMenu = 0
-      Text = "#Strings.kWindow"
       Index = -2147483648
+      Text = "#Strings.kWindow"
+      AutoEnabled = True
       AutoEnable = True
       Visible = True
-      Begin MenuItem WindowCloseWindow
+      Begin DesktopMenuItem WindowCloseWindow
          SpecialMenu = 0
-         Text = "#Strings.kCloseWindow"
          Index = -2147483648
+         Text = "#Strings.kCloseWindow"
          ShortcutKey = "W"
          Shortcut = "Cmd+W"
          MenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem WindowCloseTab
+      Begin DesktopMenuItem WindowCloseTab
          SpecialMenu = 0
+         Index = -2147483648
          Text = "#Strings.kCloseTab"
-         Index = -2147483648
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem UntitledSeparator0
+      Begin DesktopMenuItem UntitledSeparator0
          SpecialMenu = 0
+         Index = -2147483648
          Text = "-"
-         Index = -2147483648
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem WindowSelectPreviousTab
+      Begin DesktopMenuItem WindowSelectPreviousTab
          SpecialMenu = 0
-         Text = "#Strings.kSelectPreviousTab"
          Index = -2147483648
+         Text = "#Strings.kSelectPreviousTab"
          ShortcutKey = "["
          Shortcut = "Cmd+Shift+["
          MenuModifier = True
          AltMenuModifier = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem WindowSelectNextTab
+      Begin DesktopMenuItem WindowSelectNextTab
          SpecialMenu = 0
-         Text = "#Strings.kSelectNextTab"
          Index = -2147483648
+         Text = "#Strings.kSelectNextTab"
          ShortcutKey = "]"
          Shortcut = "Cmd+]"
          MenuModifier = True
-         AutoEnable = True
-         Visible = True
-      End
-      Begin MenuItem UntitledItem1
-         SpecialMenu = 0
-         Text = "-"
-         Index = -2147483648
-         AutoEnable = True
-         Visible = True
-      End
-      Begin MenuItem ViewToggleFullScreen
-         SpecialMenu = 0
-         Text = "#Strings.kEnterFullScreen"
-         Index = -2147483648
-         ShortcutKey = "F"
-         Shortcut = "Cmd+Control+F"
-         MenuModifier = True
-         MacControlKey = True
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End
    End
-   Begin MenuItem HelpMenu
+   Begin DesktopMenuItem HelpMenu
       SpecialMenu = 0
-      Text = "Help"
       Index = -2147483648
+      Text = "Help"
+      AutoEnabled = True
       AutoEnable = True
       Visible = True
-      Begin ApplicationMenuItem HelpAbout
+      Begin DesktopApplicationMenuItem HelpAbout
          SpecialMenu = 0
-         Text = "#Strings.kAboutSwirl"
          Index = -2147483648
+         Text = "#Strings.kAboutSwirl"
+         AutoEnabled = True
          AutoEnable = True
          Visible = True
       End

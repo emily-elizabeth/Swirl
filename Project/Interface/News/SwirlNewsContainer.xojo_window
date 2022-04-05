@@ -1,17 +1,16 @@
-#tag Window
-Begin ContainerControl SwirlNewsContainer
-   AcceptFocus     =   False
-   AcceptTabs      =   True
-   AutoDeactivate  =   True
-   BackColor       =   &cFFFFFF00
+#tag DesktopWindow
+Begin DesktopContainer SwirlNewsContainer
+   AllowAutoDeactivate=   True
+   AllowFocus      =   False
+   AllowFocusRing  =   False
+   AllowTabs       =   True
    Backdrop        =   0
-   Compatibility   =   ""
-   DoubleBuffer    =   False
+   BackgroundColor =   &cFFFFFF00
+   Composited      =   False
    Enabled         =   True
-   EraseBackground =   True
-   HasBackColor    =   False
+   HasBackgroundColor=   False
    Height          =   502
-   HelpTag         =   ""
+   Index           =   -2147483648
    InitialParent   =   ""
    Left            =   0
    LockBottom      =   True
@@ -21,9 +20,9 @@ Begin ContainerControl SwirlNewsContainer
    TabIndex        =   0
    TabPanelIndex   =   0
    TabStop         =   True
+   Tooltip         =   ""
    Top             =   0
    Transparent     =   True
-   UseFocusRing    =   False
    Visible         =   True
    Width           =   656
    Begin UINewsViewer Viewer
@@ -32,6 +31,7 @@ Begin ContainerControl SwirlNewsContainer
       Height          =   450
       HelpTag         =   ""
       Index           =   -2147483648
+      InitialParent   =   ""
       Left            =   0
       LockBottom      =   True
       LockedInPosition=   False
@@ -47,10 +47,11 @@ Begin ContainerControl SwirlNewsContainer
       Visible         =   True
       Width           =   656
    End
-   Begin Rectangle Rectangle1
+   Begin DesktopRectangle Rectangle1
       AutoDeactivate  =   True
-      BorderWidth     =   0
-      BottomRightColor=   &c00000000
+      BorderColor     =   &c000000
+      BorderWidth     =   0.0
+      CornerSize      =   16.0
       Enabled         =   True
       FillColor       =   &cFFFFFF00
       Height          =   502
@@ -67,11 +68,10 @@ Begin ContainerControl SwirlNewsContainer
       TabIndex        =   4
       TabPanelIndex   =   0
       Top             =   0
-      TopLeftColor    =   &c00000000
       Transparent     =   True
       Visible         =   False
       Width           =   656
-      Begin TextArea NewPost
+      Begin DesktopTextArea NewPost
          AcceptTabs      =   False
          Alignment       =   0
          AutoDeactivate  =   True
@@ -79,8 +79,6 @@ Begin ContainerControl SwirlNewsContainer
          BackColor       =   &cFFFFFF00
          Bold            =   False
          Border          =   True
-         DataField       =   ""
-         DataSource      =   ""
          Enabled         =   True
          Format          =   ""
          Height          =   430
@@ -116,14 +114,15 @@ Begin ContainerControl SwirlNewsContainer
          Top             =   20
          Transparent     =   True
          Underline       =   False
+         UnicodeMode     =   0
          UseFocusRing    =   True
          Visible         =   True
          Width           =   616
       End
-      Begin PushButton Post
+      Begin DesktopButton Post
          AutoDeactivate  =   True
          Bold            =   False
-         ButtonStyle     =   "0"
+         ButtonStyle     =   0
          Cancel          =   False
          Caption         =   "#Strings.kPost"
          Default         =   False
@@ -152,10 +151,10 @@ Begin ContainerControl SwirlNewsContainer
          Visible         =   True
          Width           =   110
       End
-      Begin PushButton Cancel
+      Begin DesktopButton Cancel
          AutoDeactivate  =   True
          Bold            =   False
-         ButtonStyle     =   "0"
+         ButtonStyle     =   0
          Cancel          =   True
          Caption         =   "#Strings.kCancel"
          Default         =   False
@@ -185,10 +184,10 @@ Begin ContainerControl SwirlNewsContainer
          Width           =   110
       End
    End
-   Begin PushButton Reload
+   Begin DesktopButton Reload
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "0"
+      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "#Strings.kReload"
       Default         =   False
@@ -217,10 +216,10 @@ Begin ContainerControl SwirlNewsContainer
       Visible         =   True
       Width           =   150
    End
-   Begin PushButton PostNews
+   Begin DesktopButton PostNews
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "0"
+      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "#Strings.kPostNews"
       Default         =   False
@@ -249,10 +248,10 @@ Begin ContainerControl SwirlNewsContainer
       Visible         =   True
       Width           =   150
    End
-   Begin PushButton Clear
+   Begin DesktopButton Clear
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "0"
+      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "#Strings.kClear"
       Default         =   False
@@ -282,11 +281,11 @@ Begin ContainerControl SwirlNewsContainer
       Width           =   150
    End
 End
-#tag EndWindow
+#tag EndDesktopWindow
 
 #tag WindowCode
 	#tag Event
-		Sub Close()
+		Sub Closing()
 		  ObjObserver.Unlisten self, Events.kWiredConnectionNewsListEntry
 		  ObjObserver.Unlisten self, Events.kWiredConnectionNewsPosted
 		  ObjObserver.Unlisten self, Events.kWiredConnectionPrivilegesReceived
@@ -294,7 +293,7 @@ End
 	#tag EndEvent
 
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  ObjObserver.Listen self, Events.kWiredConnectionNewsListEntry
 		  ObjObserver.Listen self, Events.kWiredConnectionNewsPosted
 		  ObjObserver.Listen self, Events.kWiredConnectionPrivilegesReceived
@@ -349,7 +348,7 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub WiredConnectionNewsListEntry(connection As WiredConnection, nick As Text, time As Xojo.Core.Date, message As Text)
+		Private Sub WiredConnectionNewsListEntry(connection As WiredConnection, nick As String, time As DateTime, message As String)
 		  if (connection = self.mConnection) then
 		    self.Viewer.AppendArticle nick, time, message
 		  end if
@@ -357,7 +356,7 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub WiredConnectionNewsPosted(connection As WiredConnection, nick As Text, time As Xojo.Core.Date, message As Text)
+		Private Sub WiredConnectionNewsPosted(connection As WiredConnection, nick As String, time As DateTime, message As String)
 		  if (connection = self.mConnection) then
 		    self.Viewer.PrependArticle nick, time, message
 		  end if
@@ -383,7 +382,7 @@ End
 
 #tag Events Viewer
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  me.Style = Prefs.NewsStylePath
 		End Sub
 	#tag EndEvent
@@ -400,22 +399,22 @@ End
 #tag EndEvents
 #tag Events Post
 	#tag Event
-		Sub Action()
-		  self.mConnection.PostNews self.NewPost.Text.ToText
+		Sub Pressed()
+		  self.mConnection.PostNews self.NewPost.Text
 		  self.HideNewPost
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events Cancel
 	#tag Event
-		Sub Action()
+		Sub Pressed()
 		  self.HideNewPost
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events Reload
 	#tag Event
-		Sub Action()
+		Sub Pressed()
 		  self.Viewer.Clear
 		  self.mConnection.RequestNews
 		End Sub
@@ -423,75 +422,110 @@ End
 #tag EndEvents
 #tag Events PostNews
 	#tag Event
-		Sub Action()
+		Sub Pressed()
 		  self.ShowNewPost
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events Clear
 	#tag Event
-		Sub Action()
-		  DIM dialog As NEW MessageDialog
-		  dialog.Icon = MessageDialog.GraphicCaution
-		  dialog.Message = Strings.kAreYouSureYouWantToClearTheNews
-		  dialog.Explanation = Strings.kThisCannotBeUndone
-		  dialog.ActionButton.Caption = Strings.kOK
-		  dialog.CancelButton.Caption = Strings.kCancel
-		  dialog.CancelButton.Visible = TRUE
-		  
-		  DIM result As MessageDialogButton = dialog.ShowModalWithin(self)
-		  
-		  if (result = dialog.ActionButton) then
-		    self.mConnection.ClearNews
-		  end if
+		Sub Pressed()
+		  'DIM dialog As NEW MessageDialog
+		  'dialog.Icon = MessageDialog.GraphicCaution
+		  'dialog.Message = Strings.kAreYouSureYouWantToClearTheNews
+		  'dialog.Explanation = Strings.kThisCannotBeUndone
+		  'dialog.ActionButton.Caption = Strings.kOK
+		  'dialog.CancelButton.Caption = Strings.kCancel
+		  'dialog.CancelButton.Visible = TRUE
+		  '
+		  'DIM result As MessageDialogButton = dialog.ShowModalWithin(self)
+		  '
+		  'if (result = dialog.ActionButton) then
+		  'self.mConnection.ClearNews
+		  'end if
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
-		Name="DoubleBuffer"
+		Name="Composited"
 		Visible=true
 		Group="Windows Behavior"
 		InitialValue="False"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="AcceptFocus"
+		Name="Index"
 		Visible=true
-		Group="Behavior"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
+		Group="ID"
+		InitialValue="-2147483648"
+		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="AcceptTabs"
-		Visible=true
-		Group="Behavior"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="AutoDeactivate"
+		Name="AllowAutoDeactivate"
 		Visible=true
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="BackColor"
+		Name="Tooltip"
+		Visible=true
+		Group="Appearance"
+		InitialValue=""
+		Type="String"
+		EditorType="MultiLineEditor"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowFocusRing"
+		Visible=true
+		Group="Appearance"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="BackgroundColor"
 		Visible=true
 		Group="Background"
 		InitialValue="&hFFFFFF"
-		Type="Color"
+		Type="ColorGroup"
+		EditorType="ColorGroup"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="HasBackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowFocus"
+		Visible=true
+		Group="Behavior"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowTabs"
+		Visible=true
+		Group="Behavior"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Backdrop"
 		Visible=true
 		Group="Background"
+		InitialValue=""
 		Type="Picture"
-		EditorType="Picture"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Enabled"
@@ -499,22 +533,7 @@ End
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="EraseBackground"
-		Visible=true
-		Group="Behavior"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HasBackColor"
-		Visible=true
-		Group="Background"
-		InitialValue="False"
-		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Height"
@@ -522,61 +541,71 @@ End
 		Group="Size"
 		InitialValue="300"
 		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HelpTag"
-		Visible=true
-		Group="Appearance"
-		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="InitialParent"
+		Visible=false
 		Group="Position"
+		InitialValue=""
 		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Left"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockBottom"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockLeft"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockRight"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockTop"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Name"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
-		EditorType="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
-		EditorType="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabIndex"
@@ -584,12 +613,15 @@ End
 		Group="Position"
 		InitialValue="0"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabPanelIndex"
+		Visible=false
 		Group="Position"
 		InitialValue="0"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabStop"
@@ -597,13 +629,15 @@ End
 		Group="Position"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Top"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Transparent"
@@ -611,15 +645,7 @@ End
 		Group="Behavior"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="UseFocusRing"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Visible"
@@ -627,7 +653,7 @@ End
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Width"
@@ -635,5 +661,6 @@ End
 		Group="Size"
 		InitialValue="300"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior

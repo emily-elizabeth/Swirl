@@ -1,17 +1,16 @@
-#tag Window
-Begin ContainerControl ConnectContainer
-   AcceptFocus     =   False
-   AcceptTabs      =   True
-   AutoDeactivate  =   True
-   BackColor       =   &cFFFFFF00
+#tag DesktopWindow
+Begin DesktopContainer ConnectContainer
+   AllowAutoDeactivate=   True
+   AllowFocus      =   False
+   AllowFocusRing  =   False
+   AllowTabs       =   True
    Backdrop        =   0
-   Compatibility   =   ""
-   DoubleBuffer    =   False
+   BackgroundColor =   &cFFFFFF00
+   Composited      =   False
    Enabled         =   True
-   EraseBackground =   True
-   HasBackColor    =   False
+   HasBackgroundColor=   False
    Height          =   472
-   HelpTag         =   ""
+   Index           =   -2147483648
    InitialParent   =   ""
    Left            =   0
    LockBottom      =   True
@@ -21,12 +20,12 @@ Begin ContainerControl ConnectContainer
    TabIndex        =   0
    TabPanelIndex   =   0
    TabStop         =   True
+   Tooltip         =   ""
    Top             =   0
    Transparent     =   False
-   UseFocusRing    =   False
    Visible         =   True
    Width           =   780
-   Begin TextField Address
+   Begin DesktopTextField Address
       AcceptTabs      =   False
       Alignment       =   0
       AutoDeactivate  =   True
@@ -35,8 +34,6 @@ Begin ContainerControl ConnectContainer
       Bold            =   False
       Border          =   True
       CueText         =   "#Strings.kAddress"
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Format          =   ""
       Height          =   22
@@ -69,10 +66,10 @@ Begin ContainerControl ConnectContainer
       Visible         =   True
       Width           =   310
    End
-   Begin PushButton AddToFavourites
+   Begin DesktopButton AddToFavourites
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "0"
+      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "#Strings.kAddToFavourites"
       Default         =   False
@@ -89,7 +86,7 @@ Begin ContainerControl ConnectContainer
       LockRight       =   True
       LockTop         =   True
       Scope           =   2
-      TabIndex        =   1
+      TabIndex        =   4
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
@@ -101,7 +98,7 @@ Begin ContainerControl ConnectContainer
       Visible         =   True
       Width           =   172
    End
-   Begin Listbox BookmarkList
+   Begin DesktopListBox BookmarkList
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
       Bold            =   False
@@ -109,14 +106,11 @@ Begin ContainerControl ConnectContainer
       ColumnCount     =   1
       ColumnsResizable=   False
       ColumnWidths    =   ""
-      DataField       =   ""
-      DataSource      =   ""
       DefaultRowHeight=   -1
       Enabled         =   True
       EnableDrag      =   False
       EnableDragReorder=   False
-      GridLinesHorizontal=   0
-      GridLinesVertical=   0
+      GridLineStyle   =   0
       HasHeading      =   False
       HeadingIndex    =   -1
       Height          =   472
@@ -138,7 +132,7 @@ Begin ContainerControl ConnectContainer
       ScrollBarVertical=   True
       SelectionType   =   0
       ShowDropIndicator=   False
-      TabIndex        =   2
+      TabIndex        =   3
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
@@ -153,10 +147,10 @@ Begin ContainerControl ConnectContainer
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin PushButton ConnectButton
+   Begin DesktopButton ConnectButton
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "0"
+      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "#Strings.kConnect"
       Default         =   True
@@ -173,7 +167,7 @@ Begin ContainerControl ConnectContainer
       LockRight       =   True
       LockTop         =   True
       Scope           =   2
-      TabIndex        =   3
+      TabIndex        =   5
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
@@ -185,7 +179,7 @@ Begin ContainerControl ConnectContainer
       Visible         =   True
       Width           =   114
    End
-   Begin TextField Login
+   Begin DesktopTextField Login
       AcceptTabs      =   False
       Alignment       =   0
       AutoDeactivate  =   True
@@ -194,8 +188,6 @@ Begin ContainerControl ConnectContainer
       Bold            =   False
       Border          =   True
       CueText         =   "#Strings.kLogin"
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Format          =   ""
       Height          =   22
@@ -213,7 +205,7 @@ Begin ContainerControl ConnectContainer
       Password        =   False
       ReadOnly        =   False
       Scope           =   2
-      TabIndex        =   4
+      TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
@@ -228,11 +220,9 @@ Begin ContainerControl ConnectContainer
       Visible         =   True
       Width           =   310
    End
-   Begin Label Message
+   Begin DesktopLabel Message
       AutoDeactivate  =   True
       Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Height          =   20
       HelpTag         =   ""
@@ -248,11 +238,11 @@ Begin ContainerControl ConnectContainer
       Multiline       =   False
       Scope           =   2
       Selectable      =   False
-      TabIndex        =   5
+      TabIndex        =   6
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
-      TextAlign       =   1
+      TextAlign       =   2
       TextColor       =   &c00000000
       TextFont        =   "SmallSystem"
       TextSize        =   0.0
@@ -263,7 +253,7 @@ Begin ContainerControl ConnectContainer
       Visible         =   True
       Width           =   218
    End
-   Begin TextField Password
+   Begin DesktopTextField Password
       AcceptTabs      =   False
       Alignment       =   0
       AutoDeactivate  =   True
@@ -272,8 +262,6 @@ Begin ContainerControl ConnectContainer
       Bold            =   False
       Border          =   True
       CueText         =   "#Strings.kPassword"
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Format          =   ""
       Height          =   22
@@ -291,7 +279,7 @@ Begin ContainerControl ConnectContainer
       Password        =   True
       ReadOnly        =   False
       Scope           =   2
-      TabIndex        =   6
+      TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
@@ -306,7 +294,7 @@ Begin ContainerControl ConnectContainer
       Visible         =   True
       Width           =   310
    End
-   Begin ProgressWheel Progress
+   Begin DesktopProgressWheel Progress
       AutoDeactivate  =   True
       Enabled         =   True
       Height          =   16
@@ -329,28 +317,28 @@ Begin ContainerControl ConnectContainer
       Width           =   16
    End
 End
-#tag EndWindow
+#tag EndDesktopWindow
 
 #tag WindowCode
 	#tag Method, Flags = &h21
 		Private Sub Connect()
 		  // disable the GUI
 		  
-		  DIM serverParts() As Text = self.Address.Text.ToText.Split(":")
+		  DIM serverParts() As String = self.Address.Text.Split(":")
 		  if (serverParts.Ubound = 0) then  // only an address
 		    serverParts.Append "2000"
 		  end if
-		  DIM login As Text = self.Login.Text.ToText
-		  if (login.Empty) then
+		  DIM login As String = self.Login.Text
+		  if (login.IsEmpty) then
 		    login = "guest"
 		  end if
-		  DIM pass As Text = self.Password.Text.ToText
+		  DIM pass As String = self.Password.Text
 		  if (pass.Length <> 40) then
 		    pass = NetWiredSocket.HashPassword(pass)
 		  end if
 		  
 		  DIM connection As NEW WiredConnection
-		  connection.Connect serverParts(0), Integer.FromText(serverParts(1)), login, pass
+		  connection.Connect serverParts(0), Integer.FromString(serverParts(1)), login, pass
 		  
 		End Sub
 	#tag EndMethod
@@ -362,12 +350,12 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function LoadBookmark(bookmark As Xojo.IO.FolderItem) As URLComponents
+		Private Function LoadBookmark(bookmark As FolderItem) As URLComponents
 		  DIM results As URLComponents
 		  
 		  if (bookmark <> Nil) AND (bookmark.Exists) then
-		    DIM input As Xojo.IO.TextInputStream = Xojo.IO.TextInputStream.Open(bookmark, Xojo.Core.TextEncoding.UTF8)
-		    DIM bookmarkData As Text = input.ReadAll()
+		    DIM input As TextInputStream = TextInputStream.Open(bookmark)
+		    DIM bookmarkData As String = input.ReadAll()
 		    input.Close
 		    
 		    results = NEW URLComponents(bookmarkData)
@@ -379,15 +367,15 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub LoadBookmarks()
-		  self.BookmarkList.DeleteAllRows
+		  self.BookmarkList.RemoveAllRows
 		  
 		  if (Paths.Bookmarks <> Nil) AND (Paths.Bookmarks.Exists) AND (Paths.Bookmarks.Count > 0) then
-		    for each path As xojo.IO.FolderItem in Paths.Bookmarks.Children
-		      if (path <> Nil) AND (path.Exists) AND (path.IsVisible) AND (path.Name.Left(1) <> ".") AND (path.Name.IndexOf(".swirlBookmark") > -1) then
+		    for each path As FolderItem in Paths.Bookmarks.Children
+		      if (path <> Nil) AND (path.Exists) AND (path.Visible) AND (path.Name.Left(1) <> ".") AND (path.Name.IndexOf(".swirlBookmark") > -1) then
 		        DIM bookmark As URLComponents = self.LoadBookmark(path)
 		        
-		        self.BookmarkList.AddRow bookmark.User + " @ " + bookmark.Host + if(bookmark.Port = 2000, "", ":" + bookmark.Port.ToText)
-		        self.BookmarkList.RowTag(self.BookmarkList.LastIndex) = bookmark
+		        self.BookmarkList.AddRow bookmark.User + " @ " + bookmark.Host + if(bookmark.Port = 2000, "", ":" + bookmark.Port.ToString)
+		        self.BookmarkList.RowTagAt(self.BookmarkList.LastAddedRowIndex) = bookmark
 		      end if
 		    next
 		  end if
@@ -422,26 +410,26 @@ End
 
 #tag Events Address
 	#tag Event
-		Sub TextChange()
+		Sub TextChanged()
 		  ' self.ConnectButton.Enabled = (Trim(me.Text) <> "")
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events AddToFavourites
 	#tag Event
-		Sub Action()
-		  if (NOT self.Address.Text.ToText.Empty) then
-		    DIM wiredURL As Text = "wired://" + _
-		    if(self.Login.Text.ToText.Empty, "guest", self.Login.Text.ToText) + _
-		    if(self.Password.Text.ToText.Empty, "", ":" + NetWiredSocket.HashPassword(self.Password.Text.ToText)) + _
+		Sub Pressed()
+		  if (NOT self.Address.Text.IsEmpty) then
+		    DIM wiredURL As String = "wired://" + _
+		    if(self.Login.Text.IsEmpty, "guest", self.Login.Text) + _
+		    if(self.Password.Text.IsEmpty, "", ":" + NetWiredSocket.HashPassword(self.Password.Text)) + _
 		    "@" + _
-		    if(self.Address.Text.ToText.IndexOf(":") > -1, self.Address.Text.ToText, self.Address.Text.ToText + ":2000")
+		    if(self.Address.Text.IndexOf(":") > -1, self.Address.Text, self.Address.Text + ":2000")
 		    
 		    DIM bookmarkData As NEW URLComponents(wiredURL)
 		    if (bookmarkData <> Nil) then
-		      DIM bookmarkName As Text = bookmarkData.Host + "_" + bookmarkData.Port.ToText + "_" + bookmarkData.User + ".swirlBookmark"
-		      DIM output As Xojo.IO.TextOutputStream
-		      output = Xojo.IO.TextOutputStream.Create(Paths.Bookmarks.Child(bookmarkName), Xojo.Core.TextEncoding.UTF8)
+		      DIM bookmarkName As String = bookmarkData.Host + "_" + bookmarkData.Port.ToString + "_" + bookmarkData.User + ".swirlBookmark"
+		      DIM output As TextOutputStream
+		      output = TextOutputStream.Create(Paths.Bookmarks.Child(bookmarkName))
 		      output.Write bookmarkData  // URLComponents automatically writes out to text
 		      output.Close
 		    end if
@@ -453,31 +441,31 @@ End
 #tag EndEvents
 #tag Events BookmarkList
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  self.LoadBookmarks
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub Change()
-		  if (me.ListIndex > -1) AND (me.RowTag(me.ListIndex) <> Nil) then
-		    DIM bookmark As URLComponents = me.RowTag(me.ListIndex)
-		    self.Address.Text = bookmark.Host + if(bookmark.Port = 2000, "", ":" + bookmark.Port.ToText)
+		Sub SelectionChanged()
+		  if (me.SelectedRowIndex > -1) AND (me.RowTagAt(me.SelectedRowIndex) <> Nil) then
+		    DIM bookmark As URLComponents = me.RowTagAt(me.SelectedRowIndex)
+		    self.Address.Text = bookmark.Host + if(bookmark.Port = 2000, "", ":" + bookmark.Port.ToString)
 		    self.Login.Text = bookmark.User
 		    self.Password.Text = bookmark.Password
 		  end if
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub ExpandRow(row As Integer)
+		Sub RowExpanded(row As Integer)
 		  #Pragma Unused row
 		  
 		  'if (me.Cell(row, 0) = ssWired.kBookmarks) then
 		  'if (ssWired.Bookmarks <> Nil) AND (ssWired.Bookmarks.Exists) then
-		  'for each path As xojo.IO.FolderItem in ssWired.Bookmarks.Children
+		  'for each path As FolderItem in ssWired.Bookmarks.Children
 		  'if (path.IsVisible) AND (path.Name.Left(1) <> ".") AND (path.Name.IndexOf(".ssWiredBookmark") > -1) then
 		  'DIM bookmark As URLComponents = self.LoadBookmark(path)
 		  '
-		  'me.AddRow bookmark.User + " @ " + bookmark.Host + if(bookmark.Port = 2000, "", ":" + bookmark.Port.ToText)
+		  'me.AddRow bookmark.User + " @ " + bookmark.Host + if(bookmark.Port = 2000, "", ":" + bookmark.Port)
 		  'me.RowTag(me.LastIndex) = bookmark
 		  'end if
 		  'next
@@ -486,70 +474,105 @@ End
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub DoubleClick()
+		Sub DoublePressed()
 		  Self.Connect
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events ConnectButton
 	#tag Event
-		Sub Action()
+		Sub Pressed()
 		  self.Connect
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events Progress
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  ' me.Top = (self.ConnectButton.Top + 2)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
-		Name="DoubleBuffer"
+		Name="Composited"
 		Visible=true
 		Group="Windows Behavior"
 		InitialValue="False"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="AcceptFocus"
+		Name="Index"
 		Visible=true
-		Group="Behavior"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
+		Group="ID"
+		InitialValue="-2147483648"
+		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="AcceptTabs"
-		Visible=true
-		Group="Behavior"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="AutoDeactivate"
+		Name="AllowAutoDeactivate"
 		Visible=true
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="BackColor"
+		Name="Tooltip"
+		Visible=true
+		Group="Appearance"
+		InitialValue=""
+		Type="String"
+		EditorType="MultiLineEditor"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowFocusRing"
+		Visible=true
+		Group="Appearance"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="BackgroundColor"
 		Visible=true
 		Group="Background"
 		InitialValue="&hFFFFFF"
-		Type="Color"
+		Type="ColorGroup"
+		EditorType="ColorGroup"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="HasBackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowFocus"
+		Visible=true
+		Group="Behavior"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowTabs"
+		Visible=true
+		Group="Behavior"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Backdrop"
 		Visible=true
 		Group="Background"
+		InitialValue=""
 		Type="Picture"
-		EditorType="Picture"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Enabled"
@@ -557,22 +580,7 @@ End
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="EraseBackground"
-		Visible=true
-		Group="Behavior"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HasBackColor"
-		Visible=true
-		Group="Background"
-		InitialValue="False"
-		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Height"
@@ -580,61 +588,71 @@ End
 		Group="Size"
 		InitialValue="300"
 		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HelpTag"
-		Visible=true
-		Group="Appearance"
-		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="InitialParent"
+		Visible=false
 		Group="Position"
+		InitialValue=""
 		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Left"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockBottom"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockLeft"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockRight"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockTop"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Name"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
-		EditorType="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
-		EditorType="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabIndex"
@@ -642,12 +660,15 @@ End
 		Group="Position"
 		InitialValue="0"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabPanelIndex"
+		Visible=false
 		Group="Position"
 		InitialValue="0"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabStop"
@@ -655,13 +676,15 @@ End
 		Group="Position"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Top"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Transparent"
@@ -669,15 +692,7 @@ End
 		Group="Behavior"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="UseFocusRing"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Visible"
@@ -685,7 +700,7 @@ End
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Width"
@@ -693,5 +708,6 @@ End
 		Group="Size"
 		InitialValue="300"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior

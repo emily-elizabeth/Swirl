@@ -1,7 +1,7 @@
 #tag Class
 Protected Class AdiumStatusIcons
 	#tag Method, Flags = &h0
-		Sub Constructor(path As Xojo.IO.FolderItem)
+		Sub Constructor(path As FolderItem)
 		  try
 		    me.mPath = path
 		    me.mDisplayName = path.DisplayName
@@ -16,10 +16,10 @@ Protected Class AdiumStatusIcons
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub LoadFromPath(path As Xojo.IO.FolderItem)
+		Private Sub LoadFromPath(path As FolderItem)
 		  try
-		    DIM stream As Xojo.IO.TextInputStream = Xojo.IO.TextInputStream.Open(path, Xojo.Core.TextEncoding.UTF8)
-		    DIM data As Text = stream.ReadAll
+		    DIM stream As TextInputStream = TextInputStream.Open(path)
+		    DIM data As String = stream.ReadAll
 		    stream.Close
 		    
 		    DIM rg As NEW RegEx
@@ -32,15 +32,15 @@ Protected Class AdiumStatusIcons
 		      if (myMatch <> Nil) then
 		        select case myMatch.SubExpressionString(1)
 		        case "Generic Available"
-		          me.mAvailable = me.OpenAsPicture(myMatch.SubExpressionString(2).ToText)
+		          me.mAvailable = me.OpenAsPicture(myMatch.SubExpressionString(2))
 		        case "Generic Away"
-		          me.mAway = me.OpenAsPicture(myMatch.SubExpressionString(2).ToText)
+		          me.mAway = me.OpenAsPicture(myMatch.SubExpressionString(2))
 		        case "Idle"
-		          me.mIdle = me.OpenAsPicture(myMatch.SubExpressionString(2).ToText)
+		          me.mIdle = me.OpenAsPicture(myMatch.SubExpressionString(2))
 		        case "Offline"
-		          me.mOffline = me.OpenAsPicture(myMatch.SubExpressionString(2).ToText)
+		          me.mOffline = me.OpenAsPicture(myMatch.SubExpressionString(2))
 		        case "Content"
-		          me.mContent = me.OpenAsPicture(myMatch.SubExpressionString(2).ToText)
+		          me.mContent = me.OpenAsPicture(myMatch.SubExpressionString(2))
 		        end select
 		      end if
 		      
@@ -51,12 +51,12 @@ Protected Class AdiumStatusIcons
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function OpenAsPicture(value As Text) As Picture
+		Private Function OpenAsPicture(value As String) As Picture
 		  DIM results As Picture
 		  
-		  for each f As Xojo.IO.FolderItem in me.mPath.Children
+		  for each f As FolderItem in me.mPath.Children
 		    if (value = f.Name) OR (value = f.DisplayName) then
-		      DIM classicFolderItem As FolderItem = NEW FolderItem(f.Path, FolderItem.PathTypeNative)
+		      DIM classicFolderItem As FolderItem = NEW FolderItem(f.NativePath, FolderItem.PathTypeNative)
 		      results = Picture.Open(classicFolderItem)
 		    end if
 		  next
@@ -156,7 +156,7 @@ Protected Class AdiumStatusIcons
 			  #Pragma Unused value
 			End Set
 		#tag EndSetter
-		DisplayName As Text
+		DisplayName As String
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -186,7 +186,7 @@ Protected Class AdiumStatusIcons
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mDisplayName As Text
+		Private mDisplayName As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -198,7 +198,7 @@ Protected Class AdiumStatusIcons
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mPath As Xojo.IO.FolderItem
+		Private mPath As FolderItem
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -226,36 +226,50 @@ Protected Class AdiumStatusIcons
 			  #Pragma Unused value
 			End Set
 		#tag EndSetter
-		Path As Xojo.IO.FolderItem
+		Path As FolderItem
 	#tag EndComputedProperty
 
 
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="Available"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Picture"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Away"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Picture"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Content"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Picture"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DisplayName"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Text"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Idle"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Picture"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -263,6 +277,7 @@ Protected Class AdiumStatusIcons
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -270,23 +285,31 @@ Protected Class AdiumStatusIcons
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Offline"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Picture"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -294,6 +317,7 @@ Protected Class AdiumStatusIcons
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

@@ -1,39 +1,37 @@
-#tag Window
-Begin Window SwirlAboutWindow
-   BackColor       =   &cFFFFFF00
+#tag DesktopWindow
+Begin DesktopWindow SwirlAboutWindow
    Backdrop        =   0
-   CloseButton     =   True
-   Compatibility   =   ""
+   BackgroundColor =   &cFFFFFF00
    Composite       =   True
-   Frame           =   0
+   DefaultLocation =   0
    FullScreen      =   False
-   FullScreenButton=   False
-   HasBackColor    =   False
+   HasBackgroundColor=   False
+   HasCloseButton  =   True
+   HasFullScreenButton=   False
+   HasMaximizeButton=   False
+   HasMinimizeButton=   True
    Height          =   283
    ImplicitInstance=   True
-   LiveResize      =   False
    MacProcID       =   0
-   MaxHeight       =   283
-   MaximizeButton  =   False
-   MaxWidth        =   560
+   MaximumHeight   =   283
+   MaximumWidth    =   560
    MenuBar         =   0
    MenuBarVisible  =   True
-   MinHeight       =   283
-   MinimizeButton  =   True
-   MinWidth        =   560
-   Placement       =   0
+   MinimumHeight   =   283
+   MinimumWidth    =   560
    Resizeable      =   False
    Title           =   "#Strings.kAboutSwirl"
+   Type            =   0
    Visible         =   False
    Width           =   560
-   Begin Canvas Icon
+   Begin DesktopCanvas Icon
       AcceptFocus     =   False
       AcceptTabs      =   False
       AutoDeactivate  =   True
       Backdrop        =   0
       DoubleBuffer    =   False
       Enabled         =   True
-      EraseBackground =   True
+      EraseBackground =   "True"
       Height          =   128
       HelpTag         =   ""
       Index           =   -2147483648
@@ -54,7 +52,7 @@ Begin Window SwirlAboutWindow
       Visible         =   True
       Width           =   128
    End
-   Begin Label VersionInfo
+   Begin DesktopLabel VersionInfo
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -78,7 +76,7 @@ Begin Window SwirlAboutWindow
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
-      TextAlign       =   1
+      TextAlign       =   2
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
@@ -90,11 +88,11 @@ Begin Window SwirlAboutWindow
       Width           =   348
    End
 End
-#tag EndWindow
+#tag EndDesktopWindow
 
 #tag WindowCode
 	#tag Event
-		Sub EnableMenuItems()
+		Sub MenuBarSelected() Handles MenuBarSelected
 		  'EditClear.Enabled = FALSE
 		  'EditCopy.Enabled = FALSE
 		  'EditCut.Enabled = FALSE
@@ -105,7 +103,7 @@ End
 	#tag EndEvent
 
 	#tag Event
-		Sub Open()
+		Sub Opening() Handles Opening
 		  self.top = ( Screen(0).Height \ 3) - (self.Height \ 3 )
 		  self.left = ( Screen(0).Width \ 2) - (self.Width \ 2 )
 		End Sub
@@ -124,7 +122,7 @@ End
 
 #tag Events Icon
 	#tag Event
-		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		Sub Paint(g As Graphics, areas() As Rect)
 		  #pragma Unused areas
 		  
 		  g.DrawPicture spiralgalaxy256, 0, 0, me.Width, me.Height, 0, 0, spiralgalaxy256.Width, spiralgalaxy256.Height
@@ -133,9 +131,9 @@ End
 #tag EndEvents
 #tag Events VersionInfo
 	#tag Event
-		Sub Open()
-		  DIM info As Text = "Swirl $version"
-		  info = info.Replace("$version", App.MajorVersion.ToText + "." + App.MinorVersion.ToText + "." + App.NonReleaseVersion.ToText)
+		Sub Opening()
+		  DIM info As String = "Swirl $version"
+		  info = info.Replace("$version", App.MajorVersion.ToString + "." + App.MinorVersion.ToString + "." + App.NonReleaseVersion.ToString)
 		  
 		  me.Text = "Thanks to everyone who has helped over the years." + EndOfLine + EndOfLine + _
 		  "W4r.H4wk - Windows testing and hardware provider" + EndOfLine + _
@@ -150,40 +148,43 @@ End
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
-		Name="BackColor"
+		Name="MinimumWidth"
 		Visible=true
-		Group="Appearance"
-		InitialValue="&hFFFFFF"
-		Type="Color"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Backdrop"
-		Visible=true
-		Group="Appearance"
-		Type="Picture"
-		EditorType="Picture"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="CloseButton"
-		Visible=true
-		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Composite"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Frame"
-		Visible=true
-		Group="Appearance"
-		InitialValue="0"
+		Group="Size"
+		InitialValue="64"
 		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MinimumHeight"
+		Visible=true
+		Group="Size"
+		InitialValue="64"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MaximumWidth"
+		Visible=true
+		Group="Size"
+		InitialValue="32000"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MaximumHeight"
+		Visible=true
+		Group="Size"
+		InitialValue="32000"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Type"
+		Visible=true
+		Group="Frame"
+		InitialValue="0"
+		Type="Types"
 		EditorType="Enum"
 		#tag EnumValues
 			"0 - Document"
@@ -200,137 +201,43 @@ End
 		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="FullScreen"
+		Name="HasCloseButton"
 		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="FullScreenButton"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HasBackColor"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Height"
-		Visible=true
-		Group="Position"
-		InitialValue="400"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="ImplicitInstance"
-		Visible=true
-		Group="Appearance"
+		Group="Frame"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="Interfaces"
+		Name="HasMaximizeButton"
 		Visible=true
-		Group="ID"
-		Type="String"
-		EditorType="String"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="LiveResize"
-		Visible=true
-		Group="Appearance"
+		Group="Frame"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="MacProcID"
+		Name="HasMinimizeButton"
 		Visible=true
-		Group="Appearance"
+		Group="Frame"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="HasFullScreenButton"
+		Visible=true
+		Group="Frame"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="DefaultLocation"
+		Visible=true
+		Group="Behavior"
 		InitialValue="0"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MaxHeight"
-		Visible=true
-		Group="Position"
-		InitialValue="32000"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MaximizeButton"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MaxWidth"
-		Visible=true
-		Group="Position"
-		InitialValue="32000"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MenuBar"
-		Visible=true
-		Group="Appearance"
-		Type="MenuBar"
-		EditorType="MenuBar"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MenuBarVisible"
-		Visible=true
-		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MinHeight"
-		Visible=true
-		Group="Position"
-		InitialValue="64"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MinimizeButton"
-		Visible=true
-		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MinWidth"
-		Visible=true
-		Group="Position"
-		InitialValue="64"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Name"
-		Visible=true
-		Group="ID"
-		Type="String"
-		EditorType="String"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Placement"
-		Visible=true
-		Group="Position"
-		InitialValue="0"
-		Type="Integer"
+		Type="Locations"
 		EditorType="Enum"
 		#tag EnumValues
 			"0 - Default"
@@ -341,19 +248,116 @@ End
 		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
+		Name="HasBackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="BackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="&hFFFFFF"
+		Type="Color"
+		EditorType="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Backdrop"
+		Visible=true
+		Group="Appearance"
+		InitialValue=""
+		Type="Picture"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Composite"
+		Visible=true
+		Group="Appearance"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="FullScreen"
+		Visible=true
+		Group="Appearance"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Height"
+		Visible=true
+		Group="Position"
+		InitialValue="400"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ImplicitInstance"
+		Visible=true
+		Group="Appearance"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Interfaces"
+		Visible=true
+		Group="ID"
+		InitialValue=""
+		Type="String"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MacProcID"
+		Visible=true
+		Group="Appearance"
+		InitialValue="0"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MenuBar"
+		Visible=true
+		Group="Appearance"
+		InitialValue=""
+		Type="MenuBar"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MenuBarVisible"
+		Visible=true
+		Group="Appearance"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Name"
+		Visible=true
+		Group="ID"
+		InitialValue=""
+		Type="String"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
 		Name="Resizeable"
 		Visible=true
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
-		EditorType="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Title"
@@ -361,6 +365,7 @@ End
 		Group="Appearance"
 		InitialValue="Untitled"
 		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Visible"
@@ -368,7 +373,7 @@ End
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Width"
@@ -376,5 +381,6 @@ End
 		Group="Position"
 		InitialValue="600"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior

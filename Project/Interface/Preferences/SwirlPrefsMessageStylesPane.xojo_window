@@ -1,17 +1,16 @@
-#tag Window
-Begin ContainerControl SwirlPrefsMessageStylesPane
-   AcceptFocus     =   False
-   AcceptTabs      =   True
-   AutoDeactivate  =   True
-   BackColor       =   &cFFFFFF00
+#tag DesktopWindow
+Begin DesktopContainer SwirlPrefsMessageStylesPane
+   AllowAutoDeactivate=   True
+   AllowFocus      =   False
+   AllowFocusRing  =   False
+   AllowTabs       =   True
    Backdrop        =   0
-   Compatibility   =   ""
-   DoubleBuffer    =   False
+   BackgroundColor =   &cFFFFFF00
+   Composited      =   False
    Enabled         =   True
-   EraseBackground =   True
-   HasBackColor    =   False
+   HasBackgroundColor=   False
    Height          =   520
-   HelpTag         =   ""
+   Index           =   -2147483648
    InitialParent   =   ""
    Left            =   0
    LockBottom      =   False
@@ -21,15 +20,15 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
    TabIndex        =   0
    TabPanelIndex   =   0
    TabStop         =   True
+   Tooltip         =   ""
    Top             =   0
    Transparent     =   True
-   UseFocusRing    =   False
    Visible         =   True
    Width           =   650
-   Begin PushButton StyleApply
+   Begin DesktopButton StyleApply
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "0"
+      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "#Strings.kApplyMessageStyle"
       Default         =   False
@@ -80,7 +79,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       Visible         =   True
       Width           =   650
    End
-   Begin Listbox Styles
+   Begin DesktopListBox Styles
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
       Bold            =   False
@@ -132,10 +131,10 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin PushButton MessageStyleAdd
+   Begin DesktopButton MessageStyleAdd
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "0"
+      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "+"
       Default         =   False
@@ -164,10 +163,10 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       Visible         =   False
       Width           =   27
    End
-   Begin PushButton MessageStyleRemove
+   Begin DesktopButton MessageStyleRemove
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "0"
+      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "-"
       Default         =   False
@@ -196,10 +195,10 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       Visible         =   False
       Width           =   27
    End
-   Begin PushButton MessageStylesRefresh
+   Begin DesktopButton MessageStylesRefresh
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "0"
+      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "#Strings.kRefresh"
       Default         =   False
@@ -251,7 +250,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       Visible         =   True
       Width           =   49
    End
-   Begin TextField ThemeFontSize
+   Begin DesktopTextField ThemeFontSize
       AcceptTabs      =   False
       Alignment       =   0
       AutoDeactivate  =   True
@@ -295,7 +294,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       Visible         =   True
       Width           =   49
    End
-   Begin Label Label1
+   Begin DesktopLabel Label1
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -319,7 +318,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "#Strings.kMessageStyle"
-      TextAlign       =   2
+      TextAlign       =   3
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
@@ -330,7 +329,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       Visible         =   True
       Width           =   199
    End
-   Begin Label Label2
+   Begin DesktopLabel Label2
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -354,7 +353,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "#Strings.kFontSize"
-      TextAlign       =   2
+      TextAlign       =   3
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
@@ -365,7 +364,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       Visible         =   True
       Width           =   199
    End
-   Begin Label DefaultFontSize
+   Begin DesktopLabel DefaultFontSize
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -400,7 +399,7 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       Visible         =   True
       Width           =   338
    End
-   Begin Label NotAllThemesSupportCustomFontSizes
+   Begin DesktopLabel NotAllThemesSupportCustomFontSizes
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -436,11 +435,11 @@ Begin ContainerControl SwirlPrefsMessageStylesPane
       Width           =   399
    End
 End
-#tag EndWindow
+#tag EndDesktopWindow
 
 #tag WindowCode
 	#tag Method, Flags = &h21
-		Private Sub AddMessageStyle(style As Xojo.IO.FolderItem)
+		Private Sub AddMessageStyle(style As FolderItem)
 		  if (style.Name.IndexOf(".AdiumMessageStyle") > -1) then  // it contains the string
 		    // check if the message style is valid
 		    if (style.Child("Contents").Child("Resources").Exists) AND (style.Child("Contents").Child("Info.plist").Exists) then
@@ -453,54 +452,54 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub ListMessageStyles()
-		  self.Styles.DeleteAllRows
-		  
-		  if (Paths.MessageStyles <>Nil) AND (Paths.MessageStyles.Exists) then
-		    DIM children() As Text
-		    for each file As Xojo.IO.FolderItem in Paths.MessageStyles.Children()
-		      children.Append file.DisplayName
-		    next file
-		    children.Sort
-		    
-		    for each ch As Text in children
-		      DIM path As Xojo.IO.FolderItem = Paths.MessageStyles.Child(ch)
-		      if (path <> Nil) AND (path.Exists) AND (path.IsVisible) AND (path.Name <> ".DS_Store") AND (path.Name.IndexOf(".AdiumMessageStyle") > -1) then
-		        if (path.Child("Contents").Child("Resources").Child("Variants").Exists) then
-		          self.Styles.AddFolder path.DisplayName.Replace(".AdiumMessageStyle", "")
-		        else
-		          self.Styles.AddRow path.DisplayName.Replace(".AdiumMessageStyle", "")
-		        end if
-		        self.Styles.RowTag(self.Styles.LastIndex) = path
-		      end if
-		    next ch
-		  end if
+		  'self.Styles.DeleteAllRows
+		  '
+		  'if (Paths.MessageStyles <>Nil) AND (Paths.MessageStyles.Exists) then
+		  'DIM children() As String
+		  'for each file As FolderItem in Paths.MessageStyles.Children()
+		  'children.Append file.DisplayName
+		  'next file
+		  'children.Sort
+		  '
+		  'for each ch As String in children
+		  'DIM path As FolderItem = Paths.MessageStyles.Child(ch)
+		  'if (path <> Nil) AND (path.Exists) AND (path.Visible) AND (path.Name <> ".DS_Store") AND (path.Name.IndexOf(".AdiumMessageStyle") > -1) then
+		  'if (path.Child("Contents").Child("Resources").Child("Variants").Exists) then
+		  'self.Styles.AddFolder path.DisplayName.Replace(".AdiumMessageStyle", "")
+		  'else
+		  'self.Styles.AddRow path.DisplayName.Replace(".AdiumMessageStyle", "")
+		  'end if
+		  'self.Styles.RowTag(self.Styles.LastIndex) = path
+		  'end if
+		  'next ch
+		  'end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub RemoveMessageStyle(row As Integer)
-		  // we have a row selected
-		  if (row <> -1) then
-		    // check if the row is a variant row and then get the parent style row
-		    if (self.Styles.CellTag(row, 0) <> Nil) then
-		      row = self.Styles.CellTag(row, 0)
-		    end if
-		    DIM style As Xojo.IO.FolderItem = self.Styles.RowTag(row)
-		    DIM result As Integer
-		    result = App.RemoveEntireFolder(style, True)
-		    App.EnsureDefaultTheme
-		    self.ListMessageStyles
-		    self.Styles.ListIndex = 0
-		  end if
+		  '// we have a row selected
+		  'if (row <> -1) then
+		  '// check if the row is a variant row and then get the parent style row
+		  'if (self.Styles.CellTag(row, 0) <> Nil) then
+		  'row = self.Styles.CellTag(row, 0)
+		  'end if
+		  'DIM style As FolderItem = self.Styles.RowTag(row)
+		  'DIM result As Integer
+		  'result = App.RemoveEntireFolder(style, True)
+		  'App.EnsureDefaultTheme
+		  'self.ListMessageStyles
+		  'self.Styles.ListIndex = 0
+		  'end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub SetPreviewFontSize(size As Integer)
 		  if (size = 0) then
-		    self.MessageStylePreview.ExecuteJavaScript "document.body.style.fontSize='" + self.MessageStylePreview.DefaultFontSize.ToText + "px';"
+		    self.MessageStylePreview.ExecuteJavaScript "document.body.style.fontSize='" + self.MessageStylePreview.DefaultFontSize.ToString + "px';"
 		  else
-		    self.MessageStylePreview.ExecuteJavaScript "document.body.style.fontSize='" + size.ToText + "px';"
+		    self.MessageStylePreview.ExecuteJavaScript "document.body.style.fontSize='" + size.ToString + "px';"
 		  end if
 		End Sub
 	#tag EndMethod
@@ -510,81 +509,81 @@ End
 
 #tag Events StyleApply
 	#tag Event
-		Sub Action()
+		Sub Pressed()
 		  Prefs.MessageStylePath = self.MessageStylePreview.MessageStylePath
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events MessageStylePreview
 	#tag Event
-		Sub Open()
-		  me.MessageStylePath = Prefs.MessageStylePath
-		  
-		  DIM iconPath As FolderItem = NEW FolderItem(Paths.DefaultIcon.Path, FolderItem.PathTypeNative)
-		  DIM icon As Picture = Picture.Open(iconPath)
-		  
-		  me.AppendChat Xojo.Core.Date.Now, 1, Prefs.UserNick, Prefs.UserIcon, "So a priest, rabbi, and a chicken walk in to a bar.", FALSE
-		  me.AppendChat Xojo.Core.Date.Now, 2, "Emily", icon, "I'm pretty sure I've heard this one before", TRUE
-		  me.AppendChat Xojo.Core.Date.Now, 2, "Emily", icon, "So what happens next?", TRUE
-		  me.AppendChat Xojo.Core.Date.Now, 1, Prefs.UserNick, Prefs.UserIcon, "If I remember correctly, they explode outward at the speed of light.", FALSE
-		  me.AppendChat Xojo.Core.Date.Now, 1, Prefs.UserNick, Prefs.UserIcon, "But that might be if you cross the streams...", FALSE
-		  me.AppendChat Xojo.Core.Date.Now, 2, "Emily", icon, "... thus negating all existence!", TRUE
-		  me.AppendChat Xojo.Core.Date.Now, 1, Prefs.UserNick, Prefs.UserIcon, "Exactly! It's a risk one takes whenever one walks in to a bar, especially if one is a chicken.", FALSE
-		  me.AppendNotification Xojo.Core.Date.Now, "away", "Emily went away"
+		Sub MessageStyleChanged()
+		  self.DefaultFontSize.Text = Strings.kDefaultFontSize.Replace("%size%", me.DefaultFontSize.ToString)
+		  self.SetPreviewFontSize Prefs.MessageStyleFontSize
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub MessageStyleChanged()
-		  self.DefaultFontSize.Text = Strings.kDefaultFontSize.Replace("%size%", me.DefaultFontSize.ToText)
-		  self.SetPreviewFontSize Prefs.MessageStyleFontSize
+		Sub Opening()
+		  me.MessageStylePath = Prefs.MessageStylePath
+		  
+		  DIM iconPath As FolderItem = NEW FolderItem(Paths.DefaultIcon.NativePath, FolderItem.PathTypeNative)
+		  DIM icon As Picture = Picture.Open(iconPath)
+		  
+		  me.AppendChat DateTime.Now, 1, Prefs.UserNick, Prefs.UserIcon, "So a priest, rabbi, and a chicken walk in to a bar.", FALSE
+		  me.AppendChat DateTime.Now, 2, "Emily", icon, "I'm pretty sure I've heard this one before", TRUE
+		  me.AppendChat DateTime.Now, 2, "Emily", icon, "So what happens next?", TRUE
+		  me.AppendChat DateTime.Now, 1, Prefs.UserNick, Prefs.UserIcon, "If I remember correctly, they explode outward at the speed of light.", FALSE
+		  me.AppendChat DateTime.Now, 1, Prefs.UserNick, Prefs.UserIcon, "But that might be if you cross the streams...", FALSE
+		  me.AppendChat DateTime.Now, 2, "Emily", icon, "... thus negating all existence!", TRUE
+		  me.AppendChat DateTime.Now, 1, Prefs.UserNick, Prefs.UserIcon, "Exactly! It's a risk one takes whenever one walks in to a bar, especially if one is a chicken.", FALSE
+		  me.AppendNotification DateTime.Now, "away", "Emily went away"
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events Styles
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  self.ListMessageStyles
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub ExpandRow(row As Integer)
-		  'me.ListMessageStyleVariants(row)
-		  
-		  DIM path As Xojo.IO.FolderItem = me.RowTag(row)
-		  DIM variantPath As Xojo.IO.FolderItem = path.Child("Contents").Child("Resources").Child("Variants")
-		  
-		  if (variantPath <> Nil) AND (variantPath.Exists) AND (variantPath.IsFolder) then
-		    DIM currentrow As Integer = row
-		    for each variantStyle As Xojo.IO.FolderItem in variantPath.Children()
-		      if (variantStyle.Name <> ".DS_Store") AND (NOT variantStyle.IsFolder) AND (variantStyle.Name.Right(4) = ".css") then
-		        currentrow = currentrow + 1
-		        me.AddRow variantStyle.DisplayName.Replace(".css", "").ReplaceAll("&", "&&").ReplaceAll("_", " ")
-		        me.RowTag(currentrow) = variantStyle  // store the path to the variant
-		        me.CellTag(currentrow, 0) = row  // store the row of the parent style
-		      end if
-		    next
-		  end if
+		Sub RowExpanded(row As Integer)
+		  ''me.ListMessageStyleVariants(row)
+		  '
+		  'DIM path As FolderItem = me.RowTag(row)
+		  'DIM variantPath As FolderItem = path.Child("Contents").Child("Resources").Child("Variants")
+		  '
+		  'if (variantPath <> Nil) AND (variantPath.Exists) AND (variantPath.IsFolder) then
+		  'DIM currentrow As Integer = row
+		  'for each variantStyle As FolderItem in variantPath.Children()
+		  'if (variantStyle.Name <> ".DS_Store") AND (NOT variantStyle.IsFolder) AND (variantStyle.Name.Right(4) = ".css") then
+		  'currentrow = currentrow + 1
+		  'me.AddRow variantStyle.DisplayName.Replace(".css", "").ReplaceAll("&", "&&").ReplaceAll("_", " ")
+		  'me.RowTag(currentrow) = variantStyle  // store the path to the variant
+		  'me.CellTag(currentrow, 0) = row  // store the row of the parent style
+		  'end if
+		  'next
+		  'end if
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub Change()
-		  if (me.ListIndex > -1) then
-		    self.MessageStylePreview.MessageStylePath = me.RowTag(me.ListIndex)
-		  end if
+		Sub SelectionChanged()
+		  'if (me.ListIndex > -1) then
+		  'self.MessageStylePreview.MessageStylePath = me.RowTag(me.ListIndex)
+		  'end if
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub DoubleClick()
+		Sub DoublePressed()
 		  Prefs.MessageStylePath = self.MessageStylePreview.MessageStylePath
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events MessageStyleAdd
 	#tag Event
-		Sub Action()
+		Sub Pressed()
 		  DIM style As FolderItem = SelectFolder()
 		  if (style <> Nil) then  // a folder was selected
-		    DIM newFile As NEW xojo.IO.FolderItem(style.NativePath.ToText)
+		    DIM newFile As NEW FolderItem(style.NativePath)
 		    self.AddMessageStyle newFile
 		  end if
 		End Sub
@@ -592,16 +591,16 @@ End
 #tag EndEvents
 #tag Events MessageStyleRemove
 	#tag Event
-		Sub Action()
-		  if (self.Styles.ListIndex > -1) then
-		    self.RemoveMessageStyle self.Styles.ListIndex
-		  end if
+		Sub Pressed()
+		  'if (self.Styles.ListIndex > -1) then
+		  'self.RemoveMessageStyle self.Styles.ListIndex
+		  'end if
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events MessageStylesRefresh
 	#tag Event
-		Sub Action()
+		Sub Pressed()
 		  self.ListMessageStyles
 		End Sub
 	#tag EndEvent
@@ -609,24 +608,24 @@ End
 #tag Events SegmentedControl1
 	#tag Event
 		Sub Action(itemIndex as integer)
-		  select case itemIndex
-		  case 0 // add
-		    DIM style As FolderItem = SelectFolder()
-		    if (style <> Nil) then  // a folder was selected
-		      DIM newFile As NEW xojo.IO.FolderItem(style.NativePath.ToText)
-		      self.AddMessageStyle newFile
-		    end if
-		  case 1 // remove
-		    if (self.Styles.ListIndex > -1) then
-		      self.RemoveMessageStyle self.Styles.ListIndex
-		    end if
-		  end select
+		  'select case itemIndex
+		  'case 0 // add
+		  'DIM style As FolderItem = SelectFolder()
+		  'if (style <> Nil) then  // a folder was selected
+		  'DIM newFile As NEW FolderItem(style.NativePath)
+		  'self.AddMessageStyle newFile
+		  'end if
+		  'case 1 // remove
+		  'if (self.Styles.ListIndex > -1) then
+		  'self.RemoveMessageStyle self.Styles.ListIndex
+		  'end if
+		  'end select
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events ThemeFontSize
 	#tag Event
-		Function KeyDown(Key As String) As Boolean
+		Function KeyDown(key As String) As Boolean
 		  DIM returnValue As Boolean = FALSE
 		  
 		  select case asc(Key)
@@ -639,61 +638,96 @@ End
 		End Function
 	#tag EndEvent
 	#tag Event
-		Sub TextChange()
+		Sub TextChanged()
 		  self.SetPreviewFontSize Val(me.Text)
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub Open()
-		  me.Text = Prefs.MessageStyleFontSize.ToText
+		Sub Opening()
+		  me.FontSize = Prefs.MessageStyleFontSize
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="Index"
+		Visible=true
+		Group="ID"
+		InitialValue="-2147483648"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowAutoDeactivate"
+		Visible=true
+		Group="Appearance"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Tooltip"
+		Visible=true
+		Group="Appearance"
+		InitialValue=""
+		Type="String"
+		EditorType="MultiLineEditor"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowFocusRing"
+		Visible=true
+		Group="Appearance"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="BackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="&hFFFFFF"
+		Type="Color"
+		EditorType="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="HasBackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowFocus"
+		Visible=true
+		Group="Behavior"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowTabs"
+		Visible=true
+		Group="Behavior"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="DoubleBuffer"
 		Visible=true
 		Group="Windows Behavior"
 		InitialValue="False"
 		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="AcceptFocus"
-		Visible=true
-		Group="Behavior"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="AcceptTabs"
-		Visible=true
-		Group="Behavior"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="AutoDeactivate"
-		Visible=true
-		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="BackColor"
-		Visible=true
-		Group="Appearance"
-		InitialValue="&hFFFFFF"
-		Type="Color"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Backdrop"
 		Visible=true
 		Group="Appearance"
+		InitialValue=""
 		Type="Picture"
-		EditorType="Picture"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Enabled"
@@ -701,7 +735,7 @@ End
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="EraseBackground"
@@ -709,14 +743,7 @@ End
 		Group="Behavior"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HasBackColor"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Height"
@@ -724,61 +751,71 @@ End
 		Group="Position"
 		InitialValue="300"
 		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HelpTag"
-		Visible=true
-		Group="Appearance"
-		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="InitialParent"
+		Visible=false
 		Group="Position"
+		InitialValue=""
 		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Left"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockBottom"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockLeft"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockRight"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockTop"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Name"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
-		EditorType="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
-		EditorType="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabIndex"
@@ -786,12 +823,15 @@ End
 		Group="Position"
 		InitialValue="0"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabPanelIndex"
+		Visible=false
 		Group="Position"
 		InitialValue="0"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabStop"
@@ -799,13 +839,15 @@ End
 		Group="Position"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Top"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Transparent"
@@ -813,15 +855,7 @@ End
 		Group="Behavior"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="UseFocusRing"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Visible"
@@ -829,7 +863,7 @@ End
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Width"
@@ -837,5 +871,6 @@ End
 		Group="Position"
 		InitialValue="300"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior

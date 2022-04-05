@@ -1,16 +1,16 @@
-#tag Window
-Begin ContainerControl ssWiredPreferencesChatEmoticons
-   AcceptFocus     =   False
-   AcceptTabs      =   True
-   AutoDeactivate  =   True
-   BackColor       =   &cFFFFFF00
+#tag DesktopWindow
+Begin DesktopContainer ssWiredPreferencesChatEmoticons
+   AllowAutoDeactivate=   True
+   AllowFocus      =   False
+   AllowFocusRing  =   False
+   AllowTabs       =   True
    Backdrop        =   0
-   Compatibility   =   ""
+   BackgroundColor =   &cFFFFFF00
+   Composited      =   False
    Enabled         =   True
-   EraseBackground =   True
-   HasBackColor    =   False
+   HasBackgroundColor=   False
    Height          =   368
-   HelpTag         =   ""
+   Index           =   -2147483648
    InitialParent   =   ""
    Left            =   0
    LockBottom      =   False
@@ -20,12 +20,12 @@ Begin ContainerControl ssWiredPreferencesChatEmoticons
    TabIndex        =   0
    TabPanelIndex   =   0
    TabStop         =   True
+   Tooltip         =   ""
    Top             =   0
    Transparent     =   True
-   UseFocusRing    =   False
    Visible         =   True
    Width           =   650
-   Begin Listbox EmoticonList
+   Begin DesktopListBox EmoticonList
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
       Bold            =   False
@@ -61,6 +61,7 @@ Begin ContainerControl ssWiredPreferencesChatEmoticons
       ScrollbarHorizontal=   False
       ScrollBarVertical=   True
       SelectionType   =   0
+      ShowDropIndicator=   False
       TabIndex        =   23
       TabPanelIndex   =   0
       TabStop         =   True
@@ -68,6 +69,7 @@ Begin ContainerControl ssWiredPreferencesChatEmoticons
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   0
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
@@ -75,7 +77,7 @@ Begin ContainerControl ssWiredPreferencesChatEmoticons
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin Listbox EmoticonPreview
+   Begin DesktopListBox EmoticonPreview
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
       Bold            =   False
@@ -111,6 +113,7 @@ Begin ContainerControl ssWiredPreferencesChatEmoticons
       ScrollbarHorizontal=   False
       ScrollBarVertical=   True
       SelectionType   =   0
+      ShowDropIndicator=   False
       TabIndex        =   24
       TabPanelIndex   =   0
       TabStop         =   True
@@ -118,6 +121,7 @@ Begin ContainerControl ssWiredPreferencesChatEmoticons
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   0
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
@@ -126,70 +130,70 @@ Begin ContainerControl ssWiredPreferencesChatEmoticons
       _ScrollWidth    =   -1
    End
 End
-#tag EndWindow
+#tag EndDesktopWindow
 
 #tag WindowCode
 	#tag Method, Flags = &h21
-		Private Sub DisplayEmoticons(emoticonSet As xojo.IO.FolderItem)
-		  self.EmoticonPreview.DeleteAllRows
-		  self.EmoticonPreview.DefaultRowHeight = 1
-		  
-		  DIM images() As Picture
-		  
-		  for each item As xojo.IO.FolderItem in emoticonSet.Children
-		    if (item <> Nil) AND (item.Exists) AND (not item.IsFolder) AND (item.Name.Left(1) <> ".") AND (item.Name.IndexOf("@") = -1) then
-		      try
-		        #Pragma BreakOnExceptions FALSE
-		        DIM classicFile As NEW FolderItem(item.Path, FolderItem.PathTypeNative)
-		        DIM image As Picture = Picture.Open(classicFile)
-		        #Pragma BreakOnExceptions Default
-		        
-		        if (image <>Nil) then
-		          if (self.EmoticonPreview.DefaultRowHeight < image.Height + 8) then
-		            self.EmoticonPreview.DefaultRowHeight = image.Height + 8
-		          end if
-		          
-		          if (self.EmoticonPreview.ColumnCount <> Floor(self.EmoticonPreview.Width / (image.Width + 8))) then
-		            self.EmoticonPreview.ColumnCount = Floor(self.EmoticonPreview.Width / (image.Width + 8))
-		          end if
-		          
-		          images.Append image
-		        end if
-		      catch err
-		        // wasn't an image file, so just move on
-		      end try
-		    end if
-		  next
-		  
-		  if (images.Ubound > -1) then
-		    DIM i As Integer = 0
-		    for row as Integer = 0 to images.Ubound Step self.EmoticonPreview.ColumnCount
-		      self.EmoticonPreview.AddRow ""
-		      for column as Integer = 0 to self.EmoticonPreview.ColumnCount
-		        if (i < images.Ubound) then
-		          self.EmoticonPreview.CellTag(row\self.EmoticonPreview.ColumnCount, column) = images(i)
-		          i = i + 1
-		        else
-		          Exit for row
-		        end if
-		      next
-		    next
-		  end if
+		Private Sub DisplayEmoticons(emoticonSet As FolderItem)
+		  'self.EmoticonPreview.DeleteAllRows
+		  'self.EmoticonPreview.DefaultRowHeight = 1
+		  '
+		  'DIM images() As Picture
+		  '
+		  'for each item As FolderItem in emoticonSet.Children
+		  'if (item <> Nil) AND (item.Exists) AND (not item.IsFolder) AND (item.Name.Left(1) <> ".") AND (item.Name.IndexOf("@") = -1) then
+		  'try
+		  '#Pragma BreakOnExceptions FALSE
+		  'DIM classicFile As NEW FolderItem(item.NativePath, FolderItem.PathTypeNative)
+		  'DIM image As Picture = Picture.Open(classicFile)
+		  '#Pragma BreakOnExceptions Default
+		  '
+		  'if (image <>Nil) then
+		  'if (self.EmoticonPreview.DefaultRowHeight < image.Height + 8) then
+		  'self.EmoticonPreview.DefaultRowHeight = image.Height + 8
+		  'end if
+		  '
+		  'if (self.EmoticonPreview.ColumnCount <> Floor(self.EmoticonPreview.Width / (image.Width + 8))) then
+		  'self.EmoticonPreview.ColumnCount = Floor(self.EmoticonPreview.Width / (image.Width + 8))
+		  'end if
+		  '
+		  'images.Append image
+		  'end if
+		  'catch err
+		  '// wasn't an image file, so just move on
+		  'end try
+		  'end if
+		  'next
+		  '
+		  'if (images.Ubound > -1) then
+		  'DIM i As Integer = 0
+		  'for row as Integer = 0 to images.Ubound Step self.EmoticonPreview.ColumnCount
+		  'self.EmoticonPreview.AddRow ""
+		  'for column as Integer = 0 to self.EmoticonPreview.ColumnCount
+		  'if (i < images.Ubound) then
+		  'self.EmoticonPreview.CellTag(row\self.EmoticonPreview.ColumnCount, column) = images(i)
+		  'i = i + 1
+		  'else
+		  'Exit for row
+		  'end if
+		  'next
+		  'next
+		  'end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ListEmoticons(lb As Listbox)
-		  lb.DeleteAllRows
-		  
-		  if (Paths.Emoticons <> Nil) AND (Paths.Emoticons.Exists) then
-		    for each file As xojo.IO.FolderItem in Paths.Emoticons.Children()
-		      if (file.IsVisible) AND (file.Name.Left(1) <> ".") AND (file.Name.IndexOf(".AdiumEmoticonset") > -1) then
-		        lb.AddRow file.DisplayName.Replace(".AdiumEmoticonset", "")
-		        lb.RowTag(lb.LastIndex) = file
-		      end if
-		    next
-		  end if
+		Private Sub ListEmoticons(lb As DesktopListBox)
+		  'lb.DeleteAllRows
+		  '
+		  'if (Paths.Emoticons <> Nil) AND (Paths.Emoticons.Exists) then
+		  'for each file As FolderItem in Paths.Emoticons.Children()
+		  'if (file.Visible) AND (file.Name.Left(1) <> ".") AND (file.Name.IndexOf(".AdiumEmoticonset") > -1) then
+		  'lb.AddRow file.DisplayName.Replace(".AdiumEmoticonset", "")
+		  'lb.RowTag(lb.LastIndex) = file
+		  'end if
+		  'next
+		  'end if
 		End Sub
 	#tag EndMethod
 
@@ -198,33 +202,33 @@ End
 
 #tag Events EmoticonList
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  self.ListEmoticons me
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub Change()
-		  if (me.ListIndex <> -1) then
-		    self.DisplayEmoticons me.RowTag(me.ListIndex)
-		  end if
+		Sub SelectionChanged()
+		  'if (me.ListIndex <> -1) then
+		  'self.DisplayEmoticons me.RowTag(me.ListIndex)
+		  'end if
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events EmoticonPreview
 	#tag Event
-		Function CellBackgroundPaint(g As Graphics, row As Integer, column As Integer) As Boolean
-		  if (row < me.ListCount) then
-		    if (me.CellTag(row, column) <> Nil) then
-		      DIM image As Picture = me.CellTag(row, column)
-		      g.DrawPicture image, 4, 4, image.Width, image.Height, 0, 0, image.Width, image.Height
-		    end if
-		  end if
-		  
-		  Return FALSE
+		Function PaintCellBackground(g As Graphics, row As Integer, column As Integer) As Boolean
+		  'if (row < me.ListCount) then
+		  'if (me.CellTag(row, column) <> Nil) then
+		  'DIM image As Picture = me.CellTag(row, column)
+		  'g.DrawPicture image, 4, 4, image.Width, image.Height, 0, 0, image.Width, image.Height
+		  'end if
+		  'end if
+		  '
+		  'Return FALSE
 		End Function
 	#tag EndEvent
 	#tag Event
-		Function CellClick(row as Integer, column as Integer, x as Integer, y as Integer) As Boolean
+		Function CellPressed(row As Integer, column As Integer, x As Integer, y As Integer) As Boolean
 		  #Pragma Unused row
 		  #Pragma Unused column
 		  #Pragma Unused x
@@ -236,41 +240,84 @@ End
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
-		Name="AcceptFocus"
+		Name="Index"
+		Visible=true
+		Group="ID"
+		InitialValue="-2147483648"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowAutoDeactivate"
+		Visible=true
+		Group="Appearance"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Tooltip"
+		Visible=true
+		Group="Appearance"
+		InitialValue=""
+		Type="String"
+		EditorType="MultiLineEditor"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowFocusRing"
+		Visible=true
+		Group="Appearance"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="BackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="&hFFFFFF"
+		Type="Color"
+		EditorType="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="HasBackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowFocus"
 		Visible=true
 		Group="Behavior"
 		InitialValue="False"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="AcceptTabs"
+		Name="AllowTabs"
 		Visible=true
 		Group="Behavior"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="AutoDeactivate"
+		Name="DoubleBuffer"
 		Visible=true
-		Group="Appearance"
-		InitialValue="True"
+		Group="Windows Behavior"
+		InitialValue="False"
 		Type="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="BackColor"
-		Visible=true
-		Group="Appearance"
-		InitialValue="&hFFFFFF"
-		Type="Color"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Backdrop"
 		Visible=true
 		Group="Appearance"
+		InitialValue=""
 		Type="Picture"
-		EditorType="Picture"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Enabled"
@@ -278,7 +325,7 @@ End
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="EraseBackground"
@@ -286,14 +333,7 @@ End
 		Group="Behavior"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HasBackColor"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Height"
@@ -301,61 +341,71 @@ End
 		Group="Position"
 		InitialValue="300"
 		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HelpTag"
-		Visible=true
-		Group="Appearance"
-		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="InitialParent"
+		Visible=false
 		Group="Position"
+		InitialValue=""
 		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Left"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockBottom"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockLeft"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockRight"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockTop"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Name"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
-		EditorType="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
-		EditorType="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabIndex"
@@ -363,12 +413,15 @@ End
 		Group="Position"
 		InitialValue="0"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabPanelIndex"
+		Visible=false
 		Group="Position"
 		InitialValue="0"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabStop"
@@ -376,13 +429,15 @@ End
 		Group="Position"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Top"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Transparent"
@@ -390,15 +445,7 @@ End
 		Group="Behavior"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="UseFocusRing"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Visible"
@@ -406,7 +453,7 @@ End
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Width"
@@ -414,5 +461,6 @@ End
 		Group="Position"
 		InitialValue="300"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior

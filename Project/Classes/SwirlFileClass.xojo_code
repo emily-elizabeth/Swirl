@@ -1,14 +1,14 @@
 #tag Class
 Protected Class SwirlFileClass
 	#tag Method, Flags = &h0
-		Sub Constructor(path As Text, type As Integer, size As UInt64, created As Xojo.Core.Date, modified As Xojo.Core.Date)
+		Sub Constructor(path As String, type As Integer, size As UInt64, created As DateTime, modified As DateTime)
 		  me.mPath = path
 		  me.mType = type
 		  me.mSize = size
 		  me.mCreated = created
 		  me.mModified = modified
 		  
-		  DIM results() As Text = path.Split("/")
+		  DIM results() As String = path.Split("/")
 		  me.mName = results(results.Ubound)
 		  
 		End Sub
@@ -21,19 +21,19 @@ Protected Class SwirlFileClass
 			  return mCreated
 			End Get
 		#tag EndGetter
-		Created As Xojo.Core.Date
+		Created As DateTime
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private mCreated As Xojo.Core.Date
+		Private mCreated As DateTime
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mModified As Xojo.Core.Date
+		Private mModified As DateTime
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mName As Text
+		Private mName As String
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -42,11 +42,11 @@ Protected Class SwirlFileClass
 			  return mModified
 			End Get
 		#tag EndGetter
-		Modified As Xojo.Core.Date
+		Modified As DateTime
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private mPath As Text
+		Private mPath As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -63,7 +63,7 @@ Protected Class SwirlFileClass
 			  return mName
 			End Get
 		#tag EndGetter
-		Name As Text
+		Name As String
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -72,7 +72,7 @@ Protected Class SwirlFileClass
 			  return mPath
 			End Get
 		#tag EndGetter
-		Path As Text
+		Path As String
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -101,6 +101,7 @@ Protected Class SwirlFileClass
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -108,28 +109,39 @@ Protected Class SwirlFileClass
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Path"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Text"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Size"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="UInt64"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -137,11 +149,15 @@ Protected Class SwirlFileClass
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Type"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

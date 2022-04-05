@@ -1,32 +1,30 @@
-#tag Window
-Begin Window ChatWindow
-   BackColor       =   &cFFFFFF00
+#tag DesktopWindow
+Begin DesktopWindow ChatWindow
    Backdrop        =   0
-   CloseButton     =   True
-   Compatibility   =   ""
+   BackgroundColor =   &cFFFFFF00
    Composite       =   True
-   Frame           =   0
+   DefaultLocation =   0
    FullScreen      =   False
-   FullScreenButton=   True
-   HasBackColor    =   False
+   HasBackgroundColor=   False
+   HasCloseButton  =   True
+   HasFullScreenButton=   True
+   HasMaximizeButton=   True
+   HasMinimizeButton=   True
    Height          =   498
    ImplicitInstance=   True
-   LiveResize      =   True
    MacProcID       =   0
-   MaxHeight       =   32000
-   MaximizeButton  =   True
-   MaxWidth        =   32000
+   MaximumHeight   =   32000
+   MaximumWidth    =   32000
    MenuBar         =   208667844
    MenuBarVisible  =   True
-   MinHeight       =   300
-   MinimizeButton  =   True
-   MinWidth        =   500
-   Placement       =   0
+   MinimumHeight   =   300
+   MinimumWidth    =   500
    Resizeable      =   True
    Title           =   "Swirl"
+   Type            =   0
    Visible         =   False
    Width           =   780
-   Begin PagePanel PagePanel1
+   Begin DesktopPagePanel PagePanel1
       AutoDeactivate  =   True
       Enabled         =   True
       Height          =   538
@@ -44,6 +42,7 @@ Begin Window ChatWindow
       Scope           =   2
       TabIndex        =   5
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   0
       Transparent     =   False
       Value           =   0
@@ -56,7 +55,7 @@ Begin Window ChatWindow
          Backdrop        =   0
          DoubleBuffer    =   False
          Enabled         =   True
-         EraseBackground =   True
+         EraseBackground =   "True"
          Facing          =   1
          Height          =   26
          HelpTag         =   ""
@@ -79,7 +78,7 @@ Begin Window ChatWindow
          Visible         =   True
          Width           =   780
       End
-      Begin PagePanel ChatPanel
+      Begin DesktopPagePanel ChatPanel
          AutoDeactivate  =   True
          Enabled         =   True
          Height          =   472
@@ -97,6 +96,7 @@ Begin Window ChatWindow
          Scope           =   2
          TabIndex        =   0
          TabPanelIndex   =   1
+         TabStop         =   True
          Top             =   0
          Transparent     =   False
          Value           =   0
@@ -114,6 +114,7 @@ Begin Window ChatWindow
             HasBackColor    =   False
             Height          =   472
             HelpTag         =   ""
+            Index           =   -2147483648
             InitialParent   =   "ChatPanel"
             Left            =   0
             LockBottom      =   True
@@ -139,7 +140,7 @@ Begin Window ChatWindow
          Backdrop        =   0
          DoubleBuffer    =   False
          Enabled         =   True
-         EraseBackground =   True
+         EraseBackground =   "True"
          Facing          =   1
          Height          =   26
          HelpTag         =   ""
@@ -169,7 +170,7 @@ Begin Window ChatWindow
          Backdrop        =   0
          DoubleBuffer    =   False
          Enabled         =   True
-         EraseBackground =   True
+         EraseBackground =   "True"
          Facing          =   1
          Height          =   26
          HelpTag         =   ""
@@ -192,7 +193,7 @@ Begin Window ChatWindow
          Visible         =   True
          Width           =   780
       End
-      Begin PagePanel FilesPanel
+      Begin DesktopPagePanel FilesPanel
          AutoDeactivate  =   True
          Enabled         =   True
          Height          =   472
@@ -210,13 +211,14 @@ Begin Window ChatWindow
          Scope           =   2
          TabIndex        =   1
          TabPanelIndex   =   3
+         TabStop         =   True
          Top             =   0
          Transparent     =   False
          Value           =   0
          Visible         =   True
          Width           =   780
       End
-      Begin PagePanel NewsPanel
+      Begin DesktopPagePanel NewsPanel
          AutoDeactivate  =   True
          Enabled         =   True
          Height          =   472
@@ -234,6 +236,7 @@ Begin Window ChatWindow
          Scope           =   2
          TabIndex        =   0
          TabPanelIndex   =   2
+         TabStop         =   True
          Top             =   0
          Transparent     =   False
          Value           =   0
@@ -251,11 +254,11 @@ Begin Window ChatWindow
       Visible         =   True
    End
 End
-#tag EndWindow
+#tag EndDesktopWindow
 
 #tag WindowCode
 	#tag Event
-		Function CancelClose(appQuitting as Boolean) As Boolean
+		Function CancelClosing(appQuitting As Boolean) As Boolean
 		  self.Hide
 		  
 		  Return not appQuitting
@@ -263,7 +266,7 @@ End
 	#tag EndEvent
 
 	#tag Event
-		Sub Close()
+		Sub Closing()
 		  ObjObserver.Unlisten self, Events.kWiredConnectionChatReceived
 		  ObjObserver.Unlisten self, Events.kWiredConnectionDisconnected
 		  ObjObserver.Unlisten self, Events.kWiredConnectionLoginSuccessful
@@ -279,7 +282,7 @@ End
 	#tag EndEvent
 
 	#tag Event
-		Sub EnableMenuItems()
+		Sub MenuBarSelected()
 		  
 		  ConnectionConnect.Enabled = (self.ChatTabs.Value <> 0)  // disable when we're on the Connect tab
 		  ConnectionNews.Enabled = (self.ChatTabs.Value <> 0)
@@ -338,7 +341,7 @@ End
 	#tag EndEvent
 
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  self.Height = self.Height + 1
 		  self.Height = self.Height - 1
 		  
@@ -391,12 +394,12 @@ End
 
 
 	#tag Method, Flags = &h21
-		Private Sub AddChatContainer(panel As PagePanel, page As Integer)
+		Private Sub AddChatContainer(panel As DesktopPagePanel, page As Integer)
 		  DIM aChat As NEW ChatContainer(self.mConnections(self.mConnections.Ubound), 1)
 		  aChat.EmbedWithinPanel panel, page, 0, 0, panel.Width, panel.Height
 		  
 		  if (self.ChatTabs.Value = 0) then
-		    panel.Value = page
+		    panel.SelectedPanelIndex = page
 		  end if
 		End Sub
 	#tag EndMethod
@@ -442,7 +445,7 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub ServerInfoReceived(connection As WiredConnection, appVersion As Text, protocolVersion As Text, serverName As Text, serverDescription As Text, startTime As Xojo.Core.Date, filesCount As UInt64, filesSize As UInt64)
+		Private Sub ServerInfoReceived(connection As WiredConnection, appVersion As String, protocolVersion As String, serverName As String, serverDescription As String, startTime As DateTime, filesCount As UInt64, filesSize As UInt64)
 		  #Pragma Unused appVersion
 		  #Pragma Unused protocolVersion
 		  #Pragma Unused serverDescription
@@ -461,13 +464,13 @@ End
 
 	#tag Method, Flags = &h0
 		Sub ShowChatTab()
-		  self.PagePanel1.Value = 0
+		  self.PagePanel1.SelectedPanelIndex = 0
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub ShowConnectTab()
-		  self.PagePanel1.Value = 0
+		  self.PagePanel1.SelectedPanelIndex = 0
 		  self.ChatTabs.Value = 0
 		  Super.Show
 		End Sub
@@ -475,7 +478,7 @@ End
 
 	#tag Method, Flags = &h0
 		Sub ShowNewsTab()
-		  self.PagePanel1.Value = 1
+		  self.PagePanel1.SelectedPanelIndex = 1
 		End Sub
 	#tag EndMethod
 
@@ -500,7 +503,7 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub WiredConnectionChatReceived(connection As WiredConnection, chatID As Integer, user As WiredUser, message As Text, isAction As Boolean)
+		Private Sub WiredConnectionChatReceived(connection As WiredConnection, chatID As Integer, user As WiredUser, message As String, isAction As Boolean)
 		  #Pragma Unused chatID
 		  #Pragma Unused user
 		  #Pragma Unused message
@@ -605,7 +608,7 @@ End
 
 #tag Events ChatTabs
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  '#if not TargetCocoa
 		  'me.Top = me.Top + 6
 		  '#endif
@@ -616,7 +619,7 @@ End
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub PanelPageAdded(panel as pagePanel, page as integer)
+		Sub PanelPageAdded(panel as DesktopPagePanel, page as integer)
 		  if (page > 0) then
 		    self.AddChatContainer panel, page
 		    'self.UpdateChatTab page
@@ -664,7 +667,7 @@ End
 #tag EndEvents
 #tag Events NewsTabs
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  '#if not TargetCocoa
 		  'me.Top = me.Top + 6
 		  '#endif
@@ -673,7 +676,7 @@ End
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub PanelPageAdded(panel as pagePanel, page as integer)
+		Sub PanelPageAdded(panel as DesktopPagePanel, page as integer)
 		  DIM container As NEW SwirlNewsContainer(self.mConnections(self.mConnections.Ubound))
 		  container.EmbedWithinPanel panel, page, 0, 0, panel.Width, panel.Height
 		End Sub
@@ -696,7 +699,7 @@ End
 #tag EndEvents
 #tag Events FilesTabs
 	#tag Event
-		Sub Open()
+		Sub Opening()
 		  '#if not TargetCocoa
 		  'me.Top = me.Top + 6
 		  '#endif
@@ -705,7 +708,7 @@ End
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub PanelPageAdded(panel as pagePanel, page as integer)
+		Sub PanelPageAdded(panel as DesktopPagePanel, page as integer)
 		  DIM container As NEW SwirlFilesContainer(self.mConnections(self.mConnections.Ubound))
 		  container.EmbedWithinPanel panel, page, 0, 0, panel.Width, panel.Height
 		End Sub
@@ -728,15 +731,15 @@ End
 #tag EndEvents
 #tag Events ChatToolbar1
 	#tag Event
-		Sub Action(item As ToolItem)
+		Sub Pressed(item As DesktopToolbarItem)
 		  if (self.ChatTabs.Value > 0) then
 		    select case item.Caption
 		    case Strings.kChat
-		      self.PagePanel1.Value = 0
+		      self.PagePanel1.SelectedPanelIndex = 0
 		    case Strings.kNews
-		      self.PagePanel1.Value = 1
+		      self.PagePanel1.SelectedPanelIndex = 1
 		    case Strings.kFiles
-		      self.PagePanel1.Value = 2
+		      self.PagePanel1.SelectedPanelIndex = 2
 		    end select
 		  end if
 		End Sub
@@ -744,40 +747,43 @@ End
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
-		Name="BackColor"
+		Name="MinimumWidth"
 		Visible=true
-		Group="Appearance"
-		InitialValue="&hFFFFFF"
-		Type="Color"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Backdrop"
-		Visible=true
-		Group="Appearance"
-		Type="Picture"
-		EditorType="Picture"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="CloseButton"
-		Visible=true
-		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Composite"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Frame"
-		Visible=true
-		Group="Appearance"
-		InitialValue="0"
+		Group="Size"
+		InitialValue="64"
 		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MinimumHeight"
+		Visible=true
+		Group="Size"
+		InitialValue="64"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MaximumWidth"
+		Visible=true
+		Group="Size"
+		InitialValue="32000"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MaximumHeight"
+		Visible=true
+		Group="Size"
+		InitialValue="32000"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Type"
+		Visible=true
+		Group="Frame"
+		InitialValue="0"
+		Type="Types"
 		EditorType="Enum"
 		#tag EnumValues
 			"0 - Document"
@@ -794,137 +800,43 @@ End
 		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="FullScreen"
+		Name="HasCloseButton"
 		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="FullScreenButton"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HasBackColor"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Height"
-		Visible=true
-		Group="Position"
-		InitialValue="400"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="ImplicitInstance"
-		Visible=true
-		Group="Appearance"
+		Group="Frame"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="Interfaces"
+		Name="HasMaximizeButton"
 		Visible=true
-		Group="ID"
-		Type="String"
-		EditorType="String"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="LiveResize"
-		Visible=true
-		Group="Appearance"
+		Group="Frame"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="MacProcID"
+		Name="HasMinimizeButton"
 		Visible=true
-		Group="Appearance"
+		Group="Frame"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="HasFullScreenButton"
+		Visible=true
+		Group="Frame"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="DefaultLocation"
+		Visible=true
+		Group="Behavior"
 		InitialValue="0"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MaxHeight"
-		Visible=true
-		Group="Position"
-		InitialValue="32000"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MaximizeButton"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MaxWidth"
-		Visible=true
-		Group="Position"
-		InitialValue="32000"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MenuBar"
-		Visible=true
-		Group="Appearance"
-		Type="MenuBar"
-		EditorType="MenuBar"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MenuBarVisible"
-		Visible=true
-		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MinHeight"
-		Visible=true
-		Group="Position"
-		InitialValue="64"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MinimizeButton"
-		Visible=true
-		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MinWidth"
-		Visible=true
-		Group="Position"
-		InitialValue="64"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Name"
-		Visible=true
-		Group="ID"
-		Type="String"
-		EditorType="String"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Placement"
-		Visible=true
-		Group="Position"
-		InitialValue="0"
-		Type="Integer"
+		Type="Locations"
 		EditorType="Enum"
 		#tag EnumValues
 			"0 - Default"
@@ -935,19 +847,116 @@ End
 		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
+		Name="HasBackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="BackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="&hFFFFFF"
+		Type="Color"
+		EditorType="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Backdrop"
+		Visible=true
+		Group="Appearance"
+		InitialValue=""
+		Type="Picture"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Composite"
+		Visible=true
+		Group="Appearance"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="FullScreen"
+		Visible=true
+		Group="Appearance"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Height"
+		Visible=true
+		Group="Position"
+		InitialValue="400"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ImplicitInstance"
+		Visible=true
+		Group="Appearance"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Interfaces"
+		Visible=true
+		Group="ID"
+		InitialValue=""
+		Type="String"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MacProcID"
+		Visible=true
+		Group="Appearance"
+		InitialValue="0"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MenuBar"
+		Visible=true
+		Group="Appearance"
+		InitialValue=""
+		Type="MenuBar"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MenuBarVisible"
+		Visible=true
+		Group="Appearance"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Name"
+		Visible=true
+		Group="ID"
+		InitialValue=""
+		Type="String"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
 		Name="Resizeable"
 		Visible=true
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
-		EditorType="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Title"
@@ -955,6 +964,7 @@ End
 		Group="Appearance"
 		InitialValue="Untitled"
 		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Visible"
@@ -962,7 +972,7 @@ End
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Width"
@@ -970,5 +980,6 @@ End
 		Group="Position"
 		InitialValue="600"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior

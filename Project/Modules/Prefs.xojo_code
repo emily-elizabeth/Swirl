@@ -9,8 +9,8 @@ Protected Module Prefs
 	#tag Method, Flags = &h1
 		Protected Function UserIcon_() As Picture
 		  'DIM results As Picture
-		  'DIM iconName As Text = mDefaults.Lookup("UserIcon", "")
-		  'DIM iconPath As Xojo.IO.FolderItem = Paths.Icons.Child(iconName)
+		  'DIM iconName As String = mDefaults.Lookup("UserIcon", "")
+		  'DIM iconPath As FolderItem = Paths.Icons.Child(iconName)
 		  'DIM iconClassicPath As FolderItem = NEW FolderItem(iconPath, FolderItem.PathTypeNative)
 		  'results = Picture.Open(iconClassicPath)  // no need to do error checking on the path as this still returns a Nil
 		  '
@@ -232,8 +232,8 @@ Protected Module Prefs
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  DIM pathName As Text = mDefaults.Lookup("DownloadFolder", Paths.DefaultDownloadFolder.Path)
-			  DIM path As NEW xojo.IO.FolderItem(pathName)
+			  DIM pathName As String = mDefaults.Lookup("DownloadFolder", Paths.DefaultDownloadFolder.NativePath)
+			  DIM path As NEW FolderItem(pathName)
 			  
 			  Return path
 			End Get
@@ -241,11 +241,11 @@ Protected Module Prefs
 		#tag Setter
 			Set
 			  if (value <> Nil) AND (value.Exists) then
-			    mDefaults.Set("DownloadFolder") = value.Path
+			    mDefaults.Set("DownloadFolder") = value.NativePath
 			  end if
 			End Set
 		#tag EndSetter
-		Protected DownloadFolder As xojo.IO.FolderItem
+		Protected DownloadFolder As FolderItem
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h1
@@ -455,10 +455,10 @@ Protected Module Prefs
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  DIM styleName As Text = mDefaults.Lookup("MessageStyle", Paths.DefaultMessageStyleName)
-			  DIM styleURLPath As Text = Paths.MessageStyles.Path + styleName
+			  DIM styleName As String = mDefaults.Lookup("MessageStyle", Paths.DefaultMessageStyleName)
+			  DIM styleURLPath As String = Paths.MessageStyles.NativePath + styleName
 			  
-			  DIM stylePath As NEW xojo.IO.FolderItem(styleURLPath)
+			  DIM stylePath As NEW FolderItem(styleURLPath)
 			  if (NOT stylePath.Exists) then
 			    stylePath = Paths.MessageStyles.Child(Paths.DefaultMessageStyleName)
 			  end if
@@ -466,21 +466,21 @@ Protected Module Prefs
 			  Return stylePath
 			  
 			  
-			  'Return NEW Xojo.IO.FolderItem(Paths.MessageStyles.Child(styleName).Path)
+			  'Return NEW FolderItem(Paths.MessageStyles.Child(styleName).Path)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
 			  if (value <> Nil) AND (value.Exists) then
-			    DIM stylePath As Text = value.Path
-			    stylePath = stylePath.Replace(Paths.MessageStyles.Path, "")
+			    DIM stylePath As String = value.NativePath
+			    stylePath = stylePath.Replace(Paths.MessageStyles.NativePath, "")
 			    mDefaults.Set("MessageStyle") = stylePath
 			    
 			    ObjObserver.Notify Nil, Events.kWiredMessageStyleChanged
 			  end if
 			End Set
 		#tag EndSetter
-		Protected MessageStylePath As Xojo.IO.FolderItem
+		Protected MessageStylePath As FolderItem
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
@@ -578,22 +578,22 @@ Protected Module Prefs
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  DIM styleName As Text = mDefaults.Lookup("NewsStyle", Paths.DefaultNewsStyleName)
+			  DIM styleName As String = mDefaults.Lookup("NewsStyle", Paths.DefaultNewsStyleName)
 			  Return Paths.NewsStyles.Child(styleName)
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
 			  if (value <> Nil) AND (value.Exists) then
-			    DIM stylePath As String = value.Path
-			    stylePath = stylePath.Replace(Paths.NewsStyles.Path, "")
+			    DIM stylePath As String = value.NativePath
+			    stylePath = stylePath.Replace(Paths.NewsStyles.NativePath, "")
 			    mDefaults.Set("NewsStyle") = stylePath
 			    
 			    'App.Notify "NewsStyleChanged"
 			  end if
 			End Set
 		#tag EndSetter
-		Protected NewsStylePath As Xojo.IO.FolderItem
+		Protected NewsStylePath As FolderItem
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h1
@@ -866,7 +866,7 @@ Protected Module Prefs
 		#tag Getter
 			Get
 			  if (mSoundSet = Nil) then
-			    DIM path As Xojo.IO.FolderItem = Paths.Sounds.Child(mDefaults.Lookup("SoundSet", Paths.DefaultSoundSetName))
+			    DIM path As FolderItem = Paths.Sounds.Child(mDefaults.Lookup("SoundSet", Paths.DefaultSoundSetName))
 			    mSoundSet = NEW AdiumSoundSet(path)
 			  end if
 			  
@@ -898,7 +898,7 @@ Protected Module Prefs
 			  mSoundSet = NEW AdiumSoundSet(value)
 			End Set
 		#tag EndSetter
-		Protected SoundSetPath As Xojo.IO.FolderItem
+		Protected SoundSetPath As FolderItem
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h1
@@ -918,7 +918,7 @@ Protected Module Prefs
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  DIM statusIconSetName As Text = mDefaults.Lookup("StatusIconSet", Paths.DefaultStatusIconSetName)
+			  DIM statusIconSetName As String = mDefaults.Lookup("StatusIconSet", Paths.DefaultStatusIconSetName)
 			  
 			  if (statusIconSetName <> "") AND (mStatusIconSet = Nil) AND (Paths.StatusIcons.Child(statusIconSetName).Exists) then
 			    mStatusIconSet = NEW AdiumStatusIcons(Paths.StatusIcons.Child(statusIconSetName))
@@ -934,8 +934,8 @@ Protected Module Prefs
 			  if (value = Nil) then
 			    mDefaults.Set("StatusIconSet") = ""
 			  else
-			    DIM path As Text = value.Path.Path
-			    path = path.Replace(Paths.StatusIcons.Path, "")
+			    DIM path As String = value.Path.NativePath
+			    path = path.Replace(Paths.StatusIcons.NativePath, "")
 			    mDefaults.Set("StatusIconSet") = path
 			  end if
 			  
@@ -1117,9 +1117,9 @@ Protected Module Prefs
 		#tag Getter
 			Get
 			  DIM results As Picture
-			  DIM iconName As Text = mDefaults.Lookup("UserIconPath", "")
-			  DIM iconPath As Xojo.IO.FolderItem = Paths.Icons.Child(iconName)
-			  DIM iconClassicPath As FolderItem = NEW FolderItem(iconPath.Path, FolderItem.PathTypeNative)
+			  DIM iconName As String = mDefaults.Lookup("UserIconPath", "")
+			  DIM iconPath As FolderItem = Paths.Icons.Child(iconName)
+			  DIM iconClassicPath As FolderItem = NEW FolderItem(iconPath.NativePath, FolderItem.PathTypeNative)
 			  results = Picture.Open(iconClassicPath)  // no need to do error checking on the path as this still returns a Nil
 			  
 			  Return results
@@ -1150,7 +1150,7 @@ Protected Module Prefs
 			  
 			End Set
 		#tag EndSetter
-		Protected UserIconPath As Xojo.IO.FolderItem
+		Protected UserIconPath As FolderItem
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h1
@@ -1329,13 +1329,13 @@ Protected Module Prefs
 		#tag EndGetter
 		#tag Setter
 			Set
-			  if (NOT value.Empty) then
+			  if (NOT value.IsEmpty) then
 			    mDefaults.Set("UserNick") = value.TrimRight
 			    ObjObserver.Notify Nil, Events.kMyUserNickChanged, value.TrimRight
 			  end if
 			End Set
 		#tag EndSetter
-		Protected UserNick As Text
+		Protected UserNick As String
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h1
@@ -1435,7 +1435,7 @@ Protected Module Prefs
 			  ObjObserver.Notify Nil, Events.kMyUserStatusChanged, value
 			End Set
 		#tag EndSetter
-		Protected UserStatus As Text
+		Protected UserStatus As String
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h1
@@ -1530,6 +1530,7 @@ Protected Module Prefs
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -1537,18 +1538,23 @@ Protected Module Prefs
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -1556,6 +1562,7 @@ Protected Module Prefs
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Module
