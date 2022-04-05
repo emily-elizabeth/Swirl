@@ -614,38 +614,7 @@ Inherits DesktopCanvas
 
 	#tag Method, Flags = &h0
 		Sub Repaint()
-		  // We force the user to call Redraw instead of Refresh because
-		  // we don't want the user to be able to accidentally cause an
-		  // entire screen erase.  So we override Refresh by making it
-		  // a private function.
-		  
-		  #if TargetWin32
-		    soft declare Sub InvalidateRect Lib "User32" ( hwnd as Integer, lpRect as Ptr, erase as Boolean )
-		    
-		    dim r as new MemoryBlock( 16 )
-		    r.Long( 0 ) = 0
-		    r.Long( 4 ) = 0
-		    r.Long( 8 ) = me.Width
-		    r.Long( 12 ) = me.Height
-		    
-		    InvalidateRect( me.Handle, r, false )
-		    
-		    soft declare Sub UpdateWindow Lib "User32" ( hwnd as Integer )
-		    
-		    dim w as Window
-		    w=me.Window
-		    while true
-		      if w isa ContainerControl then
-		        w=ContainerControl(w).Window
-		      elseif w isa Window then
-		        Exit
-		      end if
-		    Wend
-		    
-		    UpdateWindow( w.Handle )
-		  #else
-		    super.Refresh( TRUE )
-		  #endif
+		  super.Refresh( TRUE )
 		End Sub
 	#tag EndMethod
 
@@ -1045,14 +1014,6 @@ Inherits DesktopCanvas
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="DoubleBuffer"
-			Visible=true
-			Group="Behavior"
-			InitialValue="False"
-			Type="Boolean"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Enabled"
 			Visible=true
 			Group="Appearance"
@@ -1088,14 +1049,6 @@ Inherits DesktopCanvas
 			Group="ID"
 			InitialValue=""
 			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="InitialParent"
-			Visible=false
-			Group=""
-			InitialValue=""
-			Type="String"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

@@ -224,7 +224,7 @@ Inherits DesktopHTMLViewer
 			    
 			    #if TargetWindows
 			      DIM f As FolderItem = SpecialFolder.Temporary.Child("mynews.html")
-			      DIM t As StringOutputStream = TextOutputStream.Create(f)
+			      DIM t As TextOutputStream = TextOutputStream.Create(f)
 			      t.Write me.mSource
 			      t.Close
 			      me.LoadURL f.URLPath
