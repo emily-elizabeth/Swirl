@@ -182,7 +182,7 @@ Begin DesktopContainer SwirlPrefsMessageStylesPane
       Top             =   406
       Transparent     =   False
       Visible         =   True
-      Width           =   49
+      Width           =   50
    End
    Begin DesktopTextField ThemeFontSize
       AcceptTabs      =   False

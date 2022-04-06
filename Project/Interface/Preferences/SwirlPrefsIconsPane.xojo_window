@@ -87,7 +87,7 @@ Begin DesktopContainer SwirlPrefsIconsPane
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   20
+      Left            =   -78
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -100,7 +100,7 @@ Begin DesktopContainer SwirlPrefsIconsPane
       TextFont        =   "SmallSystem"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   328
+      Top             =   398
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -119,7 +119,7 @@ Begin DesktopContainer SwirlPrefsIconsPane
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   59
+      Left            =   -39
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -132,7 +132,7 @@ Begin DesktopContainer SwirlPrefsIconsPane
       TextFont        =   "SmallSystem"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   328
+      Top             =   398
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -151,7 +151,7 @@ Begin DesktopContainer SwirlPrefsIconsPane
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   98
+      Left            =   116
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -175,15 +175,15 @@ Begin DesktopContainer SwirlPrefsIconsPane
       Bold            =   False
       ButtonStyle     =   0
       Cancel          =   False
-      Caption         =   "#Strings.kPasteFromClipboard"
+      Caption         =   "📋"
       Default         =   False
       Enabled         =   True
       Height          =   20
-      HelpTag         =   ""
+      HelpTag         =   "Paste from Clipboard"
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   262
+      Left            =   74
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -200,7 +200,30 @@ Begin DesktopContainer SwirlPrefsIconsPane
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   368
+      Width           =   30
+   End
+   BeginSegmented SegmentedControl SegmentedControl1
+      Enabled         =   True
+      Height          =   20
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   12
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   False
+      MacControlStyle =   0
+      Scope           =   2
+      Segments        =   "+\n\nFalse\r-\n\nFalse"
+      SelectionType   =   2
+      TabIndex        =   29
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   327
+      Transparent     =   False
+      Visible         =   True
+      Width           =   50
    End
 End
 #tag EndDesktopWindow
@@ -368,6 +391,48 @@ End
 		    
 		    self.DisplayIcons
 		  end if
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events SegmentedControl1
+	#tag Event
+		Sub Action(itemIndex as integer)
+		  select case itemIndex
+		  case 0 // add
+		    DIM jpegType As NEW FileType
+		    jpegType.Name = "image/jpeg"
+		    jpegType.MacType = "JPEG"
+		    jpegType.Extensions = "jpg;jpeg"
+		    
+		    DIM pngType As NEW FileType
+		    pngType.Name = "image/png"
+		    pngType.MacType = "PNG "
+		    pngType.Extensions = "png"
+		    
+		    DIM f As FolderItem
+		    
+		    //The actual FileTypes are converted to strings automatically for use
+		    //with GetOpenFolderItem
+		    f = GetOpenFolderItem( jpegType + pngType )
+		    if (f <>Nil) AND (f.Exists) then
+		      DIM fNewPath As FolderItem = NEW FolderItem(f.NativePath)
+		      fNewPath.CopyTo Paths.Icons
+		      self.DisplayIcons
+		    end if
+		    
+		  case 1 // remove
+		    DIM selectedRow As Integer = Pair(self.Icons.RowTagAt(0)).Left
+		    DIM selectedColumn As Integer = Pair(self.Icons.RowTagAt(0)).Right
+		    
+		    if (selectedRow > -1) AND (selectedColumn > -1) then
+		      DIM cellPair As Pair = self.Icons.CellTagAt(selectedRow, selectedColumn)
+		      DIM iconPath As FolderItem = cellPair.Right
+		      IconPath.Delete
+		      self.Icons.RowTagAt(0) = NEW Pair(-1, -1)
+		      Prefs.UserIconPath = Nil
+		      self.DisplayIcons
+		    end if
+		  end select
 		End Sub
 	#tag EndEvent
 #tag EndEvents
