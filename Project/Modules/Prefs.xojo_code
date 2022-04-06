@@ -1324,7 +1324,7 @@ Protected Module Prefs
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  Return mDefaults.Lookup("UserNick", Strings.kWiredUser)
+			  Return mDefaults.Lookup("UserNick", Strings.kSwirlUser)
 			End Get
 		#tag EndGetter
 		#tag Setter
@@ -1425,7 +1425,7 @@ Protected Module Prefs
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
-			  Return mDefaults.Lookup("UserStatus", Strings.kWiredNewbie)
+			  Return mDefaults.Lookup("UserStatus", Strings.kSwirlNewbie)
 			End Get
 		#tag EndGetter
 		#tag Setter

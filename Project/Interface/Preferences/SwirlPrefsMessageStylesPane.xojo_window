@@ -64,6 +64,7 @@ Begin DesktopContainer SwirlPrefsMessageStylesPane
       Height          =   245
       HelpTag         =   ""
       Index           =   -2147483648
+      InitialParent   =   ""
       Left            =   0
       LockBottom      =   True
       LockedInPosition=   False
@@ -87,14 +88,11 @@ Begin DesktopContainer SwirlPrefsMessageStylesPane
       ColumnCount     =   1
       ColumnsResizable=   False
       ColumnWidths    =   ""
-      DataField       =   ""
-      DataSource      =   ""
       DefaultRowHeight=   -1
       Enabled         =   True
       EnableDrag      =   False
       EnableDragReorder=   False
-      GridLinesHorizontal=   0
-      GridLinesVertical=   0
+      GridLineStyle   =   0
       HasHeading      =   False
       HeadingIndex    =   -1
       Height          =   143
@@ -259,8 +257,6 @@ Begin DesktopContainer SwirlPrefsMessageStylesPane
       Bold            =   False
       Border          =   True
       CueText         =   ""
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Format          =   ""
       Height          =   22
@@ -297,8 +293,6 @@ Begin DesktopContainer SwirlPrefsMessageStylesPane
    Begin DesktopLabel Label1
       AutoDeactivate  =   True
       Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Height          =   20
       HelpTag         =   ""
@@ -332,8 +326,6 @@ Begin DesktopContainer SwirlPrefsMessageStylesPane
    Begin DesktopLabel Label2
       AutoDeactivate  =   True
       Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Height          =   20
       HelpTag         =   ""
@@ -367,8 +359,6 @@ Begin DesktopContainer SwirlPrefsMessageStylesPane
    Begin DesktopLabel DefaultFontSize
       AutoDeactivate  =   True
       Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Height          =   20
       HelpTag         =   ""
@@ -402,8 +392,6 @@ Begin DesktopContainer SwirlPrefsMessageStylesPane
    Begin DesktopLabel NotAllThemesSupportCustomFontSizes
       AutoDeactivate  =   True
       Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Height          =   20
       HelpTag         =   ""
@@ -452,45 +440,45 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub ListMessageStyles()
-		  'self.Styles.DeleteAllRows
-		  '
-		  'if (Paths.MessageStyles <>Nil) AND (Paths.MessageStyles.Exists) then
-		  'DIM children() As String
-		  'for each file As FolderItem in Paths.MessageStyles.Children()
-		  'children.Append file.DisplayName
-		  'next file
-		  'children.Sort
-		  '
-		  'for each ch As String in children
-		  'DIM path As FolderItem = Paths.MessageStyles.Child(ch)
-		  'if (path <> Nil) AND (path.Exists) AND (path.Visible) AND (path.Name <> ".DS_Store") AND (path.Name.IndexOf(".AdiumMessageStyle") > -1) then
-		  'if (path.Child("Contents").Child("Resources").Child("Variants").Exists) then
-		  'self.Styles.AddFolder path.DisplayName.Replace(".AdiumMessageStyle", "")
-		  'else
-		  'self.Styles.AddRow path.DisplayName.Replace(".AdiumMessageStyle", "")
-		  'end if
-		  'self.Styles.RowTag(self.Styles.LastIndex) = path
-		  'end if
-		  'next ch
-		  'end if
+		  self.Styles.RemoveAllRows
+		  
+		  if (Paths.MessageStyles <>Nil) AND (Paths.MessageStyles.Exists) then
+		    DIM children() As String
+		    for each file As FolderItem in Paths.MessageStyles.Children()
+		      children.Append file.DisplayName
+		    next file
+		    children.Sort
+		    
+		    for each ch As String in children
+		      DIM path As FolderItem = Paths.MessageStyles.Child(ch)
+		      if (path <> Nil) AND (path.Exists) AND (path.Visible) AND (path.Name <> ".DS_Store") AND (path.Name.IndexOf(".AdiumMessageStyle") > -1) then
+		        if (path.Child("Contents").Child("Resources").Child("Variants").Exists) then
+		          self.Styles.AddExpandableRow path.DisplayName.Replace(".AdiumMessageStyle", "")
+		        else
+		          self.Styles.AddRow path.DisplayName.Replace(".AdiumMessageStyle", "")
+		        end if
+		        self.Styles.RowTagAt(self.Styles.LastAddedRowIndex) = path
+		      end if
+		    next ch
+		  end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub RemoveMessageStyle(row As Integer)
-		  '// we have a row selected
-		  'if (row <> -1) then
-		  '// check if the row is a variant row and then get the parent style row
-		  'if (self.Styles.CellTag(row, 0) <> Nil) then
-		  'row = self.Styles.CellTag(row, 0)
-		  'end if
-		  'DIM style As FolderItem = self.Styles.RowTag(row)
-		  'DIM result As Integer
-		  'result = App.RemoveEntireFolder(style, True)
-		  'App.EnsureDefaultTheme
-		  'self.ListMessageStyles
-		  'self.Styles.ListIndex = 0
-		  'end if
+		  // we have a row selected
+		  if (row <> -1) then
+		    // check if the row is a variant row and then get the parent style row
+		    if (self.Styles.CellTagAt(row, 0) <> Nil) then
+		      row = self.Styles.CellTagAt(row, 0)
+		    end if
+		    DIM style As FolderItem = self.Styles.RowTagAt(row)
+		    DIM result As Integer
+		    result = App.RemoveEntireFolder(style, True)
+		    App.EnsureDefaultTheme
+		    self.ListMessageStyles
+		    self.Styles.SelectedRowIndex = 0
+		  end if
 		End Sub
 	#tag EndMethod
 
@@ -547,29 +535,29 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub RowExpanded(row As Integer)
-		  ''me.ListMessageStyleVariants(row)
-		  '
-		  'DIM path As FolderItem = me.RowTag(row)
-		  'DIM variantPath As FolderItem = path.Child("Contents").Child("Resources").Child("Variants")
-		  '
-		  'if (variantPath <> Nil) AND (variantPath.Exists) AND (variantPath.IsFolder) then
-		  'DIM currentrow As Integer = row
-		  'for each variantStyle As FolderItem in variantPath.Children()
-		  'if (variantStyle.Name <> ".DS_Store") AND (NOT variantStyle.IsFolder) AND (variantStyle.Name.Right(4) = ".css") then
-		  'currentrow = currentrow + 1
-		  'me.AddRow variantStyle.DisplayName.Replace(".css", "").ReplaceAll("&", "&&").ReplaceAll("_", " ")
-		  'me.RowTag(currentrow) = variantStyle  // store the path to the variant
-		  'me.CellTag(currentrow, 0) = row  // store the row of the parent style
-		  'end if
-		  'next
-		  'end if
+		  'me.ListMessageStyleVariants(row)
+		  
+		  DIM path As FolderItem = me.RowTagAt(row)
+		  DIM variantPath As FolderItem = path.Child("Contents").Child("Resources").Child("Variants")
+		  
+		  if (variantPath <> Nil) AND (variantPath.Exists) AND (variantPath.IsFolder) then
+		    DIM currentrow As Integer = row
+		    for each variantStyle As FolderItem in variantPath.Children()
+		      if (variantStyle.Name <> ".DS_Store") AND (NOT variantStyle.IsFolder) AND (variantStyle.Name.Right(4) = ".css") then
+		        currentrow = currentrow + 1
+		        me.AddRow variantStyle.DisplayName.Replace(".css", "").ReplaceAll("&", "&&").ReplaceAll("_", " ")
+		        me.RowTagAt(currentrow) = variantStyle  // store the path to the variant
+		        me.CellTagAt(currentrow, 0) = row  // store the row of the parent style
+		      end if
+		    next
+		  end if
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub SelectionChanged()
-		  'if (me.ListIndex > -1) then
-		  'self.MessageStylePreview.MessageStylePath = me.RowTag(me.ListIndex)
-		  'end if
+		  if (me.SelectedRowIndex > -1) then
+		    self.MessageStylePreview.MessageStylePath = me.RowTagAt(me.SelectedRowIndex)
+		  end if
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -608,18 +596,18 @@ End
 #tag Events SegmentedControl1
 	#tag Event
 		Sub Action(itemIndex as integer)
-		  'select case itemIndex
-		  'case 0 // add
-		  'DIM style As FolderItem = SelectFolder()
-		  'if (style <> Nil) then  // a folder was selected
-		  'DIM newFile As NEW FolderItem(style.NativePath)
-		  'self.AddMessageStyle newFile
-		  'end if
-		  'case 1 // remove
-		  'if (self.Styles.ListIndex > -1) then
-		  'self.RemoveMessageStyle self.Styles.ListIndex
-		  'end if
-		  'end select
+		  select case itemIndex
+		  case 0 // add
+		    DIM style As FolderItem = SelectFolder()
+		    if (style <> Nil) then  // a folder was selected
+		      DIM newFile As NEW FolderItem(style.NativePath)
+		      self.AddMessageStyle newFile
+		    end if
+		  case 1 // remove
+		    if (self.Styles.SelectedRowIndex > -1) then
+		      self.RemoveMessageStyle self.Styles.SelectedRowIndex
+		    end if
+		  end select
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -649,6 +637,14 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="Composited"
+		Visible=true
+		Group="Windows Behavior"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Index"
 		Visible=true
@@ -686,8 +682,8 @@ End
 		Visible=true
 		Group="Background"
 		InitialValue="&hFFFFFF"
-		Type="Color"
-		EditorType="Color"
+		Type="ColorGroup"
+		EditorType="ColorGroup"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="HasBackgroundColor"
@@ -714,14 +710,6 @@ End
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="DoubleBuffer"
-		Visible=true
-		Group="Windows Behavior"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
 		Name="Backdrop"
 		Visible=true
 		Group="Appearance"
@@ -733,14 +721,6 @@ End
 		Name="Enabled"
 		Visible=true
 		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="EraseBackground"
-		Visible=true
-		Group="Behavior"
 		InitialValue="True"
 		Type="Boolean"
 		EditorType=""

@@ -29,8 +29,6 @@ Begin DesktopContainer SwirlPrefsEventsPane
       AutoDeactivate  =   True
       Bold            =   False
       Caption         =   "#Strings.kRepeat"
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   False
       Height          =   20
       HelpTag         =   ""
@@ -62,8 +60,6 @@ Begin DesktopContainer SwirlPrefsEventsPane
       AutoDeactivate  =   True
       Bold            =   False
       Caption         =   "#Strings.kDisplayInNotificationCenter"
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Height          =   20
       HelpTag         =   ""
@@ -95,8 +91,6 @@ Begin DesktopContainer SwirlPrefsEventsPane
       AutoDeactivate  =   True
       Bold            =   False
       Caption         =   "#Strings.kBounceIconInTheDock"
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Height          =   20
       HelpTag         =   ""
@@ -128,8 +122,6 @@ Begin DesktopContainer SwirlPrefsEventsPane
       AutoDeactivate  =   True
       Bold            =   False
       Caption         =   "#Strings.kSpeakAnAnnoucement"
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Height          =   20
       HelpTag         =   ""
@@ -161,8 +153,6 @@ Begin DesktopContainer SwirlPrefsEventsPane
       AutoDeactivate  =   True
       Bold            =   False
       Caption         =   "#Strings.kPostInChat"
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Height          =   20
       HelpTag         =   ""
@@ -194,8 +184,6 @@ Begin DesktopContainer SwirlPrefsEventsPane
       AutoDeactivate  =   True
       Bold            =   False
       Caption         =   "#Strings.kPlayASound"
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Height          =   20
       HelpTag         =   ""
@@ -226,8 +214,6 @@ Begin DesktopContainer SwirlPrefsEventsPane
    Begin DesktopPopupMenu EventsPopup
       AutoDeactivate  =   True
       Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Height          =   20
       HelpTag         =   ""
@@ -258,8 +244,6 @@ Begin DesktopContainer SwirlPrefsEventsPane
    Begin DesktopLabel EventLabel
       AutoDeactivate  =   True
       Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Height          =   20
       HelpTag         =   ""
@@ -293,8 +277,6 @@ Begin DesktopContainer SwirlPrefsEventsPane
    Begin DesktopPopupMenu SoundSetsPopup
       AutoDeactivate  =   True
       Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Height          =   20
       HelpTag         =   ""
@@ -325,8 +307,6 @@ Begin DesktopContainer SwirlPrefsEventsPane
    Begin DesktopLabel SoundSetLabel
       AutoDeactivate  =   True
       Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Height          =   20
       HelpTag         =   ""
@@ -389,8 +369,6 @@ Begin DesktopContainer SwirlPrefsEventsPane
    Begin DesktopLabel VolumeLabel
       AutoDeactivate  =   True
       Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
       Height          =   20
       HelpTag         =   ""
@@ -653,206 +631,206 @@ End
 #tag Events EventsPopup
 	#tag Event
 		Sub Opening()
-		  'me.AddRow Strings.kServerConnected
-		  'me.RowTag(me.ListCount - 1) = "ServerConnected"
-		  'me.AddRow Strings.kServerDisconnected
-		  'me.RowTag(me.ListCount - 1) = "ServerDisconnected"
-		  'me.AddRow Strings.kError
-		  'me.RowTag(me.ListCount - 1) = "Error"
-		  '#If TargetMacOS Then
-		  'Me.AddSeparator
-		  '#Endif
-		  'me.AddRow Strings.kUserJoined
-		  'me.RowTag(me.ListCount - 1) = "UserJoined"
-		  'me.AddRow Strings.kUserNickChanged
-		  'me.RowTag(me.ListCount - 1) = "UserNickChanged"
-		  'me.AddRow Strings.kUserStatusChanged
-		  'me.RowTag(me.ListCount - 1) = "UserStatusChanged"
-		  'me.AddRow Strings.kUserLeft
-		  'me.RowTag(me.ListCount - 1) = "UserLeft"
-		  'me.AddRow Strings.kChatReceived
-		  'me.RowTag(me.ListCount - 1) = "ChatReceived"
-		  'me.AddRow Strings.kChatTopicChanged
-		  'me.RowTag(me.ListCount - 1) = "ChatTopicChanged"
-		  'me.AddRow Strings.kPrivateChatInvitationReceived
-		  'me.RowTag(me.ListCount - 1) = "PrivateChatInvitationReceived"
-		  'me.AddRow Strings.kMessageReceived
-		  'me.RowTag(me.ListCount - 1) = "MessagesReceived"
-		  'me.AddRow Strings.kNewsPosted
-		  'me.RowTag(me.ListCount - 1) = "NewsPosted"
-		  '#If TargetMacOS Then
-		  'Me.AddSeparator
-		  '#Endif
-		  'me.AddRow Strings.kTransferStarted
-		  'me.RowTag(me.ListCount - 1) = "TransferStarted"
-		  'me.AddRow Strings.kTransferFinished
-		  'me.RowTag(me.ListCount - 1) = "TransferFinished"
-		  '
-		  'me.ListIndex = 0
+		  me.AddRow Strings.kServerConnected
+		  me.RowTagAt(me.LastRowIndex) = "ServerConnected"
+		  me.AddRow Strings.kServerDisconnected
+		  me.RowTagAt(me.LastRowIndex) = "ServerDisconnected"
+		  me.AddRow Strings.kError
+		  me.RowTagAt(me.LastRowIndex) = "Error"
+		  #If TargetMacOS Then
+		    Me.AddSeparator
+		  #Endif
+		  me.AddRow Strings.kUserJoined
+		  me.RowTagAt(me.LastRowIndex) = "UserJoined"
+		  me.AddRow Strings.kUserNickChanged
+		  me.RowTagAt(me.LastRowIndex) = "UserNickChanged"
+		  me.AddRow Strings.kUserStatusChanged
+		  me.RowTagAt(me.LastRowIndex) = "UserStatusChanged"
+		  me.AddRow Strings.kUserLeft
+		  me.RowTagAt(me.LastRowIndex) = "UserLeft"
+		  me.AddRow Strings.kChatReceived
+		  me.RowTagAt(me.LastRowIndex) = "ChatReceived"
+		  me.AddRow Strings.kChatTopicChanged
+		  me.RowTagAt(me.LastRowIndex) = "ChatTopicChanged"
+		  me.AddRow Strings.kPrivateChatInvitationReceived
+		  me.RowTagAt(me.LastRowIndex) = "PrivateChatInvitationReceived"
+		  me.AddRow Strings.kMessageReceived
+		  me.RowTagAt(me.LastRowIndex) = "MessagesReceived"
+		  me.AddRow Strings.kNewsPosted
+		  me.RowTagAt(me.LastRowIndex) = "NewsPosted"
+		  #If TargetMacOS Then
+		    Me.AddSeparator
+		  #Endif
+		  me.AddRow Strings.kTransferStarted
+		  me.RowTagAt(me.LastRowIndex) = "TransferStarted"
+		  me.AddRow Strings.kTransferFinished
+		  me.RowTagAt(me.LastRowIndex) = "TransferFinished"
+		  
+		  me.SelectedRowIndex = 0
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub SelectionChanged(item As DesktopMenuItem)
-		  'self.mEventName = me.RowTag(me.ListIndex).StringValue
-		  '
-		  'self.PlayAudio.Enabled = TRUE
-		  'self.PostInChat.Enabled = TRUE
-		  '
-		  'Select case self.mEventName
-		  'case "ServerConnected"
-		  'self.PlayAudio.Value = prefs.ServerConnectedPlayASound
-		  'self.PostInChat.Value = prefs.ServerConnectedPostInChat
-		  'self.Speak.Value = prefs.ServerConnectedSpeak
-		  'self.BounceDockIcon.Value = prefs.ServerConnectedBounceInDock
-		  'self.BounceDockIconForever.Value = prefs.ServerConnectedBounceInDockForever
-		  'self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
-		  'self.DisplayInNotificationCenter.Value = prefs.ServerConnectedDisplayInNotificationCenter
-		  'case "ServerDisconnected"
-		  'self.PlayAudio.Value = prefs.ServerDisconnectedPlayASound
-		  'self.PostInChat.Value = prefs.ServerDisconnectedPostInChat
-		  'self.Speak.Value = prefs.ServerDisconnectedSpeak
-		  'self.BounceDockIcon.Value = prefs.ServerDisconnectedBounceInDock
-		  'self.BounceDockIconForever.Value = prefs.ServerDisconnectedBounceInDockForever
-		  'self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
-		  'self.DisplayInNotificationCenter.Value = prefs.ServerDisconnectedDisplayInNotificationCenter
-		  'case "Error"
-		  'self.PlayAudio.Value = prefs.ErrorPlayASound
-		  'self.PostInChat.Value = prefs.ErrorPostInChat
-		  'self.Speak.Value = prefs.ErrorSpeak
-		  'self.BounceDockIcon.Value = prefs.ErrorBounceInDock
-		  'self.BounceDockIconForever.Value = prefs.ErrorBounceInDockForever
-		  'self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
-		  'self.DisplayInNotificationCenter.Value = prefs.ErrorDisplayInNotificationCenter
-		  'case "UserJoined"
-		  'self.PlayAudio.Value = prefs.UserJoinedPlayASound
-		  'self.PostInChat.Value = prefs.UserJoinedPostInChat
-		  'self.Speak.Value = prefs.UserJoinedSpeak
-		  'self.BounceDockIcon.Value = prefs.UserJoinedBounceInDock
-		  'self.BounceDockIconForever.Value = prefs.UserJoinedBounceInDockForever
-		  'self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
-		  'self.DisplayInNotificationCenter.Value = prefs.UserJoinedDisplayInNotificationCenter
-		  'case "UserNickChanged"
-		  'self.PlayAudio.Value = prefs.UserNickChangedPlayASound
-		  'self.PostInChat.Value = prefs.UserNickChangedPostInChat
-		  'self.Speak.Value = prefs.UserNickChangedSpeak
-		  'self.BounceDockIcon.Value = prefs.UserNickChangedBounceInDock
-		  'self.BounceDockIconForever.Value = prefs.UserNickChangedBounceInDockForever
-		  'self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
-		  'self.DisplayInNotificationCenter.Value = prefs.UserNickChangedDisplayInNotificationCenter
-		  'case "UserStatusChanged"
-		  'self.PlayAudio.Value = prefs.UserStatusChangedPlayASound
-		  'self.PostInChat.Value = prefs.UserStatusChangedPostInChat
-		  'self.Speak.Value = prefs.UserStatusChangedSpeak
-		  'self.BounceDockIcon.Value = prefs.UserStatusChangedBounceInDock
-		  'self.BounceDockIconForever.Value = prefs.UserStatusChangedBounceInDockForever
-		  'self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
-		  'self.DisplayInNotificationCenter.Value = prefs.UserStatusChangedDisplayInNotificationCenter
-		  'case "UserLeft"
-		  'self.PlayAudio.Value = prefs.UserLeftPlayASound
-		  'self.PostInChat.Value = prefs.UserLeftPostInChat
-		  'self.Speak.Value = prefs.UserLeftSpeak
-		  'self.BounceDockIcon.Value = prefs.UserLeftBounceInDock
-		  'self.BounceDockIconForever.Value = prefs.UserLeftBounceInDockForever
-		  'self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
-		  'self.DisplayInNotificationCenter.Value = prefs.UserLeftDisplayInNotificationCenter
-		  'case "ChatReceived"
-		  'self.PlayAudio.Value = prefs.ChatReceivedPlayASound
-		  'self.PostInChat.Value = prefs.ChatReceivedPostInChat
-		  'self.PostInChat.Enabled = FALSE
-		  'self.Speak.Value = prefs.ChatReceivedSpeak
-		  'self.BounceDockIcon.Value = prefs.ChatReceivedBounceInDock
-		  'self.BounceDockIconForever.Value = prefs.ChatReceivedBounceInDockForever
-		  'self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
-		  'self.DisplayInNotificationCenter.Value = prefs.ChatReceivedDisplayInNotificationCenter
-		  'case "ChatTopicChanged"
-		  'self.PlayAudio.Value = FALSE
-		  'self.PlayAudio.Enabled = FALSE
-		  'self.PostInChat.Value = Prefs.ChatTopicChangedPostInChat
-		  'self.Speak.Value = Prefs.ChatTopicChangedSpeak
-		  'self.BounceDockIcon.Value = Prefs.ChatTopicChangedBounceInDock
-		  'self.BounceDockIconForever.Value = Prefs.ChatTopicChangedBounceInDockForever
-		  'self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
-		  'self.DisplayInNotificationCenter.Value = Prefs.ChatTopicChangedDisplayInNotificationCenter
-		  'case "PrivateChatInvitationReceived"
-		  'self.PlayAudio.Value = prefs.PrivateChatInvitationReceivedPlayASound
-		  'self.PostInChat.Value = prefs.PrivateChatInvitationReceivedPostInChat
-		  'self.Speak.Value = prefs.PrivateChatInvitationReceivedSpeak
-		  'self.BounceDockIcon.Value = prefs.PrivateChatInvitationReceivedBounceInDock
-		  'self.BounceDockIconForever.Value = prefs.PrivateChatInvitationReceivedBounceInDockForever
-		  'self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
-		  'self.DisplayInNotificationCenter.Value = prefs.PrivateChatInvitationReceivedDisplayInNotificationCenter
-		  'case "MessagesReceived"
-		  'self.PlayAudio.Value = prefs.MessageReceivedPlayASound
-		  'self.PostInChat.Value = prefs.MessageReceivedPostInChat
-		  'self.Speak.Value = prefs.MessageReceivedSpeak
-		  'self.BounceDockIcon.Value = prefs.MessageReceivedBounceInDock
-		  'self.BounceDockIconForever.Value = prefs.MessageReceivedBounceInDockForever
-		  'self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
-		  'self.DisplayInNotificationCenter.Value = prefs.MessageReceivedDisplayInNotificationCenter
-		  'case "NewsPosted"
-		  'self.PlayAudio.Value = prefs.NewsPostedPlayASound
-		  'self.PostInChat.Value = prefs.NewsPostedPostInChat
-		  'self.Speak.Value = prefs.NewsPostedSpeak
-		  'self.BounceDockIcon.Value = prefs.NewsPostedBounceInDock
-		  'self.BounceDockIconForever.Value = prefs.NewsPostedBounceInDockForever
-		  'self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
-		  'self.DisplayInNotificationCenter.Value = prefs.NewsPostedDisplayInNotificationCenter
-		  'case "TransferStarted"
-		  'self.PlayAudio.Value = prefs.TransferStartedPlayASound
-		  'self.PostInChat.Value = prefs.TransferStartedPostInChat
-		  'self.Speak.Value = prefs.TransferStartedSpeak
-		  'self.BounceDockIcon.Value = prefs.TransferStartedBounceInDock
-		  'self.BounceDockIconForever.Value = prefs.TransferStartedBounceInDockForever
-		  'self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
-		  'self.DisplayInNotificationCenter.Value = prefs.TransferStartedDisplayInNotificationCenter
-		  'case "TransferFinished"
-		  'self.PlayAudio.Value = prefs.TransferFinishedPlayASound
-		  'self.PostInChat.Value = prefs.TransferFinishedPostInChat
-		  'self.Speak.Value = prefs.TransferFinishedSpeak
-		  'self.BounceDockIcon.Value = prefs.TransferFinishedBounceInDock
-		  'self.BounceDockIconForever.Value = prefs.TransferFinishedBounceInDockForever
-		  'self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
-		  'self.DisplayInNotificationCenter.Value = prefs.TransferFinishedDisplayInNotificationCenter
-		  'End Select
+		  self.mEventName = me.RowTagAt(me.SelectedRowIndex).StringValue
+		  
+		  self.PlayAudio.Enabled = TRUE
+		  self.PostInChat.Enabled = TRUE
+		  
+		  Select case self.mEventName
+		  case "ServerConnected"
+		    self.PlayAudio.Value = prefs.ServerConnectedPlayASound
+		    self.PostInChat.Value = prefs.ServerConnectedPostInChat
+		    self.Speak.Value = prefs.ServerConnectedSpeak
+		    self.BounceDockIcon.Value = prefs.ServerConnectedBounceInDock
+		    self.BounceDockIconForever.Value = prefs.ServerConnectedBounceInDockForever
+		    self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
+		    self.DisplayInNotificationCenter.Value = prefs.ServerConnectedDisplayInNotificationCenter
+		  case "ServerDisconnected"
+		    self.PlayAudio.Value = prefs.ServerDisconnectedPlayASound
+		    self.PostInChat.Value = prefs.ServerDisconnectedPostInChat
+		    self.Speak.Value = prefs.ServerDisconnectedSpeak
+		    self.BounceDockIcon.Value = prefs.ServerDisconnectedBounceInDock
+		    self.BounceDockIconForever.Value = prefs.ServerDisconnectedBounceInDockForever
+		    self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
+		    self.DisplayInNotificationCenter.Value = prefs.ServerDisconnectedDisplayInNotificationCenter
+		  case "Error"
+		    self.PlayAudio.Value = prefs.ErrorPlayASound
+		    self.PostInChat.Value = prefs.ErrorPostInChat
+		    self.Speak.Value = prefs.ErrorSpeak
+		    self.BounceDockIcon.Value = prefs.ErrorBounceInDock
+		    self.BounceDockIconForever.Value = prefs.ErrorBounceInDockForever
+		    self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
+		    self.DisplayInNotificationCenter.Value = prefs.ErrorDisplayInNotificationCenter
+		  case "UserJoined"
+		    self.PlayAudio.Value = prefs.UserJoinedPlayASound
+		    self.PostInChat.Value = prefs.UserJoinedPostInChat
+		    self.Speak.Value = prefs.UserJoinedSpeak
+		    self.BounceDockIcon.Value = prefs.UserJoinedBounceInDock
+		    self.BounceDockIconForever.Value = prefs.UserJoinedBounceInDockForever
+		    self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
+		    self.DisplayInNotificationCenter.Value = prefs.UserJoinedDisplayInNotificationCenter
+		  case "UserNickChanged"
+		    self.PlayAudio.Value = prefs.UserNickChangedPlayASound
+		    self.PostInChat.Value = prefs.UserNickChangedPostInChat
+		    self.Speak.Value = prefs.UserNickChangedSpeak
+		    self.BounceDockIcon.Value = prefs.UserNickChangedBounceInDock
+		    self.BounceDockIconForever.Value = prefs.UserNickChangedBounceInDockForever
+		    self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
+		    self.DisplayInNotificationCenter.Value = prefs.UserNickChangedDisplayInNotificationCenter
+		  case "UserStatusChanged"
+		    self.PlayAudio.Value = prefs.UserStatusChangedPlayASound
+		    self.PostInChat.Value = prefs.UserStatusChangedPostInChat
+		    self.Speak.Value = prefs.UserStatusChangedSpeak
+		    self.BounceDockIcon.Value = prefs.UserStatusChangedBounceInDock
+		    self.BounceDockIconForever.Value = prefs.UserStatusChangedBounceInDockForever
+		    self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
+		    self.DisplayInNotificationCenter.Value = prefs.UserStatusChangedDisplayInNotificationCenter
+		  case "UserLeft"
+		    self.PlayAudio.Value = prefs.UserLeftPlayASound
+		    self.PostInChat.Value = prefs.UserLeftPostInChat
+		    self.Speak.Value = prefs.UserLeftSpeak
+		    self.BounceDockIcon.Value = prefs.UserLeftBounceInDock
+		    self.BounceDockIconForever.Value = prefs.UserLeftBounceInDockForever
+		    self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
+		    self.DisplayInNotificationCenter.Value = prefs.UserLeftDisplayInNotificationCenter
+		  case "ChatReceived"
+		    self.PlayAudio.Value = prefs.ChatReceivedPlayASound
+		    self.PostInChat.Value = prefs.ChatReceivedPostInChat
+		    self.PostInChat.Enabled = FALSE
+		    self.Speak.Value = prefs.ChatReceivedSpeak
+		    self.BounceDockIcon.Value = prefs.ChatReceivedBounceInDock
+		    self.BounceDockIconForever.Value = prefs.ChatReceivedBounceInDockForever
+		    self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
+		    self.DisplayInNotificationCenter.Value = prefs.ChatReceivedDisplayInNotificationCenter
+		  case "ChatTopicChanged"
+		    self.PlayAudio.Value = FALSE
+		    self.PlayAudio.Enabled = FALSE
+		    self.PostInChat.Value = Prefs.ChatTopicChangedPostInChat
+		    self.Speak.Value = Prefs.ChatTopicChangedSpeak
+		    self.BounceDockIcon.Value = Prefs.ChatTopicChangedBounceInDock
+		    self.BounceDockIconForever.Value = Prefs.ChatTopicChangedBounceInDockForever
+		    self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
+		    self.DisplayInNotificationCenter.Value = Prefs.ChatTopicChangedDisplayInNotificationCenter
+		  case "PrivateChatInvitationReceived"
+		    self.PlayAudio.Value = prefs.PrivateChatInvitationReceivedPlayASound
+		    self.PostInChat.Value = prefs.PrivateChatInvitationReceivedPostInChat
+		    self.Speak.Value = prefs.PrivateChatInvitationReceivedSpeak
+		    self.BounceDockIcon.Value = prefs.PrivateChatInvitationReceivedBounceInDock
+		    self.BounceDockIconForever.Value = prefs.PrivateChatInvitationReceivedBounceInDockForever
+		    self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
+		    self.DisplayInNotificationCenter.Value = prefs.PrivateChatInvitationReceivedDisplayInNotificationCenter
+		  case "MessagesReceived"
+		    self.PlayAudio.Value = prefs.MessageReceivedPlayASound
+		    self.PostInChat.Value = prefs.MessageReceivedPostInChat
+		    self.Speak.Value = prefs.MessageReceivedSpeak
+		    self.BounceDockIcon.Value = prefs.MessageReceivedBounceInDock
+		    self.BounceDockIconForever.Value = prefs.MessageReceivedBounceInDockForever
+		    self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
+		    self.DisplayInNotificationCenter.Value = prefs.MessageReceivedDisplayInNotificationCenter
+		  case "NewsPosted"
+		    self.PlayAudio.Value = prefs.NewsPostedPlayASound
+		    self.PostInChat.Value = prefs.NewsPostedPostInChat
+		    self.Speak.Value = prefs.NewsPostedSpeak
+		    self.BounceDockIcon.Value = prefs.NewsPostedBounceInDock
+		    self.BounceDockIconForever.Value = prefs.NewsPostedBounceInDockForever
+		    self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
+		    self.DisplayInNotificationCenter.Value = prefs.NewsPostedDisplayInNotificationCenter
+		  case "TransferStarted"
+		    self.PlayAudio.Value = prefs.TransferStartedPlayASound
+		    self.PostInChat.Value = prefs.TransferStartedPostInChat
+		    self.Speak.Value = prefs.TransferStartedSpeak
+		    self.BounceDockIcon.Value = prefs.TransferStartedBounceInDock
+		    self.BounceDockIconForever.Value = prefs.TransferStartedBounceInDockForever
+		    self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
+		    self.DisplayInNotificationCenter.Value = prefs.TransferStartedDisplayInNotificationCenter
+		  case "TransferFinished"
+		    self.PlayAudio.Value = prefs.TransferFinishedPlayASound
+		    self.PostInChat.Value = prefs.TransferFinishedPostInChat
+		    self.Speak.Value = prefs.TransferFinishedSpeak
+		    self.BounceDockIcon.Value = prefs.TransferFinishedBounceInDock
+		    self.BounceDockIconForever.Value = prefs.TransferFinishedBounceInDockForever
+		    self.BounceDockIconForever.Enabled = self.BounceDockIcon.Value
+		    self.DisplayInNotificationCenter.Value = prefs.TransferFinishedDisplayInNotificationCenter
+		  End Select
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events SoundSetsPopup
 	#tag Event
 		Sub Opening()
-		  '#if TargetLinux
-		  'me.Height = me.Height + 10
-		  'me.Top = me.Top - 5
-		  '#endif
-		  '
-		  'me.DeleteAllRows
-		  'me.AddRow Strings.kNone
-		  'me.RowTag(me.ListCount - 1) = Nil
-		  '
-		  '#if TargetCocoa
-		  'me.AddSeparator
-		  '#endif
-		  '
-		  'for each item As FolderItem in Paths.Sounds.Children
-		  'if (item <> Nil) AND (item.Exists) AND (item.IsFolder) AND (item.Name.Left(1) <> ".") AND (item.Name.IndexOf(".AdiumSoundset") > -1) then
-		  'me.AddRow item.DisplayName.Replace(".AdiumSoundset", "").ReplaceAll("&", "&&")
-		  'me.RowTag(me.ListCount - 1) = item
-		  'if (item.NativePath = Prefs.SoundSetPath.NativePath) then
-		  'me.ListIndex = me.ListCount - 1
-		  'end if
-		  'end if
-		  'next
-		  '
-		  'if (me.ListIndex = -1) then
-		  'me.ListIndex = 0
-		  'end if
+		  #if TargetLinux
+		    me.Height = me.Height + 10
+		    me.Top = me.Top - 5
+		  #endif
+		  
+		  me.RemoveAllRows
+		  me.AddRow Strings.kNone
+		  me.RowTagAt(me.LastRowIndex) = Nil
+		  
+		  #if TargetCocoa
+		    me.AddSeparator
+		  #endif
+		  
+		  for each item As FolderItem in Paths.Sounds.Children
+		    if (item <> Nil) AND (item.Exists) AND (item.IsFolder) AND (item.Name.Left(1) <> ".") AND (item.Name.IndexOf(".AdiumSoundset") > -1) then
+		      me.AddRow item.DisplayName.Replace(".AdiumSoundset", "").ReplaceAll("&", "&&")
+		      me.RowTagAt(me.LastRowIndex) = item
+		      if (item.NativePath = Prefs.SoundSetPath.NativePath) then
+		        me.SelectedRowIndex = me.LastRowIndex
+		      end if
+		    end if
+		  next
+		  
+		  if (me.SelectedRowIndex = -1) then
+		    me.SelectedRowIndex = 0
+		  end if
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub SelectionChanged(item As DesktopMenuItem)
-		  'if (me.ListIndex > -1) then
-		  'Prefs.SoundSetPath = me.RowTag(me.ListIndex)
-		  'end if
+		  if (me.SelectedRowIndex > -1) then
+		    Prefs.SoundSetPath = me.RowTagAt(me.SelectedRowIndex)
+		  end if
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -869,6 +847,14 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="Composited"
+		Visible=true
+		Group="Windows Behavior"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Index"
 		Visible=true
@@ -906,8 +892,8 @@ End
 		Visible=true
 		Group="Background"
 		InitialValue="&hFFFFFF"
-		Type="Color"
-		EditorType="Color"
+		Type="ColorGroup"
+		EditorType="ColorGroup"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="HasBackgroundColor"
@@ -934,14 +920,6 @@ End
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="DoubleBuffer"
-		Visible=true
-		Group="Windows Behavior"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
 		Name="Backdrop"
 		Visible=true
 		Group="Appearance"
@@ -953,14 +931,6 @@ End
 		Name="Enabled"
 		Visible=true
 		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="EraseBackground"
-		Visible=true
-		Group="Behavior"
 		InitialValue="True"
 		Type="Boolean"
 		EditorType=""

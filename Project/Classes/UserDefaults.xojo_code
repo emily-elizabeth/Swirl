@@ -11,7 +11,7 @@ Protected Class UserDefaults
 		    mUserDefaults = ParseJSON(input.ReadAll)
 		    input.Close
 		    
-		  catch e As Xojo.IO.IOException
+		  catch e As IOException
 		    mUserDefaults = NEW Dictionary
 		  end try
 		End Sub

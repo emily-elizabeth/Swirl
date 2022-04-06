@@ -947,6 +947,14 @@ Protected Module Strings
 		#Tag Instance, Platform = Any, Language = en, Definition  = \"Submit"
 	#tag EndConstant
 
+	#tag Constant, Name = kSwirlNewbie, Type = String, Dynamic = True, Default = \"Swirl Newbie", Scope = Protected
+		#Tag Instance, Platform = Any, Language = en, Definition  = \"Swirl Newbie"
+	#tag EndConstant
+
+	#tag Constant, Name = kSwirlUser, Type = String, Dynamic = True, Default = \"Swirl User", Scope = Protected
+		#Tag Instance, Platform = Any, Language = en, Definition  = \"Swirl User"
+	#tag EndConstant
+
 	#tag Constant, Name = kSymbols, Type = String, Dynamic = True, Default = \"Symbols", Scope = Protected
 		#Tag Instance, Platform = Any, Language = en, Definition  = \"Symbols"
 	#tag EndConstant
@@ -1130,15 +1138,6 @@ Protected Module Strings
 
 	#tag Constant, Name = kWindow, Type = String, Dynamic = True, Default = \"Window", Scope = Protected
 		#Tag Instance, Platform = Any, Language = en, Definition  = \"Window"
-	#tag EndConstant
-
-	#tag Constant, Name = kWiredClient, Type = String, Dynamic = True, Default = \"Wired Client", Scope = Protected
-	#tag EndConstant
-
-	#tag Constant, Name = kWiredNewbie, Type = String, Dynamic = True, Default = \"Wired Newbie", Scope = Protected
-	#tag EndConstant
-
-	#tag Constant, Name = kWiredUser, Type = String, Dynamic = True, Default = \"Wired User", Scope = Protected
 	#tag EndConstant
 
 	#tag Constant, Name = kYouAreBannedFromThisServer, Type = String, Dynamic = True, Default = \"You are banned from this server.", Scope = Protected
