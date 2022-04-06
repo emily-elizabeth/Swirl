@@ -541,12 +541,13 @@ End
 		  DIM aMemoryBlock As MemoryBlock = image.GetData(Picture.FormatPNG)
 		  DIM encodedPicture As String = aMemoryBlock
 		  encodedPicture = EncodeBase64(encodedPicture, 0)  // the zero means no line breaks in the base64 encoded data
-		  self.mConnection.SendChat self.mChatID, "<img src='data:image/png;base64," + encodedPicture + "' class=""swirlImage""/>"
+		  self.mConnection.SendChat self.mChatID, ChrB(128) + "<img src='data:image/png;base64," + encodedPicture + "' class=""swirlImage""/>"
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub PictureLinkPasted(link As String)
-		  self.mConnection.SendChat self.mChatID, "<img src=""" + link + """ class=""swirlImage""/>"
+		  self.mConnection.SendChat self.mChatID, ChrB(128) + "<img src=""" + link + """ class=""swirlImage""/>"
+		  self.mConnection.SendChat self.mChatID, link
 		End Sub
 	#tag EndEvent
 #tag EndEvents
