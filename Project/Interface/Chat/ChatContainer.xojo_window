@@ -176,6 +176,7 @@ End
 		Function KeyDown(key As String) As Boolean
 		  self.ChatInput.SetFocus
 		  self.ChatInput.Text = self.ChatInput.Text + Key
+		  self.ChatInput.SelectionStart = self.ChatInput.Text.Length
 		  
 		  Return TRUE
 		End Function
