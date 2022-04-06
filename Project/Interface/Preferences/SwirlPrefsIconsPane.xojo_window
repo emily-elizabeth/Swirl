@@ -33,14 +33,11 @@ Begin DesktopContainer SwirlPrefsIconsPane
       ColumnCount     =   16
       ColumnsResizable=   False
       ColumnWidths    =   ""
-      DataField       =   ""
-      DataSource      =   ""
       DefaultRowHeight=   40
       Enabled         =   True
       EnableDrag      =   False
       EnableDragReorder=   False
-      GridLinesHorizontal=   0
-      GridLinesVertical=   0
+      GridLineStyle   =   0
       HasHeading      =   False
       HeadingIndex    =   -1
       Height          =   316
@@ -218,36 +215,36 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub DisplayIcons()
-		  'self.Icons.DeleteAllRows
-		  '
-		  'DIM icons() As Pair
-		  '
-		  'for each item As FolderItem in Paths.Icons.Children
-		  'if (item <> Nil) AND (item.Exists) AND (not item.IsFolder) AND (item.Name.Left(1) <> ".") then
-		  'DIM classicFile As NEW FolderItem(item.NativePath, FolderItem.PathTypeNative)
-		  'DIM icon As Picture = Picture.Open(classicFile)
-		  'if (icon <> Nil) then
-		  'icons.Append NEW Pair(icon, item)
-		  'end if
-		  'end if
-		  'next
-		  '
-		  'DIM row As Integer = 0
-		  'for i as Integer = 0 to icons.Ubound
-		  'for column As Integer = 0 to 15
-		  'if (column = 0) then self.Icons.AddRow ""
-		  'if (i <= icons.Ubound) then
-		  'self.Icons.CellTag(row, column) = icons(i)
-		  'DIM moo1 As String = FolderItem(icons(i).Right).NativePath
-		  'DIM moo2 As String = Prefs.UserIconPath.NativePath
-		  'if (moo1 = moo2) then self.Icons.RowTag(0) = NEW Pair(row, i)
-		  'i = i + 1
-		  'else
-		  'exit for i
-		  'end if
-		  'next
-		  'row = row + 1
-		  'next
+		  self.Icons.RemoveAllRows
+		  
+		  DIM icons() As Pair
+		  
+		  for each item As FolderItem in Paths.Icons.Children
+		    if (item <> Nil) AND (item.Exists) AND (not item.IsFolder) AND (item.Name.Left(1) <> ".") then
+		      'DIM classicFile As NEW FolderItem(item.NativePath, FolderItem.PathTypeNative)
+		      DIM icon As Picture = Picture.Open(item)
+		      if (icon <> Nil) then
+		        icons.Append NEW Pair(icon, item)
+		      end if
+		    end if
+		  next
+		  
+		  DIM row As Integer = 0
+		  for i as Integer = 0 to icons.Ubound
+		    for column As Integer = 0 to 15
+		      if (column = 0) then self.Icons.AddRow ""
+		      if (i <= icons.Ubound) then
+		        self.Icons.CellTagAt(row, column) = icons(i)
+		        DIM moo1 As String = FolderItem(icons(i).Right).NativePath
+		        DIM moo2 As String = Prefs.UserIconPath.NativePath
+		        if (moo1 = moo2) then self.Icons.RowTagAt(0) = NEW Pair(row, i)
+		        i = i + 1
+		      else
+		        exit for i
+		      end if
+		    next
+		    row = row + 1
+		  next
 		End Sub
 	#tag EndMethod
 
@@ -275,29 +272,29 @@ End
 	#tag EndEvent
 	#tag Event
 		Function PaintCellText(g as Graphics, row as Integer, column as Integer, x as Integer, y as Integer) As Boolean
-		  '#Pragma Unused x
-		  '#Pragma Unused y
-		  '
-		  'if (row < me.ListCount) then
-		  'if (me.CellTag(row, column) <> Nil) then
-		  'DIM tag As Pair = me.CellTag(row, column)
-		  'DIM image As Picture = tag.Left
-		  '
-		  'if (me.RowTag(0) <> Nil) then
-		  'DIM selectedRow As Integer = Pair(me.RowTag(0)).Left
-		  'DIM selectedColumn As Integer = Pair(me.RowTag(0)).Right
-		  '
-		  'if ((row = selectedRow) AND (column = selectedColumn)) then // OR (imagePath.Path = Prefs.UserIconPath.Path) then
-		  'g.ForeColor = HighlightColor
-		  'g.FillRoundRect 0, 0, 40, 40, 10, 10
-		  'end if
-		  'end if
-		  '
-		  'g.DrawPicture image, 4, 4, if(image.Width < 32, image.Width, 32), if(image.Height < 32, image.Height, 32), 0, 0, image.Width, image.Height
-		  'end if
-		  'end if
-		  '
-		  'Return FALSE
+		  #Pragma Unused x
+		  #Pragma Unused y
+		  
+		  if (row < me.RowCount) then
+		    if (me.CellTagAt(row, column) <> Nil) then
+		      DIM tag As Pair = me.CellTagAt(row, column)
+		      DIM image As Picture = tag.Left
+		      
+		      if (me.RowTagAt(0) <> Nil) then
+		        DIM selectedRow As Integer = Pair(me.RowTagAt(0)).Left
+		        DIM selectedColumn As Integer = Pair(me.RowTagAt(0)).Right
+		        
+		        if ((row = selectedRow) AND (column = selectedColumn)) then // OR (imagePath.Path = Prefs.UserIconPath.Path) then
+		          g.ForeColor = HighlightColor
+		          g.FillRoundRect 0, 0, 40, 40, 10, 10
+		        end if
+		      end if
+		      
+		      g.DrawPicture image, 4, 4, if(image.Width < 32, image.Width, 32), if(image.Height < 32, image.Height, 32), 0, 0, image.Width, image.Height
+		    end if
+		  end if
+		  
+		  Return FALSE
 		End Function
 	#tag EndEvent
 #tag EndEvents
@@ -330,17 +327,17 @@ End
 #tag Events IconRemove
 	#tag Event
 		Sub Pressed()
-		  'DIM selectedRow As Integer = Pair(self.Icons.RowTag(0)).Left
-		  'DIM selectedColumn As Integer = Pair(self.Icons.RowTag(0)).Right
-		  '
-		  'if (selectedRow > -1) AND (selectedColumn > -1) then
-		  'DIM cellPair As Pair = self.Icons.CellTag(selectedRow, selectedColumn)
-		  'DIM iconPath As FolderItem = cellPair.Right
-		  'IconPath.Delete
-		  'self.Icons.RowTag(0) = NEW Pair(-1, -1)
-		  'Prefs.UserIconPath = Nil
-		  'self.DisplayIcons
-		  'end if
+		  DIM selectedRow As Integer = Pair(self.Icons.RowTagAt(0)).Left
+		  DIM selectedColumn As Integer = Pair(self.Icons.RowTagAt(0)).Right
+		  
+		  if (selectedRow > -1) AND (selectedColumn > -1) then
+		    DIM cellPair As Pair = self.Icons.CellTagAt(selectedRow, selectedColumn)
+		    DIM iconPath As FolderItem = cellPair.Right
+		    IconPath.Delete
+		    self.Icons.RowTagAt(0) = NEW Pair(-1, -1)
+		    Prefs.UserIconPath = Nil
+		    self.DisplayIcons
+		  end if
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -375,6 +372,14 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="Composited"
+		Visible=true
+		Group="Windows Behavior"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Index"
 		Visible=true
@@ -412,8 +417,8 @@ End
 		Visible=true
 		Group="Background"
 		InitialValue="&hFFFFFF"
-		Type="Color"
-		EditorType="Color"
+		Type="ColorGroup"
+		EditorType="ColorGroup"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="HasBackgroundColor"
@@ -440,14 +445,6 @@ End
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="DoubleBuffer"
-		Visible=true
-		Group="Windows Behavior"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
 		Name="Backdrop"
 		Visible=true
 		Group="Appearance"
@@ -459,14 +456,6 @@ End
 		Name="Enabled"
 		Visible=true
 		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType=""
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="EraseBackground"
-		Visible=true
-		Group="Behavior"
 		InitialValue="True"
 		Type="Boolean"
 		EditorType=""

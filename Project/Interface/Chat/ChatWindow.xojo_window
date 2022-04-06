@@ -53,9 +53,7 @@ Begin DesktopWindow ChatWindow
          AcceptTabs      =   False
          AutoDeactivate  =   True
          Backdrop        =   0
-         DoubleBuffer    =   False
          Enabled         =   True
-         EraseBackground =   "True"
          Facing          =   1
          Height          =   26
          HelpTag         =   ""
@@ -108,9 +106,8 @@ Begin DesktopWindow ChatWindow
             AutoDeactivate  =   True
             BackColor       =   &cFFFF00FF
             Backdrop        =   0
-            DoubleBuffer    =   False
+            Composited      =   False
             Enabled         =   True
-            EraseBackground =   True
             HasBackColor    =   False
             Height          =   472
             HelpTag         =   ""
@@ -138,9 +135,7 @@ Begin DesktopWindow ChatWindow
          AcceptTabs      =   False
          AutoDeactivate  =   True
          Backdrop        =   0
-         DoubleBuffer    =   False
          Enabled         =   True
-         EraseBackground =   "True"
          Facing          =   1
          Height          =   26
          HelpTag         =   ""
@@ -168,9 +163,7 @@ Begin DesktopWindow ChatWindow
          AcceptTabs      =   False
          AutoDeactivate  =   True
          Backdrop        =   0
-         DoubleBuffer    =   False
          Enabled         =   True
-         EraseBackground =   "True"
          Facing          =   1
          Height          =   26
          HelpTag         =   ""
