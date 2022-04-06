@@ -200,7 +200,7 @@ Implements NetWiredSocketInterface
 		    // then it really is an error; but the results are the same. The connection was lost.
 		    // You will also get this error if you call the Disconnect method of TCPSocket.
 		    ObjObserver.Notify self, Events.kWiredConnectionDisconnected
-		    Xojo.Core.Timer.CancelCall WeakAddressOf PingTimerAction
+		    Timer.CancelCallLater WeakAddressOf PingTimerAction
 		    
 		  else
 		    MsgBox "github issue this" //+ EndOfLine + Str(err.ErrorNumber)
@@ -409,7 +409,7 @@ Implements NetWiredSocketInterface
 		  
 		  ObjObserver.Notify me, Events.kWiredConnectionLoginSuccessful
 		  
-		  Xojo.Core.Timer.CallLater 60000, WeakAddressOf PingTimerAction
+		  Timer.CallLater 60000, WeakAddressOf PingTimerAction
 		End Sub
 	#tag EndMethod
 
@@ -481,7 +481,7 @@ Implements NetWiredSocketInterface
 		Private Sub PongReceived()
 		  // Part of the NetWiredSocketInterface interface.
 		  
-		  Xojo.Core.Timer.CallLater 60000, WeakAddressOf PingTimerAction
+		  Timer.CallLater 60000, WeakAddressOf PingTimerAction
 		End Sub
 	#tag EndMethod
 

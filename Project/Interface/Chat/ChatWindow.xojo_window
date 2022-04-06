@@ -276,22 +276,20 @@ End
 
 	#tag Event
 		Sub MenuBarSelected()
-		  
 		  ConnectionConnect.Enabled = (self.ChatTabs.Value <> 0)  // disable when we're on the Connect tab
 		  ConnectionNews.Enabled = (self.ChatTabs.Value <> 0)
 		  ConnectionDisconnectAll.Enabled = (self.mConnections.Ubound > 0)  // index(0) is for the connection tab
-		  'ConnectionDisconnectAll.Visible = (Keyboard.AsyncShiftKey)  // need this otherwise the shortcut key does not work
+		  ConnectionChat.Enabled = (self.ChatTabs.Value <> 0)
+		  ConnectionNews.Enabled = (self.ChatTabs.Value <> 0)
+		  ConnectionFiles.Enabled = (self.ChatTabs.Value <> 0)
 		  
-		  'ViewShrinkText.Enabled = (self.ChatTabs.Value <> 0)
-		  'ViewEnlargeText.Enabled = (self.ChatTabs.Value <> 0)
 		  
-		  'ViewToggleFullScreen.Text = if(self.FullScreen, Strings.kExitFullScreen, ssWired.kEnterFullScreen)
-		  '
+		  
 		  'WindowCloseWindow.KeyboardShortcut = Strings.kCloseWindowShortcutModified
 		  'WindowCloseTab.KeyboardShortcut = Strings.kCloseTabShortcutModified
-		  'WindowCloseTab.Enabled = (self.ChatTabs.Value <> 0)
-		  'WindowSelectPreviousTab.Enabled = (self.ChatTabs.TabCount > 1)
-		  'WindowSelectNextTab.Enabled = (self.ChatTabs.TabCount > 1)
+		  WindowCloseTab.Enabled = (self.ChatTabs.Value <> 0)
+		  WindowSelectPreviousTab.Enabled = (self.ChatTabs.TabCount > 1)
+		  WindowSelectNextTab.Enabled = (self.ChatTabs.TabCount > 1)
 		  
 		  
 		  
@@ -350,12 +348,36 @@ End
 
 
 	#tag MenuHandler
+		Function ConnectionChat() As Boolean Handles ConnectionChat.Action
+			self.PagePanel1.SelectedPanelIndex = 0
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
 		Function ConnectionDisconnectAll() As Boolean Handles ConnectionDisconnectAll.Action
 			for i As Integer = 0 to (self.mConnections.Ubound)
 			if (self.mConnections(i) <> Nil) then
 			self.mConnections(i).Disconnect
 			end if
 			next
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
+		Function ConnectionFiles() As Boolean Handles ConnectionFiles.Action
+			self.PagePanel1.SelectedPanelIndex = 2
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
+		Function ConnectionNews() As Boolean Handles ConnectionNews.Action
+			self.PagePanel1.SelectedPanelIndex = 1
 			Return True
 			
 		End Function

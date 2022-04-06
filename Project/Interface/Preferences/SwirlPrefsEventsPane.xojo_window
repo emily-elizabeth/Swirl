@@ -671,7 +671,8 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub SelectionChanged(item As DesktopMenuItem)
-		  self.mEventName = me.RowTagAt(me.SelectedRowIndex).StringValue
+		  'self.mEventName = me.RowTagAt(me.SelectedRowIndex).StringValue
+		  self.mEventName = item.Tag
 		  
 		  self.PlayAudio.Enabled = TRUE
 		  self.PostInChat.Enabled = TRUE
@@ -829,7 +830,8 @@ End
 	#tag Event
 		Sub SelectionChanged(item As DesktopMenuItem)
 		  if (me.SelectedRowIndex > -1) then
-		    Prefs.SoundSetPath = me.RowTagAt(me.SelectedRowIndex)
+		    Prefs.SoundSetPath = item.Tag
+		    'Prefs.SoundSetPath = me.RowTagAt(me.SelectedRowIndex)
 		  end if
 		End Sub
 	#tag EndEvent

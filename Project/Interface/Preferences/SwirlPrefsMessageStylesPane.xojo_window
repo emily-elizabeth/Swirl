@@ -431,7 +431,7 @@ End
 		  if (style.Name.IndexOf(".AdiumMessageStyle") > -1) then  // it contains the string
 		    // check if the message style is valid
 		    if (style.Child("Contents").Child("Resources").Exists) AND (style.Child("Contents").Child("Info.plist").Exists) then
-		      App.CopySourceFolderToDestinationFolder style, Paths.MessageStyles
+		      style.CopyTo Paths.MessageStyles
 		      self.ListMessageStyles
 		    end if
 		  end if

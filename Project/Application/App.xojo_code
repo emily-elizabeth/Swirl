@@ -187,34 +187,10 @@ Inherits DesktopApplication
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub CopySourceFolderToDestinationFolder(source As FolderItem, destination As FolderItem)
-		  DIM newFolder As FolderItem
-		  
-		  if (source.IsFolder) then
-		    newFolder = destination.Child(source.Name)
-		    newFolder.CreateAsFolder
-		    
-		    for each f As FolderItem in source.Children
-		      if (f.IsFolder) then
-		        CopySourceFolderToDestinationFolder f, newFolder
-		      else
-		        f.CopyTo newFolder
-		      end if
-		    next
-		    
-		  else
-		    source.CopyTo destination
-		  end if
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub EnsureDefaultTheme()
 		  // Emoticons
 		  if (NOT Paths.Emoticons.Child(Paths.DefaultEmoticonSetName).Exists) AND (Paths.DefaultEmoticonSet.Exists) then
 		    Paths.DefaultEmoticonSet.CopyTo Paths.Emoticons
-		    'CopySourceFolderToDestinationFolder Paths.DefaultEmoticonSet, Paths.Emoticons
 		  end if
 		  
 		  // Message Style

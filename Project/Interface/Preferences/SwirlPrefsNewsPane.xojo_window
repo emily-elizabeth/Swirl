@@ -231,7 +231,7 @@ End
 	#tag Method, Flags = &h21
 		Private Sub AddStyle(style As FolderItem)
 		  if (style.Name.IndexOf(".viennastyle") > -1) then  // it contains the string
-		    App.CopySourceFolderToDestinationFolder style, Paths.NewsStyles
+		    style.CopyTo Paths.NewsStyles
 		    self.ListStyles
 		  end if
 		End Sub
@@ -253,16 +253,16 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub RemoveStyle(row As Integer)
-		  '// we have a row selected
-		  'if (row <> -1) then
-		  '// check if the row is a variant row and then get the parent style row
-		  'DIM style As FolderItem = self.Styles.RowTag(row)
-		  'DIM result As Integer
-		  'result = App.RemoveEntireFolder(style, True)
-		  'App.EnsureDefaultTheme
-		  'self.ListStyles
-		  'self.Styles.ListIndex = 0
-		  'end if
+		  // we have a row selected
+		  if (row <> -1) then
+		    // check if the row is a variant row and then get the parent style row
+		    DIM style As FolderItem = self.Styles.RowTagAt(row)
+		    DIM result As Integer
+		    result = App.RemoveEntireFolder(style, True)
+		    App.EnsureDefaultTheme
+		    self.ListStyles
+		    self.Styles.SelectedRowIndex = 0
+		  end if
 		End Sub
 	#tag EndMethod
 

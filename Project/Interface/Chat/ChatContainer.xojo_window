@@ -173,6 +173,15 @@ End
 	#tag EndEvent
 
 	#tag Event
+		Function KeyDown(key As String) As Boolean
+		  self.ChatInput.SetFocus
+		  self.ChatInput.Text = self.ChatInput.Text + Key
+		  
+		  Return TRUE
+		End Function
+	#tag EndEvent
+
+	#tag Event
 		Sub MenuBarSelected()
 		  if (self.mChatID = 1) AND (self.PanelIndex - 1 = DesktopPagePanel(self.Parent).SelectedPanelIndex) then
 		    ConnectionReconnect.Enabled = NOT self.mConnection.IsConnected
