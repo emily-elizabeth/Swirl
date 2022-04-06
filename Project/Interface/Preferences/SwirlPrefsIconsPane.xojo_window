@@ -254,20 +254,20 @@ End
 #tag Events Icons
 	#tag Event
 		Function CellPressed(row As Integer, column As Integer, x As Integer, y As Integer) As Boolean
-		  '#Pragma Unused x
-		  '#Pragma Unused y
-		  '
-		  'try
-		  'if (me.CellTag(row, column) <> Nil) then
-		  'me.RowTag(0) = NEW Pair(row, column)
-		  'me.Invalidate
-		  'Prefs.UserIconPath = Pair(me.CellTag(row, column)).Right
-		  'end if
-		  'catch err
-		  '// ignore
-		  'end try
-		  '
-		  'Return TRUE
+		  #Pragma Unused x
+		  #Pragma Unused y
+		  
+		  try
+		    if (me.CellTagAt(row, column) <> Nil) then
+		      me.RowTagAt(0) = NEW Pair(row, column)
+		      me.Refresh
+		      Prefs.UserIconPath = Pair(me.CellTagAt(row, column)).Right
+		    end if
+		  catch err
+		    // ignore
+		  end try
+		  
+		  Return TRUE
 		End Function
 	#tag EndEvent
 	#tag Event
