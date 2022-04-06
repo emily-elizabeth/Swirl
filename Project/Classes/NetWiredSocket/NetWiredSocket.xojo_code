@@ -11,7 +11,7 @@ Inherits SSLSocket
 		Sub DataAvailable()
 		  // we need to do the first part using the old String data type due to the way
 		  // a previous version of the socket class used byte markers to be able to 
-		  // have HTML chat and news, without needing modify the protocol or worry
+		  // have HTML chat and news, without needing to modify the protocol or worry
 		  // about the official Zanka client displaying it..
 		  
 		  me.mBufferString = me.mBufferString + me.ReadAll(Encodings.UTF8)
@@ -30,17 +30,11 @@ Inherits SSLSocket
 		        replyParamsAsString.Append replyDataAsString
 		      end if
 		      
-		      // here's where we replace the byte markers and convert to the new Text data type
+		      // here's where we replace the byte marker
 		      DIM replyParams() As String
 		      for i as Integer = 0 to replyParamsAsString.Ubound
 		        if (replyParamsAsString(i).LeftB(1) = ChrB(128)) then  // html chat
-		          replyParamsAsString(i) = replyParamsAsString(i).ReplaceB(ChrB(128), Chr(128))
-		        end if
-		        if (replyParamsAsString(i).LeftB(1) = ChrB(129)) then
-		          replyParamsAsString(i) = replyParamsAsString(i).ReplaceB(ChrB(129), Chr(129))
-		        end if
-		        if (replyParamsAsString(i).LeftB(1) = ChrB(130)) then
-		          replyParamsAsString(i) = replyParamsAsString(i).ReplaceB(ChrB(130), Chr(130))
+		          replyParamsAsString(i) = replyParamsAsString(i).ReplaceB(ChrB(128), "")
 		        end if
 		        replyParams.Append replyParamsAsString(i)
 		      next
