@@ -129,70 +129,6 @@ Begin DesktopContainer SwirlPrefsMessageStylesPane
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin DesktopButton MessageStyleAdd
-      AutoDeactivate  =   True
-      Bold            =   False
-      ButtonStyle     =   0
-      Cancel          =   False
-      Caption         =   "+"
-      Default         =   False
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   3
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   False
-      Scope           =   2
-      TabIndex        =   24
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "SmallSystem"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   556
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   False
-      Width           =   27
-   End
-   Begin DesktopButton MessageStyleRemove
-      AutoDeactivate  =   True
-      Bold            =   False
-      ButtonStyle     =   0
-      Cancel          =   False
-      Caption         =   "-"
-      Default         =   False
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   42
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   False
-      Scope           =   2
-      TabIndex        =   25
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "SmallSystem"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   556
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   False
-      Width           =   27
-   End
    Begin DesktopButton MessageStylesRefresh
       AutoDeactivate  =   True
       Bold            =   False
@@ -563,26 +499,6 @@ End
 	#tag Event
 		Sub DoublePressed()
 		  Prefs.MessageStylePath = self.MessageStylePreview.MessageStylePath
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events MessageStyleAdd
-	#tag Event
-		Sub Pressed()
-		  DIM style As FolderItem = SelectFolder()
-		  if (style <> Nil) then  // a folder was selected
-		    DIM newFile As NEW FolderItem(style.NativePath)
-		    self.AddMessageStyle newFile
-		  end if
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events MessageStyleRemove
-	#tag Event
-		Sub Pressed()
-		  'if (self.Styles.ListIndex > -1) then
-		  'self.RemoveMessageStyle self.Styles.ListIndex
-		  'end if
 		End Sub
 	#tag EndEvent
 #tag EndEvents
