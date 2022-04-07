@@ -252,6 +252,7 @@ End
 #tag WindowCode
 	#tag Event
 		Function CancelClosing(appQuitting As Boolean) As Boolean
+		  Prefs.ChatWinRect = self.Bounds
 		  self.Hide
 		  
 		  Return not appQuitting
@@ -260,11 +261,13 @@ End
 
 	#tag Event
 		Sub Closing()
+		  // remove the events
 		  ObjObserver.Unlisten self, Events.kWiredConnectionChatReceived
 		  ObjObserver.Unlisten self, Events.kWiredConnectionDisconnected
 		  ObjObserver.Unlisten self, Events.kWiredConnectionLoginSuccessful
 		  ObjObserver.Unlisten self, Events.kWiredConnectionUserChanged
 		  ObjObserver.Unlisten self, Events.kWiredStatusIconSetChanged
+		  
 		  
 		  ' ' Settings.ChatWinIsFullScreen = self.FullScreen
 		  ' 
@@ -333,16 +336,35 @@ End
 
 	#tag Event
 		Sub Opening()
-		  self.Height = self.Height + 1
-		  self.Height = self.Height - 1
-		  
+		  // add the events to listen for
 		  ObjObserver.Listen self, Events.kWiredConnectionChatReceived
 		  ObjObserver.Listen self, Events.kWiredConnectionDisconnected
 		  ObjObserver.Listen self, Events.kWiredConnectionLoginSuccessful
 		  ObjObserver.Listen self, Events.kWiredConnectionUserChanged
 		  ObjObserver.Listen self, Events.kWiredStatusIconSetChanged
 		  
+		  // set an empty connection for the "Connect" tab
 		  self.mConnections.Append Nil
+		  
+		  // restore the full screen of the chat window
+		  #if TargetMacOS
+		    self.setCollectionBehavior = NSWindowCollectionBehavior.FullScreenPrimary
+		    self.NSWindowDelegate_AddObserver = AddressOf NSWindowDelegateEvent
+		    if (Prefs.ChatWinFullScreen) then
+		      self.ToggleFullScreen
+		    end if
+		  #else
+		    self.FullScreen = Prefs.ChatWinFullScreen
+		  #endif
+		  
+		  // restore the bounds of the window
+		  if (Prefs.ChatWinRect <> Nil) then
+		    self.Bounds = Prefs.ChatWinRect
+		  end if
+		  
+		  // a little jig to make the bookmark list resize properly
+		  self.Height = self.Height + 1
+		  self.Height = self.Height - 1
 		End Sub
 	#tag EndEvent
 
@@ -448,6 +470,31 @@ End
 	#tag Method, Flags = &h21
 		Private Sub MoveToPreviousChatTab()
 		  self.ChatTabs.Value = if(self.ChatTabs.Value = 1, self.ChatTabs.TabCount, self.ChatTabs.Value - 1)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Shared Sub NSWindowDelegateEvent(center As Integer, observer As Ptr, name As CFStringRef, target As Ptr, userInfo As Integer)
+		  #pragma Unused center
+		  #pragma Unused observer
+		  #pragma Unused userInfo
+		  
+		  
+		  if (Target = ChatWindow.Handle) then
+		    Select Case Name
+		    Case "NSWindowWillEnterFullScreenNotification"
+		      ' MenuToggleFullScreen.Text = ssWired.strings.ExitFullScreen
+		      
+		    Case "NSWindowWillExitFullScreenNotification"
+		      ' MenuToggleFullScreen.Text = ssWired.strings.EnterFullScreen
+		      
+		    Case "NSWindowDidEnterFullScreenNotification"
+		      Prefs.ChatWinFullScreen = TRUE
+		      
+		    Case "NSWindowDidExitFullScreenNotification"
+		      Prefs.ChatWinFullScreen = FALSE
+		    End Select
+		  end if
 		End Sub
 	#tag EndMethod
 
