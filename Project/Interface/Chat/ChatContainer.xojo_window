@@ -220,7 +220,7 @@ End
 
 	#tag MenuHandler
 		Function ConnectionDisconnect() As Boolean Handles ConnectionDisconnect.Action
-			if (self.mChatID = 1) AND (self.TabPanelIndex -1 = PagePanel(self.Parent).Value) then
+			if (self.mChatID = 1) AND (self.TabPanelIndex -1 = DesktopPagePanel(self.Parent).SelectedPanelIndex) then
 			self.mConnection.Disconnect
 			Return True
 			else
@@ -232,7 +232,7 @@ End
 
 	#tag MenuHandler
 		Function ConnectionReconnect() As Boolean Handles ConnectionReconnect.Action
-			if (self.mChatID = 1) AND (self.TabPanelIndex -1 = PagePanel(self.Parent).Value) then
+			if (self.mChatID = 1) AND (self.TabPanelIndex -1 = DesktopPagePanel(self.Parent).SelectedPanelIndex) then
 			self.mConnection.Reconnect
 			Return True
 			else
