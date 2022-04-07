@@ -18,7 +18,7 @@ Protected Class UserDefaults
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Lookup(key As String, defaultValue As Auto) As Auto
+		Function Lookup(key As String, defaultValue As Variant) As Variant
 		  try
 		    Return mUserDefaults.Lookup(key, defaultValue)
 		  end try
@@ -38,7 +38,7 @@ Protected Class UserDefaults
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Set(key As String, Assigns value As Auto)
+		Sub Set(key As String, Assigns value As Variant)
 		  try
 		    mUserDefaults.Value(key) = value
 		  end try
