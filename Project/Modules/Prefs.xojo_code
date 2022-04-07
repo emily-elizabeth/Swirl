@@ -204,6 +204,54 @@ Protected Module Prefs
 	#tag ComputedProperty, Flags = &h1
 		#tag Getter
 			Get
+			  Return mDefaults.Lookup("ChatWinFullScreen", FALSE)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mDefaults.Set("ChatWinFullScreen") = value
+			End Set
+		#tag EndSetter
+		Protected ChatWinFullScreen As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h1
+		#tag Getter
+			Get
+			  DIM rectString As String = mDefaults.Lookup("ChatWinRect", "")
+			  
+			  if (rectString <> "") then
+			    DIM rectDict As Dictionary = ParseJSON(rectString)
+			    DIM rectBounds As NEW Rect
+			    rectBounds.Top = rectDict.Value("Top")
+			    rectBounds.Left = rectDict.Value("Left")
+			    rectBounds.Width = rectDict.Value("Width")
+			    rectBounds.Height = rectDict.Value("Height")
+			    Return rectBounds
+			  else
+			    Return Nil
+			  end if
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  DIM rectDict As NEW Dictionary
+			  rectDict.Value("Top") = value.Top
+			  rectDict.Value("Left") = value.Left
+			  rectDict.Value("Width") = value.Width
+			  rectDict.Value("Height") = value.Height
+			  
+			  DIM rectString As String = GenerateJSON(rectDict)
+			  
+			  mDefaults.Set("ChatWinRect") = rectString
+			End Set
+		#tag EndSetter
+		Protected ChatWinRect As Rect
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h1
+		#tag Getter
+			Get
 			  Return mDefaults.Lookup("ConfirmApplicationQuit", TRUE)
 			End Get
 		#tag EndGetter
