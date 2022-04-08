@@ -80,7 +80,7 @@ Begin DesktopContainer ChatContainer
       ColumnCount     =   1
       ColumnsResizable=   False
       ColumnWidths    =   ""
-      DefaultRowHeight=   46
+      DefaultRowHeight=   40
       Enabled         =   True
       EnableDrag      =   True
       EnableDragReorder=   False
@@ -587,17 +587,23 @@ End
 		    // user nick
 		    if (me.SelectedRowIndex = row) then
 		      g.Transparency = 0.0
-		      g.ForeColor = Colours.White
+		      g.ForeColor = Color.White
 		    else
 		      g.Transparency = if(user.IsIdle OR NOT self.mConnection.IsConnected, 50.0, 0.0)  // is the user is idle, then set the transparency
-		      g.ForeColor = user.Colour
+		      if (user.Login = "guest") then
+		        g.ForeColor = Color.TextColor
+		      elseif (user.IsAdmin) then
+		        g.ForeColor = Color.Red
+		      else
+		        g.ForeColor = Color.Blue
+		      end if
 		    end if
 		    g.TextFont = "System"
 		    g.TextSize = 13
 		    g.DrawString user.Nick, 44, if(user.Status.IsEmpty, g.TextHeight + 10, g.TextHeight)
 		    
 		    // user status
-		    g.ForeColor = if(me.SelectedRowIndex = row, Colours.Black, DisabledTextColor)
+		    g.ForeColor = if(me.SelectedRowIndex = row, Color.Black, Color.DisabledTextColor)
 		    g.TextSize = 11
 		    g.DrawString user.Status, 44, 32, 0, TRUE
 		    
