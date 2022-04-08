@@ -2,6 +2,12 @@
 Protected Class App
 Inherits DesktopApplication
 	#tag Event
+		Sub AppearanceChanged()
+		  ObjObserver.Notify self, Events.kAppearanceChanged
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Function CancelClosing() As Boolean
 		  DIM returnValue As Boolean = FALSE
 		  

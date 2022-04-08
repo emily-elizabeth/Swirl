@@ -200,6 +200,7 @@ End
 		    ObjObserver.Listen self, Events.kNSWorkspaceWillSleep
 		  end if
 		  
+		  ObjObserver.Listen self, Events.kAppearanceChanged
 		  ObjObserver.Listen self, Events.kWiredConnectionChatReceived
 		  ObjObserver.Listen self, Events.kWiredConnectionChatTopicReceived
 		  ObjObserver.Listen self, Events.kWiredConnectionDisconnected
@@ -248,6 +249,14 @@ End
 		  self.UserList.AddRow ""
 		  self.UserList.CellTagAt(self.UserList.LastAddedRowIndex, 1) = user.UserID
 		  self.UserList.RowTagAt(self.UserList.LastAddedRowIndex) = user
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub AppearanceChanged(sender As Object)
+		  #Pragma Unused sender
+		  
+		  self.ChatInput.TextColor = Color.TextColor
 		End Sub
 	#tag EndMethod
 
