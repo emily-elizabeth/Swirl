@@ -18,29 +18,6 @@ Protected Class WiredUser
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  DIM alpha As UInt8 = if(me.IsIdle, 127, 0)  // if user is idle dim out the colour by setting the alpha value
-			  DIM returnValue As Color = RGB(&h00, &h00, &h00, alpha)  // black (guest)
-			  
-			  if (me.IsAdmin) then
-			    returnValue = RGB(&hFF, &h00, &h00, alpha)  // red (admin)
-			  elseif (me.Login <> "guest") then
-			    returnValue = RGB(&h00, &h80, &hBF, alpha)  // blue (account)
-			  end if
-			  
-			  Return returnValue
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  #Pragma Unused value
-			End Set
-		#tag EndSetter
-		Colour As Color
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
 			  Return me.mHost
 			End Get
 		#tag EndGetter
@@ -158,19 +135,11 @@ Protected Class WiredUser
 
 	#tag ViewBehavior
 		#tag ViewProperty
-			Name="Colour"
-			Visible=false
-			Group="Behavior"
-			InitialValue="&c000000"
-			Type="Color"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Host"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Text"
+			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -194,7 +163,7 @@ Protected Class WiredUser
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Text"
+			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -226,7 +195,7 @@ Protected Class WiredUser
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Text"
+			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -242,7 +211,7 @@ Protected Class WiredUser
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Text"
+			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -250,7 +219,7 @@ Protected Class WiredUser
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Text"
+			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
