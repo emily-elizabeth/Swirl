@@ -122,6 +122,7 @@ Class=SwirlDataConnection;Classes/SwirlDataConnection.xojo_code;&h000000003167FF
 Folder=Transfers;Interface/Transfers;&h000000000E0BA7FF;&h000000003CC597FF;false
 DesktopWindow=SwirlTransfersContainer;Interface/Transfers/SwirlTransfersContainer.xojo_window;&h000000000D26FFFF;&h000000000E0BA7FF;false
 Module=CocoaFullScreen;Modules/CocoaFullScreen.xojo_code;&h000000002F13EC30;&h0000000040FB3FFF;false
+Class=VibrancyCanvas;Classes/VibrancyCanvas.xojo_code;&h00000000640B37FF;&h000000007036C7FF;false
 DefaultWindow=ChatWindow
 AppMenuBar=AppMenuBar
 MajorVersion=0

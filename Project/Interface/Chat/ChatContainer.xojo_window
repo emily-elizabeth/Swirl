@@ -25,6 +25,31 @@ Begin DesktopContainer ChatContainer
    Transparent     =   False
    Visible         =   True
    Width           =   780
+   Begin VibrancyCanvas VibrancyCanvas1
+      AllowAutoDeactivate=   True
+      AllowFocus      =   False
+      AllowFocusRing  =   True
+      AllowTabs       =   False
+      Backdrop        =   0
+      Enabled         =   True
+      Height          =   472
+      Index           =   -2147483648
+      Left            =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   2
+      TabIndex        =   5
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   0
+      Transparent     =   True
+      Visible         =   True
+      Width           =   201
+   End
    Begin CustomChatInput ChatInput
       AcceptTabs      =   False
       Alignment       =   0
@@ -585,7 +610,7 @@ End
 		    end if
 		    
 		    // user nick
-		    if (me.SelectedRowIndex = row) then
+		    if (me.RowSelectedAt(row)) then
 		      g.Transparency = 0.0
 		      g.ForeColor = Color.White
 		    else
@@ -736,6 +761,17 @@ End
 		  end select
 		  
 		  Return returnValue
+		End Function
+	#tag EndEvent
+	#tag Event
+		Function PaintCellBackground(g As Graphics, row As Integer, column As Integer) As Boolean
+		  #Pragma Unused row
+		  #Pragma Unused column
+		  
+		  #if TargetMacOS
+		    g.ClearRect 0, 0, g.Width, g.Height
+		    Return FALSE
+		  #endif
 		End Function
 	#tag EndEvent
 #tag EndEvents
