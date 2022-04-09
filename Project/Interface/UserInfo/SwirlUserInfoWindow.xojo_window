@@ -917,7 +917,14 @@ End
 		  
 		  // user nick
 		  g.Transparency = if(self.mUser.IsIdle OR NOT self.mConnection.IsConnected, 50.0, 0.0)  // is the user is idle, then set the transparency
-		  g.ForeColor = self.mUser.Colour
+		  'g.ForeColor = self.mUser.Colour
+		  if (self.mUser.Login = "guest") then
+		    g.ForeColor = Color.TextColor
+		  elseif (self.mUser.IsAdmin) then
+		    g.ForeColor = Color.Red
+		  else
+		    g.ForeColor = Color.Blue
+		  end if
 		  g.TextFont = "System"
 		  g.TextSize = 13
 		  g.DrawString self.mUser.Nick, 44, if(self.mUser.Status.IsEmpty, g.TextHeight + 10, g.TextHeight)
@@ -960,7 +967,7 @@ End
 		  g.DrawRoundRect 9, g.TextHeight + 6, g.Width - 20, g.Height - g.TextHeight - 24, 6.0, 6.0
 		  
 		  // draw the path of the download
-		  g.ForeColor = Colours.Black
+		  g.ForeColor = Color.TextColor
 		  g.DrawString infoA(0), 9, g.TextHeight
 		  
 		  // draw the status line

@@ -512,13 +512,20 @@ End
 		  
 		  // user nick
 		  g.Transparency = if(self.mUser.IsIdle OR NOT self.mConnection.IsConnected, 50.0, 0.0)  // is the user is idle, then set the transparency
-		  g.ForeColor = self.mUser.Colour
+		  'g.ForeColor = self.mUser.Colour
+		  if (self.mUser.Login = "guest") then
+		    g.ForeColor = Color.TextColor
+		  elseif (self.mUser.IsAdmin) then
+		    g.ForeColor = Color.Red
+		  else
+		    g.ForeColor = Color.Blue
+		  end if
 		  g.TextFont = "System"
 		  g.TextSize = 13
 		  g.DrawString self.mUser.Nick, 44, if(self.mUser.Status.IsEmpty, g.TextHeight + 10, g.TextHeight)
 		  
 		  // user status
-		  g.ForeColor = DisabledTextColor
+		  g.ForeColor = Color.DisabledTextColor
 		  g.TextSize = 11
 		  g.DrawString self.mUser.Status, 44, 32, 0, TRUE
 		End Sub
