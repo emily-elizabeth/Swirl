@@ -452,13 +452,13 @@ End
 		    'end if
 		    
 		    // file name
-		    g.ForeColor = if(me.SelectedRowIndex = row, Colours.White, Colours.Black)
+		    g.ForeColor = if(me.RowSelectedAt(row), Color.White, Color.TextColor)
 		    g.TextFont = "System"
 		    g.TextSize = 13
 		    g.DrawString file.Name, 44, g.TextHeight
 		    
 		    // file size / folder item count
-		    g.ForeColor = if(me.SelectedRowIndex = row, Colours.Black, DisabledTextColor)
+		    g.ForeColor = if(me.RowSelectedAt(row), Color.TextColor, Color.DisabledTextColor)
 		    g.TextSize = 11
 		    g.DrawString if(file.Type = 0, FormatByteCount(file.Size), file.Size.ToString + " items"), 44, 32, 0, TRUE
 		    
