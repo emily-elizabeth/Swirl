@@ -99,7 +99,7 @@ Implements NetWiredSocketInterface
 		  REDIM me.mPrivateChatRequests(-1)
 		  me.mUsersDict.RemoveAll
 		  
-		  me.SendClient "Swirl/" '+ App.LongVersion + Str(App.NonReleaseVersion) +  "(🌀)"
+		  me.SendClient "🌀/" + Str(App.NonReleaseVersion) +  " ("+ System.Version.ToString + ")"
 		  me.SendNick Prefs.UserNick
 		  me.SendStatus Prefs.UserStatus
 		  me.SendIcon Prefs.UserIcon
