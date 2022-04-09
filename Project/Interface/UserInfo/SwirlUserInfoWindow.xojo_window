@@ -996,13 +996,13 @@ End
 		  if (percent > 100) then percent = 100
 		  pixels = percent * (g.Width - 20) / 100
 		  
-		  g.ForeColor = &c0000FF
+		  g.ForeColor = Color.Green
 		  g.FillRoundRect 9, g.TextHeight + 6, pixels, g.Height - g.TextHeight - 24, 6.0, 6.0
-		  g.ForeColor = &c888888
+		  g.ForeColor = Color.LightGray
 		  g.DrawRoundRect 9, g.TextHeight + 6, g.Width - 20, g.Height - g.TextHeight - 24, 6.0, 6.0
 		  
 		  // draw the path of the download
-		  g.ForeColor = Colours.Black
+		  g.ForeColor = Color.TextColor
 		  g.DrawString infoA(0), 9, g.TextHeight
 		  
 		  // draw the status line
