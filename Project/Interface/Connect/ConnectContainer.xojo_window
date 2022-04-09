@@ -54,7 +54,7 @@ Begin DesktopContainer ConnectContainer
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "shaosean.tk"
+      Text            =   ""
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
@@ -316,6 +316,39 @@ Begin DesktopContainer ConnectContainer
       Visible         =   False
       Width           =   16
    End
+   Begin DesktopComboBox ComboBox1
+      AllowAutoComplete=   False
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Hint            =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      InitialValue    =   ""
+      Italic          =   False
+      Left            =   428
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   2
+      SelectedRowIndex=   0
+      TabIndex        =   8
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   109
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   310
+   End
 End
 #tag EndDesktopWindow
 
@@ -411,7 +444,7 @@ End
 #tag Events Address
 	#tag Event
 		Sub TextChanged()
-		  ' self.ConnectButton.Enabled = (Trim(me.Text) <> "")
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
