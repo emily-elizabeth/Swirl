@@ -29,7 +29,6 @@ Begin DesktopContainer SwirlPrefsNewsPane
       AutoDeactivate  =   True
       Enabled         =   True
       Height          =   340
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   250
@@ -43,20 +42,22 @@ Begin DesktopContainer SwirlPrefsNewsPane
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
+      Tooltip         =   ""
       Top             =   0
       Visible         =   True
       Width           =   400
    End
    Begin DesktopButton StyleApply
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
-      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "#Strings.kApplyNewsStyle"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -66,13 +67,12 @@ Begin DesktopContainer SwirlPrefsNewsPane
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "SmallSystem"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   352
       Transparent     =   False
       Underline       =   False
@@ -80,23 +80,29 @@ Begin DesktopContainer SwirlPrefsNewsPane
       Width           =   368
    End
    Begin DesktopListBox Styles
-      AutoDeactivate  =   True
-      AutoHideScrollbars=   True
+      AllowAutoDeactivate=   True
+      AllowAutoHideScrollbars=   True
+      AllowExpandableRows=   False
+      AllowFocusRing  =   False
+      AllowResizableColumns=   False
+      AllowRowDragging=   False
+      AllowRowReordering=   False
       Bold            =   False
-      Border          =   False
       ColumnCount     =   1
-      ColumnsResizable=   False
       ColumnWidths    =   ""
       DefaultRowHeight=   -1
+      DropIndicatorVisible=   False
       Enabled         =   True
-      EnableDrag      =   False
-      EnableDragReorder=   False
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       GridLineStyle   =   0
-      HasHeading      =   False
+      HasBorder       =   True
+      HasHeader       =   False
+      HasHorizontalScrollbar=   False
+      HasVerticalScrollbar=   True
       HeadingIndex    =   -1
       Height          =   340
-      HelpTag         =   ""
-      Hierarchical    =   True
       Index           =   -2147483648
       InitialParent   =   ""
       InitialValue    =   ""
@@ -108,36 +114,31 @@ Begin DesktopContainer SwirlPrefsNewsPane
       LockRight       =   False
       LockTop         =   True
       RequiresSelection=   False
+      RowSelectionType=   0
       Scope           =   2
-      ScrollbarHorizontal=   False
-      ScrollBarVertical=   True
-      SelectionType   =   0
-      ShowDropIndicator=   False
       TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   0
       Transparent     =   False
       Underline       =   False
-      UseFocusRing    =   False
       Visible         =   True
       Width           =   250
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
    Begin DesktopButton NewsStyleAdd
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
-      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "+"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -147,13 +148,12 @@ Begin DesktopContainer SwirlPrefsNewsPane
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   3
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "SmallSystem"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   352
       Transparent     =   False
       Underline       =   False
@@ -161,15 +161,16 @@ Begin DesktopContainer SwirlPrefsNewsPane
       Width           =   27
    End
    Begin DesktopButton NewsStyleRemove
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
-      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "-"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -179,13 +180,12 @@ Begin DesktopContainer SwirlPrefsNewsPane
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   4
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "SmallSystem"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   352
       Transparent     =   False
       Underline       =   False
@@ -193,15 +193,16 @@ Begin DesktopContainer SwirlPrefsNewsPane
       Width           =   27
    End
    Begin DesktopButton NewsStylesRefresh
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
-      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "#Strings.kRefresh"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -211,13 +212,12 @@ Begin DesktopContainer SwirlPrefsNewsPane
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   5
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "SmallSystem"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   352
       Transparent     =   False
       Underline       =   False
@@ -239,15 +239,15 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub ListStyles()
-		  'self.Styles.DeleteAllRows
-		  '
-		  'DIM styles As FolderItem = Paths.NewsStyles
-		  'for each style As FolderItem in styles.Children()
-		  'if (style.IsFolder) AND (style.Name.Right(12) = ".viennastyle") AND (style.Name.Left(1) <> ".") then
-		  'self.Styles.AddRow style.DisplayName.Replace(".viennastyle", "")
-		  'self.Styles.RowTag(self.Styles.ListCount - 1) = style
-		  'end if
-		  'next
+		  self.Styles.RemoveAllRows
+		  
+		  DIM styles As FolderItem = Paths.NewsStyles
+		  for each style As FolderItem in styles.Children()
+		    if (style.IsFolder) AND (style.Name.Right(12) = ".viennastyle") AND (style.Name.Left(1) <> ".") then
+		      self.Styles.AddRow style.DisplayName.Replace(".viennastyle", "")
+		      self.Styles.RowTagAt(self.Styles.LastAddedRowIndex) = style
+		    end if
+		  next
 		End Sub
 	#tag EndMethod
 
@@ -303,9 +303,9 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub SelectionChanged()
-		  'if (me.ListIndex > -1) then
-		  'self.Preview.Style = me.RowTag(me.ListIndex)
-		  'end if
+		  if (me.SelectedRowIndex > -1) then
+		    self.Preview.Style = me.RowTagAt(me.SelectedRowIndex)
+		  end if
 		End Sub
 	#tag EndEvent
 #tag EndEvents

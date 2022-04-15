@@ -634,10 +634,10 @@ Protected Module Prefs
 			Set
 			  if (value <> Nil) AND (value.Exists) then
 			    DIM stylePath As String = value.NativePath
-			    stylePath = stylePath.Replace(Paths.NewsStyles.NativePath, "")
+			    stylePath = stylePath.Replace(Paths.NewsStyles.NativePath + "/", "")
 			    mDefaults.Set("NewsStyle") = stylePath
 			    
-			    'App.Notify "NewsStyleChanged"
+			    ObjObserver.Notify Nil, Events.kNewsStyleChanged
 			  end if
 			End Set
 		#tag EndSetter

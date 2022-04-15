@@ -59,9 +59,16 @@ Inherits DesktopHTMLViewer
 	#tag Method, Flags = &h21
 		Private Sub AddArticleToViewer(append As Boolean, data As Dictionary)
 		  DIM div As String = me.mTemplate
-		  div = div.Replace("$ArticleBody$", data.Value("articleBody"))
-		  div = div.Replace("$ArticleAuthor$", data.Value("articleAuthor"))
-		  div = div.Replace("$ArticleDate$", data.Value("articleDate"))
+		  div = div.ReplaceAll("$ArticleBody$", data.Value("articleBody"))
+		  div = div.ReplaceAll("$ArticleAuthor$", data.Value("articleAuthor"))
+		  div = div.ReplaceAll("$ArticleDate$", data.Value("articleDate"))
+		  div = div.ReplaceAll("$ArticleLink$", "")
+		  div = div.ReplaceAll("$ArticleTitle$", "")
+		  div = div.ReplaceAll("$ArticleEnclosureLink$", "")
+		  div = div.ReplaceAll("$ArticleEnclosureFilename$", "")
+		  div = div.ReplaceAll("$FeedTitle$", "")
+		  div = div.ReplaceAll("$FeedLink$", "")
+		  div = div.ReplaceAll("$FeedDescription$", "")
 		  
 		  if (append) then
 		    me.ExecuteJavaScript "document.getElementById('News').insertAdjacentHTML('beforeend', '" + div + "');"
@@ -80,16 +87,18 @@ Inherits DesktopHTMLViewer
 	#tag Method, Flags = &h0
 		Sub Clear()
 		  REDIM self.mArticles(-1)
-		  me.LoadPage me.mSource, GetTemporaryFolderItem()
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub Constructor()
-		  me.Renderer = 1  // WebKit
+		  'me.LoadPage me.mSource, GetTemporaryFolderItem()
 		  
-		  // Calling the overridden superclass constructor.
-		  Super.Constructor
+		  #if TargetWindows
+		    DIM f As FolderItem = SpecialFolder.Temporary.Child("uinewsviewer-" + System.Microseconds.ToString + ".html")
+		    DIM t As TextOutputStream = TextOutputStream.Create(f)
+		    t.Write me.mSource
+		    t.Close
+		    me.LoadURL f.URLPath
+		  #else
+		    me.GrantAccessToFolder me.mStyle
+		    me.LoadPage me.mSource, GetTemporaryFolderItem()
+		  #endif
 		End Sub
 	#tag EndMethod
 

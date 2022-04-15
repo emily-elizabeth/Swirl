@@ -362,7 +362,7 @@ End
 		    self.Bounds = Prefs.ChatWinRect
 		  end if
 		  
-		  // a little jig to make the bookmark list resize properly
+		  // a little jig to make the controls go the full height of the window
 		  self.Height = self.Height + 1
 		  self.Height = self.Height - 1
 		End Sub

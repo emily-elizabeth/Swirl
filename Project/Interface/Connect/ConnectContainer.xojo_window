@@ -25,7 +25,7 @@ Begin DesktopContainer ConnectContainer
    Transparent     =   False
    Visible         =   True
    Width           =   780
-   Begin DesktopTextField Address
+   Begin DesktopTextField Address1
       AcceptTabs      =   False
       Alignment       =   0
       AutoDeactivate  =   True
@@ -34,13 +34,13 @@ Begin DesktopContainer ConnectContainer
       Bold            =   False
       Border          =   True
       CueText         =   "#Strings.kAddress"
-      Enabled         =   True
+      Enabled         =   False
       Format          =   ""
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
       Italic          =   False
-      Left            =   428
+      Left            =   345
       LimitText       =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -51,7 +51,7 @@ Begin DesktopContainer ConnectContainer
       Password        =   False
       ReadOnly        =   False
       Scope           =   2
-      TabIndex        =   0
+      TabIndex        =   8
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
@@ -59,11 +59,11 @@ Begin DesktopContainer ConnectContainer
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   141
+      Top             =   485
       Transparent     =   True
       Underline       =   False
       UseFocusRing    =   True
-      Visible         =   True
+      Visible         =   False
       Width           =   310
    End
    Begin DesktopButton AddToFavourites
@@ -79,11 +79,11 @@ Begin DesktopContainer ConnectContainer
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   428
+      Left            =   235
       LockBottom      =   False
       LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
+      LockLeft        =   True
+      LockRight       =   False
       LockTop         =   True
       Scope           =   2
       TabIndex        =   4
@@ -92,7 +92,7 @@ Begin DesktopContainer ConnectContainer
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   244
+      Top             =   238
       Transparent     =   True
       Underline       =   False
       Visible         =   True
@@ -113,7 +113,7 @@ Begin DesktopContainer ConnectContainer
       GridLineStyle   =   0
       HasHeading      =   False
       HeadingIndex    =   -1
-      Height          =   472
+      Height          =   70
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
@@ -138,12 +138,12 @@ Begin DesktopContainer ConnectContainer
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   0
+      Top             =   485
       Transparent     =   True
       Underline       =   False
       UseFocusRing    =   False
-      Visible         =   True
-      Width           =   405
+      Visible         =   False
+      Width           =   284
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
@@ -160,7 +160,7 @@ Begin DesktopContainer ConnectContainer
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   624
+      Left            =   431
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -173,7 +173,7 @@ Begin DesktopContainer ConnectContainer
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   243
+      Top             =   237
       Transparent     =   True
       Underline       =   False
       Visible         =   True
@@ -194,11 +194,11 @@ Begin DesktopContainer ConnectContainer
       HelpTag         =   ""
       Index           =   -2147483648
       Italic          =   False
-      Left            =   428
+      Left            =   235
       LimitText       =   0
       LockBottom      =   False
       LockedInPosition=   False
-      LockLeft        =   False
+      LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
       Mask            =   ""
@@ -213,7 +213,7 @@ Begin DesktopContainer ConnectContainer
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   175
+      Top             =   169
       Transparent     =   True
       Underline       =   False
       UseFocusRing    =   True
@@ -268,11 +268,11 @@ Begin DesktopContainer ConnectContainer
       HelpTag         =   ""
       Index           =   -2147483648
       Italic          =   False
-      Left            =   428
+      Left            =   235
       LimitText       =   0
       LockBottom      =   False
       LockedInPosition=   False
-      LockLeft        =   False
+      LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
       Mask            =   ""
@@ -287,7 +287,7 @@ Begin DesktopContainer ConnectContainer
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   209
+      Top             =   203
       Transparent     =   True
       Underline       =   False
       UseFocusRing    =   True
@@ -316,7 +316,7 @@ Begin DesktopContainer ConnectContainer
       Visible         =   False
       Width           =   16
    End
-   Begin DesktopComboBox ComboBox1
+   Begin DesktopComboBox Address
       AllowAutoComplete=   False
       AllowAutoDeactivate=   True
       AllowFocusRing  =   True
@@ -326,24 +326,24 @@ Begin DesktopContainer ConnectContainer
       FontSize        =   0.0
       FontUnit        =   0
       Height          =   20
-      Hint            =   ""
+      Hint            =   "#Strings.kAddress"
       Index           =   -2147483648
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   428
+      Left            =   235
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
+      LockRight       =   True
       LockTop         =   True
       Scope           =   2
       SelectedRowIndex=   0
-      TabIndex        =   8
+      TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   109
+      Top             =   137
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -400,15 +400,19 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub LoadBookmarks()
-		  self.BookmarkList.RemoveAllRows
+		  'self.BookmarkList.RemoveAllRows
+		  self.Address.RemoveAllRows
 		  
 		  if (Paths.Bookmarks <> Nil) AND (Paths.Bookmarks.Exists) AND (Paths.Bookmarks.Count > 0) then
 		    for each path As FolderItem in Paths.Bookmarks.Children
 		      if (path <> Nil) AND (path.Exists) AND (path.Visible) AND (path.Name.Left(1) <> ".") AND (path.Name.IndexOf(".swirlBookmark") > -1) then
 		        DIM bookmark As URLComponents = self.LoadBookmark(path)
 		        
-		        self.BookmarkList.AddRow bookmark.User + " @ " + bookmark.Host + if(bookmark.Port = 2000, "", ":" + bookmark.Port.ToString)
-		        self.BookmarkList.RowTagAt(self.BookmarkList.LastAddedRowIndex) = bookmark
+		        'self.BookmarkList.AddRow bookmark.User + " @ " + bookmark.Host + if(bookmark.Port = 2000, "", ":" + bookmark.Port.ToString)
+		        'self.BookmarkList.RowTagAt(self.BookmarkList.LastAddedRowIndex) = bookmark
+		        
+		        self.Address.AddRow bookmark.User + " @ " + bookmark.Host + if(bookmark.Port = 2000, "", ":" + bookmark.Port.ToString)
+		        self.Address.RowTagAt(self.Address.LastAddedRowIndex) = bookmark
 		      end if
 		    next
 		  end if
@@ -441,7 +445,7 @@ End
 
 #tag EndWindowCode
 
-#tag Events Address
+#tag Events Address1
 	#tag Event
 		Sub TextChanged()
 		  
@@ -523,6 +527,19 @@ End
 	#tag Event
 		Sub Opening()
 		  ' me.Top = (self.ConnectButton.Top + 2)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Address
+	#tag Event
+		Sub SelectionChanged(item As DesktopMenuItem)
+		  if (item <> Nil) AND (me.SelectedRowIndex > -1) then
+		    DIM bookmark As URLComponents = item.Tag
+		    self.Address.Text = bookmark.Host + if(bookmark.Port = 2000, "", ":" + bookmark.Port.ToString)
+		    self.Login.Text = bookmark.User
+		    self.Password.Text = bookmark.Password
+		  end if
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

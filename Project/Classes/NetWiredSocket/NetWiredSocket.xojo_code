@@ -1112,6 +1112,12 @@ Inherits SSLSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub RequestDirectoryListingRecursive(path As String = "/")
+		  me.Write "LISTRECURSIVE " + path
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub RequestFileInfo(path As String)
 		  me.Write "STAT " + path
 		End Sub

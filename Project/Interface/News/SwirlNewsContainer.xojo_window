@@ -29,7 +29,6 @@ Begin DesktopContainer SwirlNewsContainer
       AutoDeactivate  =   True
       Enabled         =   True
       Height          =   450
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
@@ -43,19 +42,19 @@ Begin DesktopContainer SwirlNewsContainer
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
+      Tooltip         =   ""
       Top             =   52
       Visible         =   True
       Width           =   656
    End
    Begin DesktopRectangle Rectangle1
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       BorderColor     =   &c000000
-      BorderWidth     =   0.0
+      BorderThickness =   1.0
       CornerSize      =   16.0
       Enabled         =   True
       FillColor       =   &cFFFFFF00
       Height          =   502
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
@@ -67,28 +66,33 @@ Begin DesktopContainer SwirlNewsContainer
       Scope           =   2
       TabIndex        =   4
       TabPanelIndex   =   0
+      Tooltip         =   ""
       Top             =   0
       Transparent     =   True
       Visible         =   False
       Width           =   656
       Begin DesktopTextArea NewPost
-         AcceptTabs      =   False
-         Alignment       =   0
-         AutoDeactivate  =   True
-         AutomaticallyCheckSpelling=   True
-         BackColor       =   &cFFFFFF00
+         AllowAutoDeactivate=   True
+         AllowFocusRing  =   True
+         AllowSpellChecking=   True
+         AllowStyledText =   True
+         AllowTabs       =   False
+         BackgroundColor =   &cFFFFFF
          Bold            =   False
-         Border          =   True
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Format          =   ""
+         HasBorder       =   True
+         HasHorizontalScrollbar=   False
+         HasVerticalScrollbar=   True
          Height          =   430
-         HelpTag         =   ""
          HideSelection   =   True
          Index           =   -2147483648
          InitialParent   =   "Rectangle1"
          Italic          =   False
          Left            =   20
-         LimitText       =   0
          LineHeight      =   0.0
          LineSpacing     =   1.0
          LockBottom      =   True
@@ -96,39 +100,36 @@ Begin DesktopContainer SwirlNewsContainer
          LockLeft        =   True
          LockRight       =   True
          LockTop         =   True
-         Mask            =   ""
+         MaximumCharactersAllowed=   0
          Multiline       =   True
          ReadOnly        =   False
          Scope           =   2
-         ScrollbarHorizontal=   False
-         ScrollbarVertical=   True
-         Styled          =   True
          TabIndex        =   0
          TabPanelIndex   =   0
          TabStop         =   True
          Text            =   ""
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   20
          Transparent     =   True
          Underline       =   False
          UnicodeMode     =   0
-         UseFocusRing    =   True
+         ValidationMask  =   ""
          Visible         =   True
          Width           =   616
       End
       Begin DesktopButton Post
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
-         ButtonStyle     =   0
          Cancel          =   False
          Caption         =   "#Strings.kPost"
          Default         =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "Rectangle1"
          Italic          =   False
@@ -138,13 +139,12 @@ Begin DesktopContainer SwirlNewsContainer
          LockLeft        =   False
          LockRight       =   True
          LockTop         =   False
+         MacButtonStyle  =   0
          Scope           =   2
          TabIndex        =   1
          TabPanelIndex   =   0
          TabStop         =   True
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   462
          Transparent     =   False
          Underline       =   False
@@ -152,15 +152,16 @@ Begin DesktopContainer SwirlNewsContainer
          Width           =   110
       End
       Begin DesktopButton Cancel
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
-         ButtonStyle     =   0
          Cancel          =   True
          Caption         =   "#Strings.kCancel"
          Default         =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "Rectangle1"
          Italic          =   False
@@ -170,13 +171,12 @@ Begin DesktopContainer SwirlNewsContainer
          LockLeft        =   False
          LockRight       =   True
          LockTop         =   False
+         MacButtonStyle  =   0
          Scope           =   2
          TabIndex        =   2
          TabPanelIndex   =   0
          TabStop         =   True
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   462
          Transparent     =   False
          Underline       =   False
@@ -185,15 +185,16 @@ Begin DesktopContainer SwirlNewsContainer
       End
    End
    Begin DesktopButton Reload
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
-      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "#Strings.kReload"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -203,13 +204,12 @@ Begin DesktopContainer SwirlNewsContainer
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   7
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   16
       Transparent     =   False
       Underline       =   False
@@ -217,15 +217,16 @@ Begin DesktopContainer SwirlNewsContainer
       Width           =   150
    End
    Begin DesktopButton PostNews
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
-      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "#Strings.kPostNews"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -235,13 +236,12 @@ Begin DesktopContainer SwirlNewsContainer
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   5
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   16
       Transparent     =   False
       Underline       =   False
@@ -249,15 +249,16 @@ Begin DesktopContainer SwirlNewsContainer
       Width           =   150
    End
    Begin DesktopButton Clear
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
-      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "#Strings.kClear"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -267,13 +268,12 @@ Begin DesktopContainer SwirlNewsContainer
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   True
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   6
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   16
       Transparent     =   False
       Underline       =   False
@@ -294,6 +294,7 @@ End
 
 	#tag Event
 		Sub Opening()
+		  ObjObserver.Listen self, Events.kNewsStyleChanged
 		  ObjObserver.Listen self, Events.kWiredConnectionNewsListEntry
 		  ObjObserver.Listen self, Events.kWiredConnectionNewsPosted
 		  ObjObserver.Listen self, Events.kWiredConnectionPrivilegesReceived
@@ -332,6 +333,12 @@ End
 		  
 		  self.Rectangle1.Visible = FALSE
 		  self.NewPost.Text = ""
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub NewsStyleChanged(sender As Object)
+		  self.Viewer.Style = Prefs.NewsStylePath
 		End Sub
 	#tag EndMethod
 

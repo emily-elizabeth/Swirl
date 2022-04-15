@@ -589,6 +589,14 @@ Implements NetWiredSocketInterface
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub RequestDirectoryListingRecursive(path As String = "/")
+		  if (path <> "") then
+		    me.mControlSocket.RequestDirectoryListingRecursive path
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub RequestGroupInfo(groupName As String)
 		  me.mControlSocket.RequestGroupInfo groupName
 		End Sub

@@ -101,6 +101,14 @@ Inherits DesktopApplication
 
 
 	#tag MenuHandler
+		Function ConnectionChat() As Boolean Handles ConnectionChat.Action
+			ChatWindow.Show
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
 		Function ConnectionConnect() As Boolean Handles ConnectionConnect.Action
 			ChatWindow.ShowConnectTab
 			Return True

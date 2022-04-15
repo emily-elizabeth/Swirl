@@ -26,23 +26,29 @@ Begin DesktopContainer SwirlFilesContainer
    Visible         =   True
    Width           =   538
    Begin DesktopListBox FileList
-      AutoDeactivate  =   True
-      AutoHideScrollbars=   True
+      AllowAutoDeactivate=   True
+      AllowAutoHideScrollbars=   True
+      AllowExpandableRows=   False
+      AllowFocusRing  =   True
+      AllowResizableColumns=   False
+      AllowRowDragging=   False
+      AllowRowReordering=   False
       Bold            =   False
-      Border          =   True
       ColumnCount     =   1
-      ColumnsResizable=   False
       ColumnWidths    =   ""
       DefaultRowHeight=   40
+      DropIndicatorVisible=   False
       Enabled         =   True
-      EnableDrag      =   False
-      EnableDragReorder=   False
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       GridLineStyle   =   0
-      HasHeading      =   False
+      HasBorder       =   True
+      HasHeader       =   False
+      HasHorizontalScrollbar=   False
+      HasVerticalScrollbar=   True
       HeadingIndex    =   -1
       Height          =   394
-      HelpTag         =   ""
-      Hierarchical    =   False
       Index           =   -2147483648
       InitialParent   =   ""
       InitialValue    =   ""
@@ -54,36 +60,31 @@ Begin DesktopContainer SwirlFilesContainer
       LockRight       =   True
       LockTop         =   True
       RequiresSelection=   False
+      RowSelectionType=   0
       Scope           =   2
-      ScrollbarHorizontal=   False
-      ScrollBarVertical=   True
-      SelectionType   =   0
-      ShowDropIndicator=   False
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   52
       Transparent     =   True
       Underline       =   False
-      UseFocusRing    =   False
       Visible         =   True
       Width           =   538
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
    Begin DesktopButton GoBack
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
-      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "<"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -93,13 +94,12 @@ Begin DesktopContainer SwirlFilesContainer
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   4
       Transparent     =   True
       Underline       =   False
@@ -107,15 +107,16 @@ Begin DesktopContainer SwirlFilesContainer
       Width           =   38
    End
    Begin DesktopButton Download
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
-      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "V"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -125,13 +126,12 @@ Begin DesktopContainer SwirlFilesContainer
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   4
       Transparent     =   True
       Underline       =   False
@@ -139,15 +139,16 @@ Begin DesktopContainer SwirlFilesContainer
       Width           =   38
    End
    Begin DesktopButton Upload
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
-      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "^"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -157,13 +158,12 @@ Begin DesktopContainer SwirlFilesContainer
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   3
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   4
       Transparent     =   True
       Underline       =   False
@@ -171,15 +171,16 @@ Begin DesktopContainer SwirlFilesContainer
       Width           =   38
    End
    Begin DesktopButton Info
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
-      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "I"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -189,13 +190,12 @@ Begin DesktopContainer SwirlFilesContainer
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   4
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   4
       Transparent     =   True
       Underline       =   False
@@ -203,15 +203,16 @@ Begin DesktopContainer SwirlFilesContainer
       Width           =   38
    End
    Begin DesktopButton Preview
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
-      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "P"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -221,13 +222,12 @@ Begin DesktopContainer SwirlFilesContainer
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   5
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   4
       Transparent     =   True
       Underline       =   False
@@ -235,15 +235,16 @@ Begin DesktopContainer SwirlFilesContainer
       Width           =   38
    End
    Begin DesktopButton NewFolder
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
-      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "NF"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -253,13 +254,12 @@ Begin DesktopContainer SwirlFilesContainer
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   6
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   4
       Transparent     =   True
       Underline       =   False
@@ -267,15 +267,16 @@ Begin DesktopContainer SwirlFilesContainer
       Width           =   38
    End
    Begin DesktopButton Refresh
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
-      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "R"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -285,13 +286,12 @@ Begin DesktopContainer SwirlFilesContainer
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   7
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   4
       Transparent     =   True
       Underline       =   False
@@ -299,11 +299,13 @@ Begin DesktopContainer SwirlFilesContainer
       Width           =   38
    End
    Begin DesktopLabel PathL
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -320,11 +322,9 @@ Begin DesktopContainer SwirlFilesContainer
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
-      TextAlign       =   0
+      TextAlignment   =   0
       TextColor       =   &c00000000
-      TextFont        =   "SmallSystem"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   28
       Transparent     =   True
       Underline       =   False
@@ -477,6 +477,7 @@ End
 		      self.DownloadFile file
 		      
 		    else  // folder, uploads, dropbox
+		      'self.mConnection.RequestDirectoryListingRecursive file.Path
 		      me.RemoveAllRows
 		      self.LoadFromPath file.Path
 		    end select

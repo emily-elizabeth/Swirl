@@ -12,6 +12,9 @@ Protected Module Events
 	#tag Constant, Name = kMyUserStatusChanged, Type = String, Dynamic = False, Default = \"MyUserStatusChanged", Scope = Protected
 	#tag EndConstant
 
+	#tag Constant, Name = kNewsStyleChanged, Type = String, Dynamic = False, Default = \"NewsStyleChanged", Scope = Protected
+	#tag EndConstant
+
 	#tag Constant, Name = kNSWorkspaceWillPowerOff, Type = String, Dynamic = False, Default = \"NSWorkspaceWillPowerOff", Scope = Protected
 	#tag EndConstant
 
