@@ -57,7 +57,6 @@ DesktopWindow=SwirlPrefsMessageStylesWindow;Interface/Preferences/SwirlPrefsMess
 DesktopWindow=SwirlPrefsMessageStylesPane;Interface/Preferences/SwirlPrefsMessageStylesPane.xojo_window;&h0000000001FCCFFF;&h00000000673D77FF;false
 DesktopWindow=SwirlPrefsStatusIconsWindow;Interface/Preferences/SwirlPrefsStatusIconsWindow.xojo_window;&h000000007457EFFF;&h00000000673D77FF;false
 DesktopWindow=SwirlPrefsChatStatusIcons;Interface/Preferences/SwirlPrefsChatStatusIcons.xojo_window;&h0000000048A2A7FF;&h00000000673D77FF;false
-Class=DELETE_WiredNewsEntry;Classes/WiredSocket/DELETE_WiredNewsEntry.xojo_code;&h000000002E94C7FF;&h00000000104997FF;false
 Class=WiredPrivileges;Classes/WiredSocket/WiredPrivileges.xojo_code;&h000000005D56D7FF;&h00000000104997FF;false
 Class=App;Application/App.xojo_code;&h0000000074D9E7FF;&h000000000C4D2FFF;false
 MenuBar=AppMenuBar;Application/AppMenuBar.xojo_menu;&h000000000C7004C4;&h000000000C4D2FFF;false
