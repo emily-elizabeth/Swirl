@@ -51,7 +51,7 @@ Begin DesktopContainer SwirlNewsContainer
       AllowAutoDeactivate=   True
       BorderColor     =   &c000000
       BorderThickness =   1.0
-      CornerSize      =   16.0
+      CornerSize      =   0.0
       Enabled         =   True
       FillColor       =   &cFFFFFF00
       Height          =   502
@@ -71,7 +71,7 @@ Begin DesktopContainer SwirlNewsContainer
       Transparent     =   True
       Visible         =   False
       Width           =   656
-      Begin DesktopTextArea NewPost
+      Begin CustomChatInput NewPost
          AllowAutoDeactivate=   True
          AllowFocusRing  =   True
          AllowSpellChecking=   True
@@ -402,6 +402,28 @@ End
 		    Return FALSE
 		  end if
 		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events NewPost
+	#tag Event
+		Sub PictureLinkPasted(link As String)
+		  self.mConnection.PostNews ChrB(128) + "<img src=""" + link + """ class=""swirlImage""/>"
+		  self.mConnection.PostNews link
+		  
+		  self.HideNewPost
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub PicturePasted(image As Picture)
+		  DIM aMemoryBlock As MemoryBlock = image.GetData(Picture.FormatPNG)
+		  DIM encodedPicture As String = aMemoryBlock
+		  encodedPicture = EncodeBase64(encodedPicture, 0)  // the zero means no line breaks in the base64 encoded data
+		  self.mConnection.PostNews ChrB(128) + "<img src='data:image/png;base64," + encodedPicture + "' class=""swirlImage""/>"
+		  
+		  self.HideNewPost
+		  
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events Post

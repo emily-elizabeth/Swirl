@@ -30,13 +30,15 @@ Inherits DesktopHTMLViewer
 
 	#tag Method, Flags = &h21
 		Private Sub AddArticleToDictionary(append As Boolean, nick As String, time As DateTime, message As String)
-		  DIM theRegex As RegEx = new RegEx
-		  theRegex.Options.DotMatchAll = true
-		  theRegex.Options.Greedy = True
-		  theRegex.SearchPattern = "\b(https?://|www\.)([^<>\s]+)"
-		  theRegex.ReplacementPattern = "<a href=""link://\1\2"">\1\2</a>"
-		  theRegex.Options.ReplaceAllMatches = True
-		  message = theRegex.Replace(message)
+		  if (message.Length > 4) AND (message.Left(4) <> "<img") then
+		    DIM theRegex As RegEx = new RegEx
+		    theRegex.Options.DotMatchAll = true
+		    theRegex.Options.Greedy = True
+		    theRegex.SearchPattern = "\b(https?://|www\.)([^<>\s]+)"
+		    theRegex.ReplacementPattern = "<a href=""link://\1\2"">\1\2</a>"
+		    theRegex.Options.ReplaceAllMatches = True
+		    message = theRegex.Replace(message)
+		  end if
 		  
 		  DIM article As NEW Dictionary
 		  message = ReplaceLineEndings(message, "</br>")
@@ -87,7 +89,6 @@ Inherits DesktopHTMLViewer
 	#tag Method, Flags = &h0
 		Sub Clear()
 		  REDIM self.mArticles(-1)
-		  'me.LoadPage me.mSource, GetTemporaryFolderItem()
 		  
 		  #if TargetWindows
 		    DIM f As FolderItem = SpecialFolder.Temporary.Child("uinewsviewer-" + System.Microseconds.ToString + ".html")
@@ -251,7 +252,10 @@ Inherits DesktopHTMLViewer
 	#tag EndComputedProperty
 
 
-	#tag Constant, Name = kSourceTemplate, Type = Text, Dynamic = False, Default = \"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">\n<html>\n<head>\n\t<meta http-equiv\x3D\"content-type\" content\x3D\"text/html; charset\x3Dutf-8\" />\n\t<base href\x3D\"%@\">\n\n\t<style type\x3D\"text/css\">\n\t\t.actionMessageUserName { display:none; }\n\t\t.actionMessageBody:before { content:\"*\"; }\n\t\t.actionMessageBody:after { content:\"*\"; }\n\t\t* { word-wrap:break-word; text-rendering: optimizelegibility; }\n\t\timg.scaledToFitImage { height: auto; max-width: 100%%; }\n\t</style>\n\n\t<!-- This style is shared by all variants. !-->\n\t<style id\x3D\"baseStyle\" type\x3D\"text/css\" media\x3D\"screen\x2Cprint\">\n\t\t@import url( \"%@\" );\n\t</style>\n\n</head>\n<body onload\x3D\"initStyle();\" style\x3D\"\x3D\x3DbodyBackground\x3D\x3D\">\n<div id\x3D\"News\">\n</div>\n</body>\n</html>", Scope = Private
+	#tag Constant, Name = kSourceTemplate, Type = Text, Dynamic = False, Default = \"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">\n<html>\n<head>\n\t<meta http-equiv\x3D\"content-type\" content\x3D\"text/html; charset\x3Dutf-8\" />\n\t<base href\x3D\"%@\">\n\n\t<style type\x3D\"text/css\">\n\t\t.actionMessageUserName { display:none; }\n\t\t.actionMessageBody:before { content:\"*\"; }\n\t\t.actionMessageBody:after { content:\"*\"; }\n\t\t* { word-wrap:break-word; text-rendering: optimizelegibility; }\n\t\timg.scaledToFitImage { height: auto; max-width: 100%%; }\n\t</style>\n\n\t<!-- This style is shared by all variants. !-->\n\t<style id\x3D\"baseStyle\" type\x3D\"text/css\" media\x3D\"screen\x2Cprint\">\n\t\t@import url( \"%@\" );\n\t</style>\n\n<style id\x3D\"imageConstrain\" type\x3D\"text/css\" media\x3D\"screen\x2Cprint\">\n\t.swirlImage {\n\t\tmax-width: 500px;\n\t\tmin-height: 120px;\n\t\tmax-height: auto;\n\t}\n</style>\n\n</head>\n<body onload\x3D\"initStyle();\" style\x3D\"\x3D\x3DbodyBackground\x3D\x3D\">\n<div id\x3D\"News\">\n</div>\n</body>\n</html>", Scope = Private
+	#tag EndConstant
+
+	#tag Constant, Name = kSourceTemplate1, Type = Text, Dynamic = False, Default = \"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">\n<html>\n<head>\n\t<meta http-equiv\x3D\"content-type\" content\x3D\"text/html; charset\x3Dutf-8\" />\n\t<base href\x3D\"%@\">\n\n\t<style type\x3D\"text/css\">\n\t\t.actionMessageUserName { display:none; }\n\t\t.actionMessageBody:before { content:\"*\"; }\n\t\t.actionMessageBody:after { content:\"*\"; }\n\t\t* { word-wrap:break-word; text-rendering: optimizelegibility; }\n\t\timg.scaledToFitImage { height: auto; max-width: 100%%; }\n\t</style>\n\n\t<!-- This style is shared by all variants. !-->\n\t<style id\x3D\"baseStyle\" type\x3D\"text/css\" media\x3D\"screen\x2Cprint\">\n\t\t@import url( \"%@\" );\n\t</style>\n\n</head>\n<body onload\x3D\"initStyle();\" style\x3D\"\x3D\x3DbodyBackground\x3D\x3D\">\n<div id\x3D\"News\">\n</div>\n</body>\n</html>", Scope = Private
 	#tag EndConstant
 
 
