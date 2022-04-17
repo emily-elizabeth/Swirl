@@ -63,7 +63,7 @@ Begin DesktopContainer ChatContainer
       FontSize        =   0.0
       FontUnit        =   0
       Format          =   ""
-      HasBorder       =   True
+      HasBorder       =   False
       HasHorizontalScrollbar=   False
       HasVerticalScrollbar=   True
       Height          =   80
@@ -115,7 +115,7 @@ Begin DesktopContainer ChatContainer
       FontSize        =   0.0
       FontUnit        =   0
       GridLineStyle   =   0
-      HasBorder       =   True
+      HasBorder       =   False
       HasHeader       =   False
       HasHorizontalScrollbar=   False
       HasVerticalScrollbar=   True
