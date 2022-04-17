@@ -351,6 +351,7 @@ End
 		  
 		  self.Rectangle1.Visible = TRUE
 		  self.NewPost.Text = ""
+		  self.NewPost.SetFocus
 		End Sub
 	#tag EndMethod
 

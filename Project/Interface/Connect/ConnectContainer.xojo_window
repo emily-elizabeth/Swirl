@@ -25,57 +25,58 @@ Begin DesktopContainer ConnectContainer
    Transparent     =   False
    Visible         =   True
    Width           =   780
-   Begin DesktopTextField Address1
-      AcceptTabs      =   False
-      Alignment       =   0
-      AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   False
-      BackColor       =   &cFFFFFF00
+   Begin DesktopTextField Address
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   False
+      AllowTabs       =   False
+      BackgroundColor =   &cFFFFFF
       Bold            =   False
-      Border          =   True
-      CueText         =   "#Strings.kAddress"
-      Enabled         =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Format          =   ""
+      HasBorder       =   True
       Height          =   22
-      HelpTag         =   ""
+      Hint            =   ""
       Index           =   -2147483648
       Italic          =   False
-      Left            =   345
-      LimitText       =   0
+      Left            =   235
       LockBottom      =   False
       LockedInPosition=   False
-      LockLeft        =   False
+      LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
-      Mask            =   ""
+      MaximumCharactersAllowed=   0
       Password        =   False
       ReadOnly        =   False
       Scope           =   2
-      TabIndex        =   8
+      TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
+      TextAlignment   =   0
       TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   485
+      Tooltip         =   ""
+      Top             =   135
       Transparent     =   True
       Underline       =   False
-      UseFocusRing    =   True
-      Visible         =   False
+      ValidationMask  =   ""
+      Visible         =   True
       Width           =   310
    End
    Begin DesktopButton AddToFavourites
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
-      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "#Strings.kAddToFavourites"
       Default         =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -85,13 +86,12 @@ Begin DesktopContainer ConnectContainer
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   4
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   238
       Transparent     =   True
       Underline       =   False
@@ -99,64 +99,65 @@ Begin DesktopContainer ConnectContainer
       Width           =   172
    End
    Begin DesktopListBox BookmarkList
-      AutoDeactivate  =   True
-      AutoHideScrollbars=   True
+      AllowAutoDeactivate=   True
+      AllowAutoHideScrollbars=   True
+      AllowExpandableRows=   False
+      AllowFocusRing  =   True
+      AllowResizableColumns=   False
+      AllowRowDragging=   False
+      AllowRowReordering=   False
       Bold            =   False
-      Border          =   False
       ColumnCount     =   1
-      ColumnsResizable=   False
       ColumnWidths    =   ""
       DefaultRowHeight=   -1
+      DropIndicatorVisible=   False
       Enabled         =   True
-      EnableDrag      =   False
-      EnableDragReorder=   False
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       GridLineStyle   =   0
-      HasHeading      =   False
+      HasBorder       =   True
+      HasHeader       =   False
+      HasHorizontalScrollbar=   False
+      HasVerticalScrollbar=   True
       HeadingIndex    =   -1
-      Height          =   70
-      HelpTag         =   ""
-      Hierarchical    =   False
+      Height          =   165
       Index           =   -2147483648
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   0
+      Left            =   235
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
       RequiresSelection=   False
+      RowSelectionType=   0
       Scope           =   2
-      ScrollbarHorizontal=   False
-      ScrollBarVertical=   True
-      SelectionType   =   0
-      ShowDropIndicator=   False
       TabIndex        =   3
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   485
+      Tooltip         =   ""
+      Top             =   287
       Transparent     =   True
       Underline       =   False
-      UseFocusRing    =   False
-      Visible         =   False
-      Width           =   284
+      Visible         =   True
+      Width           =   310
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
    Begin DesktopButton ConnectButton
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
-      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "#Strings.kConnect"
       Default         =   True
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   22
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -166,13 +167,12 @@ Begin DesktopContainer ConnectContainer
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   True
+      MacButtonStyle  =   0
       Scope           =   2
       TabIndex        =   5
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   237
       Transparent     =   True
       Underline       =   False
@@ -180,28 +180,29 @@ Begin DesktopContainer ConnectContainer
       Width           =   114
    End
    Begin DesktopTextField Login
-      AcceptTabs      =   False
-      Alignment       =   0
-      AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   False
-      BackColor       =   &cFFFFFF00
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   False
+      AllowTabs       =   False
+      BackgroundColor =   &cFFFFFF
       Bold            =   False
-      Border          =   True
-      CueText         =   "#Strings.kLogin"
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Format          =   ""
+      HasBorder       =   True
       Height          =   22
-      HelpTag         =   ""
+      Hint            =   ""
       Index           =   -2147483648
       Italic          =   False
       Left            =   235
-      LimitText       =   0
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
-      Mask            =   ""
+      MaximumCharactersAllowed=   0
       Password        =   False
       ReadOnly        =   False
       Scope           =   2
@@ -209,23 +210,24 @@ Begin DesktopContainer ConnectContainer
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
+      TextAlignment   =   0
       TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   169
       Transparent     =   True
       Underline       =   False
-      UseFocusRing    =   True
+      ValidationMask  =   ""
       Visible         =   True
       Width           =   310
    End
    Begin DesktopLabel Message
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -242,11 +244,9 @@ Begin DesktopContainer ConnectContainer
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
-      TextAlign       =   2
+      TextAlignment   =   0
       TextColor       =   &c00000000
-      TextFont        =   "SmallSystem"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   526
       Transparent     =   False
       Underline       =   False
@@ -254,28 +254,29 @@ Begin DesktopContainer ConnectContainer
       Width           =   218
    End
    Begin DesktopTextField Password
-      AcceptTabs      =   False
-      Alignment       =   0
-      AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   False
-      BackColor       =   &cFFFFFF00
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   True
+      AllowSpellChecking=   False
+      AllowTabs       =   False
+      BackgroundColor =   &cFFFFFF
       Bold            =   False
-      Border          =   True
-      CueText         =   "#Strings.kPassword"
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Format          =   ""
+      HasBorder       =   True
       Height          =   22
-      HelpTag         =   ""
+      Hint            =   ""
       Index           =   -2147483648
       Italic          =   False
       Left            =   235
-      LimitText       =   0
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
-      Mask            =   ""
+      MaximumCharactersAllowed=   0
       Password        =   True
       ReadOnly        =   False
       Scope           =   2
@@ -283,22 +284,22 @@ Begin DesktopContainer ConnectContainer
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
+      TextAlignment   =   0
       TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   203
       Transparent     =   True
       Underline       =   False
-      UseFocusRing    =   True
+      ValidationMask  =   ""
       Visible         =   True
       Width           =   310
    End
    Begin DesktopProgressWheel Progress
-      AutoDeactivate  =   True
+      Active          =   False
+      AllowAutoDeactivate=   True
+      AllowTabStop    =   False
       Enabled         =   True
       Height          =   16
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   697
@@ -307,21 +308,27 @@ Begin DesktopContainer ConnectContainer
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      PanelIndex      =   0
       Scope           =   2
       TabIndex        =   7
       TabPanelIndex   =   0
       TabStop         =   False
+      Tooltip         =   ""
       Top             =   515
       Transparent     =   True
       Visible         =   False
       Width           =   16
+      _mIndex         =   0
+      _mInitialParent =   ""
+      _mName          =   ""
+      _mPanelIndex    =   0
    End
-   Begin DesktopComboBox Address
+   Begin DesktopComboBox Address2
       AllowAutoComplete=   False
       AllowAutoDeactivate=   True
       AllowFocusRing  =   True
       Bold            =   False
-      Enabled         =   True
+      Enabled         =   False
       FontName        =   "System"
       FontSize        =   0.0
       FontUnit        =   0
@@ -331,7 +338,7 @@ Begin DesktopContainer ConnectContainer
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   235
+      Left            =   345
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -339,14 +346,14 @@ Begin DesktopContainer ConnectContainer
       LockTop         =   True
       Scope           =   2
       SelectedRowIndex=   0
-      TabIndex        =   0
+      TabIndex        =   8
       TabPanelIndex   =   0
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   137
+      Top             =   526
       Transparent     =   False
       Underline       =   False
-      Visible         =   True
+      Visible         =   False
       Width           =   310
    End
 End
@@ -400,19 +407,19 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub LoadBookmarks()
-		  'self.BookmarkList.RemoveAllRows
-		  self.Address.RemoveAllRows
+		  self.BookmarkList.RemoveAllRows
+		  'self.Address.RemoveAllRows
 		  
 		  if (Paths.Bookmarks <> Nil) AND (Paths.Bookmarks.Exists) AND (Paths.Bookmarks.Count > 0) then
 		    for each path As FolderItem in Paths.Bookmarks.Children
 		      if (path <> Nil) AND (path.Exists) AND (path.Visible) AND (path.Name.Left(1) <> ".") AND (path.Name.IndexOf(".swirlBookmark") > -1) then
 		        DIM bookmark As URLComponents = self.LoadBookmark(path)
 		        
-		        'self.BookmarkList.AddRow bookmark.User + " @ " + bookmark.Host + if(bookmark.Port = 2000, "", ":" + bookmark.Port.ToString)
-		        'self.BookmarkList.RowTagAt(self.BookmarkList.LastAddedRowIndex) = bookmark
+		        self.BookmarkList.AddRow bookmark.User + " @ " + bookmark.Host + if(bookmark.Port = 2000, "", ":" + bookmark.Port.ToString)
+		        self.BookmarkList.RowTagAt(self.BookmarkList.LastAddedRowIndex) = bookmark
 		        
-		        self.Address.AddRow bookmark.User + " @ " + bookmark.Host + if(bookmark.Port = 2000, "", ":" + bookmark.Port.ToString)
-		        self.Address.RowTagAt(self.Address.LastAddedRowIndex) = bookmark
+		        'self.Address.AddRow bookmark.User + " @ " + bookmark.Host + if(bookmark.Port = 2000, "", ":" + bookmark.Port.ToString)
+		        'self.Address.RowTagAt(self.Address.LastAddedRowIndex) = bookmark
 		      end if
 		    next
 		  end if
@@ -445,7 +452,7 @@ End
 
 #tag EndWindowCode
 
-#tag Events Address1
+#tag Events Address
 	#tag Event
 		Sub TextChanged()
 		  
@@ -530,7 +537,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events Address
+#tag Events Address2
 	#tag Event
 		Sub SelectionChanged(item As DesktopMenuItem)
 		  if (item <> Nil) AND (me.SelectedRowIndex > -1) then

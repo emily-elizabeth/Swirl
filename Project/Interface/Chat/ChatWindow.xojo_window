@@ -17,18 +17,17 @@ Begin DesktopWindow ChatWindow
    MaximumWidth    =   32000
    MenuBar         =   208667844
    MenuBarVisible  =   True
-   MinimumHeight   =   300
-   MinimumWidth    =   500
+   MinimumHeight   =   498
+   MinimumWidth    =   780
    Resizeable      =   True
    Title           =   "Swirl"
    Type            =   0
    Visible         =   False
    Width           =   780
    Begin DesktopPagePanel PagePanel1
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Enabled         =   True
       Height          =   538
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
@@ -40,23 +39,25 @@ Begin DesktopWindow ChatWindow
       PanelCount      =   3
       Panels          =   ""
       Scope           =   2
+      SelectedPanelIndex=   0
       TabIndex        =   5
       TabPanelIndex   =   0
       TabStop         =   True
+      Tooltip         =   ""
       Top             =   0
       Transparent     =   False
       Value           =   0
       Visible         =   True
       Width           =   780
       Begin CustomTabPanelTabs ChatTabs
-         AcceptFocus     =   False
-         AcceptTabs      =   False
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
+         AllowFocus      =   False
+         AllowFocusRing  =   True
+         AllowTabs       =   False
          Backdrop        =   0
          Enabled         =   True
          Facing          =   1
          Height          =   26
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Left            =   0
@@ -69,18 +70,17 @@ Begin DesktopWindow ChatWindow
          TabIndex        =   1
          TabPanelIndex   =   1
          TabStop         =   True
+         Tooltip         =   ""
          Top             =   466
          Transparent     =   True
-         UseFocusRing    =   True
          value           =   0
          Visible         =   True
          Width           =   780
       End
       Begin DesktopPagePanel ChatPanel
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Enabled         =   True
          Height          =   472
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Left            =   0
@@ -92,25 +92,27 @@ Begin DesktopWindow ChatWindow
          PanelCount      =   1
          Panels          =   ""
          Scope           =   2
+         SelectedPanelIndex=   0
          TabIndex        =   0
          TabPanelIndex   =   1
          TabStop         =   True
+         Tooltip         =   ""
          Top             =   0
          Transparent     =   False
          Value           =   0
          Visible         =   True
          Width           =   780
          Begin ConnectContainer ConnectGUI
-            AcceptFocus     =   False
-            AcceptTabs      =   True
-            AutoDeactivate  =   True
-            BackColor       =   &cFFFF00FF
+            AllowAutoDeactivate=   True
+            AllowFocus      =   False
+            AllowFocusRing  =   False
+            AllowTabs       =   True
             Backdrop        =   0
+            BackgroundColor =   &cFFFFFF
             Composited      =   False
             Enabled         =   True
-            HasBackColor    =   False
+            HasBackgroundColor=   False
             Height          =   472
-            HelpTag         =   ""
             Index           =   -2147483648
             InitialParent   =   "ChatPanel"
             Left            =   0
@@ -123,22 +125,22 @@ Begin DesktopWindow ChatWindow
             TabIndex        =   0
             TabPanelIndex   =   1
             TabStop         =   True
+            Tooltip         =   ""
             Top             =   0
             Transparent     =   True
-            UseFocusRing    =   False
             Visible         =   True
             Width           =   780
          End
       End
       Begin CustomTabPanelTabs NewsTabs
-         AcceptFocus     =   False
-         AcceptTabs      =   False
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
+         AllowFocus      =   False
+         AllowFocusRing  =   True
+         AllowTabs       =   False
          Backdrop        =   0
          Enabled         =   True
          Facing          =   1
          Height          =   26
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Left            =   0
@@ -151,22 +153,22 @@ Begin DesktopWindow ChatWindow
          TabIndex        =   1
          TabPanelIndex   =   2
          TabStop         =   True
+         Tooltip         =   ""
          Top             =   466
          Transparent     =   True
-         UseFocusRing    =   True
          value           =   0
          Visible         =   True
          Width           =   780
       End
       Begin CustomTabPanelTabs FilesTabs
-         AcceptFocus     =   False
-         AcceptTabs      =   False
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
+         AllowFocus      =   False
+         AllowFocusRing  =   True
+         AllowTabs       =   False
          Backdrop        =   0
          Enabled         =   True
          Facing          =   1
          Height          =   26
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Left            =   0
@@ -179,18 +181,17 @@ Begin DesktopWindow ChatWindow
          TabIndex        =   0
          TabPanelIndex   =   3
          TabStop         =   True
+         Tooltip         =   ""
          Top             =   466
          Transparent     =   True
-         UseFocusRing    =   True
          value           =   0
          Visible         =   True
          Width           =   780
       End
       Begin DesktopPagePanel FilesPanel
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Enabled         =   True
          Height          =   472
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Left            =   0
@@ -202,9 +203,11 @@ Begin DesktopWindow ChatWindow
          PanelCount      =   2
          Panels          =   ""
          Scope           =   2
+         SelectedPanelIndex=   0
          TabIndex        =   1
          TabPanelIndex   =   3
          TabStop         =   True
+         Tooltip         =   ""
          Top             =   0
          Transparent     =   False
          Value           =   0
@@ -212,10 +215,9 @@ Begin DesktopWindow ChatWindow
          Width           =   780
       End
       Begin DesktopPagePanel NewsPanel
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Enabled         =   True
          Height          =   472
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Left            =   0
@@ -227,9 +229,11 @@ Begin DesktopWindow ChatWindow
          PanelCount      =   0
          Panels          =   ""
          Scope           =   2
+         SelectedPanelIndex=   0
          TabIndex        =   0
          TabPanelIndex   =   2
          TabStop         =   True
+         Tooltip         =   ""
          Top             =   0
          Transparent     =   False
          Value           =   0
@@ -921,8 +925,8 @@ End
 		Visible=true
 		Group="Background"
 		InitialValue="&hFFFFFF"
-		Type="Color"
-		EditorType="Color"
+		Type="ColorGroup"
+		EditorType="ColorGroup"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Backdrop"
@@ -985,7 +989,7 @@ End
 		Visible=true
 		Group="Appearance"
 		InitialValue=""
-		Type="MenuBar"
+		Type="DesktopMenuBar"
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty

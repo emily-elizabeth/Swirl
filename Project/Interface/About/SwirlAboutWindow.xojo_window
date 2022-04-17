@@ -10,7 +10,7 @@ Begin DesktopWindow SwirlAboutWindow
    HasFullScreenButton=   False
    HasMaximizeButton=   False
    HasMinimizeButton=   True
-   Height          =   283
+   Height          =   200
    ImplicitInstance=   True
    MacProcID       =   0
    MaximumHeight   =   283
@@ -25,15 +25,13 @@ Begin DesktopWindow SwirlAboutWindow
    Visible         =   False
    Width           =   560
    Begin DesktopCanvas Icon
-      AcceptFocus     =   False
-      AcceptTabs      =   False
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
+      AllowFocus      =   False
+      AllowFocusRing  =   False
+      AllowTabs       =   False
       Backdrop        =   0
-      DoubleBuffer    =   False
       Enabled         =   True
-      EraseBackground =   "True"
       Height          =   128
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   20
@@ -46,20 +44,20 @@ Begin DesktopWindow SwirlAboutWindow
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
+      Tooltip         =   ""
       Top             =   20
       Transparent     =   True
-      UseFocusRing    =   True
       Visible         =   True
       Width           =   128
    End
    Begin DesktopLabel VersionInfo
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   True
-      Height          =   243
-      HelpTag         =   ""
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   160
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -75,24 +73,55 @@ Begin DesktopWindow SwirlAboutWindow
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   ""
-      TextAlign       =   2
+      Text            =   "Thanks to everyone who has helped over the years.\nW4r.H4wk - Windows testing and hardware provider\nFLiP - protocol and feature assistance\ndocmeth - Linux testing and protocol and feature assistance\nElliot - original icon\nSiborg\nhass"
+      TextAlignment   =   0
       TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   20
       Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   348
    End
+   Begin DesktopLabel Label1
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   2
+      Selectable      =   False
+      TabIndex        =   2
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextAlignment   =   2
+      TextColor       =   &c000000
+      Tooltip         =   ""
+      Top             =   160
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   128
+   End
 End
 #tag EndDesktopWindow
 
 #tag WindowCode
 	#tag Event
-		Sub MenuBarSelected() Handles MenuBarSelected
+		Sub MenuBarSelected()
 		  'EditClear.Enabled = FALSE
 		  'EditCopy.Enabled = FALSE
 		  'EditCut.Enabled = FALSE
@@ -103,7 +132,7 @@ End
 	#tag EndEvent
 
 	#tag Event
-		Sub Opening() Handles Opening
+		Sub Opening()
 		  self.top = ( Screen(0).Height \ 3) - (self.Height \ 3 )
 		  self.left = ( Screen(0).Width \ 2) - (self.Width \ 2 )
 		End Sub
@@ -130,19 +159,14 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag Events VersionInfo
+#tag EndEvents
+#tag Events Label1
 	#tag Event
 		Sub Opening()
-		  DIM info As String = "Swirl $version"
-		  info = info.Replace("$version", App.MajorVersion.ToString + "." + App.MinorVersion.ToString + "." + App.NonReleaseVersion.ToString)
+		  'DIM info As String = "Swirl $version"
+		  'info = info.Replace("$version", App.MajorVersion.ToString + "." + App.MinorVersion.ToString + "." + App.NonReleaseVersion.ToString)
 		  
-		  me.Text = "Thanks to everyone who has helped over the years." + EndOfLine + EndOfLine + _
-		  "W4r.H4wk - Windows testing and hardware provider" + EndOfLine + _
-		  "FLiP - protocol and feature assistance" + EndOfLine + _
-		  "docmeth - Linux testing and protocol and feature assistance" + EndOfLine + _
-		  "Elliot - original icon" + EndOfLine + _
-		  "Siborg" + EndOfLine + _
-		  "hass" + EndOfLine + EndOfLine + _
-		  info
+		  me.Text = "Swirl " + App.MajorVersion.ToString + "." + App.MinorVersion.ToString + "." + App.NonReleaseVersion.ToString
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -260,8 +284,8 @@ End
 		Visible=true
 		Group="Background"
 		InitialValue="&hFFFFFF"
-		Type="Color"
-		EditorType="Color"
+		Type="ColorGroup"
+		EditorType="ColorGroup"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Backdrop"
@@ -324,7 +348,7 @@ End
 		Visible=true
 		Group="Appearance"
 		InitialValue=""
-		Type="MenuBar"
+		Type="DesktopMenuBar"
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty

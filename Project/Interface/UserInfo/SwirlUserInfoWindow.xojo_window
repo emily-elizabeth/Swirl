@@ -25,13 +25,13 @@ Begin DesktopWindow SwirlUserInfoWindow
    Visible         =   True
    Width           =   300
    Begin DesktopCanvas UserIcon
-      AcceptFocus     =   False
-      AcceptTabs      =   False
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
+      AllowFocus      =   False
+      AllowFocusRing  =   False
+      AllowTabs       =   False
       Backdrop        =   0
       Enabled         =   True
       Height          =   46
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   20
@@ -44,40 +44,16 @@ Begin DesktopWindow SwirlUserInfoWindow
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
+      Tooltip         =   ""
       Top             =   20
-      Transparent     =   True
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   260
-   End
-   BeginSegmented SegmentedControl SegmentedControl1
-      Enabled         =   True
-      Height          =   24
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   20
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      MacControlStyle =   0
-      Scope           =   2
-      Segments        =   "#Strings.kInfo\n\nFalse\r#Strings.kDownloads\n\nFalse\r#Strings.kUploads\n\nFalse"
-      SelectionType   =   0
-      TabIndex        =   1
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   78
       Transparent     =   True
       Visible         =   True
       Width           =   260
    End
    Begin DesktopPagePanel PagePanel1
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Enabled         =   True
       Height          =   325
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
@@ -89,20 +65,24 @@ Begin DesktopWindow SwirlUserInfoWindow
       PanelCount      =   3
       Panels          =   ""
       Scope           =   2
+      SelectedPanelIndex=   0
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
+      Tooltip         =   ""
       Top             =   99
       Transparent     =   True
       Value           =   0
       Visible         =   True
       Width           =   300
       Begin DesktopLabel LoginL
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Italic          =   False
@@ -119,11 +99,9 @@ Begin DesktopWindow SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   "#Strings.kLogin"
-         TextAlign       =   3
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "SmallSystem"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   119
          Transparent     =   True
          Underline       =   False
@@ -131,11 +109,13 @@ Begin DesktopWindow SwirlUserInfoWindow
          Width           =   61
       End
       Begin DesktopLabel IDL
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Italic          =   False
@@ -152,11 +132,9 @@ Begin DesktopWindow SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   "#Strings.kID"
-         TextAlign       =   3
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "SmallSystem"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   140
          Transparent     =   True
          Underline       =   False
@@ -164,11 +142,13 @@ Begin DesktopWindow SwirlUserInfoWindow
          Width           =   61
       End
       Begin DesktopLabel AddressL
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Italic          =   False
@@ -185,11 +165,9 @@ Begin DesktopWindow SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   "#Strings.kAddress"
-         TextAlign       =   3
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "SmallSystem"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   160
          Transparent     =   True
          Underline       =   False
@@ -197,11 +175,13 @@ Begin DesktopWindow SwirlUserInfoWindow
          Width           =   61
       End
       Begin DesktopLabel HostL
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Italic          =   False
@@ -218,11 +198,9 @@ Begin DesktopWindow SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   "#Strings.kHost"
-         TextAlign       =   3
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "SmallSystem"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   180
          Transparent     =   True
          Underline       =   False
@@ -230,11 +208,13 @@ Begin DesktopWindow SwirlUserInfoWindow
          Width           =   61
       End
       Begin DesktopLabel VersionL
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Italic          =   False
@@ -251,11 +231,9 @@ Begin DesktopWindow SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   "#Strings.kVersion"
-         TextAlign       =   3
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "SmallSystem"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   200
          Transparent     =   True
          Underline       =   False
@@ -263,11 +241,13 @@ Begin DesktopWindow SwirlUserInfoWindow
          Width           =   61
       End
       Begin DesktopLabel CIpherL
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Italic          =   False
@@ -284,11 +264,9 @@ Begin DesktopWindow SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   "#Strings.kCipher"
-         TextAlign       =   3
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "SmallSystem"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   221
          Transparent     =   True
          Underline       =   False
@@ -296,11 +274,13 @@ Begin DesktopWindow SwirlUserInfoWindow
          Width           =   61
       End
       Begin DesktopLabel LoginTimeL
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Italic          =   False
@@ -317,11 +297,9 @@ Begin DesktopWindow SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   "#Strings.kLoginTIme"
-         TextAlign       =   3
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "SmallSystem"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   241
          Transparent     =   True
          Underline       =   False
@@ -329,11 +307,13 @@ Begin DesktopWindow SwirlUserInfoWindow
          Width           =   61
       End
       Begin DesktopLabel IdleTimeL
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Italic          =   False
@@ -350,11 +330,9 @@ Begin DesktopWindow SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   "#Strings.kIdleTime"
-         TextAlign       =   3
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "SmallSystem"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   261
          Transparent     =   True
          Underline       =   False
@@ -362,11 +340,13 @@ Begin DesktopWindow SwirlUserInfoWindow
          Width           =   61
       End
       Begin DesktopLabel UserLogin
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Italic          =   False
@@ -383,11 +363,9 @@ Begin DesktopWindow SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   ""
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "SmallSystem"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   118
          Transparent     =   True
          Underline       =   False
@@ -395,11 +373,13 @@ Begin DesktopWindow SwirlUserInfoWindow
          Width           =   187
       End
       Begin DesktopLabel UserID
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Italic          =   False
@@ -416,11 +396,9 @@ Begin DesktopWindow SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   ""
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "SmallSystem"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   140
          Transparent     =   True
          Underline       =   False
@@ -428,11 +406,13 @@ Begin DesktopWindow SwirlUserInfoWindow
          Width           =   187
       End
       Begin DesktopLabel UserAddress
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Italic          =   False
@@ -449,11 +429,9 @@ Begin DesktopWindow SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   ""
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "SmallSystem"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   160
          Transparent     =   True
          Underline       =   False
@@ -461,11 +439,13 @@ Begin DesktopWindow SwirlUserInfoWindow
          Width           =   187
       End
       Begin DesktopLabel UserHost
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Italic          =   False
@@ -482,11 +462,9 @@ Begin DesktopWindow SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   ""
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "SmallSystem"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   180
          Transparent     =   True
          Underline       =   False
@@ -494,11 +472,13 @@ Begin DesktopWindow SwirlUserInfoWindow
          Width           =   187
       End
       Begin DesktopLabel UserVersion
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Italic          =   False
@@ -515,11 +495,9 @@ Begin DesktopWindow SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   ""
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "SmallSystem"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   200
          Transparent     =   True
          Underline       =   False
@@ -527,11 +505,13 @@ Begin DesktopWindow SwirlUserInfoWindow
          Width           =   187
       End
       Begin DesktopLabel UserCipher
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Italic          =   False
@@ -548,11 +528,9 @@ Begin DesktopWindow SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   ""
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "SmallSystem"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   221
          Transparent     =   True
          Underline       =   False
@@ -560,11 +538,13 @@ Begin DesktopWindow SwirlUserInfoWindow
          Width           =   187
       End
       Begin DesktopLabel UserLoginTime
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Italic          =   False
@@ -581,11 +561,9 @@ Begin DesktopWindow SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   ""
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "SmallSystem"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   241
          Transparent     =   True
          Underline       =   False
@@ -593,11 +571,13 @@ Begin DesktopWindow SwirlUserInfoWindow
          Width           =   187
       End
       Begin DesktopLabel UserIdleTime
-         AutoDeactivate  =   True
+         AllowAutoDeactivate=   True
          Bold            =   False
          Enabled         =   True
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          Height          =   20
-         HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          Italic          =   False
@@ -614,11 +594,9 @@ Begin DesktopWindow SwirlUserInfoWindow
          TabPanelIndex   =   1
          TabStop         =   True
          Text            =   ""
-         TextAlign       =   0
+         TextAlignment   =   0
          TextColor       =   &c00000000
-         TextFont        =   "SmallSystem"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   261
          Transparent     =   True
          Underline       =   False
@@ -626,23 +604,29 @@ Begin DesktopWindow SwirlUserInfoWindow
          Width           =   187
       End
       Begin DesktopListBox DownloadsList
-         AutoDeactivate  =   True
-         AutoHideScrollbars=   True
+         AllowAutoDeactivate=   True
+         AllowAutoHideScrollbars=   True
+         AllowExpandableRows=   False
+         AllowFocusRing  =   True
+         AllowResizableColumns=   False
+         AllowRowDragging=   False
+         AllowRowReordering=   False
          Bold            =   False
-         Border          =   True
          ColumnCount     =   1
-         ColumnsResizable=   False
          ColumnWidths    =   ""
          DefaultRowHeight=   48
+         DropIndicatorVisible=   False
          Enabled         =   True
-         EnableDrag      =   False
-         EnableDragReorder=   False
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          GridLineStyle   =   0
-         HasHeading      =   False
+         HasBorder       =   True
+         HasHeader       =   False
+         HasHorizontalScrollbar=   False
+         HasVerticalScrollbar=   True
          HeadingIndex    =   -1
          Height          =   281
-         HelpTag         =   ""
-         Hierarchical    =   False
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          InitialValue    =   ""
@@ -654,44 +638,44 @@ Begin DesktopWindow SwirlUserInfoWindow
          LockRight       =   True
          LockTop         =   True
          RequiresSelection=   False
+         RowSelectionType=   0
          Scope           =   2
-         ScrollbarHorizontal=   False
-         ScrollBarVertical=   True
-         SelectionType   =   0
-         ShowDropIndicator=   False
          TabIndex        =   0
          TabPanelIndex   =   2
          TabStop         =   True
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   119
          Transparent     =   True
          Underline       =   False
-         UseFocusRing    =   False
          Visible         =   True
          Width           =   300
          _ScrollOffset   =   0
          _ScrollWidth    =   -1
       End
       Begin DesktopListBox UploadsList
-         AutoDeactivate  =   True
-         AutoHideScrollbars=   True
+         AllowAutoDeactivate=   True
+         AllowAutoHideScrollbars=   True
+         AllowExpandableRows=   False
+         AllowFocusRing  =   True
+         AllowResizableColumns=   False
+         AllowRowDragging=   False
+         AllowRowReordering=   False
          Bold            =   False
-         Border          =   True
          ColumnCount     =   1
-         ColumnsResizable=   False
          ColumnWidths    =   ""
          DefaultRowHeight=   48
+         DropIndicatorVisible=   False
          Enabled         =   True
-         EnableDrag      =   False
-         EnableDragReorder=   False
+         FontName        =   "System"
+         FontSize        =   0.0
+         FontUnit        =   0
          GridLineStyle   =   0
-         HasHeading      =   False
+         HasBorder       =   True
+         HasHeader       =   False
+         HasHorizontalScrollbar=   False
+         HasVerticalScrollbar=   True
          HeadingIndex    =   -1
          Height          =   281
-         HelpTag         =   ""
-         Hierarchical    =   False
          Index           =   -2147483648
          InitialParent   =   "PagePanel1"
          InitialValue    =   ""
@@ -703,26 +687,43 @@ Begin DesktopWindow SwirlUserInfoWindow
          LockRight       =   True
          LockTop         =   True
          RequiresSelection=   False
+         RowSelectionType=   0
          Scope           =   2
-         ScrollbarHorizontal=   False
-         ScrollBarVertical=   True
-         SelectionType   =   0
-         ShowDropIndicator=   False
          TabIndex        =   0
          TabPanelIndex   =   3
          TabStop         =   True
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
+         Tooltip         =   ""
          Top             =   119
          Transparent     =   True
          Underline       =   False
-         UseFocusRing    =   False
          Visible         =   True
          Width           =   300
          _ScrollOffset   =   0
          _ScrollWidth    =   -1
       End
+   End
+   BeginDesktopSegmentedButton DesktopSegmentedButton SegmentedButton1
+      Enabled         =   True
+      Height          =   24
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   15
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      MacButtonStyle  =   0
+      Scope           =   2
+      Segments        =   "#Strings.kInfo\n\nTrue\r#Strings.kDownloads\n\nFalse\r#Strings.kUploads\n\nFalse"
+      SelectionStyle  =   0
+      TabIndex        =   2
+      TabPanelIndex   =   0
+      TabStop         =   False
+      Tooltip         =   ""
+      Top             =   78
+      Visible         =   True
+      Width           =   260
    End
 End
 #tag EndDesktopWindow
@@ -936,13 +937,6 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events SegmentedControl1
-	#tag Event
-		Sub Action(itemIndex as integer)
-		  self.PagePanel1.SelectedPanelIndex = itemIndex
-		End Sub
-	#tag EndEvent
-#tag EndEvents
 #tag Events DownloadsList
 	#tag Event
 		Function PaintCellText(g as Graphics, row as Integer, column as Integer, x as Integer, y as Integer) As Boolean
@@ -1011,6 +1005,13 @@ End
 		  FormatByteCount(Val(infoA(2)), FormatByteCount.ByteCountFormatterStyle.Binary) + " - " + _
 		  FormatByteCount(Val(infoA(3)), FormatByteCount.ByteCountFormatterStyle.Binary) + "/s", 9, g.Height - 6
 		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events SegmentedButton1
+	#tag Event
+		Sub Pressed(segmentIndex as integer)
+		  self.PagePanel1.SelectedPanelIndex = segmentIndex
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
@@ -1127,8 +1128,8 @@ End
 		Visible=true
 		Group="Background"
 		InitialValue="&hFFFFFF"
-		Type="Color"
-		EditorType="Color"
+		Type="ColorGroup"
+		EditorType="ColorGroup"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Backdrop"
@@ -1191,7 +1192,7 @@ End
 		Visible=true
 		Group="Menus"
 		InitialValue=""
-		Type="MenuBar"
+		Type="DesktopMenuBar"
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
