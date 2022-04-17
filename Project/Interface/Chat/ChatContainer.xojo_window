@@ -28,7 +28,7 @@ Begin DesktopContainer ChatContainer
    Begin VibrancyCanvas VibrancyCanvas1
       AllowAutoDeactivate=   True
       AllowFocus      =   False
-      AllowFocusRing  =   True
+      AllowFocusRing  =   False
       AllowTabs       =   False
       Backdrop        =   0
       Enabled         =   True
@@ -52,7 +52,7 @@ Begin DesktopContainer ChatContainer
    End
    Begin CustomChatInput ChatInput
       AllowAutoDeactivate=   True
-      AllowFocusRing  =   True
+      AllowFocusRing  =   False
       AllowSpellChecking=   True
       AllowStyledText =   True
       AllowTabs       =   False
