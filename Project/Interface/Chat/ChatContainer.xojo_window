@@ -101,7 +101,7 @@ Begin DesktopContainer ChatContainer
       AllowAutoDeactivate=   True
       AllowAutoHideScrollbars=   True
       AllowExpandableRows=   False
-      AllowFocusRing  =   True
+      AllowFocusRing  =   False
       AllowResizableColumns=   False
       AllowRowDragging=   False
       AllowRowReordering=   False
