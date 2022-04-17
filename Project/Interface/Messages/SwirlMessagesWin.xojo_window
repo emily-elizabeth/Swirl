@@ -25,22 +25,26 @@ Begin DesktopWindow SwirlMessagesWin
    Visible         =   False
    Width           =   400
    Begin DesktopTextArea ChatInput
-      AcceptTabs      =   False
-      Alignment       =   0
-      AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   True
-      BackColor       =   &cFFFFFF00
+      AllowAutoDeactivate=   True
+      AllowFocusRing  =   False
+      AllowSpellChecking=   True
+      AllowStyledText =   True
+      AllowTabs       =   False
+      BackgroundColor =   &cFFFFFF
       Bold            =   False
-      Border          =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Format          =   ""
+      HasBorder       =   False
+      HasHorizontalScrollbar=   False
+      HasVerticalScrollbar=   True
       Height          =   80
-      HelpTag         =   ""
       HideSelection   =   True
       Index           =   -2147483648
       Italic          =   False
       Left            =   0
-      LimitText       =   0
       LineHeight      =   0.0
       LineSpacing     =   1.0
       LockBottom      =   True
@@ -48,26 +52,22 @@ Begin DesktopWindow SwirlMessagesWin
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   False
-      Mask            =   ""
+      MaximumCharactersAllowed=   0
       Multiline       =   True
       ReadOnly        =   False
       Scope           =   2
-      ScrollbarHorizontal=   False
-      ScrollbarVertical=   True
-      Styled          =   False
       TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
+      TextAlignment   =   0
       TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   387
       Transparent     =   False
       Underline       =   False
       UnicodeMode     =   0
-      UseFocusRing    =   False
+      ValidationMask  =   ""
       Visible         =   True
       Width           =   400
    End
@@ -76,7 +76,6 @@ Begin DesktopWindow SwirlMessagesWin
       DefaultFontSize =   0
       Enabled         =   True
       Height          =   338
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
@@ -90,18 +89,19 @@ Begin DesktopWindow SwirlMessagesWin
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
+      Tooltip         =   ""
       Top             =   48
       Visible         =   True
       Width           =   400
    End
    Begin DesktopCanvas UserIcon
-      AcceptFocus     =   False
-      AcceptTabs      =   False
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
+      AllowFocus      =   False
+      AllowFocusRing  =   False
+      AllowTabs       =   False
       Backdrop        =   0
       Enabled         =   True
       Height          =   46
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   8
@@ -114,18 +114,20 @@ Begin DesktopWindow SwirlMessagesWin
       TabIndex        =   4
       TabPanelIndex   =   0
       TabStop         =   True
+      Tooltip         =   ""
       Top             =   1
       Transparent     =   True
-      UseFocusRing    =   True
       Visible         =   True
       Width           =   384
    End
    Begin DesktopLabel UserStatus
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   False
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   20
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -142,11 +144,9 @@ Begin DesktopWindow SwirlMessagesWin
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
-      TextAlign       =   0
+      TextAlignment   =   0
       TextColor       =   &c00000000
-      TextFont        =   "SmallSystem"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   -72
       Transparent     =   False
       Underline       =   False
@@ -154,11 +154,13 @@ Begin DesktopWindow SwirlMessagesWin
       Width           =   355
    End
    Begin DesktopLabel UserNick
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
       Bold            =   True
       Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
       Height          =   21
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
@@ -175,11 +177,9 @@ Begin DesktopWindow SwirlMessagesWin
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
-      TextAlign       =   0
+      TextAlignment   =   0
       TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
+      Tooltip         =   ""
       Top             =   -91
       Transparent     =   False
       Underline       =   False
@@ -645,8 +645,8 @@ End
 		Visible=true
 		Group="Background"
 		InitialValue="&hFFFFFF"
-		Type="Color"
-		EditorType="Color"
+		Type="ColorGroup"
+		EditorType="ColorGroup"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Backdrop"
@@ -709,7 +709,7 @@ End
 		Visible=true
 		Group="Appearance"
 		InitialValue=""
-		Type="MenuBar"
+		Type="DesktopMenuBar"
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty

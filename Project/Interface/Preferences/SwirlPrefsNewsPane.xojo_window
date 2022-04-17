@@ -97,7 +97,7 @@ Begin DesktopContainer SwirlPrefsNewsPane
       FontSize        =   0.0
       FontUnit        =   0
       GridLineStyle   =   0
-      HasBorder       =   True
+      HasBorder       =   False
       HasHeader       =   False
       HasHorizontalScrollbar=   False
       HasVerticalScrollbar=   True
