@@ -121,7 +121,7 @@ Begin DesktopContainer SwirlPrefsGeneralPane
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "#Strings.kStatus"
-      TextAlignment   =   0
+      TextAlignment   =   3
       TextColor       =   &c00000000
       Tooltip         =   ""
       Top             =   54
@@ -195,7 +195,7 @@ Begin DesktopContainer SwirlPrefsGeneralPane
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "#Strings.kNick"
-      TextAlignment   =   0
+      TextAlignment   =   3
       TextColor       =   &c00000000
       Tooltip         =   ""
       Top             =   22
@@ -414,7 +414,7 @@ Begin DesktopContainer SwirlPrefsGeneralPane
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "Download Folder"
-      TextAlignment   =   0
+      TextAlignment   =   3
       TextColor       =   &c00000000
       Tooltip         =   ""
       Top             =   86

@@ -1,9 +1,5 @@
 #tag Module
 Protected Module Strings
-	#tag Constant, Name = kAbout, Type = String, Dynamic = True, Default = \"About", Scope = Protected
-		#Tag Instance, Platform = Any, Language = en, Definition  = \"About"
-	#tag EndConstant
-
 	#tag Constant, Name = kAboutSwirl, Type = String, Dynamic = True, Default = \"About Swirl", Scope = Protected
 		#Tag Instance, Platform = Any, Language = en, Definition  = \"About Swirl"
 	#tag EndConstant
@@ -13,14 +9,7 @@ Protected Module Strings
 	#tag EndConstant
 
 	#tag Constant, Name = kAccounts_, Type = String, Dynamic = True, Default = \"Accounts\xE2\x80\xA6", Scope = Protected
-	#tag EndConstant
-
-	#tag Constant, Name = kActivities, Type = String, Dynamic = True, Default = \"Activites", Scope = Protected
-		#Tag Instance, Platform = Any, Language = en, Definition  = \"Activities"
-	#tag EndConstant
-
-	#tag Constant, Name = kAddBookmark, Type = String, Dynamic = True, Default = \"Add Bookmark", Scope = Protected
-		#Tag Instance, Platform = Any, Language = en, Definition  = \"Add Bookmark"
+		#Tag Instance, Platform = Any, Language = en, Definition  = \"Accounts\xE2\x80\xA6"
 	#tag EndConstant
 
 	#tag Constant, Name = kAddress, Type = String, Dynamic = True, Default = \"Address", Scope = Protected
@@ -32,14 +21,7 @@ Protected Module Strings
 	#tag EndConstant
 
 	#tag Constant, Name = kAlterFiles, Type = String, Dynamic = True, Default = \"Alter Files", Scope = Protected
-	#tag EndConstant
-
-	#tag Constant, Name = kAnimals, Type = String, Dynamic = True, Default = \"Animals", Scope = Protected
-		#Tag Instance, Platform = Any, Language = en, Definition  = \"Animals"
-	#tag EndConstant
-
-	#tag Constant, Name = kApply, Type = String, Dynamic = True, Default = \"Apply", Scope = Protected
-		#Tag Instance, Platform = Any, Language = en, Definition  = \"Apply"
+		#Tag Instance, Platform = Any, Language = en, Definition  = \"Alter Files"
 	#tag EndConstant
 
 	#tag Constant, Name = kApplyMessageStyle, Type = String, Dynamic = True, Default = \"Apply Message Style", Scope = Protected

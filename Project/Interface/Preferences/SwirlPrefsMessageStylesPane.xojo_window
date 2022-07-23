@@ -250,7 +250,7 @@ Begin DesktopContainer SwirlPrefsMessageStylesPane
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "#Strings.kMessageStyle"
-      TextAlignment   =   0
+      TextAlignment   =   3
       TextColor       =   &c00000000
       Tooltip         =   ""
       Top             =   257
@@ -283,7 +283,7 @@ Begin DesktopContainer SwirlPrefsMessageStylesPane
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "#Strings.kFontSize"
-      TextAlignment   =   0
+      TextAlignment   =   3
       TextColor       =   &c00000000
       Tooltip         =   ""
       Top             =   452

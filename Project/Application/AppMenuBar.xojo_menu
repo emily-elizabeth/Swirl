@@ -108,7 +108,7 @@ Begin Menu AppMenuBar
       Begin DesktopMenuItem ConnectionAccounts
          SpecialMenu = 0
          Index = -2147483648
-         Text = "#Strings.kAccounts"
+         Text = "#Strings.kAccounts_"
          ShortcutKey = "U"
          Shortcut = "Cmd+U"
          MenuModifier = True
